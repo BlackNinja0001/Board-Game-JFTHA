@@ -18,25 +18,25 @@ import jftha.items.*;
  * @author tue75856
  */
 public class HeroTest {
-    
+
     public HeroTest() {
     }
-    
     Hero hero;
-    
+    Hero enemy;
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         hero = new Hero();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -139,8 +139,8 @@ public class HeroTest {
         hero.setMaxMP(mp);
         assertEquals(mp, hero.getMaxMP());
     }
-    
-    /** 
+
+    /**
      * Test to ensure that spell_slots is the maximum amount of spells
      */
     @Test
@@ -150,11 +150,10 @@ public class HeroTest {
         hero.addSpell(new Fireball());
         assertFalse(hero.addSpell(new Shield()));
     }
-    
+
     /**
      * Test to ensure that storage_space is the maximum amount of items
      */
-    
     @Test
     public void testItemStorageLimit() {
         assertEquals(5, hero.getStorageSpace());
@@ -165,17 +164,25 @@ public class HeroTest {
         hero.addItem(new MageRobe());
         assertFalse(hero.addItem(new SpellBook()));
     }
-    
+
     @Test
     public void testForNoDuplicateItems() {
         hero.addItem(new Ax());
         assertFalse(hero.addItem(new Ax()));
     }
-    
+
     @Test
     public void testForNoDuplicateSpells() {
         hero.addSpell(new Heal());
         assertFalse(hero.addSpell(new Heal()));
     }
-    
+
+    @Test
+    public void attackingReturnsCorrectValues() {
+        hero = new Hero();
+        enemy = new Hero();
+        hero.attackEnemy(enemy);
+        assertFalse("Attacker did not attack.", hero.getCurrentHP() != 60); //was attacked
+        assertFalse("Attacked did not attack back.", enemy.getCurrentHP() != 60); //attacker did retaliate
+    }
 }
