@@ -9,6 +9,7 @@ import jftha.items.Item;
 import jftha.main.Buyable;
 import jftha.spells.Spell;
 import jftha.main.Effect;
+import java.lang.Math;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -43,7 +44,9 @@ public class Hero {
     // Gold the player currently has
     private int gold;
     // Determines if player is a ghost
-    private boolean isGhost;
+    private boolean isGhost = false; 
+    //Helper variable for attackEnemy
+    private boolean retaliatedAgainst;
     
     //Constructor
     public Hero(){
@@ -60,6 +63,7 @@ public class Hero {
         this.spells = new ArrayList<>(this.spell_slots);
         this.isGhost = false;
         this.gold = 0;
+        this.retaliatedAgainst = false;
     }
     
     //Setter methods
@@ -98,10 +102,7 @@ public class Hero {
     public void setCurrentMP(int mp) {
         this.currentMP = mp;
     }
-    public void addGold(int gold) {
-        this.gold += gold;
-    }
-    public void loseGold(int gold) {
+    public void setGold(int gold) {
         this.gold -= gold;
     }
     
@@ -188,11 +189,13 @@ public class Hero {
     public void attackEnemy(Hero attacked){
         if (attacked.isGhost == false){ //cannot attack ghost unless under certain circumstances
             double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck));
-            attacked.currentHP -= damage;
+            int intDamage = (int) Math.round(damage);
+            attacked.currentHP -= intDamage;
         } else { //attacking ghost
             //handle spiritual items
             //if no spiritual items, the Attack phase is skipped
         }
+        
         //cannot call attackEnemy again or will cause infinite loop
     }
 
