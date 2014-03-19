@@ -101,7 +101,7 @@ public class Hero {
     public void addGold(int gold) {
         this.gold += gold;
     }
-    public void spendGold(int gold) {
+    public void loseGold(int gold) {
         this.gold -= gold;
     }
     
@@ -130,7 +130,7 @@ public class Hero {
     public int getMaxHP(){
         return maxHP;
     }
-    public int getcurrentHP() {
+    public int getCurrentHP() {
         return currentHP;
     }
     public int getMaxMP(){
