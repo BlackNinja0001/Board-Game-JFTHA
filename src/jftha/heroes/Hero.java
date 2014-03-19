@@ -186,10 +186,16 @@ public class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked){
-        //cannot atk ghost unless this character have spiritual item
-        double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck));
-        
+        if (attacked.isGhost == false){ //cannot attack ghost unless under certain circumstances
+            double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck));
+            attacked.currentHP -= damage;
+        } else { //attacking ghost
+            //handle spiritual items
+            //if no spiritual items, the Attack phase is skipped
+        }
+        //cannot call attackEnemy again or will cause infinite loop
     }
+
     /** Allows a character to buy an item in the store.
      * 
      * @param buy The Buyable item that the player want to purchase
