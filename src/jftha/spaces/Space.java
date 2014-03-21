@@ -8,6 +8,12 @@ public class Space {
     private Effect effect;
     private char activationType; //p for pass-by, l for land-on
     private Hero activater;
+    private boolean isChest;
+    private boolean isStore;
+    private boolean isD2D; // Duel to the Death
+    private boolean isHealth;
+    private boolean isCard;
+    
     public Space next;
     public Space prev;
     
