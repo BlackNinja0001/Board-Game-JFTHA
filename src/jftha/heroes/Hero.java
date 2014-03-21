@@ -47,6 +47,8 @@ public class Hero {
     private int gold;
     // Determines if player is a ghost
     private boolean isGhost = false;
+    // Determines if the player had been a ghost and came back
+    private boolean wasGhost = false;
     //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
     private boolean wasAttacked;
 
@@ -217,8 +219,10 @@ public class Hero {
      */
     public void unGhost() {
         this.isGhost = false;
+        this.wasGhost = true;
         this.currentHP = this.maxHP;
         //Lose Spectre Shots;
+        //If find soulStone(unghost)
     }
 
     /**
