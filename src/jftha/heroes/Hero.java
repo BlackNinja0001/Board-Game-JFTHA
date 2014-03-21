@@ -47,8 +47,8 @@ public class Hero {
     private int gold;
     // Determines if player is a ghost
     private boolean isGhost = false;
-    //Helper variable for attackEnemy
-    private boolean justAttacked;
+    //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
+    private boolean wasAttacked;
 
     //Constructor
     public Hero() {
@@ -67,7 +67,7 @@ public class Hero {
         this.spells = new ArrayList<>(this.spell_slots);
         this.isGhost = false;
         this.gold = 0;
-        this.justAttacked = false;
+        this.wasAttacked = false;
     }
 
     //Setter methods
@@ -121,8 +121,8 @@ public class Hero {
         this.gold -= gold;
     }
 
-    public void setJustAttacked(boolean jA) {
-        this.justAttacked = jA;
+    public void setWasAttacked(boolean jA) {
+        this.wasAttacked = jA;
     }
 
     //Getter Methods
@@ -174,8 +174,8 @@ public class Hero {
         return gold;
     }
 
-    public boolean getJustAttacked() {
-        return justAttacked;
+    public boolean getWasAttacked() {
+        return wasAttacked;
     }
 
     /**
@@ -223,32 +223,24 @@ public class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (attacked.justAttacked == false) {
+        if (attacked.wasAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
                 Random rand = new Random();
-                int randomDamage = rand.nextInt(2);
+                int randomDamage = rand.nextInt(3);
                 double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
-                if (damage < 0){ //attacker sucks
+                if (damage < 0) { //attacker sucks
                     damage = 0;
                 }
                 int intDamage = (int) Math.round(damage);
-                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
+//                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
+                //watch for death
             } else { //attacking ghost
                 //handle spiritual items
                 //if no spiritual items, the Attack phase is skipped
             }
-        } else {
-            //cannot just call attackEnemy again or will cause infinite loop
-            attacked.attackEnemy(this);
-            this.justAttacked = true;
         }
-
-        //reset so that both characters can attack again
-        if ((this.justAttacked == true) && attacked.justAttacked == true) {
-            this.justAttacked = false;
-            attacked.justAttacked = false;
-        }
+        attacked.wasAttacked = true;
 
     }
 

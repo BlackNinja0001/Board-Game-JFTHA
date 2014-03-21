@@ -35,6 +35,7 @@ public class HeroTest {
     @Before
     public void setUp() {
         hero = new Hero();
+        enemy = new Hero();
     }
 
     @After
@@ -178,30 +179,31 @@ public class HeroTest {
     }
 
     @Test
-    public void bothSidesAreAttackedinBattle() {
-        hero = new Hero();
-        enemy = new Hero();
+    public void attackedHeroSuffersDamage() {
+        setUp();
         hero.setStrength(12);
-        enemy.setStrength(5);
-        hero.setDefense(12);
+        enemy.setStrength(12);
+        hero.setDefense(5);
         enemy.setDefense(5);
-        /*
+        ///*
          System.out.println("Before:");
          System.out.println("Hero: " + hero.getCurrentHP() 
          + "\nEnemy: " + enemy.getCurrentHP());
                 
-         */
+         //*/
         hero.attackEnemy(enemy);
-        /*
+        ///*
          System.out.println("After: ");
          System.out.println("Hero: " + hero.getCurrentHP()
          + "\nEnemy: " + enemy.getCurrentHP());
-         */
-        assertTrue("Attacker did not attack.", hero.getCurrentHP() < 60);
-        assertTrue("Attacked did not attack back.", enemy.getCurrentHP() < 60);
+         //*/
+        assertTrue("Attacker did not attack.", enemy.getCurrentHP() < 60);
+        //assertTrue("Attacked did not attack back.", hero.getCurrentHP() < 60);
     }
 
     @Test
     public void ghostsCannotBeHit() {
+        setUp();
+        
     }
 }
