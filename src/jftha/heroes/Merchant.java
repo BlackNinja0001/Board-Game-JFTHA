@@ -3,10 +3,11 @@ package jftha.heroes;
 import jftha.items.WoolClothing;
 import jftha.items.WagonOfGoods;
 import jftha.main.*;
+import java.lang.*;
 
 public class Merchant extends Hero{
     
-    final double discount = 0.25;
+    final double discount = 0.75;
     
     //Constructor
     public Merchant(){
@@ -27,10 +28,14 @@ public class Merchant extends Hero{
      */
     @Override
     public boolean buy(Buyable buy){
-        int f = buy.getGoldCost(); 
-        f -= (buy.getGoldCost() * discount);
-        //need setter and getter for gold
-        //this.getGold() - f;
+        int currentGold = this.getGold();;
+        //If character has the gold
+        if(this.getGold() >= buy.getGoldCost()){
+            double gold = currentGold - (buy.getGoldCost() * discount);
+            currentGold = (int) Math.round(gold);
+            this.setGold(currentGold);
+            return true;
+        }
         return false;
     }
     
