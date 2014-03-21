@@ -221,6 +221,7 @@ public class Hero {
         this.isGhost = false;
         this.wasGhost = true;
         this.currentHP = this.maxHP;
+        //ReLearn all spells they knew
         //Lose Spectre Shots;
         //If find soulStone(unghost)
     }
