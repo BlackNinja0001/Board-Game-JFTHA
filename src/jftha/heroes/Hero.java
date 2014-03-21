@@ -201,7 +201,6 @@ public class Hero {
 
         //If killed again (all of MP depleted), you are eliminated from the game.
         //if(isEliminated = true){ lose turn phase};
-
         //Note: Only certain items, such as spirit weapons, can drain SE.
     }
 
@@ -216,12 +215,12 @@ public class Hero {
     }
 
     /**
-     * Allows a character to attack another character
+     * Allows a character to attack another character and vice-versa
      *
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (attacked.justAttacked == true) {
+        if (attacked.justAttacked == false) { //first attacker goes first
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
                 double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck));
                 int intDamage = (int) Math.round(damage);
@@ -230,14 +229,18 @@ public class Hero {
                 //handle spiritual items
                 //if no spiritual items, the Attack phase is skipped
             }
+        } else {
+            //cannot just call attackEnemy again or will cause infinite loop
+            attacked.attackEnemy(this);
+            this.justAttacked = true;
         }
-
-        //cannot call attackEnemy again or will cause infinite loop
-        this.justAttacked = true;
-        if (this.justAttacked == true){ //second attack/retaliation
+        
+        //reset so that both characters can attack again
+        if ((this.justAttacked == true) && attacked.justAttacked == true){
             this.justAttacked = false;
             attacked.justAttacked = false;
         }
+            
     }
 
     /**
