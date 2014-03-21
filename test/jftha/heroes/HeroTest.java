@@ -178,11 +178,30 @@ public class HeroTest {
     }
 
     @Test
-    public void attackingReturnsCorrectValues() {
+    public void bothSidesAreAttackedinBattle() {
         hero = new Hero();
         enemy = new Hero();
+        hero.setStrength(12);
+        enemy.setStrength(5);
+        hero.setDefense(12);
+        enemy.setDefense(5);
+        /*
+         System.out.println("Before:");
+         System.out.println("Hero: " + hero.getCurrentHP() 
+         + "\nEnemy: " + enemy.getCurrentHP());
+                
+         */
         hero.attackEnemy(enemy);
-        assertFalse("Attacker did not attack.", hero.getCurrentHP() != 60); //was attacked
-        assertFalse("Attacked did not attack back.", enemy.getCurrentHP() != 60); //attacker did retaliate
+        /*
+         System.out.println("After: ");
+         System.out.println("Hero: " + hero.getCurrentHP()
+         + "\nEnemy: " + enemy.getCurrentHP());
+         */
+        assertTrue("Attacker did not attack.", hero.getCurrentHP() < 60);
+        assertTrue("Attacked did not attack back.", enemy.getCurrentHP() < 60);
+    }
+
+    @Test
+    public void ghostsCannotBeHit() {
     }
 }

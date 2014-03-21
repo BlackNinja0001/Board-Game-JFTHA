@@ -10,6 +10,7 @@ import jftha.main.Buyable;
 import jftha.spells.Spell;
 import jftha.main.Effect;
 import java.lang.Math;
+import java.util.Random;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -59,7 +60,9 @@ public class Hero {
         this.storage_space = 5;
         this.spell_slots = 2;
         this.maxHP = 60;
+        this.currentHP = 60;
         this.maxMP = 30;
+        this.currentMP = 60;
         this.items = new ArrayList<>(this.storage_space);
         this.spells = new ArrayList<>(this.spell_slots);
         this.isGhost = false;
@@ -220,10 +223,16 @@ public class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (attacked.justAttacked == false) { //first attacker goes first
+        if (attacked.justAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck));
+                Random rand = new Random();
+                int randomDamage = rand.nextInt(2);
+                double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+                if (damage < 0){ //attacker sucks
+                    damage = 0;
+                }
                 int intDamage = (int) Math.round(damage);
+                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
             } else { //attacking ghost
                 //handle spiritual items
@@ -234,13 +243,13 @@ public class Hero {
             attacked.attackEnemy(this);
             this.justAttacked = true;
         }
-        
+
         //reset so that both characters can attack again
-        if ((this.justAttacked == true) && attacked.justAttacked == true){
+        if ((this.justAttacked == true) && attacked.justAttacked == true) {
             this.justAttacked = false;
             attacked.justAttacked = false;
         }
-            
+
     }
 
     /**
