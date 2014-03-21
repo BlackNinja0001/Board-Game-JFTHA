@@ -247,7 +247,6 @@ public class Hero {
             }
         }
         attacked.wasAttacked = true;
-
     }
 
     /**
