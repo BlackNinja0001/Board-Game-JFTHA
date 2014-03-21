@@ -256,11 +256,12 @@ public class Hero {
      * @return true if purchase is went through
      */
     public boolean buy(Buyable buy) {
-        int f = getGold();
-        // if character has the gold
-        f -= (buy.getGoldCost());
-        //need setter and getter for gold
-        //this.getGold() - f;
+        int currentGold = this.getGold();;
+        //If character has the gold
+        if(this.getGold() >= buy.getGoldCost()){
+            setGold(currentGold - buy.getGoldCost());
+            return true;
+        }
         return false;
     }
 
