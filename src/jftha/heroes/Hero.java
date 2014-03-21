@@ -177,6 +177,10 @@ public class Hero {
     public boolean getWasAttacked() {
         return wasAttacked;
     }
+    
+    public boolean isGhost() {
+        return isGhost;
+    }
 
     /**
      * Allows a character to cast a spell.
@@ -234,7 +238,9 @@ public class Hero {
                 int intDamage = (int) Math.round(damage);
 //                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
-                //watch for death
+                if (attacked.currentHP <= 0){
+                    attacked.makeGhost();
+                }
             } else { //attacking ghost
                 //handle spiritual items
                 //if no spiritual items, the Attack phase is skipped
