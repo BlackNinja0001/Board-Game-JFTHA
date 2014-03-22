@@ -7,7 +7,7 @@ public class Space {
     private int spaceID;
     private Effect effect;
     private char activationType; //p for pass-by, l for land-on
-    private Hero activater;
+    private Hero activator;
     private boolean isChest;
     private boolean isStore;
     private boolean isD2D; // Duel to the Death
@@ -37,7 +37,7 @@ public class Space {
     }
     
     public Space(Hero inActivater){
-        activater = inActivater;
+        activator = inActivater;
         
         next = null;
         prev = null;
@@ -64,7 +64,7 @@ public class Space {
         spaceID = inSpaceID;
         effect = inEffect;
         activationType = inActivationType;
-        activater = inActivater;
+        activator = inActivater;
         
         next = null;
         prev = null;
