@@ -48,6 +48,17 @@ public class Space {
         next = null;
         prev = null;
     }
+    public Space(int inSpaceID, boolean inIsChest, boolean inIsStore, boolean inIsD2D, boolean inIsHealth, boolean inIsCard){
+        spaceID = inSpaceID;
+        isChest = inIsChest;
+        isStore = inIsStore;
+        isD2D = inIsD2D;
+        isHealth = inIsHealth;
+        isCard = inIsCard;
+        
+        next = null;
+        prev = null;
+    }
     
     public Space(int inSpaceID, Effect inEffect, char inActivationType, Hero inActivater){
         spaceID = inSpaceID;
@@ -58,5 +69,24 @@ public class Space {
         next = null;
         prev = null;
     }
-
+    
+    //Getter Methods
+    public int getSpaceID(){
+        return spaceID;
+    }
+    public boolean getIsChest(){
+        return isChest;
+    }
+    public boolean getIsStore(){
+        return isStore;
+    }
+    public boolean getIsD2D(){
+        return isD2D;
+    }
+    public boolean getIsHealth(){
+        return isHealth;
+    }
+    public boolean getIsCard(){
+        return isCard;
+    }
 }
