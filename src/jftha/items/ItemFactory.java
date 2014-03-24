@@ -5,6 +5,7 @@ public class ItemFactory {
         Item item = null;
         switch(rarity) {
             case common:
+                
                 break;
             case uncommon:
                 break;

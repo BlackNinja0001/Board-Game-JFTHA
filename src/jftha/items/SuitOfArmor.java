@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jftha.items;
 
-/**
- *
- * @author shane
- */
-public class SuitOfArmor extends Item {
-    
+public class SuitOfArmor extends Armor {
+    public SuitOfArmor() {
+        this.setRarity(RarityEnum.common);
+    }
 }

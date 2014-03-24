@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class Item extends Buyable{
 
-    private String rarity;
+    private RarityEnum rarity;
     private boolean isSpiritual;
     
-    public void setRarity(String newRarity){
+    public void setRarity(RarityEnum newRarity){
         this.rarity = newRarity;
     }
     
-    public String getRarity(){
+    public RarityEnum getRarity(){
         return this.rarity;
     }
     
