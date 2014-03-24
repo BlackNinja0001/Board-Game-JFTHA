@@ -119,7 +119,7 @@ public class Hero {
     }
 
     public void setGold(int gold) {
-        this.gold -= gold;
+        this.gold = gold;
     }
 
     public void setWasAttacked(boolean jA) {
@@ -271,11 +271,13 @@ public class Hero {
     public boolean buy(Buyable buy) {
         int currentGold = this.getGold();
         //If character has the gold
-        if(currentGold >= buy.getGoldCost()){
+        if(currentGold >= buy.getGoldCost()) {
             setGold(currentGold - buy.getGoldCost());
+            // buy is an Item
             if(buy.getClass().getSuperclass().equals(Item.class)) {
                 addItem((Item)buy);
-            } else if(buy.getClass().getSuperclass().equals(Spell.class)) {
+            } // buy is a Spell 
+            else if(buy.getClass().getSuperclass().equals(Spell.class)) {
                 addSpell((Spell)buy);
             }
             return true;
