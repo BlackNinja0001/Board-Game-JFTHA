@@ -10,7 +10,6 @@ import java.util.Random;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
-
     private int strength;
     // Determines how many spaces the player can move per turn
     private int agility;
@@ -203,13 +202,13 @@ public class Hero {
         this.currentMP = this.maxMP;
         //Cannot be hit, except by spiritual items or items/spells with Phantom Pain ability.
         this.lostItems = items;
-        this.lostSpells = spells;
+        this.lostSpells = spells; //save current spell in another arraylist in case player comes back;
         for(Item item: items) {
-            if(item.getSpiritual())
+            if(!item.getSpiritual())
                 items.remove(item);
         }
         //Can cast only Spectre Shot spell (cost 1 SE).
-        this.spells.clear(); //save current spell in another arraylist incase player comes back;
+        this.spells.clear(); 
         this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
@@ -237,7 +236,7 @@ public class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (attacked.wasAttacked == false) {
+        if (attacked.wasAttacked == false) { // **?? Can only get attacked once per turn?
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
                 Random rand = new Random();
                 int randomDamage = rand.nextInt(3);
@@ -246,13 +245,17 @@ public class Hero {
                     damage = 0;
                 }
                 int intDamage = (int) Math.round(damage);
-//                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
                 if (attacked.currentHP <= 0){
                     attacked.makeGhost();
                 }
             } else { //attacking ghost
                 //handle spiritual items
+                for(Item item : items) {
+                    if(item.getSpiritual()) {
+                        // attack with spiritual item
+                    }
+                }
                 //if no spiritual items, the Attack phase is skipped
             }
         }
@@ -266,10 +269,15 @@ public class Hero {
      * @return true if purchase is went through
      */
     public boolean buy(Buyable buy) {
-        int currentGold = this.getGold();;
+        int currentGold = this.getGold();
         //If character has the gold
-        if(this.getGold() >= buy.getGoldCost()){
+        if(currentGold >= buy.getGoldCost()){
             setGold(currentGold - buy.getGoldCost());
+            if(buy.getClass().getSuperclass().equals(Item.class)) {
+                addItem((Item)buy);
+            } else if(buy.getClass().getSuperclass().equals(Spell.class)) {
+                addSpell((Spell)buy);
+            }
             return true;
         }
         return false;
