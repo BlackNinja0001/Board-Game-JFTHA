@@ -53,7 +53,10 @@ public class Hero {
     private boolean wasGhost = false;
     //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
     private boolean wasAttacked;
+    //Determined whether someone is completely out of the game or not
     private boolean eliminated;
+    //String name of the class
+    private String className;
 
     //Constructor
     public Hero() {
@@ -73,6 +76,8 @@ public class Hero {
         this.isGhost = false;
         this.gold = 0;
         this.wasAttacked = false;
+        this.eliminated = false;
+        this.className = null;
     }
 
     //Setter methods
@@ -134,6 +139,10 @@ public class Hero {
         this.eliminated = elim;
     }
 
+    public void setClassName(String name){
+        this.className = name;
+    }
+    
     //Getter Methods
     public int getStrength() {
         return strength;
@@ -193,6 +202,10 @@ public class Hero {
 
     public boolean isGhost() {
         return isGhost;
+    }
+    
+    public String getClassName() {
+        return className;
     }
 
     /**

@@ -19,6 +19,7 @@ public class Mage extends Hero{
         this.addItem(new SpellBook());
         this.addSpell(new Fireball());
         this.addSpell(new Shield());
+        this.setClassName("Mage");
     }
     /**Mage's version of spell casting. The spell costs 10% less magic.
      * 

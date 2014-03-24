@@ -5,12 +5,12 @@ import jftha.items.WagonOfGoods;
 import jftha.main.*;
 import java.lang.*;
 
-public class Merchant extends Hero{
-    
+public class Merchant extends Hero {
+
     final double discount = 0.75;
-    
+
     //Constructor
-    public Merchant(){
+    public Merchant() {
         this.setStorageSpace(super.getStorageSpace() + 3);
         this.setStrength(super.getStrength() - 2);
         this.setAgility(super.getAgility() + 2);
@@ -18,19 +18,20 @@ public class Merchant extends Hero{
         this.setDefense(super.getDefense() - 2);
         this.setLuck(super.getLuck() + 5);
         this.addItem(new WoolClothing());
-        this.addItem(new WagonOfGoods());     
+        this.addItem(new WagonOfGoods());
+        this.setClassName("Merchant");
     }
-    
+
     /**
-     * 
+     *
      * @param buy
-     * @return 
+     * @return
      */
     @Override
-    public boolean buy(Buyable buy){
+    public boolean buy(Buyable buy) {
         int currentGold = this.getGold();;
         //If character has the gold
-        if(this.getGold() >= buy.getGoldCost()){
+        if (this.getGold() >= buy.getGoldCost()) {
             double gold = currentGold - (buy.getGoldCost() * discount);
             currentGold = (int) Math.round(gold);
             this.setGold(currentGold);
@@ -38,13 +39,13 @@ public class Merchant extends Hero{
         }
         return false;
     }
-    
+
     /**
-     * 
-     * @param attacked 
+     *
+     * @param attacked
      */
     @Override
-    public void attackEnemy(Hero attacked){
+    public void attackEnemy(Hero attacked) {
         //Can only perform attacks with items and spells.
     }
 }

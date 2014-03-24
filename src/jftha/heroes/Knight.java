@@ -11,5 +11,6 @@ public class Knight extends Hero{
         this.setAgility(super.getAgility() - 2);
         this.addItem(new SuitOfArmor());
         this.addItem(new IronSword());
+        this.setClassName("Knight");
     }
 }

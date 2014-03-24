@@ -18,6 +18,7 @@ public class Paladin extends Hero{
         this.addItem(new ShiningArmor());
         this.addItem(new DivineBlade());
         this.addSpell(new Heal());
+        this.setClassName("Paladin");
     }
     
 }

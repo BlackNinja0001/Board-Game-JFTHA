@@ -15,5 +15,6 @@ public class Ninja extends Hero{
         this.setDefense(super.getDefense() - 2);
         this.addItem(new Cloak());
         this.addItem(new Dagger());
+        this.setClassName("Ninja");
     }
 }

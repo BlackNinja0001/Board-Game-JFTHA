@@ -13,6 +13,7 @@ public class Priest extends Hero{
         this.addItem(new Chasuble());
         this.addItem(new Bible());
         this.addSpell(new Heal());
+        this.setClassName("Priest");
     }
     
 }

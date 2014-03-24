@@ -11,6 +11,7 @@ public class Barbarian extends Hero{
         this.setMagic(super.getMagic() - 2);
         this.addItem(new AnimalSkin());
         this.addItem(new Ax());
+        this.setClassName("Barbarian");
     }
     
     @Override
