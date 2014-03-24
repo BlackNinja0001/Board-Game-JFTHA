@@ -1,15 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jftha.heroes;
 
 import java.util.ArrayList;
 import jftha.items.Item;
 import jftha.main.Buyable;
 import jftha.spells.Spell;
+import jftha.spells.SpectreShot;
 import jftha.main.Effect;
-import java.lang.Math;
 import java.util.Random;
 
 public class Hero {
@@ -29,10 +25,14 @@ public class Hero {
     private int storage_space;
     // The items the Hero is currently carrying
     private ArrayList<Item> items;
+    // The items the Hero was carrying at time of last death
+    private ArrayList<Item> lostItems;
     // Determines how many spells a player is able to cast
     private int spell_slots;
     // The spells the Hero currently knows
     private ArrayList<Spell> spells;
+    // The spells the Hero knew at time of last death
+    private ArrayList<Spell> lostSpells;
     // Determined by Defense stat. Also known as health points
     private int maxHP;
     // Health the player currently has
@@ -199,14 +199,18 @@ public class Hero {
     public void makeGhost() {
         this.isGhost = true;
         //Cannot hold items, except spiritual items (see Items).
-        this.items.clear(); // Need to check for spiritual items
         //Regen MP
         this.currentMP = this.maxMP;
         //Cannot be hit, except by spiritual items or items/spells with Phantom Pain ability.
-
+        this.lostItems = items;
+        this.lostSpells = spells;
+        for(Item item: items) {
+            if(item.getSpiritual())
+                items.remove(item);
+        }
         //Can cast only Spectre Shot spell (cost 1 SE).
         this.spells.clear(); //save current spell in another arraylist incase player comes back;
-        this.spells.add(null); // spectre shot;
+        this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
         //if(isEliminated = true){ lose turn phase};
