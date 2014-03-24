@@ -129,6 +129,10 @@ public class Hero {
     public void setWasAttacked(boolean jA) {
         this.wasAttacked = jA;
     }
+    
+    public void setEliminated(boolean elim){
+        this.eliminated = elim;
+    }
 
     //Getter Methods
     public int getStrength() {
@@ -181,6 +185,10 @@ public class Hero {
 
     public boolean getWasAttacked() {
         return wasAttacked;
+    }
+    
+    public boolean getEliminated() {
+        return eliminated;
     }
 
     public boolean isGhost() {
