@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jftha.heroes;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,10 +10,6 @@ import static org.junit.Assert.*;
 import jftha.spells.*;
 import jftha.items.*;
 
-/**
- *
- * @author tue75856
- */
 public class HeroTest {
 
     public HeroTest() {
@@ -179,32 +172,41 @@ public class HeroTest {
     }
 
     @Test
-    public void attackedHeroSuffersDamage() {
-        setUp();
+    public void attackedHeroSuffersDamage() { 
         hero.setStrength(12);
         enemy.setStrength(12);
         hero.setDefense(5);
         enemy.setDefense(5);
         hero.attackEnemy(enemy);
         assertTrue("Attacker did not attack.", enemy.getCurrentHP() < 60);
-        //assertTrue("Attacked did not attack back.", hero.getCurrentHP() < 60);
     }
 
     @Test
     public void attackedHeroDiesWhenHPIs0() {
-        setUp();
         hero.setStrength(12);
         enemy.setCurrentHP(1);
         hero.attackEnemy(enemy);
         assertTrue("Enemy did not die.", enemy.isGhost());
+        assertTrue(enemy.getCurrentHP() <= 0);
     }
     
     @Test
     public void ghostsCannotBeHitWithoutSpiritualItem() {
-        setUp();
         hero.setStrength(12);
         enemy.makeGhost();
         hero.attackEnemy(enemy);
         //assert
+    }
+    
+    @Test
+    public void testBuy() {
+        Fireball fb = new Fireball();
+        assertEquals(0, hero.getGold());
+        assertFalse(hero.buy(fb));
+        hero.setGold(50);
+        assertTrue(hero.buy(fb));
+        assertEquals(40, hero.getGold());
+        ArrayList spells = hero.getSpells();
+        assertTrue(spells.contains(fb));
     }
 }

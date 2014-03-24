@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
-
     private int strength;
     // Determines how many spaces the player can move per turn
     private int agility;
@@ -128,7 +127,7 @@ public class Hero {
     }
 
     public void setGold(int gold) {
-        this.gold -= gold;
+        this.gold = gold;
     }
 
     public void setWasAttacked(boolean jA) {
@@ -137,7 +136,7 @@ public class Hero {
     
     public void setEliminated(boolean elim){
         this.eliminated = elim;
-    }
+    } 
 
     public void setClassName(String name){
         this.className = name;
@@ -208,6 +207,13 @@ public class Hero {
         return className;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+    
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
     /**
      * Allows a character to cast a spell.
      *
@@ -234,7 +240,7 @@ public class Hero {
             }
         }
         //Can cast only Spectre Shot spell (cost 1 SE).
-        this.spells.clear(); //save current spell in another arraylist incase player comes back;
+        this.spells.clear(); 
         this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
@@ -306,10 +312,17 @@ public class Hero {
      * @return true if purchase is went through
      */
     public boolean buy(Buyable buy) {
-        int currentGold = this.getGold();;
+        int currentGold = this.getGold();
         //If character has the gold
         if (this.getGold() >= buy.getGoldCost()) {
             setGold(currentGold - buy.getGoldCost());
+            // buy is an Item
+            if(buy.getClass().getSuperclass().equals(Item.class)) {
+                addItem((Item)buy);
+            } // buy is a Spell 
+            else if(buy.getClass().getSuperclass().equals(Spell.class)) {
+                addSpell((Spell)buy);
+            }
             return true;
         }
         return false;
