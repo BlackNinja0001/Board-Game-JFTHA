@@ -77,7 +77,7 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDieButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rollDieButtonMouseClicked
         Dice die = new Dice();
-        die.rollGUI(6, dieLabel);
+        die.rollGUI(dieLabel);
     }//GEN-LAST:event_rollDieButtonMouseClicked
 
     /**

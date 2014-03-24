@@ -8,24 +8,27 @@ import javax.swing.ImageIcon;
 public class Dice {
 
     int roll;
+    int maxAmount;
 
-    //Constructor
-    public Dice(int maxAmount) {
-        Random rand = new Random();
-        this.roll = rand.nextInt(maxAmount) + 1;
+    public Dice() {
+        maxAmount = 0;
+    }
+    
+    public Dice(int max) {
+        maxAmount = max;
     }
 
     protected int getRoll() {
         return roll;
     }
 
-    public int roll(int maxAmount){
+    public int roll(){
         Random rand = new Random();
         this.roll = rand.nextInt(maxAmount) + 1;
         return roll;
     }
     
-    public int rollGUI(int maxAmount, JLabel label) { //not done
+    public int rollGUI(JLabel label) { //not done
         Random rand = new Random();
         this.roll = rand.nextInt(6) + 1;
         int timesRolled = 8; //arbitrary
