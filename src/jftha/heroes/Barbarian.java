@@ -5,7 +5,6 @@ import jftha.items.AnimalSkin;
 import jftha.items.Ax;
 
 public class Barbarian extends Hero{
-    
     //Constructor
     public Barbarian(){
         this.setStrength(super.getStrength() + 2);
@@ -14,11 +13,33 @@ public class Barbarian extends Hero{
         this.addItem(new Ax());
     }
     
-    public void ifAtked(){
+    @Override
+    public void attackEnemy(Hero enemy) {
+        int strength = this.getStrength();
         Random rand = new Random();
-        if((rand.nextInt(5) + 1) == 1){
-            //attack back with 2x strength
+        if(getWasAttacked()) {
+            if((rand.nextInt(5) + 1) == 1)
+                strength *= 2;
         }
+        if (enemy.getWasAttacked() == false) { // **?? Can only get attacked once per turn?
+            if (enemy.isGhost() == false) { //cannot attack ghost unless under certain circumstances
+
+                int randomDamage = rand.nextInt(3);
+                double damage = (strength - enemy.getDefense()) - (0.2 * (this.getLuck() - enemy.getLuck())) + randomDamage;
+                if (damage < 0) { //attacker sucks
+                    damage = 0;
+                }
+                int intDamage = (int) Math.round(damage);
+//                System.out.println(intDamage + " inflicted by " + this + " to " + enemy + ".");
+                enemy.setCurrentHP(enemy.getCurrentHP()- intDamage);
+                if (enemy.getCurrentHP() <= 0){
+                    enemy.makeGhost();
+                }
+            } else { //attacking ghost
+                //handle spiritual items
+                //if no spiritual items, the Attack phase is skipped
+            }
+        }
+        enemy.setWasAttacked(true);
     }
 }
-
