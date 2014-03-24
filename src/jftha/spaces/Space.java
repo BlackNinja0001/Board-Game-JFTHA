@@ -89,4 +89,11 @@ public class Space {
     public boolean getIsCard(){
         return isCard;
     }
+    public char getActivationType() {
+        return activationType;
+    }
+    // Setter method
+    protected void setActivationType(char c) {
+        activationType = c;
+    }
 }
