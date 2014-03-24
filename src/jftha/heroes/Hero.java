@@ -183,6 +183,13 @@ public class Hero {
         return isGhost;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+    
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
     /**
      * Allows a character to cast a spell.
      *
