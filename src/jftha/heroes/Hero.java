@@ -1,12 +1,14 @@
 package jftha.heroes;
 
 import java.util.ArrayList;
-import jftha.items.Item;
+import jftha.items.*;
 import jftha.main.Buyable;
 import jftha.spells.Spell;
 import jftha.spells.SpectreShot;
 import jftha.main.Effect;
 import java.util.Random;
+import java.util.Iterator;
+import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -50,6 +52,7 @@ public class Hero {
     private boolean wasGhost = false;
     //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
     private boolean wasAttacked;
+    private boolean eliminated;
 
     //Constructor
     public Hero() {
@@ -125,6 +128,10 @@ public class Hero {
     public void setWasAttacked(boolean jA) {
         this.wasAttacked = jA;
     }
+    
+    public void setEliminated(boolean elim){
+        this.eliminated = elim;
+    }
 
     //Getter Methods
     public int getStrength() {
@@ -179,6 +186,10 @@ public class Hero {
         return wasAttacked;
     }
     
+    public boolean getEliminated() {
+        return eliminated;
+    }
+
     public boolean isGhost() {
         return isGhost;
     }
@@ -233,7 +244,7 @@ public class Hero {
         this.currentHP = this.maxHP;
         //ReLearn all spells they knew  //Lose Spectre Shots;
         this.spells = this.lostSpells;
-        
+
         //If find soulStone(unghost)
     }
 
@@ -243,24 +254,35 @@ public class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (attacked.wasAttacked == false) { // **?? Can only get attacked once per turn?
+        Random rand = new Random();
+        int randomDamage = rand.nextInt(3);
+        double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+        int intDamage = (int) Math.round(damage);
+        if (damage < 0) { //attacker sucks
+            damage = 0;
+        }
+        if (attacked.wasAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                Random rand = new Random();
-                int randomDamage = rand.nextInt(3);
-                double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
-                if (damage < 0) { //attacker sucks
-                    damage = 0;
-                }
-                int intDamage = (int) Math.round(damage);
+//                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
-                if (attacked.currentHP <= 0){
+                if (attacked.currentHP <= 0) {
                     attacked.makeGhost();
                 }
             } else { //attacking ghost
                 //handle spiritual items
-                for(Item item : items) {
-                    if(item.getSpiritual()) {
-                        // attack with spiritual item
+                if (items.isEmpty()) {
+                    return; //no spiritual items to attack with
+                } else {
+                    for (Item i : items) {
+                        if (i instanceof Equippable) {
+                            Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
+                            if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
+                                attacked.currentMP -= intDamage;
+                                if (attacked.currentMP <= 0) {
+                                    attacked.eliminated = true;
+                                }
+                            }
+                        }
                     }
                 }
                 //if no spiritual items, the Attack phase is skipped
