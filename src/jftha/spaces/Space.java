@@ -92,8 +92,16 @@ public class Space {
     public char getActivationType() {
         return activationType;
     }
+    public Effect getEffect() {
+        return effect;
+    }
+    public Hero getActivator() {
+        return activator;
+    }
+    
     // Setter method
     protected void setActivationType(char c) {
         activationType = c;
     }
+    
 }
