@@ -10,9 +10,9 @@ public class Dice {
     int roll;
 
     //Constructor
-    public Dice() {
+    public Dice(int maxAmount) {
         Random rand = new Random();
-        this.roll = rand.nextInt(4) + 1; // rand.nextInt(4) is random from 0 - 3. + 1 ensure it can be 1- 4
+        this.roll = rand.nextInt(maxAmount) + 1;
     }
 
     protected int getRoll() {
@@ -21,7 +21,7 @@ public class Dice {
 
     public int roll(int maxAmount){
         Random rand = new Random();
-        this.roll = rand.nextInt(6) + 1;
+        this.roll = rand.nextInt(maxAmount) + 1;
         return roll;
     }
     
