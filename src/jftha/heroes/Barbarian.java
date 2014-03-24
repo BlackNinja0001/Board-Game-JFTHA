@@ -30,7 +30,6 @@ public class Barbarian extends Hero{
                     damage = 0;
                 }
                 int intDamage = (int) Math.round(damage);
-//                System.out.println(intDamage + " inflicted by " + this + " to " + enemy + ".");
                 enemy.setCurrentHP(enemy.getCurrentHP()- intDamage);
                 if (enemy.getCurrentHP() <= 0){
                     enemy.makeGhost();
