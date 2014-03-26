@@ -1,7 +1,7 @@
 package jftha.spaces;
 
-import java.util.Random;
-import jftha.heroes.Hero;
+import java.util.*;
+import jftha.heroes.*;
 import jftha.items.*;
 
 public class Chest extends Space {
