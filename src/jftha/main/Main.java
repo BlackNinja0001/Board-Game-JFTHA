@@ -54,49 +54,25 @@ public class Main { //definitely need more error handling
         }
 
         System.out.println("Determining turn order...");
-        for (int i = 0; i < howmany; i++) {
-            int j = 0, roll = die.roll();
+        for (int i = 0; i < howmany; i++) { //Give every player an initial turn order
+            players[i].setTurnOrder(die.roll());
+        }
 
-            //probably needs better implementation
-            while (j < (howmany - 1)) { //checks if any turnOrders match and changes accordingly
-                if (roll == players[j + 1].getTurnOrder()) { //will not affect last player
-                    roll = die.roll();
-                } else if ((j - 1) == (howmany - 1)) { //last player
-                    boolean not1 = false,
-                            not2 = false,
-                            not3 = false,
-                            not4 = false;
-                   for (int k = 0; k < howmany; k++){
-                       switch (players[k].getTurnOrder()){
-                           case 1:
-                               not1 = true;
-                           case 2:
-                               not2 = true;
-                           case 3:
-                               not3 = true;
-                           case 4:
-                               not4 = true;
-                       }
-                       
-                       if (not1){
-                           if (not2){
-                               if (not3){
-                                   players[i].setTurnOrder(4);
-                               }else{
-                                   players[i].setTurnOrder(3);
-                               }
-                           } else {
-                               players[i].setTurnOrder(2);
-                           }
-                       }else{
-                           players[i].setTurnOrder(1);
-                       }
-                   }
-                } else {
-                    players[i].setTurnOrder(roll);
-                    j++;
+        for (int j = 0; j < howmany; j++) { //for every player
+            int roll = die.roll();
+            boolean didReroll = true;
+            while (didReroll) {
+                didReroll = false;
+                for (int k = 0; k < howmany; k++) { //check if any turnOrders match and changes accordingly
+                    if (j != k) { //not checking player to itself
+                        while (roll == players[k].getTurnOrder()) { //reroll until it doesn't match the current player
+                            roll = die.roll();
+                            didReroll = true;
+                        }
+                    }
                 }
             }
+            players[j].setTurnOrder(roll);
         }
 
         for (int i = 1; (i - 1) < howmany; i++) {
