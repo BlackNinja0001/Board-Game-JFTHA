@@ -7,8 +7,7 @@ import jftha.spells.Spell;
 import jftha.spells.SpectreShot;
 import jftha.main.Effect;
 import java.util.Random;
-import java.util.Iterator;
-import java.lang.reflect.Method;
+import java.util.List;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -28,6 +27,8 @@ public class Hero {
     private ArrayList<Item> items;
     // The items the Hero was carrying at time of last death
     private ArrayList<Item> lostItems;
+    // The artifactPieces the Hero is currently carrying
+    private ArrayList<ArtifactPiece> artifactPieces;
     // Determines how many spells a player is able to cast
     private int spell_slots;
     // The spells the Hero currently knows
@@ -72,6 +73,7 @@ public class Hero {
         this.currentMP = 60;
         this.items = new ArrayList<>(this.storage_space);
         this.spells = new ArrayList<>(this.spell_slots);
+        this.artifactPieces = new ArrayList<>(5);
         this.isGhost = false;
         this.gold = 0;
         this.wasAttacked = false;
@@ -213,6 +215,9 @@ public class Hero {
     
     public ArrayList<Spell> getSpells() {
         return spells;
+    }
+    public ArrayList<ArtifactPiece> getArtifacts() {
+        return artifactPieces;
     }
     /**
      * Allows a character to cast a spell.
