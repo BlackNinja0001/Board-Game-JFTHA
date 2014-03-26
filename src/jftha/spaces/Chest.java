@@ -1,12 +1,12 @@
 package jftha.spaces;
 
-import java.util.Random;
-import jftha.heroes.Hero;
+import java.util.*;
+import jftha.heroes.*;
 import jftha.items.*;
 
 public class Chest extends Space {
     public Chest() {
-        setActivationType('l');
+        this.setActivationType('1');
     }
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
     public void giveItem() {

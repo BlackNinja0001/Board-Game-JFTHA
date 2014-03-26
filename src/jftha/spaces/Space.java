@@ -36,8 +36,8 @@ public class Space {
         prev = null;
     }
     
-    public Space(Hero inActivater){
-        activator = inActivater;
+    public Space(Hero inActivator){
+        activator = inActivator;
         
         next = null;
         prev = null;
@@ -60,11 +60,11 @@ public class Space {
         prev = null;
     }
     
-    public Space(int inSpaceID, Effect inEffect, char inActivationType, Hero inActivater){
+    public Space(int inSpaceID, Effect inEffect, char inActivationType, Hero inActivator){
         spaceID = inSpaceID;
         effect = inEffect;
         activationType = inActivationType;
-        activator = inActivater;
+        activator = inActivator;
         
         next = null;
         prev = null;
