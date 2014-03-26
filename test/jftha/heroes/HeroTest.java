@@ -200,13 +200,17 @@ public class HeroTest {
     
     @Test
     public void testBuy() {
-        Fireball fb = new Fireball();
         assertEquals(0, hero.getGold());
-        assertFalse(hero.buy(fb));
+        assertFalse(hero.buy(new Fireball()));
         hero.setGold(50);
-        assertTrue(hero.buy(fb));
+        assertTrue(hero.buy(new Fireball()));
         assertEquals(40, hero.getGold());
-        ArrayList spells = hero.getSpells();
-        assertTrue(spells.contains(fb));
+        ArrayList<Spell> spells = hero.getSpells();
+        boolean thereis = false;
+        for(Spell s : spells) {
+            if(s.getClass().equals(Fireball.class))
+                thereis = true;
+        }
+        assertTrue(thereis);
     }
 }
