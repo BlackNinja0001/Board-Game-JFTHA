@@ -1,8 +1,5 @@
 package jftha.items;
 
-public class ArtifactPiece extends Item{
-    public ArtifactPiece() {
-        this.setRarity(RarityEnum.rare);
-        this.setGoldCost(500);
-    }
+public abstract class ArtifactPiece extends Item {
+    
 }
