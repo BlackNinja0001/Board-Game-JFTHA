@@ -21,15 +21,15 @@ public class Store extends Space{
             if(luck > 90){
                 items.add(i.buildItem(RarityEnum.rare));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to pick " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item);
             }else if(luck > 75){
                 items.add(i.buildItem(RarityEnum.uncommon));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to pick " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item);
             }else{
                 items.add(i.buildItem(RarityEnum.common));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to pick " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item);
             }
         }
         System.out.println("Input 6 to choose not to buy");
