@@ -46,6 +46,6 @@ public class ItemLists {
         commonClasses.add(Tuxedo.class);
         commonClasses.add(WagonOfGoods.class);
         commonClasses.add(WoolClothing.class);
-        rareClasses.add(ArtifactPiece.class);
+        rareClasses.add(ArtifactPiece1.class);
     }
 }
