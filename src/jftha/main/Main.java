@@ -102,7 +102,7 @@ public class Main { //definitely need more error handling
         int numPlayers = 0;
         for(Player p : players) {
             numPlayers++;
-        }
+            }
         if(numPlayers == 4) {
             // Have all opponents dead for at least a period of 5 turns (4 player only)
             if(players[1].getCharacter().isGhost() && players[2].getCharacter().isGhost() 
