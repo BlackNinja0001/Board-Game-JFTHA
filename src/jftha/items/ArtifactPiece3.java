@@ -1,7 +1,7 @@
 package jftha.items;
 
 public class ArtifactPiece3 extends ArtifactPiece {
-    private static ArtifactPiece3 instance = null;
+    private static final ArtifactPiece3 INSTANCE = new ArtifactPiece3();
     
     protected ArtifactPiece3() {
         this.setRarity(RarityEnum.rare);
@@ -9,9 +9,6 @@ public class ArtifactPiece3 extends ArtifactPiece {
     }
     
     public static ArtifactPiece3 getInstance() {
-        if(instance == null) {
-            instance = new ArtifactPiece3();
-        }
-        return instance;
+        return INSTANCE;
     }
 }
