@@ -1,12 +1,10 @@
 package jftha.heroes;
 
-import java.util.ArrayList;
 import jftha.items.*;
-import jftha.main.Buyable;
-import jftha.spells.Spell;
-import jftha.spells.SpectreShot;
-import jftha.main.Effect;
-import java.util.Random;
+import jftha.main.*;
+import jftha.spells.*;
+import java.util.*;
+import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
