@@ -131,6 +131,10 @@ public class Hero {
         this.wasAttacked = jA;
     }
     
+    public void setWasGhost(boolean wasGhost) {
+        this.wasGhost = wasGhost;
+    }
+    
     public void setEliminated(boolean elim){
         this.eliminated = elim;
     } 
@@ -203,7 +207,9 @@ public class Hero {
     public boolean getWasGhost() {
         return wasGhost;
     }
-    
+    public List<Item> getLostItems() {
+        return lostItems;
+    }
     public String getClassName() {
         return className;
     }
