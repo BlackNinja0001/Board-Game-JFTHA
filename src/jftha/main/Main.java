@@ -2,10 +2,10 @@ package jftha.main;
 
 import jftha.heroes.*;
 import java.util.Scanner;
-import java.lang.*;
 
 public class Main { //definitely need more error handling
 
+    int turnNumber = 0;
     public static void main(String[] args) {
         Player[] players = new Player[4];
         Scanner scan = new Scanner(System.in);
@@ -112,11 +112,23 @@ public class Main { //definitely need more error handling
             } else if (curTurnOrder == 4) {
                 order = "4th";
             }
-            sb.append("Player " + i
-                    + " is a(n) " + players[i - 1].getCharacter().getClassName()
-                    + " named " + players[i - 1].getCustomName()
-                    + " and is going " + order + ".");
+            sb.append("Player ").append(i)
+                    .append(" is a(n) ").append(players[i - 1].getCharacter().getClassName())
+                    .append(" named ").append(players[i - 1].getCustomName())
+                    .append(" and is going ").append(order).append(".");
             System.out.println(sb.toString());
         }
+    }
+    
+    public Player winner(Player[] players) {
+        int numPlayers = 0;
+        for(Player p : players) {
+            numPlayers++;
+        }
+        System.out.println(numPlayers);
+        // Have all opponents dead for at least a period of 5 turns (4 player only)
+        // OR
+        // Have all player ghosts non-existent (killed as ghost)
+        return null;
     }
 }
