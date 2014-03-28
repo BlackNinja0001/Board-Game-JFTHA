@@ -7,7 +7,6 @@ import jftha.spells.Spell;
 import jftha.spells.SpectreShot;
 import jftha.main.Effect;
 import java.util.Random;
-import java.util.List;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -233,14 +232,13 @@ public class Hero {
      */
     public void makeGhost() {
         this.isGhost = true;
-        //Cannot hold items, except spiritual items (see Items).
         //Regen MP
         this.currentMP = this.maxMP;
-        //Cannot be hit, except by spiritual items or items/spells with Phantom Pain ability.
         this.lostItems = items;
         this.lostSpells = spells;
+        //Cannot hold items, except spiritual items (see Items).
         for (Item item : items) {
-            if (item.getSpiritual()) {
+            if (!item.getSpiritual()) {
                 items.remove(item);
             }
         }
