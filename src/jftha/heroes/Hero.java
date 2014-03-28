@@ -200,6 +200,10 @@ public class Hero {
         return isGhost;
     }
     
+    public boolean getWasGhost() {
+        return wasGhost;
+    }
+    
     public String getClassName() {
         return className;
     }
