@@ -1,6 +1,6 @@
 package jftha.cards;
 
-import jftha.main.Effect;
+import jftha.effects.*;
 
 public class Card {
     
