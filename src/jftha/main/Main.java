@@ -9,14 +9,15 @@ public class Main { //definitely need more error handling
     public static void main(String[] args) {
         Player[] players = new Player[4];
         Scanner scan = new Scanner(System.in);
+        // add conditions to naming/character selection process
         System.out.println("How many players?");
-        int howmany = scan.nextInt();
+        int howmany = scan.nextInt(); // keep asking if given invalid number // handle error/exception for non-int
         Dice die = new Dice(howmany);
 
         for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
             System.out.println("Player " + i + ", what is your name?");
             String name = scan.next();
-            System.out.println("Player " + i + ", which character do you pick?");
+            System.out.println("Player " + i + ", which character do you pick?"); // handle error/exception for non-int
             int heroNum = scan.nextInt();
             Hero playerHero = null;
             switch (heroNum) {
@@ -95,16 +96,69 @@ public class Main { //definitely need more error handling
             System.out.println(sb.toString());
         }
     }
-    
+    //Needs testing
     public Player winner(Player[] players) {
+        Player ret = null;
         int numPlayers = 0;
         for(Player p : players) {
             numPlayers++;
         }
-        System.out.println(numPlayers);
-        // Have all opponents dead for at least a period of 5 turns (4 player only)
+        if(numPlayers == 4) {
+            // Have all opponents dead for at least a period of 5 turns (4 player only)
+            if(players[1].getCharacter().isGhost() && players[2].getCharacter().isGhost() 
+                    && players[3].getCharacter().isGhost()) {
+                players[0].upWinCount();
+                if(players[0].getWinCount() > 4) {
+                    players[0].setIsWinner(true);
+                    ret = players[0];  // redundant; need to pick which method
+                }
+            } else if(players[0].getCharacter().isGhost() && players[2].getCharacter().isGhost() 
+                    && players[3].getCharacter().isGhost()) {
+                players[1].upWinCount();
+                if(players[1].getWinCount() > 4) {
+                    players[1].setIsWinner(true);
+                    ret = players[1];  // redundant; need to pick which method
+                }
+            } else if(players[0].getCharacter().isGhost() && players[1].getCharacter().isGhost() 
+                    && players[3].getCharacter().isGhost()) {
+                players[2].upWinCount();
+                if(players[2].getWinCount() > 4) {
+                    players[2].setIsWinner(true);
+                    ret = players[2];  // redundant; need to pick which method
+                }
+            } else if(players[0].getCharacter().isGhost() && players[1].getCharacter().isGhost() 
+                    && players[2].getCharacter().isGhost()) {
+                players[3].upWinCount();
+                if(players[3].getWinCount() > 4) {
+                    players[3].setIsWinner(true);
+                    ret = players[3];  // redundant; need to pick which method
+                }
+            }
+            
+            // any resurrections reset counter
+        }
+        
         // OR
         // Have all player ghosts non-existent (killed as ghost)
-        return null;
+        else if(numPlayers == 3) { 
+            if(players[1].getCharacter().getEliminated() && players[2].getCharacter().getEliminated()){
+                players[0].setIsWinner(true);
+                ret = players[0];
+            } else if(players[0].getCharacter().getEliminated() && players[2].getCharacter().getEliminated()){
+                players[1].setIsWinner(true);
+                ret = players[1];
+            } else {
+                players[2].setIsWinner(true);
+                ret = players[2];
+            }          
+        } 
+        else { // two players should eleminate posibilty of one above
+            if(players[1].getCharacter().getEliminated()) {
+                players[0].setIsWinner(true);
+                ret = players[0];
+            }
+        }
+        
+        return ret;
     }
 }
