@@ -1,6 +1,6 @@
 package jftha.heroes;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -205,7 +205,7 @@ public class HeroTest {
         hero.setGold(50);
         assertTrue(hero.buy(new Fireball()));
         assertEquals(40, hero.getGold());
-        ArrayList<Spell> spells = hero.getSpells();
+        List<Spell> spells = hero.getSpells();
         boolean thereis = false;
         for(Spell s : spells) {
             if(s.getClass().equals(Fireball.class))
