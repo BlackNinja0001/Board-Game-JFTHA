@@ -21,17 +21,17 @@ public class Hero {
     // Determines how many items a player can hold at any time
     private int storage_space;
     // The items the Hero is currently carrying
-    private ArrayList<Item> items;
+    private List<Item> items;
     // The items the Hero was carrying at time of last death
-    private ArrayList<Item> lostItems;
+    private List<Item> lostItems;
     // The artifactPieces the Hero is currently carrying
-    private ArrayList<ArtifactPiece> artifactPieces;
+    private List<ArtifactPiece> artifactPieces;
     // Determines how many spells a player is able to cast
     private int spell_slots;
     // The spells the Hero currently knows
-    private ArrayList<Spell> spells;
+    private List<Spell> spells;
     // The spells the Hero knew at time of last death
-    private ArrayList<Spell> lostSpells;
+    private List<Spell> lostSpells;
     // Determined by Defense stat. Also known as health points
     private int maxHP;
     // Health the player currently has
@@ -101,12 +101,10 @@ public class Hero {
 
     public void setStorageSpace(int storage_space) {
         this.storage_space = storage_space;
-        this.items.ensureCapacity(storage_space);
     }
 
     public void setSpellSlots(int spell_slots) {
         this.spell_slots = spell_slots;
-        this.spells.ensureCapacity(spell_slots);
     }
 
     public void setMaxHP(int hp) {
@@ -206,14 +204,14 @@ public class Hero {
         return className;
     }
 
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
     
-    public ArrayList<Spell> getSpells() {
+    public List<Spell> getSpells() {
         return spells;
     }
-    public ArrayList<ArtifactPiece> getArtifacts() {
+    public List<ArtifactPiece> getArtifacts() {
         return artifactPieces;
     }
     /**
@@ -278,7 +276,6 @@ public class Hero {
         }
         if (attacked.wasAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-//                System.out.println(intDamage + " inflicted by " + this + " to " + attacked + ".");
                 attacked.currentHP -= intDamage;
                 if (attacked.currentHP <= 0) {
                     attacked.makeGhost();
