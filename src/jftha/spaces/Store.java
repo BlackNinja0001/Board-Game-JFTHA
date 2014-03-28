@@ -36,6 +36,11 @@ public class Store extends Space{
         System.out.println("Input 6 to choose not to buy");
         Scanner scan = new Scanner(System.in);
         int select = scan.nextInt();
+    
+    /*Add in if hero's items/spells are full ask which one to replace and use
+     * replaceItem/replaceSpell in Hero
+     */
+        
         switch (select) {
                 case 1:
                     h.buy(items.get(0));
