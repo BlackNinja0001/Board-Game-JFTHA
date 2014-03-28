@@ -54,6 +54,9 @@ public class Player {
     public void setIsWinner(boolean isWinner) {
         this.isWinner = isWinner;
     }    
+    public void setWinCount(int winCount) {
+        this.winCount = winCount;
+    }
     public void upWinCount() {
         this.winCount++;
     }
