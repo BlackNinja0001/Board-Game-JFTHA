@@ -10,7 +10,15 @@ public class D2D extends Space{
         this.setActivationType('1');
     }
     
-    public void duel(Hero beingAttacked){
-        
+    public void duel2death(Hero attacker, Hero beingAttacked){
+        while(attacker.getCurrentHP() <= 0 || beingAttacked.getCurrentHP() <= 0){
+            attacker.attackEnemy(beingAttacked);
+            beingAttacked.attackEnemy(attacker);
+            if(attacker.getCurrentHP() <= 0){
+                attacker.makeGhost();
+            }else if(beingAttacked.getCurrentHP() <= 0){
+                beingAttacked.makeGhost();
+            }
+        }
     }
 }
