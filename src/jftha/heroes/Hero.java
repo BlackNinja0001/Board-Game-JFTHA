@@ -373,4 +373,14 @@ public class Hero {
         }
         return false;
     }
+    
+    public void replaceItem(int i, Item item) {
+        items.remove(i);
+        items.add(i, item);
+    }
+    
+    public void replaceSpell(int i, Spell spell) {
+        spells.remove(i);
+        spells.add(i, spell);
+    }
 }
