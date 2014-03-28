@@ -15,11 +15,12 @@ public class Chest extends Space {
         // If was resurrected give back lostItems
         if(h.getWasGhost()) {
             List<Item> lost = h.getLostItems();
-            for(Item item: lost) {
-                if(!item.getSpiritual())
-                    h.addItem(item);
-                h.setWasGhost(true);
-            }
+                for(Item item: lost) {
+                    if(!item.getSpiritual())
+                        h.addItem(item);
+                    h.setWasGhost(false);
+                    return;
+                }
         } else {
             int luck = rand.nextInt(100) + 1 + h.getLuck();
             ItemFactory i = new ItemFactory();
