@@ -355,7 +355,25 @@ public class Hero {
             if (items.add(item)) {
                 return true;
             }
+        } else {
+            System.out.print("No storage space left. You have ");
+            int i;
+            for(i = 0; i < items.size() -1; i++)  {
+                System.out.printf("%d.  %s",i, items.get(i));
+            }
+            System.out.printf("%d. %s%n", i, items.get(items.size()));
+            System.out.printf("Which do you want to lose. (%d for none)%n",storage_space +1);
+            Scanner scan = new Scanner(System.in);
+            i = scan.nextInt();
+            if(i == storage_space + 1) {
+                return false;
+            } else {
+                replaceItem(i,item);
+                return true;
+            }
         }
+        
+        
         return false;
     }
 
@@ -381,12 +399,12 @@ public class Hero {
         return false;
     }
     
-    public void replaceItem(int i, Item item) {
+    private void replaceItem(int i, Item item) {
         items.remove(i);
         items.add(i, item);
     }
     
-    public void replaceSpell(int i, Spell spell) {
+    private void replaceSpell(int i, Spell spell) {
         spells.remove(i);
         spells.add(i, spell);
     }
