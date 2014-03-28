@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemLists {
-    private List<Class> commonClasses = new ArrayList<>(20);
+    private List<Class> commonClasses = new ArrayList<>();
     private List<Class> uncommonClasses = new ArrayList<>();
     private List<Class> rareClasses = new ArrayList<>();
     
@@ -47,5 +47,9 @@ public class ItemLists {
         commonClasses.add(WagonOfGoods.class);
         commonClasses.add(WoolClothing.class);
         rareClasses.add(ArtifactPiece1.class);
+        rareClasses.add(ArtifactPiece2.class);
+        rareClasses.add(ArtifactPiece3.class);
+        rareClasses.add(ArtifactPiece4.class);
+        rareClasses.add(ArtifactPiece5.class);
     }
 }
