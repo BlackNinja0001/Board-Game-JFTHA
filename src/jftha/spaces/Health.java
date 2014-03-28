@@ -11,7 +11,7 @@ public class Health {
     public Health(){
         Random rand = new Random();
         statChange = rand.nextInt(16) + 5; //5-20
-        statChange = rand.nextInt(16) + 5; //5-20
+        statChange2 = rand.nextInt(16) + 5; //5-20
     }
     
     /**
@@ -20,7 +20,7 @@ public class Health {
     public void randomize(){
         Random rand = new Random();
         statChange = rand.nextInt(16) + 5; //5-20
-        statChange = rand.nextInt(16) + 5; //5-20
+        statChange2 = rand.nextInt(16) + 5; //5-20
     }
     
     /**
@@ -30,7 +30,8 @@ public class Health {
      * @param stat the stat to be changed; 'h' for health, 'm' for magic
      */
     public void heal(Hero beingHealed, char stat){
-        if (stat.equalsIgnoreCase(Character.toString("h")) || stat.equalsIgnoreCase(Character.toString('m'))){
+        Character c = new Character(stat);
+        if (c.equals(Character.toString('h')) || c.equals(Character.toString('m'))){
             
         }
     }
