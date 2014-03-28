@@ -7,6 +7,8 @@ public class Player {
     private String customName;
     private Hero character;
     private int turnOrder = -1;
+    private boolean isWinner;
+    private int winCount = 0;
 
     public Player() {
         this.customName = "";
@@ -30,6 +32,12 @@ public class Player {
     public int getTurnOrder() {
         return turnOrder;
     }
+    public boolean isWinner() {
+        return isWinner;
+    }
+    public int getWinCount() {
+        return winCount;
+    }
 
     //Setter methods
     public void setCustomName(String customName) {
@@ -42,5 +50,11 @@ public class Player {
 
     public void setTurnOrder(int turnOrder) {
         this.turnOrder = turnOrder;
+    }
+    public void setIsWinner(boolean isWinner) {
+        this.isWinner = isWinner;
+    }    
+    public void upWinCount() {
+        this.winCount++;
     }
 }
