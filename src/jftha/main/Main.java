@@ -89,7 +89,7 @@ public class Main { //definitely need more error handling
                 order = "4th";
             }
             sb.append("Player ").append(i)
-                    .append(" is a(n) ").append(players[i - 1].getCharacter().getClassName())
+                    .append(" is a ").append(players[i - 1].getCharacter().getClassName())
                     .append(" named ").append(players[i - 1].getCustomName())
                     .append(" and is going ").append(order).append(".");
             System.out.println(sb.toString());
