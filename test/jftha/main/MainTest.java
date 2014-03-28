@@ -1,7 +1,10 @@
 package jftha.main;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,9 +38,18 @@ public class MainTest {
      */
     @Test
     public void testMain() {
-        InputStream is = new ByteArrayInputStream("2\nPlayer1\n1\nPlayer2\n4".getBytes());
-        Main main = new Main();
+        String str = "2\nPlayer1\n1\nPlayer2\n4\n";
+        InputStream in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        Main.main(new String[]{"main"});
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        String[] lines = out.toString().split("\n");
         
+        System.out.println("line1: " + lines[0]);
+        assertTrue(lines[0].startsWith("Player 1 is a Barbarian named Player1 and is going"));
+        System.out.println("line2: " + lines[1]);
+        assertTrue(lines[1].startsWith("Player 2 is a Knight named Player2 and is going"));
     }
 
     /**
@@ -45,7 +57,6 @@ public class MainTest {
      */
     @Test
     public void testWinner() {
-        System.out.println("winner");
         Player[] players = null;
         Main instance = new Main();
         Player expResult = null;
