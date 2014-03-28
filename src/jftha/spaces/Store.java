@@ -14,10 +14,11 @@ public class Store extends Space{
         Hero h = getActivator();
         
         Random rand = new Random(System.currentTimeMillis());
-        int luck = rand.nextInt(100) + 1 + h.getLuck();
+        int luck;
         ItemFactory i = new ItemFactory();
         ArrayList<Item> items = new ArrayList<>(5);
         for(int j = 0; j < 5; j++){
+            luck = rand.nextInt(100) + 1 + h.getLuck();
             if(luck > 90){
                 items.add(i.buildItem(RarityEnum.rare));
                 String item = items.get(j).toString();
