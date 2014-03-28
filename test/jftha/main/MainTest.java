@@ -3,8 +3,11 @@ package jftha.main;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
+import jftha.heroes.Barbarian;
+import jftha.heroes.Mage;
+import jftha.heroes.Ninja;
+import jftha.heroes.Paladin;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,7 +19,7 @@ public class MainTest {
     
     public MainTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
@@ -37,19 +40,19 @@ public class MainTest {
      * Test of main method, of class Main.
      */
     @Test
-    public void testMain() {
+    public void test2PlayerNameSelection() {
         String str = "2\nPlayer1\n1\nPlayer2\n4\n";
         InputStream in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        Main.main(new String[]{"main"});
         ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream original = System.out;
         System.setOut(new PrintStream(out));
+        Main.main(new String[]{"main"});
         String[] lines = out.toString().split("\n");
-        
-        System.out.println("line1: " + lines[0]);
-        assertTrue(lines[0].startsWith("Player 1 is a Barbarian named Player1 and is going"));
-        System.out.println("line2: " + lines[1]);
-        assertTrue(lines[1].startsWith("Player 2 is a Knight named Player2 and is going"));
+        System.setOut(original);
+        int len = lines.length;
+        assertTrue(lines[len-2].startsWith("Player 1 is a Barbarian named Player1 and is going"));
+        assertTrue(lines[len-1].startsWith("Player 2 is a Knight named Player2 and is going"));
     }
 
     /**
@@ -57,12 +60,12 @@ public class MainTest {
      */
     @Test
     public void testWinner() {
-        Player[] players = null;
-        Main instance = new Main();
-        Player expResult = null;
-        Player result = instance.winner(players);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
+        Player[] players = {new Player("player1", new Paladin()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        
         fail("The test case is a prototype.");
     }
     
