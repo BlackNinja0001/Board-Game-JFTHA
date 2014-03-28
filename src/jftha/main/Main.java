@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main { //definitely need more error handling
 
     int turnNumber = 0;
+
     public static void main(String[] args) {
         Player[] players = new Player[4];
         Scanner scan = new Scanner(System.in);
@@ -97,68 +98,116 @@ public class Main { //definitely need more error handling
         }
     }
     //Needs testing
+
     public Player winner(Player[] players) {
         Player ret = null;
-        int numPlayers = 0;
-        for(Player p : players) {
+        int numPlayers = 0, winnerIndex = -1;
+
+        for (Player p : players) {
             numPlayers++;
         }
-        if(numPlayers == 4) {
+        if (numPlayers == 4) {
             // Have all opponents dead for at least a period of 5 turns (4 player only)
-            if(players[1].getCharacter().isGhost() && players[2].getCharacter().isGhost() 
-                    && players[3].getCharacter().isGhost()) {
-                players[0].upWinCount();
-                if(players[0].getWinCount() > 4) {
-                    players[0].setIsWinner(true);
-                    ret = players[0];  // redundant; need to pick which method
-                }
-            } else if(players[0].getCharacter().isGhost() && players[2].getCharacter().isGhost() 
-                    && players[3].getCharacter().isGhost()) {
-                players[1].upWinCount();
-                if(players[1].getWinCount() > 4) {
-                    players[1].setIsWinner(true);
-                    ret = players[1];  // redundant; need to pick which method
-                }
-            } else if(players[0].getCharacter().isGhost() && players[1].getCharacter().isGhost() 
-                    && players[3].getCharacter().isGhost()) {
-                players[2].upWinCount();
-                if(players[2].getWinCount() > 4) {
-                    players[2].setIsWinner(true);
-                    ret = players[2];  // redundant; need to pick which method
-                }
-            } else if(players[0].getCharacter().isGhost() && players[1].getCharacter().isGhost() 
-                    && players[2].getCharacter().isGhost()) {
-                players[3].upWinCount();
-                if(players[3].getWinCount() > 4) {
-                    players[3].setIsWinner(true);
-                    ret = players[3];  // redundant; need to pick which method
+
+            for (int i = 0; i < players.length; i++) {
+                upWinCountValidated(players, i);
+                if (allOpponentsNonExistent(players, i)) {
+                    ret = players[i];
                 }
             }
-            
+
+            if ((winnerIndex = anyoneWon(players)) != -1) {
+                ret = players[winnerIndex];
+            }
+
             // any resurrections reset counter
-        }
-        
-        // OR
+        } // OR
         // Have all player ghosts non-existent (killed as ghost)
-        else if(numPlayers == 3) { 
-            if(players[1].getCharacter().getEliminated() && players[2].getCharacter().getEliminated()){
-                players[0].setIsWinner(true);
-                ret = players[0];
-            } else if(players[0].getCharacter().getEliminated() && players[2].getCharacter().getEliminated()){
-                players[1].setIsWinner(true);
-                ret = players[1];
-            } else {
-                players[2].setIsWinner(true);
-                ret = players[2];
-            }          
-        } 
-        else { // two players should eleminate posibilty of one above
-            if(players[1].getCharacter().getEliminated()) {
-                players[0].setIsWinner(true);
-                ret = players[0];
+        else {
+            for (int i = 0; i < players.length; i++) {
+                if (allOpponentsNonExistent(players, i)) {
+                    ret = players[i];
+                }
             }
         }
-        
+
         return ret;
+    }
+
+    /**
+     * Checks if players[winningPlayer]'s winCount can be upped (all opponents
+     * dead). If so, then increment players[winningPlayer]'s winCount
+     *
+     * @param players the players currently playing
+     * @param winningPlayer the index of the player soon to win
+     * @return true if players[winningPlayer]'s winCount is ready to be upped
+     * @return false if not
+     */
+    public boolean upWinCountValidated(Player[] players, int winningPlayer) {
+        //Winning players cannot be ghosts and this method only applies to 4-player games
+        if ((players[winningPlayer].getCharacter().isGhost()) || (players.length < 4)) {
+            return false;
+        }
+
+        boolean valid = true;
+        for (int i = 0; i < players.length; i++) {
+            if (i != winningPlayer) { //do not check if winning player is ghost
+                if (!players[i].getCharacter().isGhost()) {
+                    valid = false;
+                }
+            }
+        }
+
+        if (valid) {
+            players[winningPlayer].upWinCount();
+        }
+
+        if (players[winningPlayer].getWinCount() > 4) { //if 5 turns elapsed, player wins
+            players[winningPlayer].setIsWinner(true);
+        }
+
+        return valid;
+    }
+
+    /**
+     * Checks if anyone won the game.
+     *
+     * @param players the players currently playing
+     * @return the index of the winner
+     */
+    public int anyoneWon(Player[] players) {
+        int winnerIndex = -1;
+
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].isWinner()) {
+                winnerIndex = i;
+                return winnerIndex;
+            }
+        }
+
+        return winnerIndex;
+    }
+
+    /**
+     *
+     * @return true if all opponents were killed as ghosts
+     * @return false if at least one opponent is still in play
+     */
+    public boolean allOpponentsNonExistent(Player[] players, int winningPlayer) {
+        boolean valid = true;
+
+        for (int i = 0; i < players.length; i++) {
+            if (i != winningPlayer) { //do not check if winning player is ghost
+                if (!players[i].getCharacter().getEliminated()) {
+                    valid = false;
+                }
+            }
+        }
+
+        if (valid) {
+            players[winningPlayer].setIsWinner(true);
+        }
+
+        return valid;
     }
 }
