@@ -1,5 +1,5 @@
-package jftha.main;
+package jftha.effects;
 
-public class Effect {
+public abstract class Effect {
     //planned to be a more general class for effects of items, spells, and spaces
 }

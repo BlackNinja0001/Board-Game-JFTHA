@@ -194,8 +194,9 @@ public class HeroTest {
     public void ghostsCannotBeHitWithoutSpiritualItem() {
         hero.setStrength(12);
         enemy.makeGhost();
+        int prevMP = enemy.getCurrentMP(); //ghost'a MP acts like "HP", but still can be used for spells
         hero.attackEnemy(enemy);
-        //assert
+        assertTrue(prevMP == enemy.getCurrentMP());
     }
     
     @Test

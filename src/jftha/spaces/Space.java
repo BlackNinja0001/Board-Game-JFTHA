@@ -1,7 +1,7 @@
 package jftha.spaces;
 
-import jftha.main.Effect;
-import jftha.heroes.Hero;
+import jftha.effects.*;
+import jftha.heroes.*;
 
 public class Space {
     private int spaceID;

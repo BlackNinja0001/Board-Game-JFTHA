@@ -1,6 +1,7 @@
 package jftha.main;
 
-import java.util.ArrayList;
+import java.util.*;
+import jftha.effects.*;
 
 public class Buyable { //created because Spell and Item share many characteristics
     private String name;

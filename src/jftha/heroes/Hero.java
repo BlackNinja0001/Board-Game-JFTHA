@@ -4,6 +4,7 @@ import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
+import jftha.effects.*;
 import java.lang.reflect.Method;
 
 public class Hero {
