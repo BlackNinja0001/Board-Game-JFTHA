@@ -23,10 +23,10 @@ public class ItemLists {
     }
     
     public int getRareSize() {
-        return commonClasses.size();
+        return rareClasses.size();
     }
     public Class getRareClass(int i) {
-        return commonClasses.get(i);
+        return rareClasses.get(i);
     }
     
     public ItemLists() {
