@@ -5,15 +5,15 @@ import java.util.Random;
 public class ItemFactory {
     public Item buildItem(RarityEnum rarity) {
         Item item = null;
-        ItemLists il = new ItemLists();
+        ItemLists itemList = new ItemLists();
         Random rand = new Random(System.currentTimeMillis());
         int i, num;
         Class clazz;
         switch(rarity) {
             case common:
-                i = il.getCommonSize();
+                i = itemList.getCommonSize();
                 num = rand.nextInt(i);
-                clazz = il.getCommonClass(num);
+                clazz = itemList.getCommonClass(num);
                 try {
                     item = (Item)clazz.newInstance();
                 } catch(IllegalAccessException | InstantiationException ex) {
@@ -21,9 +21,9 @@ public class ItemFactory {
                 }
                 break;
             case uncommon:
-                i = il.getUncommonSize();
+                i = itemList.getUncommonSize();
                 num = rand.nextInt(i);
-                clazz = il.getUncommonClass(num);
+                clazz = itemList.getUncommonClass(num);
                 try {
                     item = (Item)clazz.newInstance();
                 } catch(IllegalAccessException | InstantiationException ex) {
@@ -31,9 +31,9 @@ public class ItemFactory {
                 }
                 break;
             case rare:
-                i = il.getRareSize();
+                i = itemList.getRareSize();
                 num = rand.nextInt(i);
-                clazz = il.getRareClass(num);
+                clazz = itemList.getRareClass(num);
                 try {
                     item = (Item)clazz.newInstance();
                 } catch(IllegalAccessException | InstantiationException ex) {
