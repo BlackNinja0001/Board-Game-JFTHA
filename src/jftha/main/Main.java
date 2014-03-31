@@ -97,8 +97,12 @@ public class Main { //definitely need more error handling
             System.out.println(sb.toString());
         }
     }
-    //Needs testing
 
+    /** Checks whether or not a player has won the game.
+     * 
+     * @param players The players in the game
+     * @return The player that won the game
+     */
     public Player winner(Player[] players) {
         Player ret = null;
         int numPlayers = 0, winnerIndex = -1;
@@ -141,7 +145,6 @@ public class Main { //definitely need more error handling
      * @param players the players currently playing
      * @param winningPlayer the index of the player soon to win
      * @return true if players[winningPlayer]'s winCount is ready to be upped
-     * @return false if not
      */
     public boolean upWinCountValidated(Player[] players, int winningPlayer) {
         //Winning players cannot be ghosts and this method only applies to 4-player games
