@@ -9,9 +9,10 @@ public class Chest extends Space {
         this.setActivationType('1');
     }
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
-    public void giveItem() {
+    public int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
         Hero h = getActivator();
+        int luck = -1;
         // If was resurrected give back lostItems
         if(h.getWasGhost()) {
             List<Item> lost = h.getLostItems();
@@ -19,10 +20,10 @@ public class Chest extends Space {
                     if(!item.getSpiritual())
                         h.addItem(item);
                     h.setWasGhost(false);
-                    return;
+                    return luck;
                 }
         } else {
-            int luck = rand.nextInt(100) + 1 + h.getLuck();
+            luck = rand.nextInt(100) + 1 + h.getLuck();
             ItemFactory i = new ItemFactory();
             if(luck > 90) {
                 h.addItem(i.buildItem(RarityEnum.rare));
@@ -32,5 +33,6 @@ public class Chest extends Space {
                 h.addItem(i.buildItem(RarityEnum.common));
             }
         }
+        return luck;
     }
 }
