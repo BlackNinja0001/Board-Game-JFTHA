@@ -1,5 +1,9 @@
 package jftha.spaces;
 
+import jftha.heroes.Hero;
+import jftha.heroes.Mage;
+import jftha.items.Item;
+import jftha.items.RarityEnum;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -33,11 +37,21 @@ public class ChestTest {
      */
     @Test
     public void testGiveItem() {
-        System.out.println("giveItem");
         Chest instance = new Chest();
-        instance.giveItem();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Hero hero = new Mage();
+        instance.setActivator(hero);
+        int luck = instance.giveItem();
+        assertTrue(hero.getItems().size() == 3);
+        Item item = hero.getItems().get(2);
+        for(int i = 0; i < 100; i++) {
+            if(luck > 90)
+                assertEquals(item.getRarity(), RarityEnum.rare);
+            else if(luck > 75)
+                assertEquals(item.getRarity(), RarityEnum.uncommon);
+            else 
+                assertEquals(item.getRarity(), RarityEnum.common);
+        }
+
     }
     
 }
