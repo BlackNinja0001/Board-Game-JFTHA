@@ -103,5 +103,8 @@ public class Space {
     protected void setActivationType(char c) {
         activationType = c;
     }
+    protected void setActivator(Hero hero) {
+        this.activator = hero;
+    }
     
 }
