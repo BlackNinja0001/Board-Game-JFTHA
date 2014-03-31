@@ -1,6 +1,7 @@
 package jftha.main;
 
 import java.util.ArrayList;
+import java.util.List;
 import jftha.heroes.*;
 import jftha.items.*;
 import java.util.Scanner;
@@ -220,7 +221,7 @@ public class Main { //definitely need more error handling
 
     public void executeTurn(Player performer) {
         //Item phase 1
-        turnPhase(performer);
+        itemPhase(performer);
 
         //Dice Roll
 
@@ -231,10 +232,10 @@ public class Main { //definitely need more error handling
         //Turn End
     }
 
-    public void turnPhase(Player performer) {
+    public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
-        ArrayList<Item> myItems = new ArrayList<Item>();
+        List<Item> myItems = new ArrayList<Item>();
 
         char yesOrNo = '~';  //arbitrary character not 'y' or 'n'
         int mistakes = 0;
