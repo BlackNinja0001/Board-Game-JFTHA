@@ -241,12 +241,13 @@ public class Hero {
         this.isGhost = true;
         //Regen MP
         this.currentMP = this.maxMP;
-        this.lostItems = items;
+        this.lostItems = new ArrayList<>();
         this.lostSpells = spells;
         //Cannot hold items, except spiritual items (see Items).
         Iterator<Item> iter = items.iterator();
         while(iter.hasNext()) {
             Item item = iter.next();
+            lostItems.add(item);
             if (!item.getSpiritual()) {
                 iter.remove();
             }
