@@ -1,6 +1,8 @@
 package jftha.main;
 
+import java.util.ArrayList;
 import jftha.heroes.*;
+import jftha.items.*;
 import java.util.Scanner;
 
 public class Main { //definitely need more error handling
@@ -189,6 +191,8 @@ public class Main { //definitely need more error handling
     }
 
     /**
+     * Checks if all opponents of "winningPlayer" are non-existent (died as
+     * ghost)
      *
      * @return true if all opponents were killed as ghosts
      * @return false if at least one opponent is still in play
@@ -209,5 +213,76 @@ public class Main { //definitely need more error handling
         }
 
         return valid;
+    }
+
+    public void executeTurn(Player performer) {
+        //Item phase 1
+        turnPhase(performer);
+
+        //Dice Roll
+
+        //Attack
+
+        //Item 2
+
+        //Turn End
+    }
+
+    public void turnPhase(Player performer) {
+        Scanner s = new Scanner(System.in);
+        int itemCount = 0;
+        ArrayList<Item> myItems = new ArrayList<Item>();
+
+        char yesOrNo = '~';  //arbitrary character not 'y' or 'n'
+        int mistakes = 0;
+        while (true) { //will break
+            System.out.println("Use item ('y' for yes, 'n' for no)?");
+            yesOrNo = s.next().trim().charAt(0);
+            if (yesOrNo == 'y') {
+                myItems = performer.getCharacter().getItems();
+                if (!(myItems).isEmpty()) {
+                    for (Item item : myItems) {
+                        itemCount++;
+                        System.out.println(itemCount + ". " + item.getName());
+                    }
+                    System.out.println("Which item would you like to use (0 for cancel)");
+                    int choice = s.nextInt();
+                    
+                    //Error: Need to allow player to choose item again
+                    if (choice == 0) {
+                        return;
+                    } else if (choice < 0 || choice > myItems.size()) {
+                        System.out.println("Invalid Choice.");
+                    } else {
+                        Item toBeUsed = myItems.get(choice);
+                        //use Item
+                    }
+                }
+                break;
+            } else if (yesOrNo == 'n') {
+                break;
+            } else {
+                if (mistakes <= 2) {
+                    System.out.println("Invalid Answer.");
+                } else if (mistakes == 3) {
+                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
+                } else if (mistakes == 4) {
+                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
+                } else if (mistakes == 5) {
+                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
+                } else if (mistakes == 6) {
+                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
+                } else if (mistakes == 7) {
+                    System.out.println("Is that even a letter? Seriously you need to try.");
+                } else {
+                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
+                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
+                    performer.getCharacter().setEliminated(true);
+                    System.out.println("Game Over");
+                    break;
+                }
+                mistakes++;
+            }
+        }
     }
 }
