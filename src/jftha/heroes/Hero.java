@@ -244,9 +244,11 @@ public class Hero {
         this.lostItems = items;
         this.lostSpells = spells;
         //Cannot hold items, except spiritual items (see Items).
-        for (Item item : items) {
+        Iterator<Item> iter = items.iterator();
+        while(iter.hasNext()) {
+            Item item = iter.next();
             if (!item.getSpiritual()) {
-                items.remove(item);
+                iter.remove();
             }
         }
         //Can cast only Spectre Shot spell (cost 1 SE).
