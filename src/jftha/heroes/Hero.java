@@ -318,7 +318,8 @@ public class Hero {
     }
 
     /**
-     * Allows a character to buy an item in the store.
+     * Allows a character to buy an item in the store.  This handles the specific
+     * buy action.  The gold cost of the item is taken from the character's gold
      *
      * @param buy The Buyable item that the player want to purchase
      * @return true if purchase is went through
@@ -372,7 +373,8 @@ public class Hero {
             if(i == storage_space + 1) {
                 return false;
             } else {
-                replaceItem(i,item);
+                items.remove(i);
+                items.add(i, item);
                 return true;
             }
         }
@@ -403,13 +405,4 @@ public class Hero {
         return false;
     }
     
-    private void replaceItem(int i, Item item) {
-        items.remove(i);
-        items.add(i, item);
-    }
-    
-    private void replaceSpell(int i, Spell spell) {
-        spells.remove(i);
-        spells.add(i, spell);
-    }
 }
