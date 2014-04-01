@@ -1,9 +1,7 @@
 package jftha.spaces;
 
-import jftha.heroes.Hero;
-import jftha.heroes.Mage;
-import jftha.items.Item;
-import jftha.items.RarityEnum;
+import jftha.heroes.*;
+import jftha.items.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,17 +39,32 @@ public class ChestTest {
         Hero hero = new Mage();
         instance.setActivator(hero);
         int luck = instance.giveItem();
-        assertTrue(hero.getItems().size() == 3);
+        assertEquals(3, hero.getItems().size());
         Item item = hero.getItems().get(2);
-        for(int i = 0; i < 100; i++) {
-            if(luck > 90)
-                assertEquals(item.getRarity(), RarityEnum.rare);
-            else if(luck > 75)
-                assertEquals(item.getRarity(), RarityEnum.uncommon);
-            else 
-                assertEquals(item.getRarity(), RarityEnum.common);
+        for(int i = 0; i < 1000; i++) {
+            if(luck > 90) {
+                assertEquals(RarityEnum.rare, item.getRarity());
+            } else if(luck > 75) {
+                assertEquals(RarityEnum.uncommon, item.getRarity());
+            } else {
+                assertEquals(RarityEnum.common, item.getRarity());
+            }
         }
-
+    }
+    
+    @Test
+    public void testItemsReturnedToResurrectedCharacter() {
+        Chest instance = new Chest();
+        Hero hero = new Ninja();
+        hero.makeGhost();
+        assertEquals(0, hero.getItems().size());
+        hero.unGhost();
+        instance.setActivator(hero);
+        int luck = instance.giveItem();
+        assertEquals(2, hero.getItems().size());
+        assertEquals(hero.getItems().get(0).getClass(), Cloak.class);
+        assertEquals(hero.getItems().get(1).getClass(), Dagger.class);
+        
     }
     
 }
