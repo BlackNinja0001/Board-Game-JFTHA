@@ -188,6 +188,7 @@ public class HeroTest {
         hero.attackEnemy(enemy);
         assertTrue("Enemy did not die.", enemy.isGhost());
         assertTrue(enemy.getCurrentHP() <= 0);
+        assertEquals(enemy.getMaxMP(), enemy.getCurrentMP());
     }
     
     @Test
@@ -213,5 +214,34 @@ public class HeroTest {
                 thereis = true;
         }
         assertTrue(thereis);
+    }
+    @Test
+    public void testGhostsWithNoSpiritualItemsLoseAllItems() {
+        hero.addItem(new AnimalSkin());
+        hero.addItem(new Ax());
+        hero.addItem(new Cloak());
+        hero.addItem(new Dagger());
+        hero.addItem(new MageRobe());
+        hero.makeGhost();
+        List i = hero.getItems();
+        assertEquals(0, i.size());
+    }
+    
+    @Test
+    public void testGhostsKeepsItsSpiritualItems() {
+        hero.addItem(new AnimalSkin());
+        hero.addItem(new Ax());
+        hero.addItem(new Cloak());
+        hero.addItem(new Dagger());        
+        hero.addItem(new Bible());
+        hero.makeGhost();
+        List i = hero.getItems();
+        assertEquals(1, i.size());
+        assertEquals(Bible.class, i.get(0).getClass());
+    }
+    
+    @Test
+    public void testUnghostStatUpdates() {
+        
     }
 }
