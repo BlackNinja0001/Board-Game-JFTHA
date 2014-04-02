@@ -5,11 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import jftha.heroes.*;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 public class MainTest {
@@ -155,20 +151,55 @@ public class MainTest {
         }
     }
     
-    /**
-     * Test of winner method, of class Main.
-     */
+    @Test
+    public void testAllPlayersNonExisitant4Players() {
+        Player[] players = {new Player("player1", new Paladin()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[0].getCharacter().setEliminated(true);
+        players[1].getCharacter().setEliminated(true);
+        players[2].getCharacter().setEliminated(true);
+        assertTrue(main.allOpponentsNonExistent(players, 3));
+        assertTrue(main.anyoneWon(players) > -1);
+    }
+    
+    @Test
+    public void testUpWinCount() {
+        Player[] players = {new Player("player1", new Paladin()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[0].getCharacter().makeGhost();
+        players[2].getCharacter().makeGhost();
+        players[3].getCharacter().makeGhost();
+        assertTrue(main.upWinCountValidated(players, 1));
+        assertEquals(1, players[1].getWinCount());
+    }
+    @Ignore("Needs work/Another test. UpWinCount sets isWinner")
     @Test
     public void testWinner() {
-        
         Player[] players = {new Player("player1", new Paladin()), 
                             new Player("player2", new Barbarian()),
                             new Player("player3", new Ninja()),
                             new Player("player4", new Mage())};
         players[3].setIsWinner(true);
         Player winner = main.winner(players);
-        System.out.print(winner);
-        fail("The test case is a prototype.");
+        assertEquals(winner, players[3]);
     }
     
+    @Test
+    public void testResetWinCount() {
+        Player[] players = {new Player("player1", new Paladin()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[0].getCharacter().makeGhost();
+        players[2].getCharacter().makeGhost();
+        players[3].getCharacter().makeGhost();
+        main.upWinCountValidated(players, 1);
+        players[3].getCharacter().unGhost();
+        assertFalse(main.upWinCountValidated(players, 1));
+        assertEquals(0, players[1].getWinCount());
+    }
 }
