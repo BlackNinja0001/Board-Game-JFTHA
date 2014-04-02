@@ -234,6 +234,8 @@ public class Main { //definitely need more error handling
         die.setMaxAmount(intMaxAmount);
         int movement = die.roll();
         //move the player
+            //Need to determine how many space then can move base on agility
+            //Move forward
 
         //Attack
         //getBoardSpaceId
