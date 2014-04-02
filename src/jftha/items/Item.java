@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.main.Buyable;
-import java.util.ArrayList;
 
 public class Item extends Buyable{
 
@@ -22,5 +21,10 @@ public class Item extends Buyable{
     
     public boolean getSpiritual(){
         return this.isSpiritual;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
     }
 }
