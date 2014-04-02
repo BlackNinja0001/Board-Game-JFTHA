@@ -3,11 +3,12 @@ package jftha.spaces;
 import java.util.Random;
 import jftha.heroes.Hero;
 
-public class Gold {
+public class Gold extends Space {
     
     private int amount;
     
     public Gold() {
+        this.setActivationType('p');
         Random rand = new Random();
         amount = rand.nextInt(5) + 1; //1-5
     }
