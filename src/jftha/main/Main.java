@@ -236,12 +236,16 @@ public class Main { //definitely need more error handling
         //move the player
 
         //Attack
-
+        //getBoardSpaceId
+            //If getBoardSpaceId == getBoardSpaceID - 1 or +1
+            //Then allow to attack
+        
         //Item 2
         itemPhase(performer);
 
         //Turn End
         //Decrement CD and duration of spells if casted
+        //Need to remove buff of hero after duration is over to prevent ridiculous stacking of buffs
     }
 
     public void itemPhase(Player performer) {
