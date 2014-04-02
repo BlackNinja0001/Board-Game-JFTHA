@@ -223,14 +223,22 @@ public class Main { //definitely need more error handling
     }
 
     public void executeTurn(Player performer) {
+        Hero playerChar = performer.getCharacter();
         //Item phase 1
         itemPhase(performer);
 
-        //Dice Roll
+        //Dice Roll (factoring in Agility and Luck)
+        Dice die = new Dice();
+        double maxAmount = (playerChar.getAgility()*0.8) + (playerChar.getLuck()*0.2); //may need tinkering
+        int intMaxAmount = (int) Math.round(maxAmount);
+        die.setMaxAmount(intMaxAmount);
+        int movement = die.roll();
+        //move the player
 
         //Attack
 
         //Item 2
+        itemPhase(performer);
 
         //Turn End
     }
@@ -252,17 +260,19 @@ public class Main { //definitely need more error handling
                         itemCount++;
                         System.out.println(itemCount + ". " + item.getName());
                     }
-                    System.out.println("Which item would you like to use (0 for cancel)");
-                    int choice = s.nextInt();
-                    
-                    //Error: Need to allow player to choose item again
-                    if (choice == 0) {
-                        return;
-                    } else if (choice < 0 || choice > myItems.size()) {
-                        System.out.println("Invalid Choice.");
-                    } else {
-                        Item toBeUsed = myItems.get(choice);
-                        //use Item
+                    int choice = -1;
+                    while ((choice < 0) || (choice >= myItems.size())) {
+                        System.out.println("Which item would you like to use (0 for cancel)");
+                        choice = s.nextInt();
+
+                        if (choice == 0) {
+                            return;
+                        } else if ((choice >= 0) && (choice < myItems.size())) {
+                            Item toBeUsed = myItems.get(choice + 1);
+                            //use Item and choose who to use it on
+                        } else {
+                            System.out.println("Invalid Choice.");
+                        }
                     }
                 }
                 break;
