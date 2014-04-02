@@ -41,8 +41,7 @@ public class ItemFactory {
                 }
                 break;
             default:
-                // throw error
-                break;
+                throw new IllegalArgumentException("Oops. There is no such type of item.");
         }
        
         return item;
