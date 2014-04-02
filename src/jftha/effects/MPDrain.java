@@ -8,7 +8,10 @@ public class MPDrain extends Effect{
     //MPDrain can have one player steal MP from another player
     //MPDrain can drain the current player's MP
     
-    //This Effect Drains the current player's MP
+    /** This Effect Drains the current player's MP.
+     * 
+     * @param hero The character that is getting MP drained.
+     */
     public MPDrain(Hero hero){
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
@@ -19,7 +22,11 @@ public class MPDrain extends Effect{
         }
     }
     
-    //This effect lets current player drain another player's MP
+    /**This effect lets current player drain another player's MP
+     * 
+     * @param drainer This character that taking the MP
+     * @param victim The character being drained
+     */
     public MPDrain(Hero drainer, Hero victim){
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
