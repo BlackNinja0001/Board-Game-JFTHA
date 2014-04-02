@@ -259,23 +259,28 @@ public class Hero {
     //self heal spells
     public void castHealSpell(Spell spell){
         //Damage is the heal amount
-        int spellEffect = spell.getDamage();
-        double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
-        int finalEffect = (int)Math.round(actualEffect);
+        if(spell.getCurrentCD() > 0){
+            int spellEffect = spell.getDamage();
+            double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
+            int finalEffect = (int)Math.round(actualEffect);
         
-        this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
-        this.setCurrentHP(this.getCurrentHP() + finalEffect);
+            this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
+            this.setCurrentHP(this.getCurrentHP() + finalEffect);
+        }
     }
     
     //Self buff spells
     public void castBuffSpell(Spell spell){
         //Damage is the buff amount
-        int spellEffect = spell.getDamage();
-        double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
-        int finalEffect = (int)Math.round(actualEffect);
+        if(spell.getCurrentCD() > 0){
+            int spellEffect = spell.getDamage();
+            double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
+            int finalEffect = (int)Math.round(actualEffect);
+            this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
+            this.setDefense(this.getDefense() + finalEffect);
+        }
         
-        this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
-        this.setDefense(this.getDefense() + finalEffect);
+        //need to remove buff after duration is over
     }
 
     /**
