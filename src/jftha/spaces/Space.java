@@ -13,6 +13,7 @@ public class Space {
     private boolean isD2D; // Duel to the Death
     private boolean isHealth;
     private boolean isCard;
+    private boolean isGold;
     
     public Space next;
     public Space prev;
@@ -88,6 +89,9 @@ public class Space {
     }
     public boolean getIsCard(){
         return isCard;
+    }
+    public boolean getIsGold() {
+        return isGold;
     }
     public char getActivationType() {
         return activationType;
