@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
+
     private int strength;
     // Determines how many spaces the player can move per turn
     private int agility;
@@ -113,7 +114,11 @@ public class Hero {
     }
 
     public void setCurrentHP(int hp) {
-        this.currentHP = hp;
+        if (hp > maxHP) {
+            currentHP = maxHP;
+        } else {
+            this.currentHP = hp;
+        }
     }
 
     public void setMaxMP(int mp) {
@@ -121,7 +126,11 @@ public class Hero {
     }
 
     public void setCurrentMP(int mp) {
-        this.currentMP = mp;
+        if (mp > maxMP) {
+            currentMP = maxMP;
+        } else {
+            this.currentHP = mp;
+        }
     }
 
     public void setGold(int gold) {
@@ -131,19 +140,19 @@ public class Hero {
     public void setWasAttacked(boolean jA) {
         this.wasAttacked = jA;
     }
-    
+
     public void setWasGhost(boolean wasGhost) {
         this.wasGhost = wasGhost;
     }
-    
-    public void setEliminated(boolean elim){
-        this.eliminated = elim;
-    } 
 
-    public void setClassName(String name){
+    public void setEliminated(boolean elim) {
+        this.eliminated = elim;
+    }
+
+    public void setClassName(String name) {
         this.className = name;
     }
-    
+
     //Getter Methods
     public int getStrength() {
         return strength;
@@ -196,7 +205,7 @@ public class Hero {
     public boolean getWasAttacked() {
         return wasAttacked;
     }
-    
+
     public boolean getEliminated() {
         return eliminated;
     }
@@ -204,13 +213,15 @@ public class Hero {
     public boolean isGhost() {
         return isGhost;
     }
-    
+
     public boolean getWasGhost() {
         return wasGhost;
     }
+
     public List<Item> getLostItems() {
         return lostItems;
     }
+
     public String getClassName() {
         return className;
     }
@@ -218,13 +229,15 @@ public class Hero {
     public List<Item> getItems() {
         return items;
     }
-    
+
     public List<Spell> getSpells() {
         return spells;
     }
+
     public List<ArtifactPiece> getArtifacts() {
         return artifactPieces;
     }
+
     /**
      * Allows a character to cast a spell.
      *
@@ -270,26 +283,27 @@ public class Hero {
      */
     public void makeGhost() {
         this.isGhost = true;
-        if(this.currentHP != 0)
+        if (this.currentHP != 0) {
             this.setCurrentHP(0);
+        }
         //Regen MP
         this.currentMP = this.maxMP;
         this.lostItems = new ArrayList<>();
         this.lostSpells = new ArrayList<>();
         //Cannot hold items, except spiritual items (see Items).
         Iterator<Item> iter = items.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             Item item = iter.next();
             lostItems.add(item);
             if (!item.getSpiritual()) {
                 iter.remove();
             }
         }
-        for(Spell sp: spells) {
+        for (Spell sp : spells) {
             lostSpells.add(sp);
         }
         //Can cast only Spectre Shot spell (cost 1 SE).
-        this.spells.clear(); 
+        this.spells.clear();
         this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
@@ -354,8 +368,8 @@ public class Hero {
     }
 
     /**
-     * Allows a character to buy an item in the store.  This handles the specific
-     * buy action.  The gold cost of the item is taken from the character's gold
+     * Allows a character to buy an item in the store. This handles the specific
+     * buy action. The gold cost of the item is taken from the character's gold
      *
      * @param buy The Buyable item that the player want to purchase
      * @return true if purchase is went through
@@ -366,11 +380,11 @@ public class Hero {
         if (this.getGold() >= buy.getGoldCost()) {
             setGold(currentGold - buy.getGoldCost());
             // buy is an Item
-            if(buy.getClass().getSuperclass().equals(Item.class)) {
-                addItem((Item)buy);
+            if (buy.getClass().getSuperclass().equals(Item.class)) {
+                addItem((Item) buy);
             } // buy is a Spell 
-            else if(buy.getClass().getSuperclass().equals(Spell.class)) {
-                addSpell((Spell)buy);
+            else if (buy.getClass().getSuperclass().equals(Spell.class)) {
+                addSpell((Spell) buy);
             }
             return true;
         }
@@ -381,8 +395,8 @@ public class Hero {
      * Adds an item to character's inventory. Will only add item if: <\t>1) The
      * character does not already have this item <\t>2) The character has
      * storage space for the item.
-     * 
-     * If the character's inventory is full, character has option to lose an 
+     *
+     * If the character's inventory is full, character has option to lose an
      * item in exchange for the new one.
      *
      * @param item The item to be added to the character's inventory
@@ -402,13 +416,13 @@ public class Hero {
         } else {
             System.out.print("No storage space left. You have: ");
             int i;
-            for(i = 0; i < items.size(); i++)  {
-                System.out.printf("%n%d.  %s",i+1, items.get(i).getClass().getSimpleName());
+            for (i = 0; i < items.size(); i++) {
+                System.out.printf("%n%d.  %s", i + 1, items.get(i).getClass().getSimpleName());
             }
-            System.out.printf("%nWhich do you want to lose. (%d for none)%n",storage_space +1);
+            System.out.printf("%nWhich do you want to lose. (%d for none)%n", storage_space + 1);
             Scanner scan = new Scanner(System.in);
             i = scan.nextInt();
-            if(i == storage_space + 1) {
+            if (i == storage_space + 1) {
                 return false;
             } else {
                 items.remove(i);
@@ -440,5 +454,4 @@ public class Hero {
         }
         return false;
     }
-    
 }
