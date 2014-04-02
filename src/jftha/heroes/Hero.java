@@ -242,7 +242,7 @@ public class Hero {
         //Regen MP
         this.currentMP = this.maxMP;
         this.lostItems = new ArrayList<>();
-        this.lostSpells = spells;
+        this.lostSpells = new ArrayList<>();
         //Cannot hold items, except spiritual items (see Items).
         Iterator<Item> iter = items.iterator();
         while(iter.hasNext()) {
@@ -251,6 +251,9 @@ public class Hero {
             if (!item.getSpiritual()) {
                 iter.remove();
             }
+        }
+        for(Spell sp: spells) {
+            lostSpells.add(sp);
         }
         //Can cast only Spectre Shot spell (cost 1 SE).
         this.spells.clear(); 
