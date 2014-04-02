@@ -270,7 +270,32 @@ public class HeroTest {
     }
     
     @Test
+    public void testGhostsLoseSpells() {
+        hero = new Mage();
+        assertEquals(2, hero.getSpells().size());
+        hero.makeGhost();
+        assertEquals(1, hero.getSpells().size());
+        assertEquals(SpectreShot.class, hero.getSpells().get(0).getClass());
+    }
+    
+    @Test
     public void testUnghostStatUpdates() {
+        hero.makeGhost();
+        hero.unGhost();
+        assertFalse(hero.isGhost());
+        assertTrue(hero.getWasGhost());
+        assertEquals(hero.getMaxHP(), hero.getCurrentHP());
+    }
+    
+    @Test
+    public void testUnghostReturnsAllSpells() {
+        hero = new Mage();
+        hero.makeGhost();
+        hero.unGhost();
+        assertEquals(2, hero.getSpells().size());
+        assertEquals(Fireball.class, hero.getSpells().get(0).getClass());
+        assertEquals(Shield.class, hero.getSpells().get(1).getClass());
         
     }
+    
 }
