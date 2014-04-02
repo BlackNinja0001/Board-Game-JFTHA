@@ -239,6 +239,8 @@ public class Hero {
      */
     public void makeGhost() {
         this.isGhost = true;
+        if(this.currentHP != 0)
+            this.setCurrentHP(0);
         //Regen MP
         this.currentMP = this.maxMP;
         this.lostItems = new ArrayList<>();
