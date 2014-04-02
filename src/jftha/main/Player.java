@@ -1,6 +1,7 @@
 package jftha.main;
 
 import jftha.heroes.*;
+import jftha.spaces.Space;
 
 public class Player {
 
@@ -9,6 +10,7 @@ public class Player {
     private int turnOrder = -1;
     private boolean isWinner;
     private int winCount = 0;
+    private Space currentSpace;
 
     public Player() {
         this.customName = "";
@@ -38,6 +40,9 @@ public class Player {
     public int getWinCount() {
         return winCount;
     }
+    public Space getCurrentSpace() {
+        return currentSpace;
+    }
 
     //Setter methods
     public void setCustomName(String customName) {
@@ -59,5 +64,16 @@ public class Player {
     }
     public void upWinCount() {
         this.winCount++;
+    }
+    public Space move(String s) {
+        if(s.equalsIgnoreCase("f")) { // move forward
+            this.currentSpace = this.currentSpace.next;
+            return this.currentSpace;
+        } else if (s.equalsIgnoreCase("b")){ // move backward
+            this.currentSpace = this.currentSpace.prev;
+            return this.currentSpace;
+        } else {
+            return null;
+        }
     }
 }
