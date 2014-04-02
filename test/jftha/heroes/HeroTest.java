@@ -1,5 +1,10 @@
 package jftha.heroes;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -149,16 +154,40 @@ public class HeroTest {
      * Test to ensure that storage_space is the maximum amount of items
      */
     @Test
-    public void testItemStorageLimit() {
+    public void testItemStorageLimitNoReplacement() {
         assertEquals(5, hero.getStorageSpace());
         hero.addItem(new AnimalSkin());
         hero.addItem(new Ax());
         hero.addItem(new Cloak());
         hero.addItem(new Dagger());
         hero.addItem(new MageRobe());
-        assertFalse(hero.addItem(new SpellBook()));
+        String str = "6";
+        InputStream in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        boolean res = hero.addItem(new SpellBook());
+        assertFalse(res);
     }
 
+    @Test
+    public void testItemStorageLimitReplacement() {
+        assertEquals(5, hero.getStorageSpace());
+        hero.addItem(new AnimalSkin());
+        hero.addItem(new Ax());
+        hero.addItem(new Cloak());
+        hero.addItem(new Dagger());
+        hero.addItem(new MageRobe());
+        String str = "3";
+        InputStream in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        boolean res = hero.addItem(new SpellBook());
+        assertTrue(res);
+        assertEquals(SpellBook.class, hero.getItems().get(3).getClass());
+    }
+    
     @Test
     public void testForNoDuplicateItems() {
         hero.addItem(new Ax());
