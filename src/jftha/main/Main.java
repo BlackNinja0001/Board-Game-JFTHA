@@ -5,6 +5,7 @@ import java.util.List;
 import jftha.heroes.*;
 import jftha.items.*;
 import java.util.Scanner;
+import jftha.spaces.*;
 
 public class Main { //definitely need more error handling
 
@@ -223,6 +224,7 @@ public class Main { //definitely need more error handling
     }
 
     public void executeTurn(Player performer) {
+        Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
         //Item phase 1
         itemPhase(performer);
@@ -234,14 +236,29 @@ public class Main { //definitely need more error handling
         die.setMaxAmount(intMaxAmount);
         int movement = die.roll();
         //move the player
-            //Need to determine how many space then can move base on agility
-            //Move forward
+        // choose direction
+        String s = scan.next();
 
+        while(movement > 0) {
+            Space current = performer.move(s);
+            if(current.getActivationType() == 'p') {
+                if(current.getIsHealth()) {
+                    
+                } else if(current.getIsStore()) {
+                    
+                } else if(current.getIsGold()){
+                } else {
+                    throw new IllegalArgumentException();
+                }     
+            }
         //Attack
-        //getBoardSpaceId
-            //If getBoardSpaceId == getBoardSpaceID - 1 or +1
+            if(current.getActivator() != null) {
             //Then allow to attack
-        
+                // prompt for response
+                playerChar.attackEnemy(current.getActivator());
+            }
+        movement--;
+        }
         //Item 2
         itemPhase(performer);
 
