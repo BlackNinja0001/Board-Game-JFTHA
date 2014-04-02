@@ -108,8 +108,7 @@ public class Main { //definitely need more error handling
      */
     public Player winner(Player[] players) {
         Player ret = null;
-        int numPlayers = 0, winnerIndex = -1;
-
+        int numPlayers = 0, winnerIndex;
         for (Player p : players) {
             numPlayers++;
         }
@@ -137,13 +136,13 @@ public class Main { //definitely need more error handling
                 }
             }
         }
-
         return ret;
     }
 
     /**
      * Checks if players[winningPlayer]'s winCount can be upped (all opponents
-     * dead). If so, then increment players[winningPlayer]'s winCount
+     * dead). If so, then increment players[winningPlayer]'s winCount.  If not 
+     * players[winningPlayer]'s winCount is reset to zero.
      *
      * @param players the players currently playing
      * @param winningPlayer the index of the player soon to win
@@ -166,6 +165,8 @@ public class Main { //definitely need more error handling
 
         if (valid) {
             players[winningPlayer].upWinCount();
+        } else {
+            players[winningPlayer].setWinCount(0);
         }
 
         if (players[winningPlayer].getWinCount() > 4) { //if 5 turns elapsed, player wins
@@ -179,7 +180,7 @@ public class Main { //definitely need more error handling
      * Checks if anyone won the game.
      *
      * @param players the players currently playing
-     * @return the index of the winner
+     * @return the index of the winner or -1 if there is no winner
      */
     public int anyoneWon(Player[] players) {
         int winnerIndex = -1;
@@ -198,8 +199,10 @@ public class Main { //definitely need more error handling
      * Checks if all opponents of "winningPlayer" are non-existent (died as
      * ghost)
      *
-     * @return true if all opponents were killed as ghosts
-     * @return false if at least one opponent is still in play
+     * @param players The players in the game
+     * @param winningPlayer The player that is currently winning
+     * @return true if all opponents were killed as ghosts;
+     * false if at least one opponent is still in play
      */
     public boolean allOpponentsNonExistent(Player[] players, int winningPlayer) {
         boolean valid = true;
@@ -235,7 +238,7 @@ public class Main { //definitely need more error handling
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
-        List<Item> myItems = new ArrayList<Item>();
+        List<Item> myItems = new ArrayList<>();
 
         char yesOrNo = '~';  //arbitrary character not 'y' or 'n'
         int mistakes = 0;
