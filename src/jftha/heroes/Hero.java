@@ -229,13 +229,44 @@ public class Hero {
      * Allows a character to cast a spell.
      *
      * @param spell The spell to be cast.
+     * Damage inflicting spells
      */
-    public void castSpell(Spell spell) {
+    public void castSpell(Spell spell, Hero enemy) {
+        int spellDmg = spell.getDamage();
+        double actualDmg = ((this.getMagic() * .5) + spellDmg + (this.getLuck() * .2)) - 
+                ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
+        int finalDmg = (int)Math.round(actualDmg);
+        this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
+        if(finalDmg < 0){
+            finalDmg = 0;
+        }
+        enemy.setCurrentHP(enemy.getCurrentHP() - finalDmg);
+    }
+    
+    //self heal spells
+    public void castHealSpell(Spell spell){
+        //Damage is the heal amount
+        int spellEffect = spell.getDamage();
+        double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
+        int finalEffect = (int)Math.round(actualEffect);
+        
+        this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
+        this.setCurrentHP(this.getCurrentHP() + finalEffect);
+    }
+    
+    //Self buff spells
+    public void castBuffSpell(Spell spell){
+        //Damage is the buff amount
+        int spellEffect = spell.getDamage();
+        double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
+        int finalEffect = (int)Math.round(actualEffect);
+        
+        this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
+        this.setDefense(this.getDefense() + finalEffect);
     }
 
     /**
      * Turns a character into a ghost.
-     *
      */
     public void makeGhost() {
         this.isGhost = true;
