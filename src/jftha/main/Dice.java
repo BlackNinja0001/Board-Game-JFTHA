@@ -21,6 +21,10 @@ public class Dice {
     protected int getRoll() {
         return roll;
     }
+    
+    public void setMaxAmount(int mA){
+        maxAmount = mA;
+    }
 
     public int roll(){
         Random rand = new Random();
