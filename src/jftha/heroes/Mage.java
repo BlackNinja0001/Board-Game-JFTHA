@@ -26,9 +26,11 @@ public class Mage extends Hero{
      * @param spell The spell to be cast.
      */
     @Override
-    public void castSpell(Spell spell){
-        int f = this.getMaxMP(); 
+    public void castSpell(Spell spell , Hero enemy){
+        int f = this.getCurrentMP(); 
         f -= (spell.getmpCost() * multiplier);
-        this.setMaxMP(f);
+        super.castSpell(spell, enemy);
+        this.setCurrentMP(f);
     }
+    // Add for all versions of cast spell
 }
