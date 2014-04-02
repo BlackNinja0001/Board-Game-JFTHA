@@ -344,7 +344,10 @@ public class Hero {
     /**
      * Adds an item to character's inventory. Will only add item if: <\t>1) The
      * character does not already have this item <\t>2) The character has
-     * storage space for the item
+     * storage space for the item.
+     * 
+     * If the character's inventory is full, character has option to lose an 
+     * item in exchange for the new one.
      *
      * @param item The item to be added to the character's inventory
      * @return true if item was added
@@ -361,13 +364,12 @@ public class Hero {
                 return true;
             }
         } else {
-            System.out.print("No storage space left. You have ");
+            System.out.print("No storage space left. You have: ");
             int i;
-            for(i = 0; i < items.size() -1; i++)  {
-                System.out.printf("%d.  %s",i, items.get(i));
+            for(i = 0; i < items.size(); i++)  {
+                System.out.printf("%n%d.  %s",i+1, items.get(i).getClass().getSimpleName());
             }
-            System.out.printf("%d. %s%n", i, items.get(items.size()));
-            System.out.printf("Which do you want to lose. (%d for none)%n",storage_space +1);
+            System.out.printf("%nWhich do you want to lose. (%d for none)%n",storage_space +1);
             Scanner scan = new Scanner(System.in);
             i = scan.nextInt();
             if(i == storage_space + 1) {
@@ -378,8 +380,6 @@ public class Hero {
                 return true;
             }
         }
-        
-        
         return false;
     }
 
