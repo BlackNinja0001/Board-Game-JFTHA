@@ -241,6 +241,7 @@ public class Main { //definitely need more error handling
         itemPhase(performer);
 
         //Turn End
+        //Decrement CD and duration of spells if casted
     }
 
     public void itemPhase(Player performer) {
