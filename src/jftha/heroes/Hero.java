@@ -4,7 +4,6 @@ import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
-import jftha.effects.*;
 import java.lang.reflect.Method;
 
 public class Hero {
@@ -237,10 +236,10 @@ public class Hero {
     }
 
     /**
-     * Allows a character to cast a spell.
+     * Allows a character to cast a damage inflicting spell at another player.
      *
      * @param spell The spell to be cast.
-     * Damage inflicting spells
+     * @param enemy The victim of the spell 
      */
     public void castSpell(Spell spell, Hero enemy) {
         int spellDmg = spell.getDamage();
