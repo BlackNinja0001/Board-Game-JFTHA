@@ -1,6 +1,5 @@
 package jftha.spaces;
 
-import jftha.effects.*;
 import jftha.heroes.*;
 
 public class Space {
