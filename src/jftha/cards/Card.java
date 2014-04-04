@@ -1,6 +1,5 @@
 package jftha.cards;
 
-import jftha.effects.*;
 import jftha.heroes.*;
 import jftha.main.Player;
 
