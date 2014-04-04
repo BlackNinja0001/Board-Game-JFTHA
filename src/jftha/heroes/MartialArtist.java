@@ -1,6 +1,6 @@
 package jftha.heroes;
 
-public abstract class MartialArtist extends Hero{
+public class MartialArtist extends Hero{
     
     //Constructor
     public MartialArtist(){

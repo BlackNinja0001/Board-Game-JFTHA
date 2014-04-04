@@ -4,7 +4,7 @@ import jftha.items.Chasuble;
 import jftha.items.Bible;
 import jftha.spells.Heal;
 
-public abstract class Priest extends Hero{
+public class Priest extends Hero{
     
     //Constructor
     public Priest(){

@@ -4,7 +4,7 @@ import java.util.Random;
 import jftha.items.AnimalSkin;
 import jftha.items.Ax;
 
-public abstract class Barbarian extends Hero{
+public class Barbarian extends Hero{
     //Constructor
     public Barbarian(){
         this.setStrength(super.getStrength() + 2);
