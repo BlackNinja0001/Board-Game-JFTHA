@@ -14,8 +14,8 @@ public class Board {
         end = null;
     }
     
-    public void addSpace(int inSpaceID, Effect inEffect, char inActivationType, Hero inActivater){
-        Space newSpace = new Space(inSpaceID, inEffect, inActivationType, inActivater);
+    public void addSpace(int inSpaceID, char inActivationType, Hero inActivater){
+        Space newSpace = new Space(inSpaceID, inActivationType, inActivater);
         
         //If the list is empty, this will create the first Space
         if(start == end){
