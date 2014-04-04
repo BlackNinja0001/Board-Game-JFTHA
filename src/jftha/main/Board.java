@@ -2,7 +2,6 @@ package jftha.main;
 
 import jftha.spaces.*;
 import jftha.heroes.*;
-import jftha.effects.*;
 
 public class Board {
     Space start;
