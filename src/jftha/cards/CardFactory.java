@@ -11,7 +11,7 @@ import java.util.Random;
  * @author tue75856
  */
 public class CardFactory {
-    public Card buildItem(RarityEnum rarity) {
+    public Card buildCard(RarityEnum rarity) {
         Card item = null;
         CardLists cardList = new CardLists();
         Random rand = new Random(System.currentTimeMillis());
