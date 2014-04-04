@@ -237,6 +237,7 @@ public class Main { //definitely need more error handling
         int movement = die.roll();
         //move the player
         // choose direction
+        System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
         while(movement > 0) {
