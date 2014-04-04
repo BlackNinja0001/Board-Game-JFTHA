@@ -261,6 +261,7 @@ public class Main { //definitely need more error handling
                 } else {
                     throw new IllegalArgumentException();
                 }
+                movement--;
             } else {
                 throw new IllegalActivationTypeException();
             }
