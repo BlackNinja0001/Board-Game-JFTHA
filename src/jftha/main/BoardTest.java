@@ -1,15 +1,16 @@
 package jftha.main;
 
 public class BoardTest {
+    Board board = new Board();
     
     public static void main(String[] args) {
         BoardTest bt = new BoardTest();
+        bt.board.iterateBoard();
+        int num = bt.board.iterator();
+        System.out.println(num);
     }
     
     public BoardTest(){
-        Board board = new Board();
-        
-        
         for(int i = 0; i < 30; i++){
             if(i == 5){
                 board.addSpace(i, true, false, false, false, false);
@@ -26,10 +27,6 @@ public class BoardTest {
                 board.addSpace(i, false, false, false, false, false);
             }
         }
-        
-        board.iterateBoard();
-        int num = board.iterator();
-        System.out.println(num);
     }
     //At least one of every space
     //added is method for each spaces
