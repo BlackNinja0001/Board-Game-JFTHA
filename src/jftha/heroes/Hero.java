@@ -7,7 +7,7 @@ import java.util.*;
 import jftha.effects.*;
 import java.lang.reflect.Method;
 
-public abstract class Hero {
+public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
 
     private int strength;
@@ -461,5 +461,7 @@ public abstract class Hero {
     /**
      * Activates the special for this hero.
      */
-    public abstract void triggerSpecial();
+    public void triggerSpecial(){
+        //Override
+    }
 }
