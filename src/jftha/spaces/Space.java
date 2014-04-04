@@ -7,6 +7,7 @@ public class Space {
     private int spaceID;
     private char activationType; //p for pass-by, l for land-on
     private Hero activator;
+    private SpaceEnum type;
     private boolean isChest;
     private boolean isStore;
     private boolean isD2D; // Duel to the Death
@@ -54,6 +55,14 @@ public class Space {
         prev = null;
     }
 
+    public Space(int spaceID, SpaceEnum type) {
+        this.spaceID = spaceID;
+        this.type = type;
+        
+        next = null;
+        prev = null;
+    }
+    
     public Space(int inSpaceID, char inActivationType, Hero inActivator) {
         spaceID = inSpaceID;
         activationType = inActivationType;
