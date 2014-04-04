@@ -23,6 +23,7 @@ public class MPDrain extends Card{
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
         int mpdrain = rand.nextInt(50);
+        this.setMessage("You were ambushed by an angry mob who thought you were a witch. They have sapped " + mpdrain + " MP from you.");
         hero.setCurrentMP(hero.getCurrentMP() - mpdrain);
         if((hero.isGhost() == true) && (hero.getCurrentMP() <= 0)){
             hero.setEliminated(true);
@@ -41,7 +42,7 @@ public class MPDrain extends Card{
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
         int mpdrain = rand.nextInt(50);
-        
+        this.setMessage(drainer + " became a magic vampire for 10 seconds and drained " + mpdrain + " MP from you.");
         victim.setCurrentMP(victim.getCurrentMP() - mpdrain);
         if((victim.isGhost() == true) && (victim.getCurrentMP() <= 0)){
             victim.setEliminated(true);

@@ -17,27 +17,28 @@ public class StealGold extends Card{
     }
 
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {
-        Hero thief = affected1.getCharacter();
-        Hero victim = affected2.getCharacter();
+    public void triggerEffect(Player thief, Player victim) {
+        Hero thiefHero = thief.getCharacter();
+        Hero victimHero = victim.getCharacter();
         
         Random rand = new Random(System.currentTimeMillis());
         //Will change when we balance out gameplay
         int stolengold = rand.nextInt(50);
-        
-        victim.setGold(victim.getGold() - stolengold);
+        this.setMessage(victim.getCustomName() + " has just invested in " + thief.getCustomName() + "'s ponzi scheme. "
+                + "As a result, " + thief.getCustomName() + " steals " + stolengold + " from " + victim.getCustomName());
+        victimHero.setGold(victimHero.getGold() - stolengold);
         
         //This condition statement will ensure victim's gold is not negative
                 //Victim gold will be zero if it is negative
         //It will only let the thief steal what the victim have left and not more than what victim has
-        if(victim.getGold() < 0){
+        if(victimHero.getGold() < 0){
             //goldDifference should be negative
-            int goldDifference = victim.getGold();
+            int goldDifference = victimHero.getGold();
             stolengold = stolengold + goldDifference;
-            victim.setGold(0);
-            thief.setGold(thief.getGold() + stolengold);
+            victimHero.setGold(0);
+            thiefHero.setGold(thiefHero.getGold() + stolengold);
         }else{
-            thief.setGold(thief.getGold() + stolengold);
+            thiefHero.setGold(thiefHero.getGold() + stolengold);
         }
     }
 
