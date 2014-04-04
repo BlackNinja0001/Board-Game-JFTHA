@@ -4,7 +4,6 @@ import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
-import jftha.effects.*;
 import java.lang.reflect.Method;
 
 public class Hero {
@@ -462,6 +461,6 @@ public class Hero {
      * Activates the special for this hero.
      */
     public void triggerSpecial(){
-        //Override
+        //Override. Remember to include cooldown and duration.
     }
 }
