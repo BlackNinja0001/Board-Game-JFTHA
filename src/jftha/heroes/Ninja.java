@@ -7,7 +7,7 @@ package jftha.heroes;
 import jftha.items.Cloak;
 import jftha.items.Dagger;
 
-public class Ninja extends Hero{
+public abstract class Ninja extends Hero{
     
     //Constructor
     public Ninja(){

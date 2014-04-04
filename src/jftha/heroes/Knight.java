@@ -3,7 +3,7 @@ package jftha.heroes;
 import jftha.items.SuitOfArmor;
 import jftha.items.IronSword;
 
-public class Knight extends Hero{
+public abstract class Knight extends Hero{
     
     //Constructor
     public Knight(){

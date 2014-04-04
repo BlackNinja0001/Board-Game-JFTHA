@@ -4,7 +4,7 @@ import jftha.items.ShiningArmor;
 import jftha.items.DivineBlade;
 import jftha.spells.Heal;
 
-public class Paladin extends Hero{
+public abstract class Paladin extends Hero{
    
     //Constructor
     public Paladin(){

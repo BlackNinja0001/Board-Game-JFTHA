@@ -3,7 +3,7 @@ package jftha.heroes;
 import jftha.items.Tuxedo;
 import jftha.items.FastHands;
 
-public class Thief extends Hero{
+public abstract class Thief extends Hero{
 
     //Constructor
     public Thief(){
