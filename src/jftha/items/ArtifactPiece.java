@@ -1,5 +1,7 @@
 package jftha.items;
 
-public abstract class ArtifactPiece extends Item {
+import jftha.main.Buyable;
+
+public abstract class ArtifactPiece extends Buyable {
     
 }
