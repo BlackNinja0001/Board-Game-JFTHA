@@ -4,7 +4,7 @@ import jftha.items.MageRobe;
 import jftha.items.SpellBook;
 import jftha.spells.*;
 
-public class Mage extends Hero{
+public abstract class Mage extends Hero{
     
     Spell spells = new Spell();
     final double multiplier = 0.9;
