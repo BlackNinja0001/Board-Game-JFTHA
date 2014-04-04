@@ -5,7 +5,7 @@ import jftha.items.WagonOfGoods;
 import jftha.main.*;
 import java.lang.*;
 
-public abstract class Merchant extends Hero {
+public class Merchant extends Hero {
 
     final double discount = 0.75;
 
