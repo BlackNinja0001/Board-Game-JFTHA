@@ -1,6 +1,5 @@
 package jftha.spaces;
 
-import jftha.effects.*;
 import jftha.heroes.*;
 
 public class Space {
@@ -108,5 +107,9 @@ public class Space {
 
     protected void setActivator(Hero hero) {
         this.activator = hero;
+    }
+    
+    public void triggerEffect(){
+        //to be implemented in subclasses
     }
 }
