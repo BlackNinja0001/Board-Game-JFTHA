@@ -42,8 +42,6 @@ public class Hero {
     private int maxMP;
     // Magic the player currently has
     private int currentMP;
-    // Special to be determined by the defending class
-    private Effect special; //***Should this be an Effect for an entirely new class?***
     // Gold the player currently has
     private int gold;
     // Determines if player is a ghost
@@ -458,5 +456,12 @@ public class Hero {
             }
         }
         return false;
+    }
+    
+    /**
+     * Activates the special for this hero.
+     */
+    public void triggerSpecial(){
+        //Override
     }
 }
