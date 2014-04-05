@@ -24,6 +24,7 @@ public class SpaceFactory {
                 break;
             case Blank:
                 space = new BlankSpace();
+                break;
             default:
                 throw new IllegalActivationTypeException("Oops. There is no such type of space.");
         }
