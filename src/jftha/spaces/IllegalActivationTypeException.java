@@ -8,7 +8,7 @@ package jftha.spaces;
  *
  * @author tue75856
  */
-public class IllegalActivationTypeException extends Exception{
+public class IllegalActivationTypeException extends IllegalArgumentException{
     public IllegalActivationTypeException(){};
     
     public IllegalActivationTypeException(String message){
