@@ -48,6 +48,24 @@ public class CardFactory {
                     
                 }
                 break;
+            case veryRare:
+                i = cardList.getVeryRareSize();
+                num = rand.nextInt(i);
+                clazz = cardList.getVeryRareClass(num);
+                try {
+                    item = (Card)clazz.newInstance();
+                } catch(IllegalAccessException | InstantiationException ex) {
+                    
+                }
+            case almostImpossible:
+                i = cardList.getAlmostImpossibleSize();
+                num = rand.nextInt(i);
+                clazz = cardList.getAlmostImpossibleClass(num);
+                try {
+                    item = (Card)clazz.newInstance();
+                } catch(IllegalAccessException | InstantiationException ex) {
+                    
+                }
             default:
                 throw new IllegalArgumentException("Oops. There is no such type of card.");
         }
