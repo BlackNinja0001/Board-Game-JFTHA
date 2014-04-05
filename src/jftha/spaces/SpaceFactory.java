@@ -1,5 +1,9 @@
 package jftha.spaces;
 
+import java.util.Random;
+import jftha.cards.CardFactory;
+import jftha.cards.RarityEnum;
+
 public class SpaceFactory {
     public Space buildItem(SpaceEnum type) {
         Space space = null;
@@ -19,8 +23,11 @@ public class SpaceFactory {
             case Store:
                 space = new Store();
                 break;
+            case Card:
+                // Need to make a random card space
+                break;
             default:
-                throw new IllegalArgumentException("Oops. There is no such type of space.");
+                //throw new IllegalActivationTypeException("Oops. There is no such type of space.");
         }
         return space;
     }
