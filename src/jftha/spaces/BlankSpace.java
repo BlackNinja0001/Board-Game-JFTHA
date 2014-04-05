@@ -1,5 +1,5 @@
 package jftha.spaces;
 
-public class BlankSpace {
+public class BlankSpace extends Space {
     
 }
