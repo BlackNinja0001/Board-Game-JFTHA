@@ -1,9 +1,10 @@
 package jftha.cards;
 
 import jftha.heroes.*;
+import jftha.spaces.Space;
 import jftha.main.Player;
 
-public abstract class Card {
+public abstract class Card extends Space {
     
     private String message;
     private RarityEnum rarity;
