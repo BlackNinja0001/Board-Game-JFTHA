@@ -6,15 +6,24 @@ import jftha.main.Player;
 public abstract class Card {
     
     private String message;
+    private RarityEnum rarity;
 
     //Setter oethods
     public void setMessage(String message) {
         this.message = message;
     }
 
+    public void setRarity(RarityEnum rarity){
+        this.rarity = rarity;
+    }
+            
     //Getter methods
     public String getMessage() {
         return message;
+    }
+    
+    public RarityEnum getRarity(){
+        return rarity;
     }
     
     /**

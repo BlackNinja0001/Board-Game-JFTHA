@@ -223,7 +223,7 @@ public class Main { //definitely need more error handling
         return valid;
     }
 
-    public void executeTurn(Player performer) {
+    public void executeTurn(Player performer) throws IllegalActivationTypeException {
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
         //Item phase 1
@@ -242,15 +242,29 @@ public class Main { //definitely need more error handling
 
         while(movement > 0) {
             Space current = performer.move(s);
-            if(current.getActivationType() == 'p') {
+            if(current.getActivationType() == 'p') { //pass-by
                 if(current.getIsHealth()) {
                     
                 } else if(current.getIsStore()) {
                     
                 } else if(current.getIsGold()){
+                    
                 } else {
                     throw new IllegalArgumentException();
                 }     
+            } else if (current.getActivationType() == 'l'){ //land-on
+                if (current.getIsChest()){
+                    
+                }else if (current.getIsD2D()){
+                    
+                } else if (current.getIsCard()){
+                    
+                } else {
+                    throw new IllegalArgumentException();
+                }
+                movement--;
+            } else {
+                throw new IllegalActivationTypeException();
             }
         //Attack
             if(current.getActivator() != null) {
@@ -258,7 +272,6 @@ public class Main { //definitely need more error handling
                 // prompt for response
                 playerChar.attackEnemy(current.getActivator());
             }
-        movement--;
         }
         //Item 2
         itemPhase(performer);

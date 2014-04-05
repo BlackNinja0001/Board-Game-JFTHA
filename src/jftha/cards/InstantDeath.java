@@ -17,8 +17,10 @@ public class InstantDeath extends Card{
     public void triggerEffect(Player affected) {
         Hero playerHero = affected.getCharacter();
         if(playerHero.isGhost() == false){
+            this.setMessage("It just occurred to you that your life really sucks. You then kill yourself.");
             playerHero.makeGhost();
         }else if(playerHero.isGhost() == true){
+            this.setMessage("The Almighty One is really pissed off at you for no reason. You are now eliminated.");
             playerHero.setEliminated(true);
         }
     }

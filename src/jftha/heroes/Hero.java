@@ -461,6 +461,6 @@ public class Hero {
      * Activates the special for this hero.
      */
     public void triggerSpecial(){
-        //Override
+        //Override. Remember to include cooldown and duration.
     }
 }

@@ -117,4 +117,8 @@ public class Space {
     protected void setActivator(Hero hero) {
         this.activator = hero;
     }
+    
+    public void triggerEffect(){
+        //to be implemented in subclasses
+    }
 }
