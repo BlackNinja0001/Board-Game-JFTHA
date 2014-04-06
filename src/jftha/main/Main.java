@@ -240,24 +240,24 @@ public class Main { //definitely need more error handling
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
-        while(movement > 0) {
+        while(movement >= 0) {
             Space current = performer.move(s);
             if(current.getActivationType() == 'p') { //pass-by
-                if(current.getIsHealth()) {
+                if(current.getSpaceType() == SpaceEnum.Health) {
                     
-                } else if(current.getIsStore()) {
-                    
-                } else if(current.getIsGold()){
-                    
+                } else if(current.getSpaceType() == SpaceEnum.Store) {
+                
+                } else if(current.getSpaceType() == SpaceEnum.Gold) {                    
+  
                 } else {
                     throw new IllegalArgumentException();
                 }     
-            } else if (current.getActivationType() == 'l'){ //land-on
-                if (current.getIsChest()){
+            } else if (movement == 0 && current.getActivationType() == 'l'){ //land-on
+                if (current.getSpaceType() == SpaceEnum.Chest){
                     
-                }else if (current.getIsD2D()){
+                } else if (current.getSpaceType() == SpaceEnum.D2D){
                     
-                } else if (current.getIsCard()){
+                } else if (current.getSpaceType() == SpaceEnum.Card){
                     
                 } else {
                     throw new IllegalArgumentException();
@@ -284,9 +284,9 @@ public class Main { //definitely need more error handling
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
-        List<Item> myItems = new ArrayList<>();
+        List<Item> myItems;
 
-        char yesOrNo = '~';  //arbitrary character not 'y' or 'n'
+        char yesOrNo;  //arbitrary character not 'y' or 'n'
         int mistakes = 0;
         while (true) { //will break
             System.out.println("Use item ('y' for yes, 'n' for no)?");
