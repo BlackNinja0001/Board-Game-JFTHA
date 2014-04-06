@@ -10,6 +10,7 @@ public class Health extends Space{
 
     public Health() {
         this.setActivationType('p');
+        this.setSpaceType(SpaceEnum.Health);
         Random rand = new Random();
         statChange = rand.nextInt(16) + 5; //5-20
         statChange2 = rand.nextInt(16) + 5; //5-20

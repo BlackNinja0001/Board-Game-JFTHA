@@ -7,6 +7,7 @@ import jftha.items.*;
 public class Chest extends Space {
     public Chest() {
         this.setActivationType('1');
+        this.setSpaceType(SpaceEnum.Chest);
     }
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
     public int giveItem() {

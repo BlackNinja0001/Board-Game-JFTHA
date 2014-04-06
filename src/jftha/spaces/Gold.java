@@ -9,6 +9,7 @@ public class Gold extends Space {
     
     public Gold() {
         this.setActivationType('p');
+        this.setSpaceType(SpaceEnum.Gold);
         Random rand = new Random();
         amount = rand.nextInt(5) + 1; //1-5
     }

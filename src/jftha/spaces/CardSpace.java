@@ -1,16 +1,23 @@
 package jftha.spaces;
 
 import java.util.Random;
+import jftha.heroes.Hero;
 import jftha.cards.*;
 
 public class CardSpace extends Space {
+    
+    public CardSpace() {
+        this.setActivationType('l');
+        this.setSpaceType(SpaceEnum.Card);
+    }
 
     private Card drawn;
 
     public void drawNewCard() {
+        Hero hero = this.getActivator();
         CardFactory cf = new CardFactory();
         Random rand = new Random(System.currentTimeMillis());
-        int luck = rand.nextInt(100) + 1;
+        int luck = rand.nextInt(100) + hero.getLuck() + 1;
         if (luck > 99) {
             drawn = cf.buildCard(RarityEnum.almostImpossible);
         } else if (luck > 90) {

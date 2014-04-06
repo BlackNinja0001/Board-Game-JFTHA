@@ -9,6 +9,7 @@ public class Store extends Space{
     
     public Store(){
         this.setActivationType('p');
+        this.setSpaceType(SpaceEnum.Store);
     }
     
     public void buy(){
