@@ -348,9 +348,7 @@ public class Hero {
                 }
             } else { //attacking ghost
                 //handle spiritual items
-                if (items.isEmpty()) {
-                    return; //no spiritual items to attack with
-                } else {
+                if (!items.isEmpty()) {
                     for (Item i : items) {
                         if (i instanceof Equippable) {
                             Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
