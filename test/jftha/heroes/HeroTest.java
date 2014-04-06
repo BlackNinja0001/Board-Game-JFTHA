@@ -298,4 +298,13 @@ public class HeroTest {
         
     }
     
+    @Test
+    public void testKnightBecomesInvicibleAfterSpecial(){
+        hero = new Knight();
+        enemy = new Hero();
+        hero.triggerSpecial();
+        enemy.attackEnemy(hero);
+        assertFalse(hero.getCurrentHP() != hero.getMaxHP());
+    }
+    
 }
