@@ -53,6 +53,8 @@ public class Hero {
     private boolean eliminated;
     //String name of the class
     private String className;
+    //Used for certain special abilties
+    private int curCooldown, curDuration, maxCooldown, maxDuration;
 
     //Constructor
     public Hero() {
@@ -150,6 +152,22 @@ public class Hero {
         this.className = name;
     }
 
+    public void setCurCooldown(int curCooldown) {
+        this.curCooldown = curCooldown;
+    }
+
+    public void setCurDuration(int curDuration) {
+        this.curDuration = curDuration;
+    }
+
+    public void setMaxCooldown(int maxCooldown) {
+        this.maxCooldown = maxCooldown;
+    }
+
+    public void setMaxDuration(int maxDuration) {
+        this.maxDuration = maxDuration;
+    }
+
     //Getter Methods
     public int getStrength() {
         return strength;
@@ -235,48 +253,64 @@ public class Hero {
         return artifactPieces;
     }
 
+    public int getCurCooldown() {
+        return curCooldown;
+    }
+
+    public int getCurDuration() {
+        return curDuration;
+    }
+
+    public int getMaxCooldown() {
+        return maxCooldown;
+    }
+
+    public int getMaxDuration() {
+        return maxDuration;
+    }
+
     /**
      * Allows a character to cast a damage inflicting spell at another player.
      *
      * @param spell The spell to be cast.
-     * @param enemy The victim of the spell 
+     * @param enemy The victim of the spell
      */
     public void castSpell(Spell spell, Hero enemy) {
         int spellDmg = spell.getDamage();
-        double actualDmg = ((this.getMagic() * .5) + spellDmg + (this.getLuck() * .2)) - 
-                ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
-        int finalDmg = (int)Math.round(actualDmg);
+        double actualDmg = ((this.getMagic() * .5) + spellDmg + (this.getLuck() * .2))
+                - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
+        int finalDmg = (int) Math.round(actualDmg);
         this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
-        if(finalDmg < 0){
+        if (finalDmg < 0) {
             finalDmg = 0;
         }
         enemy.setCurrentHP(enemy.getCurrentHP() - finalDmg);
     }
-    
+
     //self heal spells
-    public void castHealSpell(Spell spell){
+    public void castHealSpell(Spell spell) {
         //Damage is the heal amount
-        if(spell.getCurrentCD() > 0){
+        if (spell.getCurrentCD() > 0) {
             int spellEffect = spell.getDamage();
             double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
-            int finalEffect = (int)Math.round(actualEffect);
-        
+            int finalEffect = (int) Math.round(actualEffect);
+
             this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
             this.setCurrentHP(this.getCurrentHP() + finalEffect);
         }
     }
-    
+
     //Self buff spells
-    public void castBuffSpell(Spell spell){
+    public void castBuffSpell(Spell spell) {
         //Damage is the buff amount
-        if(spell.getCurrentCD() > 0){
+        if (spell.getCurrentCD() > 0) {
             int spellEffect = spell.getDamage();
             double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
-            int finalEffect = (int)Math.round(actualEffect);
+            int finalEffect = (int) Math.round(actualEffect);
             this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
             this.setDefense(this.getDefense() + finalEffect);
         }
-        
+
         //need to remove buff after duration is over
     }
 
@@ -339,6 +373,9 @@ public class Hero {
         int intDamage = (int) Math.round(damage);
         if (damage < 0) { //attacker sucks
             damage = 0;
+        }
+        if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
+            attacked.wasAttacked = true;
         }
         if (attacked.wasAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
@@ -454,11 +491,12 @@ public class Hero {
         }
         return false;
     }
-    
+
     /**
      * Activates the special for this hero.
      */
-    public void triggerSpecial(){
-        //Override. Remember to include cooldown and duration.
+    public void triggerSpecial() {
+        this.setCurCooldown(this.getMaxCooldown());
+        this.setCurDuration(this.getMaxDuration());
     }
 }
