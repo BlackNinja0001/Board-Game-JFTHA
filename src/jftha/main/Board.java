@@ -1,55 +1,35 @@
 package jftha.main;
 
 import jftha.spaces.*;
-import jftha.heroes.*;
 
 public class Board {
     Space start;
     Space end;
-    int i = 0;
     
     public Board(){
         start = null;
         end = null;
     }
     
-    public void addSpace(int inSpaceID, char inActivationType, Hero inActivater){
-        Space newSpace = new Space(inSpaceID, inActivationType, inActivater);
-        
+    public void addSpace(SpaceEnum type){
+        SpaceFactory factory = new SpaceFactory();
+        Space newSpace = factory.buildItem(type);
+        int i;
         //If the list is empty, this will create the first Space
-        if(start == end){
-            newSpace.prev = start;
-            newSpace.next = end;
-            start = newSpace;
-            end = newSpace;         
+        if(end == null){
+            newSpace.prev = newSpace;
+            newSpace.next = newSpace;
+            this.start = newSpace;
+            this.end = newSpace;
+            i = 1;
+            newSpace.setSpaceID(i);
         }else{
-            Space current = end;
-            
-            newSpace.prev = current;
-            newSpace.next = null;
-            current.next = newSpace;
-            end = newSpace;
-        }
-    }
-    
-    //addSpace for testing purposes
-    //can leave it or remove later
-    public void addSpace(int inSpaceID, boolean inIsChest, boolean inIsStore, boolean inIsD2D, boolean inIsHealth, boolean inIsCard){
-        Space newSpace = new Space(inSpaceID, inIsChest, inIsStore, inIsD2D, inIsHealth, inIsCard);
-        
-        //If the list is empty, this will create the first Space
-        if(start == end){
-            newSpace.prev = start;
-            newSpace.next = end;
-            start = newSpace;
-            end = newSpace;         
-        }else{
-            Space current = end;
-            
-            newSpace.prev = current;
-            newSpace.next = null;
-            current.next = newSpace;
-            end = newSpace;
+            newSpace.next = end.next; 
+            newSpace.prev = end;
+            end.next.prev = newSpace;
+            end.next = newSpace;
+            newSpace.setSpaceID(end.getSpaceID() + 1);
+            this.end = newSpace;
         }
     }
     
@@ -68,31 +48,33 @@ public class Board {
     public int iterator(){
         Space current = start;
         int num = 0;
-        while(current.next != null){
+        while(current.next != start){
             num++;
-            
             current = current.next;
         }
         return num;
     }
     
-    //Test iterator to check if the space location is one of the 5 main spaces
-    //Chest, Store, D2D, Health, or Card, otherwise will just print out the spaceID
+    /** Test iterator to print the id and type of space.
+     * 
+     */
     public void iterateBoard(){
         Space current = start;
-        while(current.next != null){
-            if(current.getIsCard() == true){
-                System.out.println("This space is a Card Space");
-            }else if(current.getIsChest() == true){
-                System.out.println("This space is a Chest Space");
-            }else if(current.getIsD2D() == true){
-                System.out.println("This space is a D2D Space");
-            }else if(current.getIsHealth() == true){
-                System.out.println("This space is a Health Space");
-            }else if(current.getIsStore() == true){
-                System.out.println("This space is a Store Space");
-            }else{
-                System.out.println("Current Location is " + current.getSpaceID());
+        while(current.next != start){
+            if(current.getSpaceType() == SpaceEnum.Card){
+                System.out.printf("Space #%d: This space is a Card Space%n", current.getSpaceID());
+            }else if(current.getSpaceType() == SpaceEnum.Chest){
+                System.out.printf("Space #%d: This space is a Chest Space%n", current.getSpaceID());
+            }else if(current.getSpaceType() == SpaceEnum.D2D){
+                System.out.printf("Space #%d: This space is a Duel to the Death Space%n", current.getSpaceID());
+            }else if (current.getSpaceType() == SpaceEnum.Gold) {
+                System.out.printf("Space #%d: This space is a Gold Space%n", current.getSpaceID());
+            }else if(current.getSpaceType() == SpaceEnum.Health){
+                System.out.printf("Space #%d: This space is a Health Space%n", current.getSpaceID());
+            }else if(current.getSpaceType() == SpaceEnum.Store){
+                System.out.printf("Space #%d: This space is a Store Space%n", current.getSpaceID());;
+            }else if(current.getSpaceType() == SpaceEnum.Blank){
+                System.out.printf("Space #%d: This space is a Blank Space%n", current.getSpaceID());
             }
             current = current.next;
         }
