@@ -1,5 +1,7 @@
 package jftha.main;
 
+import jftha.spaces.SpaceEnum;
+
 public class BoardTest {
     Board board = new Board();
     
@@ -11,20 +13,22 @@ public class BoardTest {
     }
     
     public BoardTest(){
-        for(int i = 0; i < 30; i++){
-            if(i == 5){
-                board.addSpace(i, true, false, false, false, false);
+        for(int i = 0; i < 15; i++){
+            if(i == 2){
+                board.addSpace(SpaceEnum.Store);
+            }else if(i == 4){
+                board.addSpace(SpaceEnum.Chest);
+            }else if(i == 6){
+                board.addSpace(SpaceEnum.D2D);
+            }else if(i == 8){
+                board.addSpace(SpaceEnum.Gold);
             }else if(i == 10){
-                board.addSpace(i, false, true, false, false, false);
-            }else if(i == 15){
-                board.addSpace(i, false, false, true, false, false);
-            }else if(i == 20){
-                board.addSpace(i, false, false, false, true, false);
-            }else if(i == 25){
-                board.addSpace(i, false, false, false, false, true);
+                board.addSpace(SpaceEnum.Health);
+            } else if(i == 12) {
+                board.addSpace(SpaceEnum.Card);
             }
             else{
-                board.addSpace(i, false, false, false, false, false);
+                board.addSpace(SpaceEnum.Blank);
             }
         }
     }
