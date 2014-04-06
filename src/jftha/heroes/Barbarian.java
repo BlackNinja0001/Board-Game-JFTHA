@@ -41,8 +41,6 @@ public class Barbarian extends Hero {
             } else { //attacking ghost
                 //handle spiritual items
                 if (this.getItems().isEmpty()) {
-                    return; //no spiritual items to attack with
-                } else {
                     for (Item i : this.getItems()) {
                         if (i instanceof Equippable) {
                             Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
