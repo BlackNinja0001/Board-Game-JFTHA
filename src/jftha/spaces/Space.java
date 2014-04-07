@@ -45,4 +45,7 @@ public abstract class Space {
     
     //to be implemented in sublcasses
     public abstract void triggerEffect();
+    
+    // to be implemented in subclasses
+    public abstract void triggerEffect(Hero affected);
 }
