@@ -12,16 +12,8 @@ public class D2D extends Space{
     }
     
     @Override
-    public void triggerEffect() {
+    public void triggerEffect(Hero beingAttacked) {
         Hero attacker = this.getActivator();
-        // Select opponent
-        System.out.println("Select your victim: ");
-        Scanner scan = new Scanner(System.in);
-        String opponent = scan.next();
-        
-        
-        Hero beingAttacked = null;
-        
         duel2death(attacker, beingAttacked);
     }
     
@@ -35,5 +27,10 @@ public class D2D extends Space{
                 beingAttacked.makeGhost();
             }
         }
+    }
+
+    @Override
+    public void triggerEffect() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
