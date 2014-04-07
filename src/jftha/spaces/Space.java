@@ -31,7 +31,7 @@ public abstract class Space {
         activationType = c;
     }
 
-    protected void setActivator(Hero hero) {
+    public void setActivator(Hero hero) {
         this.activator = hero;
     }
     
@@ -42,7 +42,7 @@ public abstract class Space {
     public void setSpaceID(int spaceID) {
         this.spaceID = spaceID;
     }
-    public void triggerEffect(){
-        //to be implemented in subclasses
-    }
+    
+    //to be implemented in sublcasses
+    public abstract void triggerEffect();
 }
