@@ -5,4 +5,8 @@ public class BlankSpace extends Space {
         this.setActivationType('l');
         this.setSpaceType(SpaceEnum.Blank);
     }
+    @Override
+    public void triggerEffect() {
+        // Do Nothing: Blank space
+    }
 }
