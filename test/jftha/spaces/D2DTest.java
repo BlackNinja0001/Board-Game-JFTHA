@@ -1,6 +1,6 @@
 package jftha.spaces;
 
-import jftha.heroes.Hero;
+import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,7 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class D2DTest {
-    
+    Space current;
+    Hero hero;
+    Hero enemy;
     public D2DTest() {
     }
     
@@ -23,6 +25,9 @@ public class D2DTest {
     
     @Before
     public void setUp() {
+        current = new D2D();
+        hero = new Knight();
+        enemy = new Ninja();
     }
     
     @After
@@ -33,25 +38,11 @@ public class D2DTest {
      * Test of triggerEffect method, of class D2D.
      */
     @Test
-    public void testTriggerEffect_Hero() {
-        System.out.println("triggerEffect");
-        Hero beingAttacked = null;
-        D2D instance = new D2D();
-        instance.triggerEffect(beingAttacked);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of triggerEffect method, of class D2D.
-     */
-    @Test
-    public void testTriggerEffect() {
-        System.out.println("triggerEffect");
-        D2D instance = new D2D();
-        instance.triggerEffect();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testTriggerEffectBothAlive() {
+        current.setActivator(hero);
+        current.triggerEffect(enemy);
+        assertTrue(hero.isGhost() || enemy.isGhost());
+        
     }
     
 }
