@@ -11,7 +11,21 @@ public class D2D extends Space{
         this.setSpaceType(SpaceEnum.D2D);
     }
     
-    public void duel2death(Hero attacker, Hero beingAttacked){
+    @Override
+    public void triggerEffect() {
+        Hero attacker = this.getActivator();
+        // Select opponent
+        System.out.println("Select your victim: ");
+        Scanner scan = new Scanner(System.in);
+        String opponent = scan.next();
+        
+        
+        Hero beingAttacked = null;
+        
+        duel2death(attacker, beingAttacked);
+    }
+    
+    private void duel2death(Hero attacker, Hero beingAttacked){
         while(attacker.getCurrentHP() <= 0 || beingAttacked.getCurrentHP() <= 0){
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
