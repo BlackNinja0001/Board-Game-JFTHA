@@ -76,4 +76,9 @@ public class Health extends Space{
             beingHealed.setCurrentMP(beingHealed.getCurrentMP() + statChange);
         }
     }
+
+    @Override
+    public void triggerEffect(Hero affected) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
