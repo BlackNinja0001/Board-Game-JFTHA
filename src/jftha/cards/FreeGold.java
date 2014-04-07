@@ -21,10 +21,14 @@ public class FreeGold extends Card{
         Random rand = new Random(System.currentTimeMillis());
         
         Hero playerHero = affected.getCharacter();
+        int luck = playerHero.getLuck();
         //can be more or less gold. still need to figure out gold cost of items to balance out this effect
-        int freegold = rand.nextInt(50) + 1;
-        this.setMessage("You have won the Ye Olde Lottery and have gained " + freegold + " gold.");
-        playerHero.setGold(playerHero.getGold() + freegold);
+        //Player gets more gold base on 50% of luck.
+        double initialFreeGold = rand.nextInt(50) + 1 + (luck * .5);
+        int finalFG = (int) Math.round(initialFreeGold);
+        //int freegold = rand.nextInt(50) + 1 + (luck * .5);
+        this.setMessage("You have won the Ye Olde Lottery and have gained " + finalFG + " gold.");
+        playerHero.setGold(playerHero.getGold() + finalFG);
     }
     
     @Override
