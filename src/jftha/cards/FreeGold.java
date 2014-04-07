@@ -13,15 +13,16 @@ public class FreeGold extends Card{
     }
     
     /**
-     * Gives 0-50 gold to "hero".
-     * @param hero
+     * Gives 1-50 gold to "hero".
+     * @param affected
      */
+    @Override
     public void triggerEffect(Player affected){
         Random rand = new Random(System.currentTimeMillis());
         
         Hero playerHero = affected.getCharacter();
         //can be more or less gold. still need to figure out gold cost of items to balance out this effect
-        int freegold = rand.nextInt(50);
+        int freegold = rand.nextInt(50) + 1;
         this.setMessage("You have won the Ye Olde Lottery and have gained " + freegold + " gold.");
         playerHero.setGold(playerHero.getGold() + freegold);
     }
