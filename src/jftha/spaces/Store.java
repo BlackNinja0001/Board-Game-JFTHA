@@ -68,10 +68,9 @@ public class Store extends Space{
     }
     /**
      *
-     * @param activator
      */
-    public void buy(Player activator) {
-        this.setActivator(activator.getCharacter());
+    @Override
+    public void triggerEffect() {
         Hero hero = this.getActivator();
         
         Random rand = new Random(System.currentTimeMillis());

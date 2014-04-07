@@ -58,8 +58,8 @@ public class Health extends Space{
         }
     }
     
-    /** Heals a Hero's health OR magic OR both.
-     *
+    /** Heals a Hero's health OR magic OR both. If player is lucky enough they 
+     * get boost to both stats.  Otherwise one or the other.
      */
     @Override
     public void triggerEffect() {

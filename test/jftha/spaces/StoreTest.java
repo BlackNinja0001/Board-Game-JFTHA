@@ -42,7 +42,8 @@ public class StoreTest {
         System.setIn(in);
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        store.buy(p);
+        store.setActivator(p.getCharacter());
+        store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
         for(int i = 0; i < lines.length; i++) {
@@ -65,7 +66,8 @@ public class StoreTest {
         System.setOut(new PrintStream(out));
         
         Player p = new Player("", new Ninja());
-        store.buy(p);
+        store.setActivator(p.getCharacter());
+        store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
         assertEquals(lines[lines.length-1], "You chose not to buy anything");
@@ -81,7 +83,8 @@ public class StoreTest {
         System.setOut(new PrintStream(out));
         
         Player p = new Player("", new Ninja());
-        store.buy(p);
+        store.setActivator(p.getCharacter());
+        store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
         assertTrue(lines[lines.length-1].startsWith("You bought a "));
