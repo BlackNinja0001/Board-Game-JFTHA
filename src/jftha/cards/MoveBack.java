@@ -20,7 +20,13 @@ public class MoveBack extends Card{
             if(current.getActivationType() == 'p') { //pass-by
                     current.triggerEffect();     
             } else if (movement == 0 && current.getActivationType() == 'l'){ //land-on
-                    current.triggerEffect();
+                    if(current.getSpaceType() == SpaceEnum.D2D) {
+                        // prompt for hero
+                        Player p = null;
+                        current.triggerEffect(p.getCharacter());
+                    } else {
+                        current.triggerEffect();
+                    }
             } else {
                 throw new IllegalActivationTypeException();
             }
