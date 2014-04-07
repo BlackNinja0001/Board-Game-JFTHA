@@ -4,9 +4,6 @@ public class SpaceFactory {
     public Space buildItem(SpaceEnum type) {
         Space space = null;
         switch(type) {
-            case Bank:
-                space = new Bank();
-                break;
             case Chest:
                 space = new Chest();
                 break;
