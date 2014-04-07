@@ -63,18 +63,20 @@ public class Board {
         while(current.next != start){
             if(current.getSpaceType() == SpaceEnum.Card){
                 System.out.printf("Space #%d: This space is a Card Space%n", current.getSpaceID());
-            }else if(current.getSpaceType() == SpaceEnum.Chest){
+            } else if(current.getSpaceType() == SpaceEnum.Chest){
                 System.out.printf("Space #%d: This space is a Chest Space%n", current.getSpaceID());
-            }else if(current.getSpaceType() == SpaceEnum.D2D){
+            } else if(current.getSpaceType() == SpaceEnum.D2D){
                 System.out.printf("Space #%d: This space is a Duel to the Death Space%n", current.getSpaceID());
-            }else if (current.getSpaceType() == SpaceEnum.Gold) {
+            } else if (current.getSpaceType() == SpaceEnum.Gold) {
                 System.out.printf("Space #%d: This space is a Gold Space%n", current.getSpaceID());
-            }else if(current.getSpaceType() == SpaceEnum.Health){
+            } else if(current.getSpaceType() == SpaceEnum.Health){
                 System.out.printf("Space #%d: This space is a Health Space%n", current.getSpaceID());
-            }else if(current.getSpaceType() == SpaceEnum.Store){
-                System.out.printf("Space #%d: This space is a Store Space%n", current.getSpaceID());;
-            }else if(current.getSpaceType() == SpaceEnum.Blank){
+            } else if(current.getSpaceType() == SpaceEnum.Store){
+                System.out.printf("Space #%d: This space is a Store Space%n", current.getSpaceID());
+            } else if(current.getSpaceType() == SpaceEnum.Blank){
                 System.out.printf("Space #%d: This space is a Blank Space%n", current.getSpaceID());
+            } else if(current.getSpaceType() == SpaceEnum.Bank){
+                System.out.printf("Space #%d: This space is a Bank Space%n", current.getSpaceID());
             }
             current = current.next;
         }
