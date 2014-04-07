@@ -245,7 +245,15 @@ public class Main { //definitely need more error handling
             if(current.getActivationType() == 'p') { //pass-by
                     current.triggerEffect();     
             } else if (movement == 0 && current.getActivationType() == 'l'){ //land-on
-                    current.triggerEffect();
+                if(current.getSpaceType() == SpaceEnum.D2D) {
+                    System.out.println("Select your victim: ");
+                    String opponent = scan.next();
+                    // Prompt for opponent and pass to triggerEffect
+                    Player p = null;//opponent;
+                    current.triggerEffect(p.getCharacter());
+                } else { 
+                current.triggerEffect();
+                }
             } else {
                 throw new IllegalActivationTypeException();
             }
