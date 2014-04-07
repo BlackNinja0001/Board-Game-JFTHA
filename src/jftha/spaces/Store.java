@@ -135,4 +135,9 @@ public class Store extends Space{
                 throw new IllegalArgumentException("Error: Did not select an option");
             }
     }
+
+    @Override
+    public void triggerEffect(Hero affected) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
