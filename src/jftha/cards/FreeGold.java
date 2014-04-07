@@ -13,7 +13,7 @@ public class FreeGold extends Card{
     }
     
     /**
-     * Gives 1-50 gold to "hero".
+     * Gives 1-50 + 50% luck gold to "hero".
      * @param affected
      */
     @Override
