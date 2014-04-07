@@ -13,7 +13,8 @@ public class CardSpace extends Space {
 
     private Card drawn;
 
-    public void drawNewCard() {
+    @Override
+    public void triggerEffect() {
         Hero hero = this.getActivator();
         CardFactory cf = new CardFactory();
         Random rand = new Random(System.currentTimeMillis());
@@ -29,6 +30,7 @@ public class CardSpace extends Space {
         } else {
             drawn = cf.buildCard(RarityEnum.common);
         }
+        
     }
 
     public void drawNewCard(RarityEnum rarity) {
