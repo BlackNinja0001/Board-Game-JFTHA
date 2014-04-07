@@ -16,4 +16,8 @@ public class SpellFactory {
         
         return sp;
     }
+
+    public Spell buildSpell(SpellEnum spellEnum) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

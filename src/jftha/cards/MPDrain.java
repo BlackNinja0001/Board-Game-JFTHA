@@ -18,6 +18,7 @@ public class MPDrain extends Card{
      * 
      * @param hero The character that is getting MP drained.
      */
+    @Override
     public void triggerEffect(Player affected){
         Hero hero = affected.getCharacter();
         Random rand = new Random(System.currentTimeMillis());
