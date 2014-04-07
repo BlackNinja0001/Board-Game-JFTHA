@@ -41,4 +41,9 @@ public class CardSpace extends Space {
     public void activateCard(){
         System.out.println(drawn.getMessage());
     }
+
+    @Override
+    public void triggerEffect(Hero affected) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
