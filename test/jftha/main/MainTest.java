@@ -97,8 +97,9 @@ public class MainTest {
             int len = lines.length;
             for(int j = 1; j <= 2; j++) {
                 int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-4));
+                stb.append(lines[len-j].charAt(linelen-5));
             }
+        
         assertTrue(stb.toString().contains("1"));
         assertTrue(stb.toString().contains("2"));
         }
@@ -119,7 +120,7 @@ public class MainTest {
             int len = lines.length;
             for(int j = 1; j <= 4; j++) {
                 int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-4));
+                stb.append(lines[len-j].charAt(linelen-5));
             }
         assertTrue(stb.toString().contains("1"));
         assertTrue(stb.toString().contains("2"));
@@ -142,7 +143,7 @@ public class MainTest {
             int len = lines.length;
             for(int j = 1; j <= 4; j++) {
                 int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-4));
+                stb.append(lines[len-j].charAt(linelen-5));
             }
         assertTrue(stb.toString().contains("1"));
         assertTrue(stb.toString().contains("2"));
