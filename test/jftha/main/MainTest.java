@@ -3,6 +3,7 @@ package jftha.main;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import jftha.heroes.*;
 import org.junit.*;
@@ -14,10 +15,14 @@ public class MainTest {
     public MainTest() {
     }
 
+    InputStream in;
+    OutputStream out;
+    PrintStream original = System.out;
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -25,23 +30,22 @@ public class MainTest {
     @Before
     public void setUp() {
         main = new Main();
+        out = new ByteArrayOutputStream();
     }
     
     @After
     public void tearDown() {
+        System.setOut(original);
     }
 
     @Test
     public void test2PlayersNameSelection() {
         String str = "2\nPlayer1\n1\nPlayer2\n4\n";
-        InputStream in = new ByteArrayInputStream(str.getBytes());
+        in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream original = System.out;
         System.setOut(new PrintStream(out));
         Main.main(new String[]{});
         String[] lines = out.toString().split("\n");
-        System.setOut(original);
         int len = lines.length;
         assertTrue(lines[len-2].startsWith("Player 1 is a Barbarian named Player1"));
         assertTrue(lines[len-1].startsWith("Player 2 is a Knight named Player2"));
@@ -50,14 +54,11 @@ public class MainTest {
     @Test
     public void test3PlayersNameSelection() {
         String str = "3\nPlayer1\n2\nPlayer2\n3\nPlayer3\n5\n";
-        InputStream in = new ByteArrayInputStream(str.getBytes());
+        in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream original = System.out;
         System.setOut(new PrintStream(out));
         Main.main(new String[]{});
         String[] lines = out.toString().split("\n");
-        System.setOut(original);
         int len = lines.length;
         assertTrue(lines[len-3].startsWith("Player 1 is a Ninja named Player1"));
         assertTrue(lines[len-2].startsWith("Player 2 is a Mage named Player2"));
@@ -67,14 +68,11 @@ public class MainTest {
     @Test
     public void test4PlayersNameSelection() {
         String str = "4\nPlayer1\n6\nPlayer2\n7\nPlayer3\n8\nPlayer4\n9\n";
-        InputStream in = new ByteArrayInputStream(str.getBytes());
+        in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream original = System.out;
         System.setOut(new PrintStream(out));
         Main.main(new String[]{});
         String[] lines = out.toString().split("\n");
-        System.setOut(original);
         int len = lines.length;
         assertTrue(lines[len-4].startsWith("Player 1 is a Thief named Player1"));
         assertTrue(lines[len-3].startsWith("Player 2 is a Priest named Player2"));
@@ -88,9 +86,8 @@ public class MainTest {
         StringBuilder stb = new StringBuilder();
         String[] lines;
         for(int i = 0; i < 100; i++) {
-            InputStream in = new ByteArrayInputStream(str.getBytes());
+            in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
             Main.main(new String[]{});
             lines = out.toString().split("\n");
@@ -110,9 +107,8 @@ public class MainTest {
         StringBuilder stb = new StringBuilder();
         String[] lines;
         for(int i = 0; i < 100; i++) {
-            InputStream in = new ByteArrayInputStream(str.getBytes());
+            in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
             Main.main(new String[]{});
             lines = out.toString().split("\n");
@@ -133,9 +129,8 @@ public class MainTest {
         StringBuilder stb = new StringBuilder();
         String[] lines;
         for(int i = 0; i < 100; i++) {
-            InputStream in = new ByteArrayInputStream(str.getBytes());
+            in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
             Main.main(new String[]{});
             lines = out.toString().split("\n");
