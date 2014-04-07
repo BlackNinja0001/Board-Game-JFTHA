@@ -243,26 +243,9 @@ public class Main { //definitely need more error handling
         while(movement >= 0) {
             Space current = performer.move(s);
             if(current.getActivationType() == 'p') { //pass-by
-                if(current.getSpaceType() == SpaceEnum.Health) {
-                    
-                } else if(current.getSpaceType() == SpaceEnum.Store) {
-                
-                } else if(current.getSpaceType() == SpaceEnum.Gold) {                    
-  
-                } else {
-                    throw new IllegalArgumentException();
-                }     
+                    current.triggerEffect();     
             } else if (movement == 0 && current.getActivationType() == 'l'){ //land-on
-                if (current.getSpaceType() == SpaceEnum.Chest){
-                    
-                } else if (current.getSpaceType() == SpaceEnum.D2D){
-                    
-                } else if (current.getSpaceType() == SpaceEnum.Card){
-                    
-                } else {
-                    throw new IllegalArgumentException();
-                }
-                movement--;
+                    current.triggerEffect();
             } else {
                 throw new IllegalActivationTypeException();
             }
@@ -272,6 +255,7 @@ public class Main { //definitely need more error handling
                 // prompt for response
                 playerChar.attackEnemy(current.getActivator());
             }
+            movement--;
         }
         //Item 2
         itemPhase(performer);
