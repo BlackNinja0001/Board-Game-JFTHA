@@ -21,6 +21,9 @@ public class HeroTest {
     }
     Hero hero;
     Hero enemy;
+    InputStream in;
+    OutputStream out;
+    PrintStream original = System.out;
 
     @BeforeClass
     public static void setUpClass() {
@@ -34,10 +37,12 @@ public class HeroTest {
     public void setUp() {
         hero = new Hero();
         enemy = new Hero();
+        out = new ByteArrayOutputStream();
     }
 
     @After
     public void tearDown() {
+        System.setOut(original);
     }
 
     /**
@@ -162,9 +167,8 @@ public class HeroTest {
         hero.addItem(new Dagger());
         hero.addItem(new MageRobe());
         String str = "6";
-        InputStream in = new ByteArrayInputStream(str.getBytes());
+        in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         boolean res = hero.addItem(new SpellBook());
         assertFalse(res);
@@ -179,9 +183,8 @@ public class HeroTest {
         hero.addItem(new Dagger());
         hero.addItem(new MageRobe());
         String str = "3";
-        InputStream in = new ByteArrayInputStream(str.getBytes());
+        in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
-        OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         boolean res = hero.addItem(new SpellBook());
         assertTrue(res);
