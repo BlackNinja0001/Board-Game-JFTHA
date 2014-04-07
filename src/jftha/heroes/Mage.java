@@ -33,4 +33,26 @@ public class Mage extends Hero{
         this.setCurrentMP(f);
     }
     // Add for all versions of cast spell
+    
+        //self heal spells
+    @Override
+    public void castHealSpell(Spell spell) {
+        if(spell.getCurrentCD() > 0){
+            int f = this.getCurrentMP();
+            f -= (spell.getmpCost() * multiplier);
+            super.castHealSpell(spell);
+            this.setCurrentMP(f);
+        }
+    }
+
+    //Self buff spells
+    @Override
+    public void castBuffSpell(Spell spell) {
+        if(spell.getCurrentCD() > 0){
+            int f = this.getCurrentMP();
+            f -= (spell.getmpCost() * multiplier);
+            super.castBuffSpell(spell);
+            this.setCurrentMP(f);
+        }
+    }
 }
