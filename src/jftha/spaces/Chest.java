@@ -9,6 +9,15 @@ public class Chest extends Space {
         this.setActivationType('1');
         this.setSpaceType(SpaceEnum.Chest);
     }
+    
+    // giveItem returns int for testing purposes.  Need to figure out how to get
+    // rid of that
+    @Override
+    public void triggerEffect() {
+        giveItem();
+    }
+
+
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
     public int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
