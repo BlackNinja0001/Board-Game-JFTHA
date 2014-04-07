@@ -20,7 +20,7 @@ public class Health extends Space{
      * randomizes statChange and statChange2
      */
     public void randomize() {
-        Random rand = new Random();
+        Random rand = new Random(System.currentTimeMillis());
         statChange = rand.nextInt(16) + 5; //5-20
         statChange2 = rand.nextInt(16) + 5; //5-20
     }
@@ -55,6 +55,25 @@ public class Health extends Space{
         } else {
             beingHealed.setCurrentHP(beingHealed.getCurrentHP() + statChange);
             beingHealed.setCurrentMP(beingHealed.getCurrentMP() + statChange2);
+        }
+    }
+    
+    /** Heals a Hero's health OR magic OR both.
+     *
+     */
+    @Override
+    public void triggerEffect() {
+        Hero beingHealed = this.getActivator();
+        randomize();
+        Random rand = new Random(System.currentTimeMillis());
+        int luck = rand.nextInt(100) + 1 + beingHealed.getLuck();
+        if(luck > 75) {
+            beingHealed.setCurrentHP(beingHealed.getCurrentHP() + statChange);
+            beingHealed.setCurrentMP(beingHealed.getCurrentMP() + statChange2);
+        } else if (rand.nextBoolean()) {
+            beingHealed.setCurrentHP(beingHealed.getCurrentHP() + statChange);
+        } else {
+            beingHealed.setCurrentMP(beingHealed.getCurrentMP() + statChange);
         }
     }
 }
