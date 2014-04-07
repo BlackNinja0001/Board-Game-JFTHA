@@ -370,10 +370,10 @@ public class Hero {
         Random rand = new Random();
         int randomDamage = rand.nextInt(3);
         double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
-        int intDamage = (int) Math.round(damage);
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
+        int intDamage = (int) Math.round(damage);
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
             attacked.wasAttacked = true;
         }
