@@ -14,6 +14,7 @@ public class RestoreMP extends Card{
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
         hero.setCurrentMP(hero.getMaxMP());
+        this.setMessage("You got drunk on magic potions. Restore MP to max.");
     }
 
     @Override

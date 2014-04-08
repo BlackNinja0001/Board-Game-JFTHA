@@ -15,11 +15,9 @@ public class Revive extends Card{
          Hero hero = affected.getCharacter();
          String string;
          if(hero.isGhost() == false){
-             string = "You're not dead. Go away.";
-             System.out.println(string);
+             this.setMessage("You're not dead. Go away.");
          }else if(hero.isGhost() == true){
-             string = "Its your lucky day. Welcome back to the land of the living.";
-             System.out.println(string);
+             this.setMessage("Its your lucky day. Welcome back to the land of the living.");
              hero.unGhost();
          }
     }

@@ -19,6 +19,7 @@ public class RestoreHP extends Card{
         }else if(hero.isGhost() == true){
             hero.setCurrentMP(hero.getMaxMP());
         }
+        this.setMessage("You were kissed by a magic fairy. Restore HP to max.");
     }
 
     @Override

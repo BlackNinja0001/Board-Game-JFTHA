@@ -16,6 +16,7 @@ public class Tax extends Card{
          Random rand = new Random(System.currentTimeMillis());
          int tax = rand.nextInt(20) + 1;
          bank.collect(tax);
+         this.setMessage("Today is a good day for medieval capitalism. Pay " + tax + " gold to the nobles.");
     }
 
     @Override

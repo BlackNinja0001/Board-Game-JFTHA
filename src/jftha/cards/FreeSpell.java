@@ -3,6 +3,7 @@ package jftha.cards;
 import jftha.heroes.Hero;
 import jftha.items.ItemFactory;
 import jftha.main.Player;
+import jftha.spells.*;
 import jftha.spells.SpellFactory;
 
 public class FreeSpell extends Card{
@@ -16,8 +17,9 @@ public class FreeSpell extends Card{
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
         SpellFactory sf = new SpellFactory();
-        //hero.addItem(i.buildItem(jftha.items.RarityEnum.common));
-        hero.addSpell(sf.buildSpell(jftha.spells.SpellEnum.common));
+        Spell spell = sf.buildSpell(jftha.spells.SpellEnum.common);
+        hero.addSpell(spell);
+        this.setMessage("Free giveaway from the store! You got a " + spell.toString() + "!");
     }
 
     @Override
