@@ -1,8 +1,7 @@
 package jftha.spaces;
 
-import java.util.*;
+import java.io.PrintStream;
 import jftha.heroes.*;
-import jftha.items.*;
 
 public class D2D extends Space{
     
@@ -18,14 +17,20 @@ public class D2D extends Space{
     }
     
     private void duel2death(Hero attacker, Hero beingAttacked){
-        while(attacker.getCurrentHP() <= 0 || beingAttacked.getCurrentHP() <= 0){
+        int num = 1;
+        int heroHP = attacker.getCurrentHP(), enemyHP = beingAttacked.getCurrentHP();
+        while(heroHP >= 0 && enemyHP >= 0){
+            System.out.println("Run # " + num + ": Hero HP: " + heroHP + ", Enemy HP: " + enemyHP);
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
-            if(attacker.getCurrentHP() <= 0){
+            heroHP = attacker.getCurrentHP();
+            enemyHP = beingAttacked.getCurrentHP();
+            /*if(attacker.getCurrentHP() <= 0){
                 attacker.makeGhost();
             }else if(beingAttacked.getCurrentHP() <= 0){
                 beingAttacked.makeGhost();
-            }
+            }*/
+            num++;
         }
     }
 
