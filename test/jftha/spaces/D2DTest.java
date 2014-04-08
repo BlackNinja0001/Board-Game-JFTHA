@@ -26,7 +26,7 @@ public class D2DTest {
     @Before
     public void setUp() {
         current = new D2D();
-        hero = new Knight();
+        hero = new Mage();
         enemy = new Ninja();
     }
     
@@ -37,7 +37,7 @@ public class D2DTest {
     /**
      * Test of triggerEffect method, of class D2D.
      */
-    @Test
+    @Test(timeout=100)
     public void testTriggerEffectBothAlive() {
         current.setActivator(hero);
         current.triggerEffect(enemy);
