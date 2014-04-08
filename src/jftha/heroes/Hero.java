@@ -368,8 +368,8 @@ public class Hero {
      */
     public void attackEnemy(Hero attacked) {
         Random rand = new Random();
-        int randomDamage = rand.nextInt(3);
-        double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+        int randomDamage = rand.nextInt(5);
+        double damage = (this.strength - attacked.defense) - (0.8 * (this.luck - attacked.luck)) + randomDamage;
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
