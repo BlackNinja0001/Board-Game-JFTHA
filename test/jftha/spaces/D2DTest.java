@@ -37,7 +37,7 @@ public class D2DTest {
     /**
      * Test of triggerEffect method, of class D2D.
      */
-    @Test(timeout=100)
+    @Test(timeout=50)
     public void testTriggerEffectBothAlive() {
         current.setActivator(hero);
         current.triggerEffect(enemy);
