@@ -4,7 +4,6 @@ import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
-import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -369,7 +368,7 @@ public class Hero {
     public void attackEnemy(Hero attacked) {
         Random rand = new Random();
         int randomDamage = rand.nextInt(5);
-        double damage = (this.strength - attacked.defense) - (0.8 * (this.luck - attacked.luck)) + randomDamage;
+        double damage = 3 * (this.strength - attacked.defense) - (2 * (this.luck - attacked.luck)) + randomDamage;
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
@@ -379,7 +378,8 @@ public class Hero {
         }
         if (attacked.wasAttacked == false) {
             if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                attacked.currentHP -= intDamage;
+                int newHP = attacked.currentHP - intDamage;
+                attacked.setCurrentHP(newHP);
                 if (attacked.currentHP <= 0) {
                     attacked.makeGhost();
                 }
@@ -402,6 +402,7 @@ public class Hero {
             }
         }
         attacked.wasAttacked = true;
+        // Need to undo at some point
     }
 
     /**
