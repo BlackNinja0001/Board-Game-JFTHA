@@ -1,11 +1,10 @@
 package jftha.cards;
 
-import java.util.*;
 import jftha.heroes.*;
 import jftha.items.*;
 import jftha.main.*;
 
-public class FreeCommonItem extends Card{
+public class FreeUncommonItem extends Card{
 
     @Override
     public void triggerEffect() {
@@ -16,9 +15,9 @@ public class FreeCommonItem extends Card{
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
         ItemFactory i = new ItemFactory();
-        Item item = i.buildItem(jftha.items.RarityEnum.common);
+        Item item = i.buildItem(jftha.items.RarityEnum.uncommon);
         hero.addItem(item);
-        this.setMessage("Free giveaway from the store! You got a " + item.toString() + "!");
+        this.setMessage("Free giveaway from the store! You got a " + item.toString() + "!");   
     }
 
     @Override

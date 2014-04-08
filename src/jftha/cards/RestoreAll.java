@@ -19,6 +19,7 @@ public class RestoreAll extends Card{
         }else if(hero.isGhost() == true){
             hero.setCurrentMP(hero.getMaxMP());
         }
+        this.setMessage("The Almighty One loves you. Restore HP and MP to max.");
     }
 
     @Override
