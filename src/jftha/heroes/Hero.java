@@ -4,7 +4,6 @@ import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
-import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -368,32 +367,31 @@ public class Hero {
      */
     public void attackEnemy(Hero attacked) {
         Random rand = new Random();
-        int randomDamage = rand.nextInt(5);
-        double damage = (this.strength - attacked.defense) - (0.8 * (this.luck - attacked.luck)) + randomDamage;
+        int randomDamage = rand.nextInt(3);
+        double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
         int intDamage = (int) Math.round(damage);
+        
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
             attacked.wasAttacked = true;
         }
-        if (attacked.wasAttacked == false) {
-            if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                attacked.currentHP -= intDamage;
-                if (attacked.currentHP <= 0) {
-                    attacked.makeGhost();
-                }
-            } else { //attacking ghost
-                //handle spiritual items
-                if (!items.isEmpty()) {
-                    for (Item i : items) {
-                        if (i instanceof Equippable) {
-                            Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
-                            if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
-                                attacked.currentMP -= intDamage;
-                                if (attacked.currentMP <= 0) {
-                                    attacked.eliminated = true;
-                                }
+        if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
+            attacked.currentHP -= intDamage;
+            if (attacked.currentHP <= 0) {
+                attacked.makeGhost();
+            }
+        } else { //attacking ghost
+            //handle spiritual items
+            if (!items.isEmpty()) {
+                for (Item i : items) {
+                    if (i instanceof Equippable) {
+                        Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
+                        if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
+                            attacked.currentMP -= intDamage;
+                            if (attacked.currentMP <= 0) {
+                                attacked.eliminated = true;
                             }
                         }
                     }
@@ -401,7 +399,7 @@ public class Hero {
                 //if no spiritual items, the Attack phase is skipped
             }
         }
-        attacked.wasAttacked = true;
+        attacked.wasAttacked = !attacked.wasAttacked;
     }
 
     /**
