@@ -6,28 +6,6 @@ package jftha.cards;
 
 import java.util.ArrayList;
 import java.util.List;
-import jftha.items.AnimalSkin;
-import jftha.items.ArtifactPiece1;
-import jftha.items.ArtifactPiece2;
-import jftha.items.ArtifactPiece3;
-import jftha.items.ArtifactPiece4;
-import jftha.items.ArtifactPiece5;
-import jftha.items.Ax;
-import jftha.items.Bible;
-import jftha.items.Chasuble;
-import jftha.items.Cloak;
-import jftha.items.Dagger;
-import jftha.items.DivineBlade;
-import jftha.items.FastHands;
-import jftha.items.IronSword;
-import jftha.items.MageRobe;
-import jftha.items.ShiningArmor;
-import jftha.items.SpellBook;
-import jftha.items.SuitOfArmor;
-import jftha.items.Tuxedo;
-import jftha.items.UncommonItem;
-import jftha.items.WagonOfGoods;
-import jftha.items.WoolClothing;
 
 /**
  *
@@ -82,7 +60,7 @@ public class CardLists {
         uncommonClasses.add(MPDrain.class);
         uncommonClasses.add(RandomDamage.class);
         uncommonClasses.add(StealGold.class);
-        uncommonClasses.add(FreeUnCommonItem.class);
+        uncommonClasses.add(FreeUncommonItem.class);
         uncommonClasses.add(Tax.class);
         rareClasses.add(RestoreAll.class);
         rareClasses.add(RestoreHP.class);
