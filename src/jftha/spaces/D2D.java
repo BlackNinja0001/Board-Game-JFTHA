@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.spells.*;
 
 public class D2D extends Space{
     
@@ -17,11 +18,20 @@ public class D2D extends Space{
     
     private void duel2death(Hero attacker, Hero beingAttacked){
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
-        while(attackerHP > 0 && beingAttackedHP > 0){
-            attacker.attackEnemy(beingAttacked);
-            beingAttacked.attackEnemy(attacker);
-            attackerHP = attacker.getCurrentHP();
-            beingAttackedHP = beingAttacked.getCurrentHP();
+        if(beingAttacked instanceof Mage){
+            Spell fireball = new Fireball();
+            while(attackerHP > 0 && beingAttackedHP > 0){
+                attacker.attackEnemy(beingAttacked);
+                beingAttacked.castSpell(fireball, attacker);
+                attackerHP = attacker.getCurrentHP();
+                beingAttackedHP = beingAttacked.getCurrentHP();
+            }
+        }else{
+            while(attackerHP > 0 && beingAttackedHP > 0){
+                beingAttacked.attackEnemy(attacker);
+                attackerHP = attacker.getCurrentHP();
+                beingAttackedHP = beingAttacked.getCurrentHP();
+            }
         }
     }
 
