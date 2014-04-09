@@ -548,7 +548,7 @@ public class Hero {
     }
 
     /**
-     * If this hero has TSCs still occurring, activate their effects.
+     * If this hero has TSCs still occurring, activate their effects for the current turn.
      */
     public void activateTSCs() {
         if (!this.tempStatChanges.isEmpty()) {
