@@ -7,6 +7,11 @@ public class Item extends Buyable{
     private RarityEnum rarity;
     private boolean isSpiritual;
     private String description;
+    private String message;
+    
+    public void setMessage(String message){
+        this.message = message;
+    }
     
     public void setRarity(RarityEnum newRarity){
         this.rarity = newRarity;
@@ -30,6 +35,10 @@ public class Item extends Buyable{
     
     public String getDesc(){
         return this.description;
+    }
+    
+    public String getMessage(){
+        return this.message;
     }
     
     @Override
