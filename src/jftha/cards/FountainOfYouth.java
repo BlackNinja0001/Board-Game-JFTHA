@@ -17,7 +17,7 @@ public class FountainOfYouth extends Card{
         hero.setStrength(hero.getStrength() + 2); //permanent incerease to strength
         hero.addTSC(new CurHP_SCPT(5, 5)); //Lose 5 HP per turn for 5 turns
         this.setMessage("Good news: you've found the fountain of youth and have become much stronger. Bad news: You're stronger because the water contained steroids. "
-                + "+2 Strength. -5 HP per turn fomr 5 turns from pain down under.");
+                + "+2 Strength. -5 HP per turn for 5 turns from pain down under.");
     }
 
     @Override
