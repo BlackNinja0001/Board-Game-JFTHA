@@ -1,9 +1,11 @@
 package jftha.heroes;
 
+import jftha.statchanges.statChangePerTurn;
 import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
+import java.lang.reflect.Method;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -53,7 +55,9 @@ public class Hero {
     //String name of the class
     private String className;
     //Used for certain special abilties
-    private int curCooldown, curDuration, maxCooldown, maxDuration;
+    private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
+    //Measures what stat changes happen per turn
+    private List<statChangePerTurn> tempStatChanges;
 
     //Constructor
     public Hero() {
@@ -76,6 +80,8 @@ public class Hero {
         this.wasAttacked = false;
         this.eliminated = false;
         this.className = null;
+        curSpecCooldown = curSpecDuration = maxSpecCooldown = maxSpecDuration = 0;
+        this.tempStatChanges = new ArrayList<>();
     }
 
     //Setter methods
@@ -133,6 +139,9 @@ public class Hero {
 
     public void setGold(int gold) {
         this.gold = gold;
+        if (this.gold < 0){
+            this.gold = 0;
+        }
     }
 
     public void setWasAttacked(boolean jA) {
@@ -152,19 +161,19 @@ public class Hero {
     }
 
     public void setCurCooldown(int curCooldown) {
-        this.curCooldown = curCooldown;
+        this.curSpecCooldown = curCooldown;
     }
 
     public void setCurDuration(int curDuration) {
-        this.curDuration = curDuration;
+        this.curSpecDuration = curDuration;
     }
 
     public void setMaxCooldown(int maxCooldown) {
-        this.maxCooldown = maxCooldown;
+        this.maxSpecCooldown = maxCooldown;
     }
 
     public void setMaxDuration(int maxDuration) {
-        this.maxDuration = maxDuration;
+        this.maxSpecDuration = maxDuration;
     }
 
     //Getter Methods
@@ -253,19 +262,19 @@ public class Hero {
     }
 
     public int getCurCooldown() {
-        return curCooldown;
+        return curSpecCooldown;
     }
 
     public int getCurDuration() {
-        return curDuration;
+        return curSpecDuration;
     }
 
     public int getMaxCooldown() {
-        return maxCooldown;
+        return maxSpecCooldown;
     }
 
     public int getMaxDuration() {
-        return maxDuration;
+        return maxSpecDuration;
     }
 
     /**
@@ -369,29 +378,30 @@ public class Hero {
         Random rand = new Random();
         int randomDamage = rand.nextInt(3);
         double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+        int intDamage = (int) Math.round(damage);
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
-        int intDamage = (int) Math.round(damage);
-        
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
             attacked.wasAttacked = true;
         }
-        if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-            attacked.currentHP -= intDamage;
-            if (attacked.currentHP <= 0) {
-                attacked.makeGhost();
-            }
-        } else { //attacking ghost
-            //handle spiritual items
-            if (!items.isEmpty()) {
-                for (Item i : items) {
-                    if (i instanceof Equippable) {
-                        Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
-                        if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
-                            attacked.currentMP -= intDamage;
-                            if (attacked.currentMP <= 0) {
-                                attacked.eliminated = true;
+        if (attacked.wasAttacked == false) {
+            if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
+                attacked.currentHP -= intDamage;
+                if (attacked.currentHP <= 0) {
+                    attacked.makeGhost();
+                }
+            } else { //attacking ghost
+                //handle spiritual items
+                if (!items.isEmpty()) {
+                    for (Item i : items) {
+                        if (i instanceof Equippable) {
+                            Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
+                            if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
+                                attacked.currentMP -= intDamage;
+                                if (attacked.currentMP <= 0) {
+                                    attacked.eliminated = true;
+                                }
                             }
                         }
                     }
@@ -399,7 +409,7 @@ public class Hero {
                 //if no spiritual items, the Attack phase is skipped
             }
         }
-        attacked.wasAttacked = !attacked.wasAttacked;
+        attacked.wasAttacked = true;
     }
 
     /**
@@ -496,5 +506,16 @@ public class Hero {
     public void triggerSpecial() {
         this.setCurCooldown(this.getMaxCooldown());
         this.setCurDuration(this.getMaxDuration());
+    }
+    
+    /**
+     * If this hero has TSCs still occurring, activate their effects.
+     */
+    public void checkTSCs(){
+        if (!this.tempStatChanges.isEmpty()){
+            for (statChangePerTurn scpt : tempStatChanges){
+                scpt.triggerEffect(this);
+            }
+        }
     }
 }
