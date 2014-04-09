@@ -6,6 +6,7 @@ import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
 import java.lang.reflect.Method;
+import jftha.statchanges.tempStatChange;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -57,7 +58,7 @@ public class Hero {
     //Used for certain special abilties
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
-    private List<statChangePerTurn> tempStatChanges;
+    private List<tempStatChange> tempStatChanges;
 
     //Constructor
     public Hero() {
@@ -139,7 +140,7 @@ public class Hero {
 
     public void setGold(int gold) {
         this.gold = gold;
-        if (this.gold < 0){
+        if (this.gold < 0) {
             this.gold = 0;
         }
     }
@@ -174,6 +175,14 @@ public class Hero {
 
     public void setMaxDuration(int maxDuration) {
         this.maxSpecDuration = maxDuration;
+    }
+    
+    public void addTSC(tempStatChange tsc) {
+        this.tempStatChanges.add(tsc);
+    }
+    
+    public void removeTSC(tempStatChange tsc){
+        this.tempStatChanges.remove(tsc);
     }
 
     //Getter Methods
@@ -275,6 +284,10 @@ public class Hero {
 
     public int getMaxDuration() {
         return maxSpecDuration;
+    }
+    
+    public List<tempStatChange> getTempStatChanges() {
+        return tempStatChanges;
     }
 
     /**
@@ -501,19 +514,46 @@ public class Hero {
     }
 
     /**
+     * Removes an item to character's inventory. Will only remove item if character
+     * already has this item in inventory.
+     *
+     * Note: Removed by index, not by passing object to ArrayList.remove(Object o), just to be safe.
+     * 
+     * @param item The item to be removed to the character's inventory
+     * @return true if item was removed
+     */
+    public boolean removeItem(Item item) {
+        boolean result = false;
+        int itemIndex = 0, itemCount = 0;
+        if (!this.items.isEmpty()) {
+            for (Item i : items) {
+                if (i.getClass().isInstance(item)) {
+                    itemIndex = itemCount;
+                }
+                itemCount++;
+            }
+            if (itemCount != -1) {
+                result = true;
+                items.remove(itemIndex);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Activates the special for this hero.
      */
     public void triggerSpecial() {
         this.setCurCooldown(this.getMaxCooldown());
         this.setCurDuration(this.getMaxDuration());
     }
-    
+
     /**
      * If this hero has TSCs still occurring, activate their effects.
      */
-    public void checkTSCs(){
-        if (!this.tempStatChanges.isEmpty()){
-            for (statChangePerTurn scpt : tempStatChanges){
+    public void activateTSCs() {
+        if (!this.tempStatChanges.isEmpty()) {
+            for (tempStatChange scpt : tempStatChanges) {
                 scpt.triggerEffect(this);
             }
         }
