@@ -37,13 +37,17 @@ public class Chest extends Space {
         } else {
             luck = rand.nextInt(100) + 1 + h.getLuck();
             ItemFactory i = new ItemFactory();
+            Item item = null;
             if(luck > 90) {
-                h.addItem(i.buildItem(RarityEnum.rare));
+                item = i.buildItem(RarityEnum.rare);
             } else if(luck > 75) {
-                h.addItem(i.buildItem(RarityEnum.uncommon));
+                item = i.buildItem(RarityEnum.uncommon);
+            } else if (luck > 0) {
+                item = i.buildItem(RarityEnum.common);
             } else {
-                h.addItem(i.buildItem(RarityEnum.common));
+                throw new IllegalActivationTypeException();
             }
+            h.addItem(item);
         }
         return luck;
     }
