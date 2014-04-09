@@ -36,8 +36,16 @@ public class MonsterTest {
     @Test
     public void testTriggerEffect() {
         current.setActivator(hero);
-        current.triggerEffect();
         int initGold = hero.getGold();
-        assertTrue(hero.isGhost() || (initGold + 10) == hero.getGold());
+        current.triggerEffect();
+        assertEquals((initGold + 10) , hero.getGold());
+    }
+    
+    @Test
+    public void testMonsterWinsAgainstWeakHero() {
+        hero.setCurrentHP(1);
+        current.setActivator(hero);
+        current.triggerEffect();
+        assertTrue(hero.isGhost());
     }
 }
