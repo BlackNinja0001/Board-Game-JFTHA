@@ -3,20 +3,9 @@ package jftha.items;
 import jftha.main.Player;
 
 public abstract class Weapon extends Equippable{
-    private String message;
     
     public Weapon(){
         
-    }
-        
-    //Getter Methods
-    public String getMessage() {
-        return message;
-    }
-
-    //Setter Methods
-    public void setMessage(String message) {
-        this.message = message;
     }
     
     public abstract void equipWeap(Player player);
