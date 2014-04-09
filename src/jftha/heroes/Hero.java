@@ -383,7 +383,7 @@ public class Hero {
     }
 
     /**
-     * Allows a character to attack another character and vice-versa
+     * Allows a character to attack another character with a weapon and vice-versa
      *
      * @param attacked The character that is getting attacked
      */
@@ -548,7 +548,7 @@ public class Hero {
     }
 
     /**
-     * If this hero has TSCs still occurring, activate their effects.
+     * If this hero has TSCs still occurring, activate their effects for the current turn.
      */
     public void activateTSCs() {
         if (!this.tempStatChanges.isEmpty()) {
