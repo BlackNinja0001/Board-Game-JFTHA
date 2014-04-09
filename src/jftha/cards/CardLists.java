@@ -60,7 +60,6 @@ public class CardLists {
         uncommonClasses.add(MPDrain.class);
         uncommonClasses.add(RandomDamage.class);
         uncommonClasses.add(StealGold.class);
-        uncommonClasses.add(FreeUncommonItem.class);
         uncommonClasses.add(Tax.class);
         rareClasses.add(RestoreAll.class);
         rareClasses.add(RestoreHP.class);
