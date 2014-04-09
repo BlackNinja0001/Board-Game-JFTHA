@@ -57,6 +57,7 @@ public class CardLists {
     public CardLists() {
         commonClasses.add(FreeGold.class);
         commonClasses.add(FreeCommonItem.class);
+        commonClasses.add(AteChicken.class);
         uncommonClasses.add(MPDrain.class);
         uncommonClasses.add(RandomDamage.class);
         uncommonClasses.add(StealGold.class);
@@ -65,6 +66,7 @@ public class CardLists {
         rareClasses.add(RestoreHP.class);
         rareClasses.add(RestoreMP.class);
         rareClasses.add(MoveBack.class);
+        rareClasses.add(FountainOfYouth.class);
         veryRareClasses.add(Revive.class);
         almostImpossibleClasses.add(InstantDeath.class);
         almostImpossibleClasses.add(FreeRareItem.class);
