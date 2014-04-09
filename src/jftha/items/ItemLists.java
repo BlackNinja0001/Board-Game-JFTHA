@@ -45,6 +45,7 @@ public class ItemLists {
         commonClasses.add(WagonOfGoods.class);
         commonClasses.add(WoolClothing.class);
         commonClasses.add(MageStaff.class);
+        commonClasses.add(SuitOfArmor.class);
         uncommonClasses.add(UncommonItem.class);
         uncommonClasses.add(ShiningArmor.class);
         rareClasses.add(Goldskin.class);
