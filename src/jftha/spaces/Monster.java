@@ -9,6 +9,7 @@ public class Monster extends Space{
     public Monster(){
         this.setActivationType('1');
         this.setSpaceType(SpaceEnum.Monster);
+        monster = new Hero();
         monster.setMaxHP(5);
         monster.setCurrentHP(5);
         monster.setMaxMP(2);
@@ -21,12 +22,10 @@ public class Monster extends Space{
     }
 
     private void combat(Hero attacker, Hero beingAttacked){
-        while(attacker.getCurrentHP() <= 0 || beingAttacked.getCurrentHP() <= 0){
+        while(attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0){
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
-            if(attacker.getCurrentHP() <= 0){
-                attacker.makeGhost();
-            }else if(beingAttacked.getCurrentHP() <= 0){
+            if(beingAttacked.getCurrentHP() <= 0){
                 //Attacker earns 10 gold for defeating monster
                 attacker.setGold(attacker.getGold() + 10);
             }
