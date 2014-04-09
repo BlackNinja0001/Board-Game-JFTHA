@@ -40,13 +40,15 @@ public class ItemLists {
         commonClasses.add(FastHands.class);
         commonClasses.add(IronSword.class);
         commonClasses.add(MageRobe.class);
-        commonClasses.add(ShiningArmor.class);
         commonClasses.add(SpellBook.class);
-        commonClasses.add(SuitOfArmor.class);
         commonClasses.add(Tuxedo.class);
         commonClasses.add(WagonOfGoods.class);
         commonClasses.add(WoolClothing.class);
+        commonClasses.add(MageStaff.class);
         uncommonClasses.add(UncommonItem.class);
+        uncommonClasses.add(ShiningArmor.class);
+        rareClasses.add(Goldskin.class);
+        rareClasses.add(SwordOf1000Truth.class);
         rareClasses.add(ArtifactPiece1.class);
         rareClasses.add(ArtifactPiece2.class);
         rareClasses.add(ArtifactPiece3.class);
