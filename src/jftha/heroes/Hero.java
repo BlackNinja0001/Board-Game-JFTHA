@@ -6,6 +6,7 @@ import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
 import java.lang.reflect.Method;
+import jftha.statchanges.tempStatChange;
 
 public class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
@@ -57,7 +58,7 @@ public class Hero {
     //Used for certain special abilties
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
-    private List<statChangePerTurn> tempStatChanges;
+    private List<tempStatChange> tempStatChanges;
 
     //Constructor
     public Hero() {
@@ -175,6 +176,14 @@ public class Hero {
     public void setMaxDuration(int maxDuration) {
         this.maxSpecDuration = maxDuration;
     }
+    
+    public void addTempStatChange(tempStatChange tsc) {
+        this.tempStatChanges.add(tsc);
+    }
+    
+    public void removeTempStatChange(tempStatChange tsc){
+        this.tempStatChanges.remove(tsc);
+    }
 
     //Getter Methods
     public int getStrength() {
@@ -275,6 +284,10 @@ public class Hero {
 
     public int getMaxDuration() {
         return maxSpecDuration;
+    }
+    
+    public List<tempStatChange> getTempStatChanges() {
+        return tempStatChanges;
     }
 
     /**
@@ -538,9 +551,9 @@ public class Hero {
     /**
      * If this hero has TSCs still occurring, activate their effects.
      */
-    public void checkTSCs() {
+    public void activateTSCs() {
         if (!this.tempStatChanges.isEmpty()) {
-            for (statChangePerTurn scpt : tempStatChanges) {
+            for (tempStatChange scpt : tempStatChanges) {
                 scpt.triggerEffect(this);
             }
         }
