@@ -383,7 +383,7 @@ public class Hero {
     }
 
     /**
-     * Allows a character to attack another character and vice-versa
+     * Allows a character to attack another character with a weapon and vice-versa
      *
      * @param attacked The character that is getting attacked
      */
@@ -392,8 +392,8 @@ public class Hero {
         int randomDamage = rand.nextInt(3);
         double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
         int intDamage = (int) Math.round(damage);
-        if (damage < 0) { //attacker sucks
-            damage = 0;
+        if (intDamage < 0) { //attacker sucks
+            intDamage = 0;
         }
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
             attacked.wasAttacked = true;
