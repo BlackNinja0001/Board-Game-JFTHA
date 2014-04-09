@@ -28,9 +28,9 @@ public class SwordOf1000Truth extends Weapon{
 
     @Override
     public void weapEffect(Player player) {
-        Hero hero = player.getCharacter();
-        if(hero.getWasAttacked() == true){
-            hero.setCurrentMP(0);
+        Hero enemy = player.getCharacter();
+        if(enemy.getWasAttacked() == true){
+            enemy.setCurrentMP(0);
         }
     }
 
