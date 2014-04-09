@@ -177,11 +177,11 @@ public class Hero {
         this.maxSpecDuration = maxDuration;
     }
     
-    public void addTempStatChange(tempStatChange tsc) {
+    public void addTSC(tempStatChange tsc) {
         this.tempStatChanges.add(tsc);
     }
     
-    public void removeTempStatChange(tempStatChange tsc){
+    public void removeTSC(tempStatChange tsc){
         this.tempStatChanges.remove(tsc);
     }
 
