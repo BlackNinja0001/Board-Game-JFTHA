@@ -1,8 +1,9 @@
 package jftha.items;
 
 import jftha.main.Buyable;
+import jftha.main.Player;
 
-public class Item extends Buyable{
+public abstract class Item extends Buyable{
 
     private RarityEnum rarity;
     private boolean isSpiritual;
@@ -45,4 +46,12 @@ public class Item extends Buyable{
     public String toString() {
         return this.getClass().getSimpleName();
     }
+    
+    public abstract void triggerEffect();
+    
+    public abstract void triggerEffect(Player affected);
+    
+    public abstract void triggerEffect(Player affected1, Player affected2);
+    
+    public abstract void triggerEffect(Player affected1, Player affected2, Player affected3);
 }
