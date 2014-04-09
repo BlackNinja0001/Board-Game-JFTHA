@@ -25,6 +25,9 @@ public class SpaceFactory {
             case Bank:
                 space = new Bank();
                 break;
+            case Monster:
+                space = new Monster();
+                break;
             case Blank:
                 space = new BlankSpace();
                 break;
