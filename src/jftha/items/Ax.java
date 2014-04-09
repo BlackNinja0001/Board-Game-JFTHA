@@ -4,10 +4,11 @@ import jftha.heroes.Hero;
 import jftha.main.Player;
 
 public class Ax extends Weapon{
-    int strength = 2;
+    private final int strength = 2;
     
     public Ax() {
         this.setRarity(RarityEnum.common);
+        this.setMessage("Ax: +" + strength + " Strength");
     }
 
     @Override

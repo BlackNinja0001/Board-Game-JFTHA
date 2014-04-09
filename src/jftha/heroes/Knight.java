@@ -1,8 +1,6 @@
 package jftha.heroes;
 
-import jftha.items.SuitOfArmor;
-import jftha.items.IronSword;
-
+import jftha.items.*;
 public class Knight extends Hero{
     
     

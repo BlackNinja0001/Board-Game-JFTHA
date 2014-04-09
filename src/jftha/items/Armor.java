@@ -1,5 +1,11 @@
 package jftha.items;
 
-public class Armor extends Equippable{
+import jftha.main.Player;
+
+public abstract class Armor extends Equippable{
     
+    public abstract void equipArmor(Player player);
+    public abstract void dropArmor(Player player);
+    public abstract void armorEffect(Player player);
+    public abstract void armorEffect(Player attacker, Player attacked);
 }

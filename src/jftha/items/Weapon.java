@@ -3,6 +3,7 @@ package jftha.items;
 import jftha.main.Player;
 
 public abstract class Weapon extends Equippable{
+    
     public Weapon(){
         
     }

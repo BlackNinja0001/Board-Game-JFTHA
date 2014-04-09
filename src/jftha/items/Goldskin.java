@@ -3,13 +3,14 @@ package jftha.items;
 import jftha.heroes.Hero;
 import jftha.main.Player;
 
-public class ShiningArmor extends Armor {
-    private final int hp = 20;
-    private final int def = 5;
+public class Goldskin extends Armor {
+    private final int strength = 10;
+    private final int hp = 25;
+    private final int def = 6;
     
-    public ShiningArmor() {
-        this.setRarity(RarityEnum.uncommon);
-        this.setMessage("Shining Armor: +" + hp + " HP, " + "+" + def + " Defense");
+    public Goldskin() {
+        this.setRarity(RarityEnum.rare);
+        this.setMessage("Goldskin: +" + hp + " HP, " + "+" + strength + " Strength, " + "+" + def + " Defense");
     }
 
     @Override
@@ -17,6 +18,7 @@ public class ShiningArmor extends Armor {
         Hero hero = player.getCharacter();
         hero.setMaxHP(hero.getMaxHP() + hp);
         hero.setDefense(hero.getDefense() + def);
+        hero.setStrength(hero.getStrength() + strength);
     }
 
     @Override
@@ -24,6 +26,7 @@ public class ShiningArmor extends Armor {
         Hero hero = player.getCharacter();
         hero.setMaxHP(hero.getMaxHP() - hp);
         hero.setDefense(hero.getDefense() - def);
+        hero.setStrength(hero.getStrength() - strength);
     }
 
     @Override
