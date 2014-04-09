@@ -501,15 +501,13 @@ public class Hero {
     }
 
     /**
-     * Adds an item to character's inventory. Will only add item if: <\t>1) The
-     * character does not already have this item <\t>2) The character has
-     * storage space for the item.
+     * Removes an item to character's inventory. Will only remove item if character
+     * already has this item in inventory.
      *
-     * If the character's inventory is full, character has option to lose an
-     * item in exchange for the new one.
-     *
-     * @param item The item to be added to the character's inventory
-     * @return true if item was added
+     * Note: Removed by index, not by passing object to ArrayList.remove(Object o), just to be safe.
+     * 
+     * @param item The item to be removed to the character's inventory
+     * @return true if item was removed
      */
     public boolean removeItem(Item item) {
         boolean result = false;
@@ -523,7 +521,7 @@ public class Hero {
             }
             if (itemCount != -1) {
                 result = true;
-                items.remove(item);
+                items.remove(itemIndex);
             }
         }
         return result;
