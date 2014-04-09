@@ -139,7 +139,7 @@ public class Hero {
 
     public void setGold(int gold) {
         this.gold = gold;
-        if (this.gold < 0){
+        if (this.gold < 0) {
             this.gold = 0;
         }
     }
@@ -501,19 +501,48 @@ public class Hero {
     }
 
     /**
+     * Adds an item to character's inventory. Will only add item if: <\t>1) The
+     * character does not already have this item <\t>2) The character has
+     * storage space for the item.
+     *
+     * If the character's inventory is full, character has option to lose an
+     * item in exchange for the new one.
+     *
+     * @param item The item to be added to the character's inventory
+     * @return true if item was added
+     */
+    public boolean removeItem(Item item) {
+        boolean result = false;
+        int itemIndex = 0, itemCount = 0;
+        if (!this.items.isEmpty()) {
+            for (Item i : items) {
+                if (i.getClass().isInstance(item)) {
+                    itemIndex = itemCount;
+                }
+                itemCount++;
+            }
+            if (itemCount != -1) {
+                result = true;
+                items.remove(item);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Activates the special for this hero.
      */
     public void triggerSpecial() {
         this.setCurCooldown(this.getMaxCooldown());
         this.setCurDuration(this.getMaxDuration());
     }
-    
+
     /**
      * If this hero has TSCs still occurring, activate their effects.
      */
-    public void checkTSCs(){
-        if (!this.tempStatChanges.isEmpty()){
-            for (statChangePerTurn scpt : tempStatChanges){
+    public void checkTSCs() {
+        if (!this.tempStatChanges.isEmpty()) {
+            for (statChangePerTurn scpt : tempStatChanges) {
                 scpt.triggerEffect(this);
             }
         }
