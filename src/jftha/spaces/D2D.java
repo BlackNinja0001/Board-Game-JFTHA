@@ -18,13 +18,16 @@ public class D2D extends Space{
     
     private void duel2death(Hero attacker, Hero beingAttacked){
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
+        int num = 1;
         if(beingAttacked instanceof Mage){
             Spell fireball = new Fireball();
             while(attackerHP > 0 && beingAttackedHP > 0){
-                attacker.attackEnemy(beingAttacked);
+                System.out.println("Turn #" + num + " Attacker hp: " + attackerHP + ", Enemy HP: " + beingAttackedHP);
+            attacker.attackEnemy(beingAttacked);
                 beingAttacked.castSpell(fireball, attacker);
                 attackerHP = attacker.getCurrentHP();
                 beingAttackedHP = beingAttacked.getCurrentHP();
+                num++;
             }
         }else{
             while(attackerHP > 0 && beingAttackedHP > 0){
