@@ -20,7 +20,7 @@ public class FreeSpell extends Card{
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
         SpellFactory sf = new SpellFactory();
-        Spell spell = sf.buildSpell(jftha.spells.SpellEnum.common);
+        Spell spell = sf.buildSpell();
         this.setMessage("Free giveaway from the store! You got a " + spell.toString() + "!");
         hero.addSpell(spell);
     }
