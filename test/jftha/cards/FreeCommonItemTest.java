@@ -37,7 +37,9 @@ public class FreeCommonItemTest {
 
     @Test
     public void testTriggerEffect() {
+        Hero h = p.getCharacter();
         card.triggerEffect(p);
-        assertEquals(3, p.getCharacter().getItems().size());
+        assertEquals(3, h.getItems().size());
+        assertEquals(RarityEnum.common, h.getItems().get(2).getRarity());
     }
 }
