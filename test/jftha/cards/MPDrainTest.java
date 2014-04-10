@@ -38,13 +38,13 @@ public class MPDrainTest {
      * Test of triggerEffect method, of class MPDrain.
      */
     @Test
-    public void testOnePlayerVSMob() {
+    public void testOnePlayer() {
         Hero h = player1.getCharacter();
         int curMP = h.getCurrentMP();
         card.triggerEffect(player1);
         int diff = curMP - h.getCurrentMP();
         assertTrue(h.getCurrentMP() <= curMP);
-        assertTrue(diff < 50 && diff >= 0);
+        assertTrue(diff < 10 && diff >= 0);
     }
     
     @Test
@@ -81,17 +81,18 @@ public class MPDrainTest {
         msg = msg.replace("Lancelot became a magic vampire for 10 seconds and drained ", "");
         msg = msg.replace(" MP from you.", "");
         int diff = Integer.parseInt(msg);
+        assertTrue(diff < 10 && diff >= 0);
         assertEquals(diff, hero.getCurrentMP() - heroMP);
         assertEquals(diff, enemyMP - enemy.getCurrentMP());
     }
     
     @Test
-    public void testTwoPlayersOneGhost() {
+    public void testTwoPlayersOneGhostWithLowMP() {
         Hero hero = player1.getCharacter();
         Hero enemy = player2.getCharacter();
         hero.setCurrentMP(3);
         enemy.makeGhost();
-        enemy.setCurrentMP(3);
+        enemy.setCurrentMP(1);
         int heroMP = hero.getCurrentMP();
         card.triggerEffect(player1, player2);
         String msg = card.getMessage();
