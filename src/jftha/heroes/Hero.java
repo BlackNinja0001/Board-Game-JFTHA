@@ -72,7 +72,7 @@ public class Hero {
         this.maxHP = 60;
         this.currentHP = 60;
         this.maxMP = 30;
-        this.currentMP = 60;
+        this.currentMP = 30;
         this.items = new ArrayList<>(this.storage_space);
         this.spells = new ArrayList<>(this.spell_slots);
         this.artifactPieces = new ArrayList<>(5);
@@ -134,7 +134,7 @@ public class Hero {
         if (mp > maxMP) {
             currentMP = maxMP;
         } else {
-            this.currentHP = mp;
+            this.currentMP = mp;
         }
     }
 
