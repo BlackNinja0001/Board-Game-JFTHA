@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class FreeRareItemTest {
     FreeRareItem card = new FreeRareItem();
     Player p = new Player("", new Ninja());
+    
     public FreeRareItemTest() {
     }
     
@@ -40,7 +41,7 @@ public class FreeRareItemTest {
         Hero h = p.getCharacter();
         card.triggerEffect(p);
         assertEquals(3, h.getItems().size());
-        assertEquals(RarityEnum.rare, h.getItems().get(2).getRarity());
+        assertEquals(jftha.items.RarityEnum.rare, h.getItems().get(2).getRarity());
     }
 
 }
