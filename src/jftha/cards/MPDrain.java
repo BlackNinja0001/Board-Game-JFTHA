@@ -23,7 +23,7 @@ public class MPDrain extends Card{
         Hero hero = affected.getCharacter();
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
-        int mpdrain = rand.nextInt(50);
+        int mpdrain = rand.nextInt(10);
         this.setMessage("You were ambushed by an angry mob who thought you were a witch. They have sapped " + mpdrain + " MP from you.");
         hero.setCurrentMP(hero.getCurrentMP() - mpdrain);
         if((hero.isGhost() == true) && (hero.getCurrentMP() <= 0)){
