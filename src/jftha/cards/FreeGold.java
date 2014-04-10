@@ -7,6 +7,9 @@ import jftha.heroes.*;
 
 public class FreeGold extends Card{
     
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -31,11 +34,17 @@ public class FreeGold extends Card{
         playerHero.setGold(playerHero.getGold() + finalFG);
     }
     
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected1, Player affected2){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected1, Player affected2, Player affected3){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

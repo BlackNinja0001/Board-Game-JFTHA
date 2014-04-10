@@ -6,6 +6,9 @@ import jftha.main.*;
 
 public class FreeRareItem extends Card{
 
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -20,11 +23,17 @@ public class FreeRareItem extends Card{
         this.setMessage("Free giveaway from the store! You got a " + item.toString() + "!");  
     }
 
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected1, Player affected2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected1, Player affected2, Player affected3) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
