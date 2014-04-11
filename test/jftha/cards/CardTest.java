@@ -65,6 +65,6 @@ public class CardTest {
         card.triggerEffect(player);
         hero.activateTSCs(); //turn elapsed
         assertTrue("Strength should be increased by 2 from " + prevStr + " but is " + hero.getStrength(), (prevStr + 2) == hero.getStrength());
-        assertFalse("The penis not mightier than the sword.", prevHealth != hero.getCurrentHP());
+        assertTrue("The penis not mightier than the sword.", prevHealth != hero.getCurrentHP());
     }
 }
