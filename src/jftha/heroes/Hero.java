@@ -59,6 +59,8 @@ public class Hero {
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
     private List<tempStatChange> tempStatChanges;
+    private boolean hasPet;
+    private SummonPet pet;
 
     //Constructor
     public Hero() {
@@ -83,6 +85,8 @@ public class Hero {
         this.className = null;
         curSpecCooldown = curSpecDuration = maxSpecCooldown = maxSpecDuration = 0;
         this.tempStatChanges = new ArrayList<>();
+        this.hasPet = false;
+        pet = new SummonPet();
     }
 
     //Setter methods
@@ -176,13 +180,23 @@ public class Hero {
     public void setMaxDuration(int maxDuration) {
         this.maxSpecDuration = maxDuration;
     }
-    
+
     public void addTSC(tempStatChange tsc) {
         this.tempStatChanges.add(tsc);
     }
-    
-    public void removeTSC(tempStatChange tsc){
+
+    public void removeTSC(tempStatChange tsc) {
         this.tempStatChanges.remove(tsc);
+    }
+
+    public void addPet() {
+        this.hasPet = true;
+        pet.randomizeHealth();
+    }
+
+    public void killPet() {
+        this.hasPet = false;
+        pet.setPetHealth(0);
     }
 
     //Getter Methods
@@ -285,7 +299,7 @@ public class Hero {
     public int getMaxDuration() {
         return maxSpecDuration;
     }
-    
+
     public List<tempStatChange> getTempStatChanges() {
         return tempStatChanges;
     }
@@ -383,7 +397,8 @@ public class Hero {
     }
 
     /**
-     * Allows a character to attack another character with a weapon and vice-versa
+     * Allows a character to attack another character with a weapon and pet and
+     * vice-versa
      *
      * @param attacked The character that is getting attacked
      */
@@ -391,37 +406,57 @@ public class Hero {
         Random rand = new Random();
         int randomDamage = rand.nextInt(3);
         double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+        if (this.hasPet) {
+            damage += pet.randomizeDamage();
+        }
         if (damage < 0) { //attacker sucks
             damage = 0;
         }
         int intDamage = (int) Math.round(damage);
+
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
-            attacked.wasAttacked = true;
+            attacked.wasAttacked = !attacked.wasAttacked;
+            return;
         }
-            if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                attacked.currentHP -= intDamage;
-                if (attacked.currentHP <= 0) {
-                    attacked.makeGhost();
-                }
-            } else { //attacking ghost
-                //handle spiritual items
-                if (!items.isEmpty()) {
-                    for (Item i : items) {
-                        if (i instanceof Equippable) {
-                            Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
-                            if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
-                                attacked.currentMP -= intDamage;
-                                if (attacked.currentMP <= 0) {
-                                    attacked.eliminated = true;
-                                }
+
+        if (this.pet.getPetHealth() > 0) {
+            this.pet.setPetHealth(this.pet.getPetHealth() - intDamage);
+            attacked.wasAttacked = !attacked.wasAttacked;
+            return;
+        }
+
+
+        if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
+            attacked.currentHP -= intDamage;
+            if (attacked.currentHP <= 0) {
+                attacked.makeGhost();
+            }
+            attacked.wasAttacked = !attacked.wasAttacked;
+            return;
+        } else { //attacking ghost
+            //handle spiritual items
+            if (!items.isEmpty()) {
+                for (Item i : items) {
+                    if (i instanceof Equippable) {
+                        Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
+                        if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
+                            attacked.currentMP -= intDamage;
+                            if (attacked.currentMP <= 0) {
+                                attacked.eliminated = true;
                             }
+                            attacked.wasAttacked = !attacked.wasAttacked;
+                            return;
                         }
                     }
-                
+                }
                 //if no spiritual items, the Attack phase is skipped
             }
+
         }
-        attacked.wasAttacked = !attacked.wasAttacked;
+        if (this.wasAttacked && attacked.wasAttacked) {
+            this.wasAttacked = false;
+            attacked.wasAttacked = false;
+        }
     }
 
     /**
@@ -513,11 +548,12 @@ public class Hero {
     }
 
     /**
-     * Removes an item to character's inventory. Will only remove item if character
-     * already has this item in inventory.
+     * Removes an item to character's inventory. Will only remove item if
+     * character already has this item in inventory.
      *
-     * Note: Removed by index, not by passing object to ArrayList.remove(Object o), just to be safe.
-     * 
+     * Note: Removed by index, not by passing object to ArrayList.remove(Object
+     * o), just to be safe.
+     *
      * @param item The item to be removed to the character's inventory
      * @return true if item was removed
      */
@@ -548,7 +584,8 @@ public class Hero {
     }
 
     /**
-     * If this hero has TSCs still occurring, activate their effects for the current turn.
+     * If this hero has TSCs still occurring, activate their effects for the
+     * current turn.
      */
     public void activateTSCs() {
         if (!this.tempStatChanges.isEmpty()) {
