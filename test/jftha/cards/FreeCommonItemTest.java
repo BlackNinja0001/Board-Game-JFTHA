@@ -36,7 +36,7 @@ public class FreeCommonItemTest {
     }
 
     @Test
-    public void testTriggerEffect() {
+    public void testTriggerEffect() { //Sometimes this fails
         Hero h = p.getCharacter();
         card.triggerEffect(p);
         assertEquals(3, h.getItems().size());
