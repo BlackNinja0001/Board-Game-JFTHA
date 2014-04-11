@@ -404,8 +404,16 @@ public class Hero {
      */
     public void attackEnemy(Hero attacked) {
         Random rand = new Random();
-        int randomDamage = rand.nextInt(3);
-        double damage = (this.strength - attacked.defense) - (0.2 * (this.luck - attacked.luck)) + randomDamage;
+        int randomDamage = rand.nextInt(3), 
+                amt1 = this.strength - attacked.defense, 
+                amt2 = (int)(0.2 * (this.luck - attacked.luck));
+        if (amt1 < 0){
+            amt1 = 0;
+        }
+        if (amt2 < 0){
+            amt2 = 0;
+        }
+        double damage = amt1 - amt2 + randomDamage;
         if (this.hasPet) {
             damage += pet.randomizeDamage();
         }
