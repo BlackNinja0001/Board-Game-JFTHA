@@ -6,8 +6,8 @@ import jftha.main.Buyable;
 public class Spell extends Buyable{
     private int mpCost;
     private int damage;
-    private int cooldown = (-1);
-    private int duration = (-1);
+    private int maxCooldown = (-1);
+    private int maxDuration = (-1);
 
     private int minDamage;
     private int maxDamage;
@@ -32,14 +32,14 @@ public class Spell extends Buyable{
         this.mpCost = newmpCost;
     }
     
-    public void setCooldown(int newcooldown){
-        this.cooldown = newcooldown;
+    public void setMaxCooldown(int newcooldown){
+        this.maxCooldown = newcooldown;
         this.setCurrentCD(newcooldown);
     }
     
-    public void setDuration(int duration) {
-        this.duration = duration;
-        this.setCurrentDuraton(duration);
+    public void setMaxDuration(int maxDuration) {
+        this.maxDuration = maxDuration;
+        this.setCurrentDuraton(maxDuration);
     }
 
     public void setMinDamage(int minDamage) {
@@ -64,12 +64,12 @@ public class Spell extends Buyable{
         return this.mpCost;
     }
     
-    public int getCooldown(){
-        return this.cooldown;
+    public int getMaxCooldown(){
+        return this.maxCooldown;
     }
     
-    public int getDuration() {
-        return duration;
+    public int getMaxDuration() {
+        return maxDuration;
     }
     
     public int getDamage() {
