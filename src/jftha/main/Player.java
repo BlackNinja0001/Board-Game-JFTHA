@@ -11,6 +11,7 @@ public class Player {
     private boolean isWinner;
     private int winCount = 0;
     private Space currentSpace;
+    private int lostTurns;
 
     public Player() {
         this.customName = "";
@@ -34,14 +35,21 @@ public class Player {
     public int getTurnOrder() {
         return turnOrder;
     }
+
     public boolean isWinner() {
         return isWinner;
     }
+
     public int getWinCount() {
         return winCount;
     }
+
     public Space getCurrentSpace() {
         return currentSpace;
+    }
+
+    public int getLostTurns() {
+        return lostTurns;
     }
 
     //Setter methods
@@ -56,26 +64,39 @@ public class Player {
     public void setTurnOrder(int turnOrder) {
         this.turnOrder = turnOrder;
     }
+
     public void setIsWinner(boolean isWinner) {
         this.isWinner = isWinner;
-    }    
+    }
+
     public void setWinCount(int winCount) {
         this.winCount = winCount;
     }
+
     public void upWinCount() {
         this.winCount++;
     }
+
+    public void setLostTurns(int lostTurns) {
+        this.lostTurns = lostTurns;
+    }
+
     public Space move(String s) {
-        if(s.equalsIgnoreCase("f")) { // move forward
-            this.currentSpace = this.currentSpace.next;
-            currentSpace.setActivator(this.character);
-            return this.currentSpace;
-        } else if (s.equalsIgnoreCase("b")){ // move backward
-            this.currentSpace = this.currentSpace.prev;
-            currentSpace.setActivator(this.character);
-            return this.currentSpace;
+        if (this.lostTurns == 0) {
+            if (s.equalsIgnoreCase("f")) { // move forward
+                this.currentSpace = this.currentSpace.next;
+                currentSpace.setActivator(this.character);
+                return this.currentSpace;
+            } else if (s.equalsIgnoreCase("b")) { // move backward
+                this.currentSpace = this.currentSpace.prev;
+                currentSpace.setActivator(this.character);
+                return this.currentSpace;
+            } else {
+                return null;
+            }
         } else {
-            return null;
+            this.lostTurns--;
+            return this.currentSpace;
         }
     }
 }
