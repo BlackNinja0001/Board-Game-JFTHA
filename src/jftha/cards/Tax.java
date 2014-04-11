@@ -14,7 +14,7 @@ public class Tax extends Card{
     //May need to modify this
     public void triggerEffect(Player affected, Bank bank) {
          Random rand = new Random(System.currentTimeMillis());
-         int tax = rand.nextInt(20) + 1;
+         int tax = rand.nextInt(50) + 1;
          bank.collect(tax);
          this.setMessage("Today is a good day for medieval capitalism. Pay " + tax + " gold to the nobles.");
     }
