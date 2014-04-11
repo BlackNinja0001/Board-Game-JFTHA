@@ -60,8 +60,11 @@ public class CardTest {
         card = new FountainOfYouth();
         Hero hero = new Ninja();
         player = new Player("Greg", hero);
+        int prevHealth = hero.getCurrentHP();
+        Int prevStr = hero.getStrength();
         card.triggerEffect(player);
-        hero.activateTSCs();
-        //assertTrue("");
+        hero.activateTSCs(); //turn elapsed
+        assertTrue("Strength should be increased by 2 from " + prevStr + " but is " + hero.getStrength(), (prevStr + 2) == hero.getStrength();
+        assertFalse("The penis not mightier than the sword.", prevHealth != hero.getCurrentHealth());
     }
 }
