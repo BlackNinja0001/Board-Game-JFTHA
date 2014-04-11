@@ -87,7 +87,7 @@ public class MPDrainTest {
     }
     
     @Test
-    public void testTwoPlayersOneGhostWithLowMP() {
+    public void testTwoPlayersOneGhostWithLowMP() { //Also a sometimes failing test
         Hero hero = player1.getCharacter();
         Hero enemy = player2.getCharacter();
         hero.setCurrentMP(3);
