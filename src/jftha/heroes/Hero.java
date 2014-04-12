@@ -144,9 +144,6 @@ public class Hero {
 
     public void setGold(int gold) {
         this.gold = gold;
-        if (this.gold < 0) {
-            this.gold = 0;
-        }
     }
 
     public void setWasAttacked(boolean jA) {
