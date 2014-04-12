@@ -6,11 +6,17 @@ import jftha.main.Player;
 
 public class StealGold extends Card{
     
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -23,7 +29,7 @@ public class StealGold extends Card{
         
         Random rand = new Random(System.currentTimeMillis());
         //Will change when we balance out gameplay
-        int stolengold = rand.nextInt(50);
+        int stolengold = rand.nextInt(50) + 1;
         this.setMessage(victim.getCustomName() + " has just invested in " + thief.getCustomName() + "'s ponzi scheme. "
                 + "As a result, " + thief.getCustomName() + " steals " + stolengold + " from " + victim.getCustomName());
         victimHero.setGold(victimHero.getGold() - stolengold);
@@ -42,6 +48,9 @@ public class StealGold extends Card{
         }
     }
 
+    /**NO EFFECT.
+     * 
+     */
     @Override
     public void triggerEffect(Player affected1, Player affected2, Player affected3) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
