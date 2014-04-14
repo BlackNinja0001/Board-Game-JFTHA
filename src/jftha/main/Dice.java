@@ -3,7 +3,6 @@ package jftha.main;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 public class Dice {
 
@@ -32,20 +31,19 @@ public class Dice {
         return roll;
     }
     
-    public int rollGUI(JLabel label) { //not done
+    public int rollGUI(JLabel label) {
         Random rand = new Random();
-        this.roll = rand.nextInt(6) + 1;
         int timesRolled = 8; //arbitrary
 
         //Simulate rolling of the die
         for (int i = 0; i < timesRolled; i++){
-            changeDieLabelGUI(label);
             this.roll = rand.nextInt(6) + 1;
+            changeDieLabelGUI(label);
         }
         return roll;
     }
 
-    private int changeDieLabelGUI(JLabel label) { //not done
+    private void changeDieLabelGUI(JLabel label) {
         String imageName;
         if (roll == 1) {
             imageName = "die1.png";
@@ -61,18 +59,17 @@ public class Dice {
             imageName = "die6.png";
         } else {
             System.out.println("Invalid roll.");
-            return -1;
+            return;
         }
-        ImageIcon icon = new ImageIcon(imageName);
-        //icon.getImage();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
         label.setIcon(icon);
-
+/*
         //acts as a timer
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        return 1;
+*/        
     }
 }

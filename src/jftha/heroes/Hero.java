@@ -420,13 +420,15 @@ public class Hero {
         int intDamage = (int) Math.round(damage);
 
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
-            attacked.wasAttacked = !attacked.wasAttacked;
+            attacked.wasAttacked = true;
+            checkIfBothAttacked(attacked);
             return;
         }
 
         if (this.pet.getPetHealth() > 0) {
             this.pet.setPetHealth(this.pet.getPetHealth() - intDamage);
-            attacked.wasAttacked = !attacked.wasAttacked;
+            attacked.wasAttacked = true;
+            checkIfBothAttacked(attacked);
             return;
         }
 
@@ -436,7 +438,8 @@ public class Hero {
             if (attacked.currentHP <= 0) {
                 attacked.makeGhost();
             }
-            attacked.wasAttacked = !attacked.wasAttacked;
+            attacked.wasAttacked = true;
+            checkIfBothAttacked(attacked);
             return;
         } else { //attacking ghost
             //handle spiritual items
@@ -449,15 +452,18 @@ public class Hero {
                             if (attacked.currentMP <= 0) {
                                 attacked.eliminated = true;
                             }
-                            attacked.wasAttacked = !attacked.wasAttacked;
+                            attacked.wasAttacked = true;
+                            checkIfBothAttacked(attacked);
                             return;
                         }
                     }
                 }
                 //if no spiritual items, the Attack phase is skipped
             }
-
         }
+    }
+    
+    private void checkIfBothAttacked(Hero attacked){
         if (this.wasAttacked && attacked.wasAttacked) {
             this.wasAttacked = false;
             attacked.wasAttacked = false;
