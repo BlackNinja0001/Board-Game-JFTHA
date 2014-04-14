@@ -65,13 +65,13 @@ public class Dice {
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
         //icon.getImage();
         label.setIcon(icon);
-/*
+
         //acts as a timer
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        */
+        
     }
 }

@@ -76,7 +76,8 @@ public class BoardGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rollDieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDieButtonActionPerformed
-        // TODO add your handling code here:
+        Dice die = new Dice(6);
+        die.rollGUI(dieLabel);
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     /**
