@@ -91,7 +91,9 @@ public class Intro extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        //this.setVisible(false);
+        this.setVisible(false);
+        BoardGUI bg = new BoardGUI();
+        bg.setVisible(true);
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     /**
