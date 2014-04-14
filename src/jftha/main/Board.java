@@ -77,6 +77,8 @@ public class Board {
                 System.out.printf("Space #%d: This space is a Blank Space%n", current.getSpaceID());
             } else if(current.getSpaceType() == SpaceEnum.Bank){
                 System.out.printf("Space #%d: This space is a Bank Space%n", current.getSpaceID());
+            } else if(current.getSpaceType() == SpaceEnum.Monster){
+                System.out.printf("Space #%d: This space is a Monster space%n", current.getSpaceID());
             }
             current = current.next;
         }
