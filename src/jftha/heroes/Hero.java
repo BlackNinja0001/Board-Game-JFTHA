@@ -458,7 +458,7 @@ public class Hero {
             }
 
         }
-        if (this.wasAttacked && attacked.wasAttacked) {
+        if (this.wasAttacked && attacked.wasAttacked) { //apply this to if statements that return
             this.wasAttacked = false;
             attacked.wasAttacked = false;
         }
