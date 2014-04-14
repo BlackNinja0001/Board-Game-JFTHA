@@ -4,7 +4,7 @@ import jftha.heroes.Hero;
 
 public class BlankSpace extends Space {
     public BlankSpace() {
-        this.setActivationType('l');
+        this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Blank);
     }
     @Override

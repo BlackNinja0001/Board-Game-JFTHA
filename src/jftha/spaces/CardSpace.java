@@ -7,7 +7,7 @@ import jftha.cards.*;
 public class CardSpace extends Space {
     
     public CardSpace() {
-        this.setActivationType('l');
+        this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Card);
     }
 

@@ -56,6 +56,10 @@ public class Player {
     public void setCustomName(String customName) {
         this.customName = customName;
     }
+    
+    public void setCurrentSpace(Space space){
+        this.currentSpace = space;
+    }
 
     public void setCharacter(Hero character) {
         this.character = character;
