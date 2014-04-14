@@ -6,7 +6,7 @@ import jftha.items.*;
 
 public class Chest extends Space {
     public Chest() {
-        this.setActivationType('1');
+        this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Chest);
     }
     

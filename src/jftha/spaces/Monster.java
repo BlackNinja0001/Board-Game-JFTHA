@@ -7,7 +7,7 @@ public class Monster extends Space{
     Hero monster;
     
     public Monster(){
-        this.setActivationType('1');
+        this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Monster);
         monster = new Hero();
         monster.setMaxHP(5);
