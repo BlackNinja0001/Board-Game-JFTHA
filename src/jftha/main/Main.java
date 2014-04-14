@@ -12,12 +12,12 @@ public class Main { //definitely need more error handling
     int turnNumber = 0;
 
     public static void main(String[] args) {
-        Player[] players = new Player[4];
         Scanner scan = new Scanner(System.in);
         // add conditions to naming/character selection process
         System.out.println("How many players?");
         int howmany = scan.nextInt(); // keep asking if given invalid number // handle error/exception for non-int
         Dice die = new Dice(howmany);
+        Player[] players = new Player[howmany];
 
         for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
             System.out.println("Player " + i + ", what is your name?");
@@ -100,10 +100,30 @@ public class Main { //definitely need more error handling
                     .append(" and is going ").append(order).append(".");
             System.out.println(sb.toString());
         }
+
+        //Spawn board
+        Board board = new Board();
+        board.generateBoard(25);
+        //Spawn players
+        for (int i = 0; i < howmany; i++){
+            players[i].setCurrentSpace(board.getStart());
+        }
+        //They take turns
+        Player orderedPlayers[] = new Player[howmany];
+        int count = 1;
+        for (int i = 0; i < howmany; i++){
+            orderedPlayers[players[i].getTurnOrder()-1] = players[i];
+        }
+        
+        Main main = new Main();
+        for (int i = 0; i < howmany; i++){
+            main.executeTurn(orderedPlayers[i]);
+        }
     }
 
-    /** Checks whether or not a player has won the game.
-     * 
+    /**
+     * Checks whether or not a player has won the game.
+     *
      * @param players The players in the game
      * @return The player that won the game
      */
@@ -142,7 +162,7 @@ public class Main { //definitely need more error handling
 
     /**
      * Checks if players[winningPlayer]'s winCount can be upped (all opponents
-     * dead). If so, then increment players[winningPlayer]'s winCount.  If not 
+     * dead). If so, then increment players[winningPlayer]'s winCount. If not
      * players[winningPlayer]'s winCount is reset to zero.
      *
      * @param players the players currently playing
@@ -202,8 +222,8 @@ public class Main { //definitely need more error handling
      *
      * @param players The players in the game
      * @param winningPlayer The player that is currently winning
-     * @return true if all opponents were killed as ghosts;
-     * false if at least one opponent is still in play
+     * @return true if all opponents were killed as ghosts; false if at least
+     * one opponent is still in play
      */
     public boolean allOpponentsNonExistent(Player[] players, int winningPlayer) {
         boolean valid = true;
@@ -231,7 +251,7 @@ public class Main { //definitely need more error handling
 
         //Dice Roll (factoring in Agility and Luck)
         Dice die = new Dice();
-        double maxAmount = (playerChar.getAgility()*0.8) + (playerChar.getLuck()*0.2); //may need tinkering
+        double maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2); //may need tinkering
         int intMaxAmount = (int) Math.round(maxAmount);
         die.setMaxAmount(intMaxAmount);
         int movement = die.roll();
@@ -240,28 +260,33 @@ public class Main { //definitely need more error handling
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
-        while(movement >= 0) {
+        while (movement >= 0) {
             Space current = performer.move(s);
-            if(current.getActivationType() == 'p') { //pass-by
-                    current.triggerEffect();     
-            } else if (movement == 0 && current.getActivationType() == 'l'){ //land-on
-                if(current.getSpaceType() == SpaceEnum.D2D) {
+            if (current.getActivationType() == 'p' && movement > 0) { //pass-by not landed on
+                current.triggerEffect();
+            } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
+                if (current.getSpaceType() == SpaceEnum.D2D) {
                     System.out.println("Select your victim: ");
                     String opponent = scan.next();
                     // Prompt for opponent and pass to triggerEffect
                     Player p = null;//opponent;
                     current.triggerEffect(p.getCharacter());
-                } else { 
-                current.triggerEffect();
+                } else {
+                    current.triggerEffect();
                 }
+            } else if ((movement > 0) && (current.getActivationType() == 'L')){ //land-on passed by
+                continue;
             } else {
                 throw new IllegalActivationTypeException();
             }
-        //Attack
-            if(current.getActivator() != null) {
-            //Then allow to attack
-                // prompt for response
-                playerChar.attackEnemy(current.getActivator());
+            //Attack
+            if (turnNumber > 2) {
+                if (current.getActivator() != null) {
+                    //Then allow to attack
+                    // prompt for response
+                    playerChar.attackEnemy(current.getActivator());
+
+                }
             }
             movement--;
         }

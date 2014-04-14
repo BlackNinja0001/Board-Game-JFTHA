@@ -6,14 +6,14 @@ public class BoardTest {
     Board board = new Board();
     
     public static void main(String[] args) {
-        BoardTest bt = new BoardTest();
+        BoardTest bt = new BoardTest(15);
         bt.board.iterateBoard();
         int num = bt.board.iterator();
         System.out.println(num);
     }
     
-    public BoardTest(){
-        for(int i = 0; i < 15; i++){
+    public BoardTest(int numSpaces){
+        for(int i = 0; i < numSpaces; i++){
             if(i == 2){
                 board.addSpace(SpaceEnum.Store);
             }else if(i == 4){
@@ -26,6 +26,8 @@ public class BoardTest {
                 board.addSpace(SpaceEnum.Health);
             } else if(i == 12) {
                 board.addSpace(SpaceEnum.Card);
+            } else if(i == 14) {
+                board.addSpace(SpaceEnum.Monster);
             }
             else{
                 board.addSpace(SpaceEnum.Blank);
