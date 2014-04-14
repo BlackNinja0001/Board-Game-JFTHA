@@ -42,7 +42,7 @@ public class MonsterTest {
     }
     
     @Test
-    public void testMonsterWinsAgainstWeakHero() {
+    public void testMonsterWinsAgainstWeakHero() { //Can still fail
         hero.setCurrentHP(1);
         current.setActivator(hero);
         current.triggerEffect();
