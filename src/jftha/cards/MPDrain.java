@@ -23,7 +23,7 @@ public class MPDrain extends Card{
         Hero hero = affected.getCharacter();
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
-        int mpdrain = rand.nextInt(10);
+        int mpdrain = rand.nextInt(10) + 1;
         this.setMessage("You were ambushed by an angry mob who thought you were a witch. They have sapped " + mpdrain + " MP from you.");
         hero.setCurrentMP(hero.getCurrentMP() - mpdrain);
         if((hero.isGhost() == true) && (hero.getCurrentMP() <= 0)){
@@ -42,7 +42,7 @@ public class MPDrain extends Card{
         Hero victim = affected2.getCharacter();
         Random rand = new Random(System.currentTimeMillis());
         //Needs to adjust for gameplay balancing
-        int mpdrain = rand.nextInt(10); // max for most is 30
+        int mpdrain = rand.nextInt(10) + 1; // max for most is 30
         this.setMessage(affected1.getCustomName() + " became a magic vampire for 10 seconds and drained " + mpdrain + " MP from you.");
         victim.setCurrentMP(victim.getCurrentMP() - mpdrain);
         if((victim.isGhost() == true) && (victim.getCurrentMP() <= 0)){
