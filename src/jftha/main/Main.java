@@ -129,11 +129,8 @@ public class Main { //definitely need more error handling
      */
     public Player winner(Player[] players) {
         Player ret = null;
-        int numPlayers = 0, winnerIndex;
-        for (Player p : players) {
-            numPlayers++;
-        }
-        if (numPlayers == 4) {
+        int winnerIndex;
+        if (players.length == 4) {
             // Have all opponents dead for at least a period of 5 turns (4 player only)
 
             for (int i = 0; i < players.length; i++) {
