@@ -33,13 +33,12 @@ public class Dice {
     
     public int rollGUI(JLabel label) {
         Random rand = new Random();
-        this.roll = rand.nextInt(6) + 1;
         int timesRolled = 8; //arbitrary
 
         //Simulate rolling of the die
         for (int i = 0; i < timesRolled; i++){
-            changeDieLabelGUI(label);
             this.roll = rand.nextInt(6) + 1;
+            changeDieLabelGUI(label);
         }
         return roll;
     }
