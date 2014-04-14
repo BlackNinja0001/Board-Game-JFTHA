@@ -71,7 +71,7 @@ public class StoreTest {
         String[] lines = out.toString().split("\n");
         System.setOut(original);
         System.out.println(lines[lines.length-1]);
-        assertEquals(lines[lines.length-1], "You chose not to buy anything\n");
+        assertTrue(lines[lines.length-1].contains("You chose not to buy anything"));
     }
     
     @Test
