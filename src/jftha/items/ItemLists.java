@@ -51,7 +51,6 @@ public class ItemLists {
         uncommonClasses.add(HiEther.class);
         uncommonClasses.add(HiPotion.class);
         uncommonClasses.add(ShiningArmor.class);
-        uncommonClasses.add(UncommonItem.class);
         rareClasses.add(Elixir.class);
         rareClasses.add(Goldskin.class);
         rareClasses.add(SwordOf1000Truth.class);
