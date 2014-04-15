@@ -1,19 +1,28 @@
 package jftha.items;
 
 import jftha.main.Player;
+import jftha.heroes.Hero;
 
 public class ArtifactPiece1 extends ArtifactPiece {
-    private static final ArtifactPiece1 INSTANCE = new ArtifactPiece1();
+    private static final ArtifactPiece INSTANCE = new ArtifactPiece1();
+    private Hero owner = null;
     
     protected ArtifactPiece1() {
-        this.setRarity(RarityEnum.rare);
+        this.setRarity(RarityEnum.rare);  
         this.setGoldCost(500);
     }
     
     public static ArtifactPiece1 getInstance() {
-        return INSTANCE;
+        return (ArtifactPiece1)INSTANCE;
     }
 
+    public void setOwner(Hero owner) {
+        this.owner = owner;
+    }
+    public Hero getOwner() {
+        return owner;
+    }
+    
     @Override
     public void triggerEffect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
