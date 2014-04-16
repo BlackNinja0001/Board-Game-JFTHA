@@ -9,6 +9,7 @@ public class Potion extends Item{
     public Potion(){
         this.setRarity(RarityEnum.common);
         this.setMessage("Potion: Recover 20HP");
+        this.setGoldCost(50);
     }
 
     @Override

@@ -9,6 +9,7 @@ public class Ether extends Item{
     public Ether(){
         this.setRarity(RarityEnum.common);
         this.setMessage("Ether: Recover 10MP");
+        this.setGoldCost(50);
     }
 
     @Override

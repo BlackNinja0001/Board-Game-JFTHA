@@ -5,6 +5,7 @@ import jftha.main.Player;
 public class Chasuble extends Item {
     public Chasuble() {
         this.setRarity(RarityEnum.common);
+        this.setGoldCost(50);
     }
 
     @Override

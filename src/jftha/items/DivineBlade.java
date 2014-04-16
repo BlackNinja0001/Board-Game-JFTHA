@@ -9,6 +9,7 @@ public class DivineBlade extends Weapon {
     public DivineBlade() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Divine Blade: +" + strength + " Strength");
+        this.setGoldCost(50);
     }
 
     @Override

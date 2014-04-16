@@ -5,6 +5,7 @@ import jftha.main.Player;
 public class FastHands extends Item {
     public FastHands() {
         this.setRarity(RarityEnum.common);
+        this.setGoldCost(50);
     }
 
     @Override

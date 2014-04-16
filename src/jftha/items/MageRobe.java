@@ -10,6 +10,7 @@ public class MageRobe extends Armor {
     public MageRobe() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Mage Robe: +" + magic + " Magic, " + "+" + mp + " MP");
+        this.setGoldCost(50);
     }
 
     @Override

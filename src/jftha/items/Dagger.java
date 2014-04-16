@@ -10,6 +10,7 @@ public class Dagger extends Weapon {
     public Dagger() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Dagger: +" + strength + " Strength, " + "+" + agility + " Agility");
+        this.setGoldCost(50);
     }
 
     @Override

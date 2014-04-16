@@ -9,6 +9,7 @@ public class Ax extends Weapon{
     public Ax() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Ax: +" + strength + " Strength");
+        this.setGoldCost(50);
     }
 
     @Override

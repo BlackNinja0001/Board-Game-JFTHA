@@ -9,6 +9,7 @@ public class SpellBook extends Weapon{
     public SpellBook() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Spell Book: +" + magic + " Magic");
+        this.setGoldCost(50);
     }
 
     @Override
