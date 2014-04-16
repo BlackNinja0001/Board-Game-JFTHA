@@ -46,27 +46,22 @@ public class Store extends Space{
         switch (select) {
             case 1:
                 h.buy(items.get(0));
-                h.setGold(h.getGold() - items.get(0).getGoldCost());
                 System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 2:
                 h.buy(items.get(1));
-                h.setGold(h.getGold() - items.get(1).getGoldCost());
                 System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 3:
                 h.buy(items.get(2));
-                h.setGold(h.getGold() - items.get(2).getGoldCost());
                 System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 4:
                 h.buy(items.get(3));
-                h.setGold(h.getGold() - items.get(3).getGoldCost());
                 System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 5:
                 h.buy(items.get(4));
-                h.setGold(h.getGold() - items.get(4).getGoldCost());
                 System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 6:
@@ -121,31 +116,26 @@ public class Store extends Space{
         switch (select) {
             case 1:
                 hero.buy(items.get(select-1));
-                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 2:
                 hero.buy(items.get(select-1));
-                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 3:
                 hero.buy(items.get(select-1));
-                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 4:
                 hero.buy(items.get(select-1));
-                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 5:
                 hero.buy(items.get(select-1));
-                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
                 break;
