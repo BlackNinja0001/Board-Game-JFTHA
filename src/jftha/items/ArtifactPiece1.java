@@ -1,26 +1,17 @@
 package jftha.items;
 
 import jftha.main.Player;
-import jftha.heroes.Hero;
 
 public class ArtifactPiece1 extends ArtifactPiece {
-    private static final ArtifactPiece INSTANCE = new ArtifactPiece1();
-    private Hero owner = null;
-    
+    private static final ArtifactPiece1 INSTANCE = new ArtifactPiece1();
+
     protected ArtifactPiece1() {
         this.setRarity(RarityEnum.rare);  
         this.setGoldCost(500);
     }
     
     public static ArtifactPiece1 getInstance() {
-        return (ArtifactPiece1)INSTANCE;
-    }
-
-    public void setOwner(Hero owner) {
-        this.owner = owner;
-    }
-    public Hero getOwner() {
-        return owner;
+        return INSTANCE;
     }
     
     @Override
