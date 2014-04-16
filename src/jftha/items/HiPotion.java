@@ -9,6 +9,7 @@ public class HiPotion extends Item{
     public HiPotion(){
         this.setRarity(RarityEnum.uncommon);
         this.setMessage("Hi-Potion: Recover 50HP");
+        this.setGoldCost(50);
     }
 
     @Override

@@ -7,6 +7,7 @@ public class Elixir extends Item{
     public Elixir(){
         this.setRarity(RarityEnum.rare);
         this.setMessage("Elixir: fully Recover HP/MP");
+        this.setGoldCost(50);
     }
 
     @Override

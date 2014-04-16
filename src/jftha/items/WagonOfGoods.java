@@ -6,6 +6,7 @@ public class WagonOfGoods extends Item {
     
     public WagonOfGoods() {
         this.setRarity(RarityEnum.common);
+        this.setGoldCost(50);
     }
 
     @Override

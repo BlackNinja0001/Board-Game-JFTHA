@@ -10,6 +10,7 @@ public class ShiningArmor extends Armor {
     public ShiningArmor() {
         this.setRarity(RarityEnum.uncommon);
         this.setMessage("Shining Armor: +" + hp + " HP, " + "+" + def + " Defense");
+        this.setGoldCost(50);
     }
 
     @Override

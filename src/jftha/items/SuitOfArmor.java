@@ -9,6 +9,7 @@ public class SuitOfArmor extends Armor{
     public SuitOfArmor(){
         this.setRarity(RarityEnum.common);
         this.setMessage("Suit of Armor: +" + def + " Defense");
+        this.setGoldCost(50);
     }
 
     @Override

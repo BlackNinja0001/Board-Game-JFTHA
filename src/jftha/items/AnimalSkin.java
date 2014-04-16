@@ -9,6 +9,7 @@ public class AnimalSkin extends Armor {
     public AnimalSkin() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Animal Skin: +" + def + " Defense");
+        this.setGoldCost(50);
     }
 
 

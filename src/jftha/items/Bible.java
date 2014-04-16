@@ -6,6 +6,7 @@ public class Bible extends Item {
     public Bible() {
         this.setSpiritual(true);
         this.setRarity(RarityEnum.common);
+        this.setGoldCost(50);
     }
 
     @Override

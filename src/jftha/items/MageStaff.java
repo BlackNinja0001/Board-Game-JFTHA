@@ -10,6 +10,7 @@ public class MageStaff extends Weapon{
     public MageStaff() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Mage Staff: +" + magic + " Magic, " + "+" + mp + " MP");
+        this.setGoldCost(50);
     }
 
     @Override

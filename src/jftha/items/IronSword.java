@@ -10,6 +10,7 @@ public class IronSword extends Weapon {
     public IronSword() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Iron Sword: +" + strength + " Strength");
+        this.setGoldCost(50);
     }
 
     @Override

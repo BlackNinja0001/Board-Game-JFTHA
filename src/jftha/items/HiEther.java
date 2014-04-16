@@ -9,6 +9,7 @@ public class HiEther extends Item{
     public HiEther(){
         this.setRarity(RarityEnum.uncommon);
         this.setMessage("Hi-Ether: Recover 25MP");
+        this.setGoldCost(50);
     }
 
     @Override
