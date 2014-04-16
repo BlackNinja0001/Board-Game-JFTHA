@@ -256,11 +256,13 @@ public class Main { //definitely need more error handling
         int movement = die.roll();
         //move the player
         // choose direction
+        System.out.println("It's now " + performer.getCustomName() + "'s turn.");
         System.out.println("You rolled a " + movement);
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
         while (movement >= 0) {
+            movement--;
             Space current = performer.move(s);
             if (current.getActivationType() == 'p' && movement > 0) { //pass-by not landed on
                 current.triggerEffect();
@@ -288,7 +290,6 @@ public class Main { //definitely need more error handling
 
                 }
             }
-            movement--;
         }
         //Item 2
         itemPhase(performer);
