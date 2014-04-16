@@ -108,19 +108,23 @@ public class Main { //definitely need more error handling
         board.generateBoard(25);
         board.iterateBoard();
         //Spawn players
-        for (int i = 0; i < howmany; i++){
+        for (int i = 0; i < howmany; i++) {
             players[i].setCurrentSpace(board.getStart());
         }
         //They take turns
         Player orderedPlayers[] = new Player[howmany];
         int count = 1;
-        for (int i = 0; i < howmany; i++){
-            orderedPlayers[players[i].getTurnOrder()-1] = players[i];
+        for (int i = 0; i < howmany; i++) {
+            orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
         }
-        
+
         Main main = new Main();
-        for (int i = 0; i < howmany; i++){
-            main.executeTurn(orderedPlayers[i]);
+        while (main.anyoneWon(orderedPlayers) == -1) {
+            int i;
+            for (i = 0; i < howmany; i++) {
+                main.executeTurn(orderedPlayers[i]);
+            }
+            i = 0;
         }
     }
 
@@ -277,7 +281,7 @@ public class Main { //definitely need more error handling
                 } else {
                     current.triggerEffect();
                 }
-            } else if ((movement > 0) && (current.getActivationType() == 'L')){ //land-on passed by
+            } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
             } else {
                 System.out.println("Error");
@@ -316,7 +320,7 @@ public class Main { //definitely need more error handling
                 if (!(myItems).isEmpty()) {
                     for (Item item : myItems) {
                         itemCount++;
-                        System.out.println(itemCount + ". " + item.getName());
+                        System.out.println(itemCount + ". " + item.getMessage());
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= myItems.size())) {
