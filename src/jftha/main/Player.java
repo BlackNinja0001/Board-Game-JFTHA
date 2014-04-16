@@ -90,10 +90,12 @@ public class Player {
             if (s.equalsIgnoreCase("f")) { // move forward
                 this.currentSpace = this.currentSpace.next;
                 currentSpace.setActivator(this.character);
+                System.out.println("Current Space ID = " + this.currentSpace.getSpaceID());
                 return this.currentSpace;
             } else if (s.equalsIgnoreCase("b")) { // move backward
                 this.currentSpace = this.currentSpace.prev;
                 currentSpace.setActivator(this.character);
+                System.out.println("Current Space ID = " + this.currentSpace.getSpaceID());
                 return this.currentSpace;
             } else {
                 return null;
