@@ -32,13 +32,28 @@ public class ItemFactory {
                 break;
             case rare:
                 i = itemList.getRareSize();
-                num = rand.nextInt(i);
-                clazz = itemList.getRareClass(num);
-                try {
-                    item = (Item)clazz.newInstance();
-                } catch(IllegalAccessException | InstantiationException ex) {
+                
+                while (item == null) {
+                    num = rand.nextInt(i);
+                    clazz = itemList.getRareClass(num);
+                
+                    if(clazz.getSuperclass().equals(ArtifactPiece.class)){
+                       try {
+                            ArtifactPiece piece = (ArtifactPiece)clazz.newInstance();
+                            if(piece.getOwner() == null) {
+                                item = piece;
+                            }
+                        } catch(IllegalAccessException | InstantiationException ex) {
+                        }
+                       
+                    } else {
+                        try {
+                            item = (Item)clazz.newInstance();
+                        } catch(IllegalAccessException | InstantiationException ex) {
+                        }
+                    } // end else
+                } //end while
                     
-                }
                 break;
             default:
                 throw new IllegalArgumentException("Oops. There is no such type of item.");
