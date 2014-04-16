@@ -46,11 +46,11 @@ public class ItemFactoryTest {
     public void testAllArtifactPiecesTaken() {
         h1 = new Barbarian();
         h2 = new Ninja();
-        p1 = new ArtifactPiece1();
-        p2 = new ArtifactPiece2();
-        p3 = new ArtifactPiece3();
-        p4 = new ArtifactPiece4();
-        p5 = new ArtifactPiece5();
+        p1 = ArtifactPiece1.getInstance();
+        p2 = ArtifactPiece2.getInstance();
+        p3 = ArtifactPiece3.getInstance();
+        p4 = ArtifactPiece4.getInstance();
+        p5 = ArtifactPiece5.getInstance();
         h1.addArtifact(p1);
         h1.addArtifact(p2);
         h2.addArtifact(p3);
@@ -61,6 +61,9 @@ public class ItemFactoryTest {
         for (int i = 0; i < 100; i++) {
             result = instance.buildItem(RarityEnum.rare);
             assertNotNull(result);
+            if (ArtifactPiece.class == result.getClass().getSuperclass()) {
+                System.err.println("oops");
+            }
             assertNotSame(ArtifactPiece.class, result.getClass().getSuperclass());
         }
         
