@@ -269,7 +269,7 @@ public class Main { //definitely need more error handling
         while (movement > 0) {
             movement--;
             Space current = performer.move(s);
-            if (current.getActivationType() == 'p' && movement > 0) { //pass-by not landed on
+            if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 current.triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
@@ -324,14 +324,18 @@ public class Main { //definitely need more error handling
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= myItems.size())) {
-                        System.out.println("Which item would you like to use (0 for cancel)");
+                        System.out.println("Which item would you like to use/equip (0 for cancel)");
                         choice = s.nextInt();
 
                         if (choice == 0) {
                             return;
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
-                            //use Item and choose who to use it on
+                            if (Equippable.class.isAssignableFrom(toBeUsed.getClass())){
+                                
+                            } else if (Item.class.isAssignableFrom(toBeUsed.getClass())){
+                                
+                            }
                         } else {
                             System.out.println("Invalid Choice.");
                         }
