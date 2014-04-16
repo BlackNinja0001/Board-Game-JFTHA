@@ -23,6 +23,8 @@ public class Main { //definitely need more error handling
             System.out.println("Player " + i + ", what is your name?");
             String name = scan.next();
             System.out.println("Player " + i + ", which character do you pick?"); // handle error/exception for non-int
+            System.out.println("Input 1 for Barbarian\nInput 2 for Ninja\nInput 3 for Mage\nInput 4 for Knight\nInput 5 for MartialArtist\n"
+                    + "Input 6 for Thief\nInput 7 for Priest\nInput 8 for Merchant\nInput 9 for Paladin");
             int heroNum = scan.nextInt();
             Hero playerHero = null;
             switch (heroNum) {
@@ -254,6 +256,7 @@ public class Main { //definitely need more error handling
         int movement = die.roll();
         //move the player
         // choose direction
+        System.out.println("You rolled a " + movement);
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
