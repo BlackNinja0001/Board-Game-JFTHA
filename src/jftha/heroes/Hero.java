@@ -87,6 +87,7 @@ public class Hero {
         this.tempStatChanges = new ArrayList<>();
         this.hasPet = false;
         pet = new SummonPet();
+        this.setGold(500);
     }
 
     //Setter methods
