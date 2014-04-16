@@ -118,6 +118,8 @@ public class Board {
                 addSpace(SpaceEnum.Card);
             } else if (i == 14) {
                 addSpace(SpaceEnum.Monster);
+            } else if (i == 16) {
+                addSpace(SpaceEnum.Bank);
             } else {
                 addSpace(SpaceEnum.Blank);
             }

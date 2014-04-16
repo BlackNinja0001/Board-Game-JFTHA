@@ -6,7 +6,7 @@ public class Bank extends Space{
     int bankTax = 0;
     
     public Bank(){
-        this.setActivationType('l');
+        this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Bank);
     }
     

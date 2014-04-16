@@ -106,6 +106,7 @@ public class Main { //definitely need more error handling
         //Spawn board
         Board board = new Board();
         board.generateBoard(25);
+        board.iterateBoard();
         //Spawn players
         for (int i = 0; i < howmany; i++){
             players[i].setCurrentSpace(board.getStart());
@@ -256,11 +257,13 @@ public class Main { //definitely need more error handling
         int movement = die.roll();
         //move the player
         // choose direction
+        System.out.println("It's now " + performer.getCustomName() + "'s turn.");
         System.out.println("You rolled a " + movement);
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
-        while (movement >= 0) {
+        while (movement > 0) {
+            movement--;
             Space current = performer.move(s);
             if (current.getActivationType() == 'p' && movement > 0) { //pass-by not landed on
                 current.triggerEffect();
@@ -277,6 +280,7 @@ public class Main { //definitely need more error handling
             } else if ((movement > 0) && (current.getActivationType() == 'L')){ //land-on passed by
                 continue;
             } else {
+                System.out.println("Error");
                 throw new IllegalActivationTypeException();
             }
             //Attack
@@ -288,7 +292,6 @@ public class Main { //definitely need more error handling
 
                 }
             }
-            movement--;
         }
         //Item 2
         itemPhase(performer);
