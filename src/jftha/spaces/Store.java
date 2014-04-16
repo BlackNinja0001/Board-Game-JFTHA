@@ -82,6 +82,7 @@ public class Store extends Space{
     @Override
     public void triggerEffect() {
         Hero hero = this.getActivator();
+        System.out.println("You have " + hero.getGold() + " gold");
         
         Random rand = new Random(System.currentTimeMillis());
         int luck;
@@ -111,7 +112,7 @@ public class Store extends Space{
         
         for (int j = 0; j < 5; j++) {
             String item = items.get(j).toString();
-            System.out.println("Input " + (j+1) + " to buy " + item);
+            System.out.println("Input " + (j+1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
         }
         
         System.out.println("Input 6 to choose not to buy");
@@ -120,23 +121,33 @@ public class Store extends Space{
         switch (select) {
             case 1:
                 hero.buy(items.get(select-1));
+                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 2:
                 hero.buy(items.get(select-1));
+                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 3:
                 hero.buy(items.get(select-1));
+                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 4:
                 hero.buy(items.get(select-1));
+                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 5:
                 hero.buy(items.get(select-1));
+                hero.setGold(hero.getGold() - items.get(select-1).getGoldCost());
                 System.out.println("You bought a " + items.get(select-1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 6:
                 System.out.println("You chose not to buy anything");
