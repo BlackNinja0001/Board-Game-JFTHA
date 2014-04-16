@@ -481,15 +481,19 @@ public class Hero {
      */
     public boolean buy(Buyable buy) {
         int currentGold = this.getGold();
+        boolean buyVal = false;
         //If character has the gold
         if (this.getGold() >= buy.getGoldCost()) {
-            setGold(currentGold - buy.getGoldCost());
             // buy is an Item
-            if (buy.getClass().getSuperclass().equals(Item.class)) {
-                addItem((Item) buy);
+            if (Item.class.isAssignableFrom(buy.getClass())) {
+                
+                buyVal = addItem((Item) buy);
             } // buy is a Spell 
-            else if (buy.getClass().getSuperclass().equals(Spell.class)) {
-                addSpell((Spell) buy);
+            else if (Spell.class.isAssignableFrom(buy.getClass())) {
+                buyVal = addSpell((Spell) buy);
+            }
+            if(buyVal) {
+                setGold(currentGold - buy.getGoldCost());
             }
             return true;
         }
