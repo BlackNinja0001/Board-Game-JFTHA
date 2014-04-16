@@ -14,7 +14,7 @@ public class Store extends Space{
     
     public void buy(){
         Hero h = getActivator();
-        
+        System.out.println("You have " + h.getGold() + " gold");
         Random rand = new Random(System.currentTimeMillis());
         int luck;
         ItemFactory i = new ItemFactory();
@@ -24,15 +24,15 @@ public class Store extends Space{
             if(luck > 90){
                 items.add(i.buildItem(RarityEnum.rare));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to buy " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
             }else if(luck > 75){
                 items.add(i.buildItem(RarityEnum.uncommon));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to buy " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
             }else{
                 items.add(i.buildItem(RarityEnum.common));
                 String item = items.get(j).toString();
-                System.out.println("Input " + (j+1) + "to buy " + item);
+                System.out.println("Input " + (j+1) + "to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
             }
         }
         System.out.println("Input 6 to choose not to buy");
@@ -46,18 +46,28 @@ public class Store extends Space{
         switch (select) {
             case 1:
                 h.buy(items.get(0));
+                h.setGold(h.getGold() - items.get(0).getGoldCost());
+                System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 2:
                 h.buy(items.get(1));
+                h.setGold(h.getGold() - items.get(1).getGoldCost());
+                System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 3:
                 h.buy(items.get(2));
+                h.setGold(h.getGold() - items.get(2).getGoldCost());
+                System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 4:
                 h.buy(items.get(3));
+                h.setGold(h.getGold() - items.get(3).getGoldCost());
+                System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 5:
                 h.buy(items.get(4));
+                h.setGold(h.getGold() - items.get(4).getGoldCost());
+                System.out.println("You have " + h.getGold() + " gold left");
                 break;
             case 6:
                 System.out.println("You chose not to buy anything");
