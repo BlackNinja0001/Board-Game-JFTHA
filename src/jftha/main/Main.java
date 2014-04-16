@@ -10,6 +10,7 @@ import jftha.spaces.*;
 public class Main { //definitely need more error handling
 
     int turnNumber = 0;
+    Player orderedPlayers[];
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -111,18 +112,18 @@ public class Main { //definitely need more error handling
         for (int i = 0; i < howmany; i++) {
             players[i].setCurrentSpace(board.getStart());
         }
+        Main main = new Main();
         //They take turns
-        Player orderedPlayers[] = new Player[howmany];
+        main.orderedPlayers = new Player[howmany];
         int count = 1;
         for (int i = 0; i < howmany; i++) {
-            orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
+            main.orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
         }
 
-        Main main = new Main();
-        while (main.anyoneWon(orderedPlayers) == -1) {
+        while (main.anyoneWon(main.orderedPlayers) == -1) {
             int i;
             for (i = 0; i < howmany; i++) {
-                main.executeTurn(orderedPlayers[i]);
+                main.executeTurn(main.orderedPlayers[i]);
             }
             i = 0;
         }
@@ -273,8 +274,17 @@ public class Main { //definitely need more error handling
                 current.triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
-                    System.out.println("Select your victim: ");
+                    System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
                     String opponent = scan.next();
+                    for (int i = 0; i < orderedPlayers.length; i++) {
+                        Player potVictim = orderedPlayers[i];
+                        if (opponent.equalsIgnoreCase(potVictim.getCustomName())) {
+                            current.triggerEffect(potVictim.getCharacter());
+                        } else {
+                            System.out.println("No such player.");
+                            i = 0;
+                        }
+                    }
                     // Prompt for opponent and pass to triggerEffect
                     Player p = null;//opponent;
                     current.triggerEffect(p.getCharacter());
@@ -331,10 +341,8 @@ public class Main { //definitely need more error handling
                             return;
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
-                            if (Equippable.class.isAssignableFrom(toBeUsed.getClass())){
-                                
-                            } else if (Item.class.isAssignableFrom(toBeUsed.getClass())){
-                                
+                            if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
+                            } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
                             }
                         } else {
                             System.out.println("Invalid Choice.");
