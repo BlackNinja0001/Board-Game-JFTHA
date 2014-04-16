@@ -5,7 +5,7 @@ import jftha.main.Player;
 public class ArtifactPiece1 extends ArtifactPiece {
     private static final ArtifactPiece1 INSTANCE = new ArtifactPiece1();
 
-    protected ArtifactPiece1() {
+    private ArtifactPiece1() {
         this.setRarity(RarityEnum.rare);  
         this.setGoldCost(500);
     }
