@@ -538,8 +538,8 @@ public class Hero {
             if (i == storage_space + 1) {
                 return false;
             } else {
-                items.remove(i);
-                items.add(i, item);
+                items.remove(i-1);
+                items.add(i-1, item);
                 return true;
             }
         }
@@ -579,8 +579,8 @@ public class Hero {
             if (i == spell_slots + 1) {
                 return false;
             } else {
-                spells.remove(i);
-                spells.add(i, spell);
+                spells.remove(i-1);
+                spells.add(i-1, spell);
                 return true;
             }
         }
