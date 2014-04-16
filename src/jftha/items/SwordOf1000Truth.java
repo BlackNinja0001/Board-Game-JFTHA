@@ -9,7 +9,7 @@ public class SwordOf1000Truth extends Weapon{
     
     public SwordOf1000Truth(){
         this.setRarity(RarityEnum.rare);
-        this.setMessage("Sword of 1000 Truths: -" + strength + " Magic, " + "-" + mp + " MP\n" + "Effect: Reduce opponent MP to zero");
+        this.setMessage("Sword of 1000 Truths: " + strength + " Strength, " + mp + " MP\n" + "Effect: Reduce opponent MP to zero");
         this.setGoldCost(100);
     }
 
