@@ -34,7 +34,6 @@ public class ItemFactoryTest {
     public void tearDown() {
     }
 
-    @Ignore
     @Test(timeout = 50)
     public void testBuildRareItemNotNull() {
         ItemFactory instance = new ItemFactory();
