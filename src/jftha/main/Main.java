@@ -106,6 +106,7 @@ public class Main { //definitely need more error handling
         //Spawn board
         Board board = new Board();
         board.generateBoard(25);
+        board.iterateBoard();
         //Spawn players
         for (int i = 0; i < howmany; i++){
             players[i].setCurrentSpace(board.getStart());
@@ -261,7 +262,7 @@ public class Main { //definitely need more error handling
         System.out.println("Move forward(f) or backward(b): ");
         String s = scan.next();
 
-        while (movement >= 0) {
+        while (movement > 0) {
             movement--;
             Space current = performer.move(s);
             if (current.getActivationType() == 'p' && movement > 0) { //pass-by not landed on
@@ -279,6 +280,7 @@ public class Main { //definitely need more error handling
             } else if ((movement > 0) && (current.getActivationType() == 'L')){ //land-on passed by
                 continue;
             } else {
+                System.out.println("Error");
                 throw new IllegalActivationTypeException();
             }
             //Attack
