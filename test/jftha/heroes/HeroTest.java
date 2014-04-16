@@ -148,13 +148,32 @@ public class HeroTest {
      * Test to ensure that spell_slots is the maximum amount of spells
      */
     @Test
-    public void testSpellStorageLimit() {
+    public void testSpellStorageLimitNoReplacement() {
         assertEquals(2, hero.getSpellSlots());
+        hero.addSpell(new Shield());
         hero.addSpell(new Heal());
-        hero.addSpell(new Fireball());
-        assertFalse(hero.addSpell(new Shield()));
+
+        String str = "3";
+        in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        System.setOut(new PrintStream(out));
+        boolean res = hero.addSpell(new Fireball());
+        assertFalse(res);
     }
 
+    @Test
+    public void testSpellLimitReplacement() {
+        assertEquals(2, hero.getSpellSlots());
+        hero.addSpell(new Fireball());
+        hero.addSpell(new SummonPet());
+        String str = "1";
+        in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        System.setOut(new PrintStream(out));
+        boolean res = hero.addSpell(new HPMPDrain());
+        assertTrue(res);
+        assertEquals(HPMPDrain.class, hero.getSpells().get(1).getClass());
+    }
     /**
      * Test to ensure that storage_space is the maximum amount of items
      */

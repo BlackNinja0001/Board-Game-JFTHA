@@ -70,9 +70,7 @@ public class StoreTest {
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
-        //System.out.println(lines[lines.length-1]);
-        //assertEquals(lines[lines.length-1], "You chose not to buy anything\n");
-        assertTrue(lines[lines.length-1].startsWith("You chose not to buy anything"));
+        assertTrue(lines[lines.length-1].contains("You chose not to buy anything"));
     }
     
     @Test

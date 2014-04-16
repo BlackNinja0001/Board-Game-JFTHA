@@ -1,5 +1,7 @@
 package jftha.items;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 public class ItemFactory {
@@ -32,13 +34,29 @@ public class ItemFactory {
                 break;
             case rare:
                 i = itemList.getRareSize();
-                num = rand.nextInt(i);
-                clazz = itemList.getRareClass(num);
-                try {
-                    item = (Item)clazz.newInstance();
-                } catch(IllegalAccessException | InstantiationException ex) {
+                
+                while (item == null) {
+                    num = rand.nextInt(i);
+                    clazz = itemList.getRareClass(num);
+                
+                    if(clazz.getSuperclass().equals(ArtifactPiece.class)){
+                       try {
+                           Method getInstance = clazz.getDeclaredMethod("getInstance");
+                            ArtifactPiece piece = (ArtifactPiece)getInstance.invoke(null);
+                            if(piece.getOwner() == null) {
+                                item = piece;
+                            }
+                        } catch(NoSuchMethodException |IllegalAccessException | InvocationTargetException  ex) {
+                        }
+                       
+                    } else {
+                        try {
+                            item = (Item)clazz.newInstance();
+                        } catch(IllegalAccessException | InstantiationException ex) {
+                        }
+                    } // end else
+                } //end while
                     
-                }
                 break;
             default:
                 throw new IllegalArgumentException("Oops. There is no such type of item.");
