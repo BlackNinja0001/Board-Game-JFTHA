@@ -8,7 +8,7 @@ public class Cloak extends Armor {
     
     public Cloak() {
         this.setRarity(RarityEnum.common);
-        this.setMessage("Dagger: +" + agility + " Agility");
+        this.setMessage("Cloak: +" + agility + " Agility");
         this.setGoldCost(50);
     }
 
