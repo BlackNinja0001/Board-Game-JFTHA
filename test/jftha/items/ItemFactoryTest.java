@@ -63,7 +63,6 @@ public class ItemFactoryTest {
             assertNotNull(result);
             assertNotSame(ArtifactPiece.class, result.getClass().getSuperclass());
         }
-        System.out.println(result.getClass().getSimpleName());
         
     }
 }
