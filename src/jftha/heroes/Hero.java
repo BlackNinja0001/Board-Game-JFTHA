@@ -451,6 +451,7 @@ public class Hero {
                             attacked.currentMP -= intDamage;
                             if (attacked.currentMP <= 0) {
                                 attacked.eliminated = true;
+         // Attacker gets to take all their stuff
                             }
                             attacked.wasAttacked = true;
                             checkIfBothAttacked(attacked);
@@ -506,6 +507,10 @@ public class Hero {
      * @return true if item was added
      */
     public boolean addItem(Item item) {
+        if(item.getClass().getSuperclass().equals(ArtifactPiece.class)) {
+            return addArtifact((ArtifactPiece)item);
+        }
+        
         for (Item i : items) {
             if (i.getClass().equals(item.getClass())) {
                 return false;
@@ -540,6 +545,9 @@ public class Hero {
      * Adds a spell to character's spells. Will only add spell if: <\t>1) The
      * character does not already know this spell <\t>2) The character has a
      * spell slot for the spell
+     * 
+     * If character's spell book is full they have the option to lose a spell in
+     * exchange for another.
      *
      * @param spell Spell to be added to the character
      * @return true if spell was added
@@ -554,8 +562,38 @@ public class Hero {
             if (spells.add(spell)) {
                 return true;
             }
+        } else {
+            System.out.print("No spell slots left. You have: ");
+            int i;
+            for (i = 0; i < spells.size(); i++) {
+                System.out.printf("%n%d.  %s", i + 1, spells.get(i).getClass().getSimpleName());
+            }
+            System.out.printf("%nWhich do you want to lose. (%d for none)%n", spell_slots + 1);
+            Scanner scan = new Scanner(System.in);
+            i = scan.nextInt();
+            if (i == spell_slots + 1) {
+                return false;
+            } else {
+                spells.remove(i);
+                spells.add(i, spell);
+                return true;
+            }
         }
         return false;
+    }
+    /**Adds a artifact piece to hero's list.
+     * 
+     * @param part Artifact Piece to be added
+     * @return true if piece was added
+     */
+    public boolean addArtifact(ArtifactPiece part) {
+        for (ArtifactPiece a: artifactPieces) {
+            if(a.getClass().equals(part.getClass())) {
+                return false;
+            }
+        }
+        part.setOwner(this);
+        return artifactPieces.add(part);
     }
 
     /**
