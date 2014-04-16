@@ -1,5 +1,7 @@
 package jftha.items;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 public class ItemFactory {
@@ -39,11 +41,12 @@ public class ItemFactory {
                 
                     if(clazz.getSuperclass().equals(ArtifactPiece.class)){
                        try {
-                            ArtifactPiece piece = (ArtifactPiece)clazz.newInstance();
+                           Method getInstance = clazz.getDeclaredMethod("getInstance");
+                            ArtifactPiece piece = (ArtifactPiece)getInstance.invoke(null);
                             if(piece.getOwner() == null) {
                                 item = piece;
                             }
-                        } catch(IllegalAccessException | InstantiationException ex) {
+                        } catch(NoSuchMethodException |IllegalAccessException | InvocationTargetException  ex) {
                         }
                        
                     } else {
