@@ -531,7 +531,7 @@ public class Hero {
             for (i = 0; i < items.size(); i++) {
                 System.out.printf("%n%d.  %s", i + 1, items.get(i).getClass().getSimpleName());
             }
-            System.out.printf("%nWhich do you want to lose. (%d for none)%n", storage_space + 1);
+            System.out.printf("%nWhich do you want to lose? (%d for none)%n", storage_space + 1);
             Scanner scan = new Scanner(System.in);
             i = scan.nextInt();
             if (i == storage_space + 1) {
@@ -572,7 +572,7 @@ public class Hero {
             for (i = 0; i < spells.size(); i++) {
                 System.out.printf("%n%d.  %s", i + 1, spells.get(i).getClass().getSimpleName());
             }
-            System.out.printf("%nWhich do you want to lose. (%d for none)%n", spell_slots + 1);
+            System.out.printf("%nWhich do you want to lose? (%d for none)%n", spell_slots + 1);
             Scanner scan = new Scanner(System.in);
             i = scan.nextInt();
             if (i == spell_slots + 1) {
