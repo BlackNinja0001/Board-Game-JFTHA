@@ -40,13 +40,4 @@ public class MonsterTest {
         current.triggerEffect();
         assertEquals((initGold + 10) , hero.getGold());
     }
-    
-    @Test
-    public void testMonsterWinsAgainstWeakHero() { //Can still fail
-        hero.setCurrentHP(1);
-        hero.setDefense(4);
-        current.setActivator(hero);
-        current.triggerEffect();
-        assertTrue(hero.isGhost());
-    }
 }
