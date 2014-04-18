@@ -129,9 +129,8 @@ public class Board {
             } else {
                 addSpace(SpaceEnum.Blank);
             }
-            * */
         }
-        */
+    */
     }
 /*
     public void placePlayers(Player players[], int numSpaces) {
