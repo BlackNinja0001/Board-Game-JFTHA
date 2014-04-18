@@ -172,7 +172,7 @@ public class HeroTest {
         System.setOut(new PrintStream(out));
         boolean res = hero.addSpell(new HPMPDrain());
         assertTrue(res);
-        assertEquals(HPMPDrain.class, hero.getSpells().get(1).getClass());
+        assertEquals(HPMPDrain.class, hero.getSpells().get(0).getClass());
     }
     /**
      * Test to ensure that storage_space is the maximum amount of items
@@ -207,7 +207,7 @@ public class HeroTest {
         System.setOut(new PrintStream(out));
         boolean res = hero.addItem(new SpellBook());
         assertTrue(res);
-        assertEquals(SpellBook.class, hero.getItems().get(3).getClass());
+        assertEquals(SpellBook.class, hero.getItems().get(2).getClass());
     }
     
     @Test
@@ -253,11 +253,10 @@ public class HeroTest {
     
     @Test
     public void testBuy() {
-        assertEquals(0, hero.getGold());
-        assertFalse(hero.buy(new Fireball()));
-        hero.setGold(50);
-        assertTrue(hero.buy(new Fireball()));
-        assertEquals(40, hero.getGold());
+        assertEquals(500, hero.getGold());
+        Spell fireball = new Fireball();
+        assertTrue(hero.buy(fireball));
+        assertEquals(fireball.getGoldCost(), 500 - hero.getGold());
         List<Spell> spells = hero.getSpells();
         boolean thereis = false;
         for(Spell s : spells) {
