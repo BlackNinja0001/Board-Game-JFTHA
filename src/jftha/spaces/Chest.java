@@ -19,7 +19,7 @@ public class Chest extends Space {
 
 
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
-    public int giveItem() {
+    protected int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
         Hero h = getActivator();
         int luck = -1;
