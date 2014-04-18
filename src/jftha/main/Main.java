@@ -290,11 +290,16 @@ public class Main { //definitely need more error handling
                     String opponent = scan.next();
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
-                        if (opponent.equalsIgnoreCase(potVictim.getCustomName())) {
-                            current.triggerEffect(potVictim);
-                        } else {
+                        if (opponent.equalsIgnoreCase(performer.getCustomName())){
+                            continue;
+                        }
+                        if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
                             System.out.println("No such player.");
                             i = 0;
+                            System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
+                            opponent = scan.next();
+                        } else {
+                            current.triggerEffect(potVictim.getCharacter());
                         }
                     }
                 } else {
