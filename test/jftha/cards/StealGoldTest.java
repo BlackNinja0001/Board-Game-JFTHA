@@ -47,14 +47,16 @@ public class StealGoldTest {
     public void testStealGold() {
         Hero thief = player1.getCharacter();
         Hero victim = player2.getCharacter();
-        victim.setGold(100);
+        int thiefInitGold = thief.getGold();
+        int victimInitGold = victim.getGold();
         card.triggerEffect(player1, player2);
-        int diff = thief.getGold();
+        int diff = thief.getGold() - thiefInitGold;
         String msg = card.getMessage();
         msg = msg.replace("Victim has just invested in Thief's ponzi scheme. As a result, Thief steals ", "");
         msg = msg.replace(" from Victim", "");
-        assertEquals(Integer.parseInt(msg), thief.getGold());
-        assertEquals(diff, 100 - victim.getGold());
+        assertEquals(diff, Integer.parseInt(msg));
+        assertEquals(thiefInitGold + Integer.parseInt(msg), thief.getGold());
+        assertEquals(Integer.parseInt(msg), victimInitGold - victim.getGold());
     }
     
     @Test
