@@ -57,8 +57,8 @@ public class Store extends Space{
         switch (select) {
             case 1:
                 hero.buy(items.get(select-1));
-                System.out.println("You bought a " + items.get(select-1).toString());
-                System.out.println("You have " + hero.getGold() + " gold left");
+                        System.out.println("You bought a " + items.get(select-1).toString());
+                        System.out.println("You have " + hero.getGold() + " gold left");
                 break;
             case 2:
                 hero.buy(items.get(select-1));
