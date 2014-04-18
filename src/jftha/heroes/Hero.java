@@ -79,7 +79,7 @@ public class Hero {
         this.spells = new ArrayList<>(this.spell_slots);
         this.artifactPieces = new ArrayList<>(5);
         this.isGhost = false;
-        this.gold = 0;
+        this.gold = 500;
         this.wasAttacked = false;
         this.eliminated = false;
         this.className = null;
@@ -87,7 +87,6 @@ public class Hero {
         this.tempStatChanges = new ArrayList<>();
         this.hasPet = false;
         pet = new SummonPet();
-        this.setGold(500);
     }
 
     //Setter methods
