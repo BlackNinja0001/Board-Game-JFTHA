@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 import jftha.heroes.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -40,110 +41,127 @@ public class MainTest {
 
     @Test
     public void test2PlayersNameSelection() {
-        String str = "2\nPlayer1\n1\nPlayer2\n4\n";
+        int howmany = 2;
+        String str = "Player1\n1\nPlayer2\n4\n";
         in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
+        Scanner scan = new Scanner(System.in);
         System.setOut(new PrintStream(out));
-        Main.main(new String[]{});
-        String[] lines = out.toString().split("\n");
-        int len = lines.length;
-        assertTrue(lines[len-2].startsWith("Player 1 is a Barbarian named Player1"));
-        assertTrue(lines[len-1].startsWith("Player 2 is a Knight named Player2"));
+        Player[] players = new Player[howmany];
+        Main.playerSelection(howmany, scan, players);
+ 
+        assertTrue(players[0].getCharacter() instanceof Barbarian);
+        assertEquals("Player1", players[0].getCustomName());
+        assertTrue(players[1].getCharacter() instanceof Knight);
+        assertEquals("Player2", players[1].getCustomName());
     }
     
     @Test
     public void test3PlayersNameSelection() {
-        String str = "3\nPlayer1\n2\nPlayer2\n3\nPlayer3\n5\n";
+        int howmany = 3;
+        String str = "Player1\n2\nPlayer2\n3\nPlayer3\n5\n";
         in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
+        Scanner scan = new Scanner(System.in);
         System.setOut(new PrintStream(out));
-        Main.main(new String[]{});
-        String[] lines = out.toString().split("\n");
-        int len = lines.length;
-        assertTrue(lines[len-3].startsWith("Player 1 is a Ninja named Player1"));
-        assertTrue(lines[len-2].startsWith("Player 2 is a Mage named Player2"));
-        assertTrue(lines[len-1].startsWith("Player 3 is a Martial Artist named Player3"));
+        Player[] players = new Player[howmany];
+        Main.playerSelection(howmany, scan, players);
+
+        assertTrue(players[0].getCharacter() instanceof Ninja);
+        assertEquals("Player1", players[0].getCustomName());
+        assertTrue(players[1].getCharacter() instanceof Mage);
+        assertEquals("Player2", players[1].getCustomName());
+        assertTrue(players[2].getCharacter() instanceof MartialArtist);
+        assertEquals("Player3", players[2].getCustomName());
     }
     
     @Test
     public void test4PlayersNameSelection() {
-        String str = "4\nPlayer1\n6\nPlayer2\n7\nPlayer3\n8\nPlayer4\n9\n";
+        int howmany = 4;
+        String str = "Player1\n6\nPlayer2\n7\nPlayer3\n8\nPlayer4\n9\n";
         in = new ByteArrayInputStream(str.getBytes());
         System.setIn(in);
+        Scanner scan = new Scanner(System.in);
         System.setOut(new PrintStream(out));
-        Main.main(new String[]{});
-        String[] lines = out.toString().split("\n");
-        int len = lines.length;
-        assertTrue(lines[len-4].startsWith("Player 1 is a Thief named Player1"));
-        assertTrue(lines[len-3].startsWith("Player 2 is a Priest named Player2"));
-        assertTrue(lines[len-2].startsWith("Player 3 is a Merchant named Player3"));
-        assertTrue(lines[len-1].startsWith("Player 4 is a Paladin named Player4"));
+        Player[] players = new Player[howmany];
+        Main.playerSelection(howmany, scan, players);
+        
+        assertTrue(players[0].getCharacter() instanceof Thief);
+        assertEquals("Player1", players[0].getCustomName());
+        assertTrue(players[1].getCharacter() instanceof Priest);
+        assertEquals("Player2", players[1].getCustomName());
+        assertTrue(players[2].getCharacter() instanceof Merchant);
+        assertEquals("Player3", players[2].getCustomName());
+        assertTrue(players[3].getCharacter() instanceof Paladin);
+        assertEquals("Player4", players[3].getCustomName());
     }
     
     @Test
     public void testOrderSelection2Players() {
-        String str = "2\nPlayer1\n1\nPlayer2\n4\n";
+        int howmany = 2;
+        String str = "Player1\n1\nPlayer2\n4\n";
         StringBuilder stb = new StringBuilder();
-        String[] lines;
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
+            Scanner scan = new Scanner(System.in);
             System.setOut(new PrintStream(out));
-            Main.main(new String[]{});
-            lines = out.toString().split("\n");
-            int len = lines.length;
-            for(int j = 1; j <= 2; j++) {
-                int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-5));
+            Dice die = new Dice(howmany);
+            Player[] players = new Player[howmany];
+            Main.playerSelection(howmany, scan, players);
+            Main.setTurnOrder(howmany, players, die);
+            for(int j = 0; j < howmany; j++) {
+                stb.append(players[j].getTurnOrder());
             }
-        
-        assertTrue(stb.toString().contains("1"));
-        assertTrue(stb.toString().contains("2"));
+            assertTrue(stb.toString().contains("1"));
+            assertTrue(stb.toString().contains("2"));
         }
     }
     
     @Test
     public void testOrderSelection3Players() {
-        String str = "3\nPlayer1\n1\nPlayer2\n4\nPlayer3\n7\n";
+        int howmany = 3;
+        String str = "Player1\n1\nPlayer2\n4\nPlayer3\n7\n";
         StringBuilder stb = new StringBuilder();
-        String[] lines;
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
+            Scanner scan = new Scanner(System.in);
             System.setOut(new PrintStream(out));
-            Main.main(new String[]{});
-            lines = out.toString().split("\n");
-            int len = lines.length;
-            for(int j = 1; j <= 4; j++) {
-                int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-5));
+            Dice die = new Dice(howmany);
+            Player[] players = new Player[howmany];
+            Main.playerSelection(howmany, scan, players);
+            Main.setTurnOrder(howmany, players, die);
+            for(int j = 0; j < howmany; j++) {
+                stb.append(players[j].getTurnOrder());
             }
-        assertTrue(stb.toString().contains("1"));
-        assertTrue(stb.toString().contains("2"));
-        assertTrue(stb.toString().contains("3"));
+            assertTrue(stb.toString().contains("1"));
+            assertTrue(stb.toString().contains("2"));
+            assertTrue(stb.toString().contains("3"));
         }
     }
     
     @Test
     public void testOrderSelection4Players() {
-        String str = "4\nPlayer1\n1\nPlayer2\n4\nPlayer3\n7\nPlayer4\n5\n";
+        int howmany = 4;
+        String str = "Player1\n1\nPlayer2\n4\nPlayer3\n7\nPlayer4\n5\n";
         StringBuilder stb = new StringBuilder();
-        String[] lines;
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             in = new ByteArrayInputStream(str.getBytes());
             System.setIn(in);
+            Scanner scan = new Scanner(System.in);
             System.setOut(new PrintStream(out));
-            Main.main(new String[]{});
-            lines = out.toString().split("\n");
-            int len = lines.length;
-            for(int j = 1; j <= 4; j++) {
-                int linelen = lines[len-j].length();
-                stb.append(lines[len-j].charAt(linelen-5));
+            Dice die = new Dice(howmany);
+            Player[] players = new Player[howmany];
+            Main.playerSelection(howmany, scan, players);
+            Main.setTurnOrder(howmany, players, die);
+            for(int j = 0; j < howmany; j++) {
+                stb.append(players[j].getTurnOrder());
             }
-        assertTrue(stb.toString().contains("1"));
-        assertTrue(stb.toString().contains("2"));
-        assertTrue(stb.toString().contains("3"));
-        assertTrue(stb.toString().contains("4"));
+            assertTrue(stb.toString().contains("1"));
+            assertTrue(stb.toString().contains("2"));
+            assertTrue(stb.toString().contains("3"));
+            assertTrue(stb.toString().contains("4"));
         }
     }
     
@@ -172,17 +190,6 @@ public class MainTest {
         assertTrue(main.upWinCountValidated(players, 1));
         assertEquals(1, players[1].getWinCount());
     }
-    @Ignore("Needs work/Another test. UpWinCount sets isWinner")
-    @Test
-    public void testWinner() {
-        Player[] players = {new Player("player1", new Paladin()), 
-                            new Player("player2", new Barbarian()),
-                            new Player("player3", new Ninja()),
-                            new Player("player4", new Mage())};
-        players[3].setIsWinner(true);
-        Player winner = main.winner(players);
-        assertEquals(winner, players[3]);
-    }
     
     @Test
     public void testResetWinCount() {
@@ -197,5 +204,17 @@ public class MainTest {
         players[3].getCharacter().unGhost();
         assertFalse(main.upWinCountValidated(players, 1));
         assertEquals(0, players[1].getWinCount());
+    }
+    
+    @Ignore("Needs work/Another test. UpWinCount sets isWinner")
+    @Test
+    public void testWinner() {
+        Player[] players = {new Player("player1", new Paladin()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[3].setIsWinner(true);
+        Player winner = main.winner(players);
+        assertEquals(winner, players[3]);
     }
 }
