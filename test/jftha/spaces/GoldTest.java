@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.main.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,8 +33,9 @@ public class GoldTest {
     @Test
     public void testGoldSpaceTriggerEffect() {
         Gold space = new Gold();
-        Hero hero = new Knight();
-        space.setActivator(hero);
+        Player p = new Player("", new Knight());
+        Hero hero = p.getCharacter();
+        space.setActivator(p);
         int initGold = hero.getGold();
         space.triggerEffect();
         assertTrue(hero.getGold() > initGold);

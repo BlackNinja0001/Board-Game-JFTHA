@@ -1,11 +1,12 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.main.Player;
 
 public abstract class Space {
     private int spaceID;
     private char activationType; //p for pass-by, l for land-on
-    private Hero activator;
+    private Player activator;
     private SpaceEnum type;
     public Space next;
     public Space prev;
@@ -22,7 +23,7 @@ public abstract class Space {
     public int getSpaceID() {
         return spaceID;
     }
-    public Hero getActivator() {
+    public Player getActivator() {
         return activator;
     }
 
@@ -31,7 +32,7 @@ public abstract class Space {
         activationType = c;
     }
 
-    public void setActivator(Hero hero) {
+    public void setActivator(Player hero) {
         this.activator = hero;
     }
     
@@ -47,5 +48,5 @@ public abstract class Space {
     public abstract void triggerEffect();
     
     // to be implemented in subclasses
-    public abstract void triggerEffect(Hero affected);
+    public abstract void triggerEffect(Player affected);
 }

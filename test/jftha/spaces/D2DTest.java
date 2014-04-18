@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.main.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,8 +11,8 @@ import static org.junit.Assert.*;
 
 public class D2DTest {
     Space current;
-    Hero hero;
-    Hero enemy;
+    Player hero;
+    Player enemy;
     public D2DTest() {
     }
     
@@ -26,8 +27,8 @@ public class D2DTest {
     @Before
     public void setUp() {
         current = new D2D();
-        hero = new Mage();
-        enemy = new Ninja();
+        hero = new Player("", new Mage());
+        enemy =  new Player("", new Mage());
     }
     
     @After
@@ -41,7 +42,9 @@ public class D2DTest {
     public void testTriggerEffectBothAlive() {
         current.setActivator(hero);
         current.triggerEffect(enemy);
-        assertTrue(hero.isGhost() || enemy.isGhost());
+        Hero h = hero.getCharacter();
+        Hero e = enemy.getCharacter();
+        assertTrue(h.isGhost() || e.isGhost());
         
     }
     

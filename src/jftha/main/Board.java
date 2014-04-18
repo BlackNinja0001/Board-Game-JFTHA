@@ -103,6 +103,10 @@ public class Board {
     }
 
     public void generateBoard(int numSpaces) {
+        for(int i = 0; i < numSpaces; i++){
+            addSpace(SpaceEnum.Card);
+        }
+        /*
         for (int i = 0; i < numSpaces; i++) {
             if (i == 2) {
                 addSpace(SpaceEnum.Store);
@@ -124,6 +128,7 @@ public class Board {
                 addSpace(SpaceEnum.Blank);
             }
         }
+        */
     }
 /*
     public void placePlayers(Player players[], int numSpaces) {

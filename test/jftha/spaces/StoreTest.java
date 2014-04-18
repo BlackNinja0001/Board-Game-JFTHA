@@ -42,7 +42,7 @@ public class StoreTest {
         System.setIn(in);
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        store.setActivator(p.getCharacter());
+        store.setActivator(p);
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
@@ -66,7 +66,7 @@ public class StoreTest {
         System.setOut(new PrintStream(out));
         
         Player p = new Player("", new Ninja());
-        store.setActivator(p.getCharacter());
+        store.setActivator(p);
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
@@ -84,7 +84,7 @@ public class StoreTest {
         
         Player p = new Player("", new Ninja());
         p.getCharacter().setGold(500);
-        store.setActivator(p.getCharacter());
+        store.setActivator(p);
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
@@ -103,7 +103,7 @@ public class StoreTest {
         Player p = new Player("", new Ninja());
         int initGold = 500;
         p.getCharacter().setGold(initGold);
-        store.setActivator(p.getCharacter());
+        store.setActivator(p);
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
@@ -128,7 +128,7 @@ public class StoreTest {
         Player p = new Player("", new Ninja());
         int initGold = 5;
         p.getCharacter().setGold(initGold);
-        store.setActivator(p.getCharacter());
+        store.setActivator(p);
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
