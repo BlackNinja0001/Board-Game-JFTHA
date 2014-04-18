@@ -206,12 +206,41 @@ public class PlayerNames extends javax.swing.JFrame {
             playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
             players[i - 1] = new Player(playerNameField.getText(), playerHero);
         }
+        if (anyValidButtonSelected()) {
+            if ((playerNameField.getText() != "") || (playerNameField.getText() != null)) {
+                int amt = this.howmany - this.count;
+                count++;
+                this.setVisible(false);
+                if (amt < 0) { //no more players to initialize
+                    BoardGUI board = new BoardGUI();
+                    board.setVisible(true);
+                } else {
+                    PlayerNames playName = new PlayerNames();
+                    playName.setVisible(true);
+                }
+            } else {
+                System.out.println("No name filled in.");
+            }
+        }
     }//GEN-LAST:event_inputActionPerformed
-                              
+
+    private boolean anyValidButtonSelected() {
+        boolean result = false;
+        if (BarbarianButton.isSelected()) {
+            result = true;
+        } else if (NinjaButton.isSelected()) {
+            result = true;
+        } else if (MageButton.isSelected()) {
+            result = true;
+        } else if (KnightButton.isSelected()) {
+            result = true;
+        } else {
+            System.out.println("Invalid Selection."); //more handling
+        }
+        return result;
+    }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        int amt = this.howmany - this.count + 1;
         this.title.setText("Player " + (this.howmany - this.count + 1));
-        count--;
     }//GEN-LAST:event_formWindowOpened
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
