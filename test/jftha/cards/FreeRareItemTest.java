@@ -40,8 +40,9 @@ public class FreeRareItemTest {
     public void testTriggerEffect() {
         Hero h = p.getCharacter();
         card.triggerEffect(p);
-        assertEquals(3, h.getItems().size());
-        assertEquals(jftha.items.RarityEnum.rare, h.getItems().get(2).getRarity());
+        assertEquals(3, h.getItems().size() + h.getArtifacts().size());
+        assertTrue(3 == h.getItems().size() || 1 == h.getArtifacts().size());
+        
     }
 
 }
