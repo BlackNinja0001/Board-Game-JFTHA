@@ -1,6 +1,5 @@
 package jftha.main;
 
-import java.util.ArrayList;
 import java.util.List;
 import jftha.heroes.*;
 import jftha.items.*;
@@ -19,50 +18,37 @@ public class Main { //definitely need more error handling
         int howmany = scan.nextInt(); // keep asking if given invalid number // handle error/exception for non-int
         Dice die = new Dice(howmany);
         Player[] players = new Player[howmany];
-
-        for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
-            System.out.println("Player " + i + ", what is your name?");
-            String name = scan.next();
-            System.out.println("Player " + i + ", which character do you pick?"); // handle error/exception for non-int
-            System.out.println("Input 1 for Barbarian\nInput 2 for Ninja\nInput 3 for Mage\nInput 4 for Knight\nInput 5 for MartialArtist\n"
-                    + "Input 6 for Thief\nInput 7 for Priest\nInput 8 for Merchant\nInput 9 for Paladin");
-            int heroNum = scan.nextInt();
-            Hero playerHero = null;
-            switch (heroNum) {
-                case 1:
-                    playerHero = new Barbarian();
-                    break;
-                case 2:
-                    playerHero = new Ninja();
-                    break;
-                case 3:
-                    playerHero = new Mage();
-                    break;
-                case 4:
-                    playerHero = new Knight();
-                    break;
-                case 5:
-                    playerHero = new MartialArtist();
-                    break;
-                case 6:
-                    playerHero = new Thief();
-                    break;
-                case 7:
-                    playerHero = new Priest();
-                    break;
-                case 8:
-                    playerHero = new Merchant();
-                    break;
-                case 9:
-                    playerHero = new Paladin();
-                    break;
-                default:
-                    System.out.println("Error: No character picked.");
-            }
-            players[i - 1] = new Player(name, playerHero);
-        }
+        playerSelection(howmany, scan, players);
 
         System.out.println("Determining turn order...");
+        setTurnOrder(howmany, players, die);
+
+        //Spawn board
+        Board board = new Board();
+        board.generateBoard(25);
+        board.iterateBoard();
+        //Spawn players
+        for (int i = 0; i < howmany; i++) {
+            players[i].setCurrentSpace(board.getStart());
+        }
+        Main main = new Main();
+        //They take turns
+        main.orderedPlayers = new Player[howmany];
+        int count = 1;
+        for (int i = 0; i < howmany; i++) {
+            main.orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
+        }
+
+        while (main.anyoneWon(main.orderedPlayers) == -1) {
+            int i;
+            for (i = 0; i < howmany; i++) {
+                main.executeTurn(main.orderedPlayers[i]);
+            }
+            i = 0;
+        }
+    }
+
+    protected static void setTurnOrder(int howmany, Player[] players, Dice die) {
         for (int i = 0; i < howmany; i++) { //Give every player an initial turn order
             players[i].setTurnOrder(die.roll());
         }
@@ -103,30 +89,55 @@ public class Main { //definitely need more error handling
                     .append(" and is going ").append(order).append(".");
             System.out.println(sb.toString());
         }
+    }
 
-        //Spawn board
-        Board board = new Board();
-        board.generateBoard(25);
-        board.iterateBoard();
-        //Spawn players
-        for (int i = 0; i < howmany; i++) {
-            players[i].setCurrentSpace(board.getStart());
+    protected static void playerSelection(int howmany, Scanner scan, Player[] players) {
+        for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
+            System.out.println("Player " + i + ", what is your name?");
+            String name = scan.next();
+            System.out.println("Player " + i + ", which character do you pick?"); // handle error/exception for non-int
+            System.out.println("Input 1 for Barbarian\nInput 2 for Ninja\nInput 3 for Mage\nInput 4 for Knight\nInput 5 for MartialArtist\n"
+                    + "Input 6 for Thief\nInput 7 for Priest\nInput 8 for Merchant\nInput 9 for Paladin");
+            int heroNum = scan.nextInt();
+            Hero playerHero = null;
+            playerHero = assignPlayer(heroNum, playerHero);
+            players[i - 1] = new Player(name, playerHero);
         }
-        Main main = new Main();
-        //They take turns
-        main.orderedPlayers = new Player[howmany];
-        int count = 1;
-        for (int i = 0; i < howmany; i++) {
-            main.orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
-        }
+    }
 
-        while (main.anyoneWon(main.orderedPlayers) == -1) {
-            int i;
-            for (i = 0; i < howmany; i++) {
-                main.executeTurn(main.orderedPlayers[i]);
-            }
-            i = 0;
+    protected static Hero assignPlayer(int heroNum, Hero playerHero) {
+        switch (heroNum) {
+            case 1:
+                playerHero = new Barbarian();
+                break;
+            case 2:
+                playerHero = new Ninja();
+                break;
+            case 3:
+                playerHero = new Mage();
+                break;
+            case 4:
+                playerHero = new Knight();
+                break;
+            case 5:
+                playerHero = new MartialArtist();
+                break;
+            case 6:
+                playerHero = new Thief();
+                break;
+            case 7:
+                playerHero = new Priest();
+                break;
+            case 8:
+                playerHero = new Merchant();
+                break;
+            case 9:
+                playerHero = new Paladin();
+                break;
+            default:
+                System.out.println("Error: No character picked.");
         }
+        return playerHero;
     }
 
     /**
@@ -274,6 +285,7 @@ public class Main { //definitely need more error handling
                 current.triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
+                    // Prompt for opponent and pass to triggerEffect
                     System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
                     String opponent = scan.next();
                     for (int i = 0; i < orderedPlayers.length; i++) {
@@ -285,9 +297,6 @@ public class Main { //definitely need more error handling
                             i = 0;
                         }
                     }
-                    // Prompt for opponent and pass to triggerEffect
-                    Player p = null;//opponent;
-                    current.triggerEffect(p.getCharacter());
                 } else {
                     current.triggerEffect();
                 }
