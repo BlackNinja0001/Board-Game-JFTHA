@@ -35,12 +35,17 @@ public class ChestTest {
      */
     @Test
     public void testGiveItem() {
-        Chest instance = new Chest();
+        Chest space = new Chest();
         Hero hero = new Mage();
-        instance.setActivator(hero);
-        int luck = instance.giveItem();
-        assertEquals(3, hero.getItems().size());
-        Item item = hero.getItems().get(2);
+        space.setActivator(hero);
+        int luck = space.giveItem();
+        assertEquals(3, hero.getItems().size() + hero.getArtifacts().size());
+        Item item;
+        if(hero.getItems().size() == 3) {
+            item = hero.getItems().get(2);
+        } else {
+            item = hero.getArtifacts().get(0);
+        }
         for(int i = 0; i < 1000; i++) {
             if(luck > 90) {
                 assertEquals(RarityEnum.rare, item.getRarity());
@@ -54,12 +59,13 @@ public class ChestTest {
     
     @Test
     public void testItemsReturnedToResurrectedCharacter() {
-        Chest instance = new Chest();
+        Chest space = new Chest();
         Hero hero = new Ninja();
         hero.makeGhost();
         assertEquals(0, hero.getItems().size());
         hero.unGhost();
-        instance.setActivator(hero);
+        space.setActivator(hero);
+        space.triggerEffect();
         assertEquals(2, hero.getItems().size());
         assertEquals(hero.getItems().get(0).getClass(), Cloak.class);
         assertEquals(hero.getItems().get(1).getClass(), Dagger.class);
