@@ -1,7 +1,6 @@
 package jftha.spaces;
 
 import java.util.*;
-import jftha.main.Player;
 import jftha.heroes.*;
 import jftha.items.*;
 
@@ -61,6 +60,9 @@ public class Store extends Space {
             if (crap) {
                 System.out.println("You bought a " + items.get(select - 1).toString());
                 System.out.println("You have " + hero.getGold() + " gold left");
+            } else {
+                System.out.println("You don't have enough gold");
+                System.out.println("You still have " + hero.getGold() + " gold");
             }
         } else if (select == 6) {
             System.out.println("You chose not to buy anything");
