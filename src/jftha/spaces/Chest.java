@@ -3,6 +3,7 @@ package jftha.spaces;
 import java.util.*;
 import jftha.heroes.*;
 import jftha.items.*;
+import jftha.main.Player;
 
 public class Chest extends Space {
     public Chest() {
@@ -21,7 +22,9 @@ public class Chest extends Space {
     // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
     public int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
-        Hero h = getActivator();
+        
+        Player p = getActivator();
+        Hero h = p.getCharacter();
         int luck = -1;
         // If was resurrected give back lostItems
         if(h.getWasGhost()) {
@@ -53,7 +56,7 @@ public class Chest extends Space {
     }
 
     @Override
-    public void triggerEffect(Hero affected) {
+    public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

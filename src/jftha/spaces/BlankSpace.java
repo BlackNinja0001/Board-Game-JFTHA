@@ -1,6 +1,6 @@
 package jftha.spaces;
 
-import jftha.heroes.Hero;
+import jftha.main.Player;
 
 public class BlankSpace extends Space {
     public BlankSpace() {
@@ -13,7 +13,7 @@ public class BlankSpace extends Space {
     }
     
     @Override
-    public void triggerEffect(Hero affected) {
+    public void triggerEffect(Player affected) {
         // Do nothing: Blank space
     }
 }

@@ -25,7 +25,7 @@ public class MoveBack extends Card {
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // prompt for hero
                     Player p = null;
-                    current.triggerEffect(p.getCharacter());
+                    current.triggerEffect(p);
                 } else {
                     current.triggerEffect();
                 }
