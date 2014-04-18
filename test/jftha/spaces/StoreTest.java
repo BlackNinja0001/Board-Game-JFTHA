@@ -83,10 +83,59 @@ public class StoreTest {
         System.setOut(new PrintStream(out));
         
         Player p = new Player("", new Ninja());
+        p.getCharacter().setGold(500);
         store.setActivator(p.getCharacter());
         store.triggerEffect();
         String[] lines = out.toString().split("\n");
         System.setOut(original);
-        assertTrue(lines[lines.length-1].startsWith("You bought a "));
+        assertTrue(lines[lines.length-2].startsWith("You bought a "));
     }    
+    
+    @Test
+    public void testStoreBuySomethingGoldChange() {
+        String str = "3";
+        InputStream in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        PrintStream original = System.out;
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        
+        Player p = new Player("", new Ninja());
+        int initGold = 500;
+        p.getCharacter().setGold(initGold);
+        store.setActivator(p.getCharacter());
+        store.triggerEffect();
+        String[] lines = out.toString().split("\n");
+        System.setOut(original);
+        String goldSpent = lines[3];
+        goldSpent = goldSpent.replace(" gold", "");
+        goldSpent = goldSpent.substring(goldSpent.length()-3).trim();
+        String goldLeft = lines[lines.length-1];
+        goldLeft = goldLeft.replace("You have ", "").replace(" gold left", "");
+        
+        assertEquals(Integer.parseInt(goldSpent), initGold - Integer.parseInt(goldLeft));
+    }
+    
+    @Test
+    public void testDontHaveEnoughGold() {
+        String str = "4";
+        InputStream in = new ByteArrayInputStream(str.getBytes());
+        System.setIn(in);
+        PrintStream original = System.out;
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        
+        Player p = new Player("", new Ninja());
+        int initGold = 5;
+        p.getCharacter().setGold(initGold);
+        store.setActivator(p.getCharacter());
+        store.triggerEffect();
+        String[] lines = out.toString().split("\n");
+        System.setOut(original);
+        String goldLeft = lines[lines.length-1];
+        goldLeft = goldLeft.replace("You still have ", "").replace(" gold", "");
+        
+        assertEquals(initGold, Integer.parseInt(goldLeft));
+    }
+    
 }
