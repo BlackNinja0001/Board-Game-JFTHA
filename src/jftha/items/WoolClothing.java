@@ -5,6 +5,7 @@ import jftha.main.Player;
 public class WoolClothing extends Item {
     public WoolClothing() {
         this.setRarity(RarityEnum.common);
+        this.setMessage("Wool Clothing");
         this.setGoldCost(50);
     }
 

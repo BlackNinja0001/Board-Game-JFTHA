@@ -30,6 +30,7 @@ public class CardSpace extends Space {
         } else {
             drawn = cf.buildCard(RarityEnum.common);
         }
+        System.out.println(drawn.getMessage());
         
     }
 

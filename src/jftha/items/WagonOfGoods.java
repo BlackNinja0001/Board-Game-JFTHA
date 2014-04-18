@@ -6,6 +6,7 @@ public class WagonOfGoods extends Item {
     
     public WagonOfGoods() {
         this.setRarity(RarityEnum.common);
+        this.setMessage("Wagon of Goods");
         this.setGoldCost(50);
     }
 
