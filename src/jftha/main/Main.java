@@ -299,7 +299,7 @@ public class Main { //definitely need more error handling
                             System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
                             opponent = scan.next();
                         } else {
-                            current.triggerEffect(potVictim.getCharacter());
+                            current.triggerEffect(potVictim);
                         }
                     }
                 } else {
