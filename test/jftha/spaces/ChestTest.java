@@ -60,7 +60,6 @@ public class ChestTest {
         assertEquals(0, hero.getItems().size());
         hero.unGhost();
         instance.setActivator(hero);
-        int luck = instance.giveItem();
         assertEquals(2, hero.getItems().size());
         assertEquals(hero.getItems().get(0).getClass(), Cloak.class);
         assertEquals(hero.getItems().get(1).getClass(), Dagger.class);
