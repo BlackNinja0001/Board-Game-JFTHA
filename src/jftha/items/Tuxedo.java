@@ -5,6 +5,7 @@ import jftha.main.Player;
 public class Tuxedo extends Item {
     public Tuxedo() {
         this.setRarity(RarityEnum.common);
+        this.setMessage("Tuxedo");
         this.setGoldCost(50);
     }
 
