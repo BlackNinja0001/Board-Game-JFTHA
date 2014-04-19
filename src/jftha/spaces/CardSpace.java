@@ -3,6 +3,7 @@ package jftha.spaces;
 import java.util.Random;
 import jftha.heroes.Hero;
 import jftha.cards.*;
+import jftha.main.Player;
 
 public class CardSpace extends Space {
     
@@ -15,7 +16,9 @@ public class CardSpace extends Space {
 
     @Override
     public void triggerEffect() {
-        Hero hero = this.getActivator();
+        Player p = getActivator();
+        Hero hero = p.getCharacter();
+        
         CardFactory cf = new CardFactory();
         Random rand = new Random(System.currentTimeMillis());
         int luck = rand.nextInt(100) + hero.getLuck() + 1;
@@ -30,6 +33,11 @@ public class CardSpace extends Space {
         } else {
             drawn = cf.buildCard(RarityEnum.common);
         }
+        if(drawn instanceof MPDrain){
+            
+        }else{
+            drawn.triggerEffect(p);
+        }
         
     }
 
@@ -43,7 +51,7 @@ public class CardSpace extends Space {
     }
 
     @Override
-    public void triggerEffect(Hero affected) {
+    public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

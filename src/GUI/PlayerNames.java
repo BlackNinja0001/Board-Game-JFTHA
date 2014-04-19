@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import java.util.Enumeration;
@@ -19,17 +18,20 @@ import jftha.main.Player;
  * @author shane
  */
 public class PlayerNames extends javax.swing.JFrame {
+
     private int howmany;
     Player[] players;
+    private int count;
+
     /**
      * Creates new form PlayerNames
      */
     public PlayerNames() {
         initComponents();
     }
-    
+
     public PlayerNames(int numPlayers) {
-        
+
         initComponents();
     }
 
@@ -58,12 +60,13 @@ public class PlayerNames extends javax.swing.JFrame {
         input = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         name.setText("Player Name:");
-
-        title.setText("jLabel2");
-
-        playerNameField.setText("jTextField1");
 
         playerType.add(BarbarianButton);
         BarbarianButton.setText("Barbarian");
@@ -203,9 +206,44 @@ public class PlayerNames extends javax.swing.JFrame {
             playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
             players[i - 1] = new Player(playerNameField.getText(), playerHero);
         }
+        if (anyValidButtonSelected()) {
+            if ((playerNameField.getText() != "") || (playerNameField.getText() != null)) {
+                int amt = this.howmany - this.count;
+                count++;
+                this.setVisible(false);
+                if (amt < 0) { //no more players to initialize
+                    BoardGUI board = new BoardGUI();
+                    board.setVisible(true);
+                } else {
+                    PlayerNames playName = new PlayerNames();
+                    playName.setVisible(true);
+                }
+            } else {
+                System.out.println("No name filled in.");
+            }
+        }
     }//GEN-LAST:event_inputActionPerformed
 
-    private Hero assignPlayer(JRadioButton b, Hero playerHero){
+    private boolean anyValidButtonSelected() {
+        boolean result = false;
+        if (BarbarianButton.isSelected()) {
+            result = true;
+        } else if (NinjaButton.isSelected()) {
+            result = true;
+        } else if (MageButton.isSelected()) {
+            result = true;
+        } else if (KnightButton.isSelected()) {
+            result = true;
+        } else {
+            System.out.println("Invalid Selection."); //more handling
+        }
+        return result;
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.title.setText("Player " + (this.howmany - this.count + 1));
+    }//GEN-LAST:event_formWindowOpened
+
+    private Hero assignPlayer(JRadioButton b, Hero playerHero) {
         String s = b.getName();
         switch (s) {
             case "Barbarian":
@@ -236,22 +274,23 @@ public class PlayerNames extends javax.swing.JFrame {
                 playerHero = new Paladin();
                 break;
             default:
-                // No button pressed
-                //System.out.println("Error: No character picked.");
+            // No button pressed
+            //System.out.println("Error: No character picked.");
         }
         return playerHero;
-        }
-        
-    
-    public JRadioButton getSelectedButton(ButtonGroup group) {
-      Enumeration<AbstractButton> e = group.getElements();
-      while (e.hasMoreElements()) {
-         AbstractButton b =  e.nextElement();
-        if (b.isSelected()) return (JRadioButton) b;
-      }
-      return null;
     }
-    
+
+    public JRadioButton getSelectedButton(ButtonGroup group) {
+        Enumeration<AbstractButton> e = group.getElements();
+        while (e.hasMoreElements()) {
+            AbstractButton b = e.nextElement();
+            if (b.isSelected()) {
+                return (JRadioButton) b;
+            }
+        }
+        return null;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -282,11 +321,9 @@ public class PlayerNames extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlayerNames().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton BarbarianButton;
     private javax.swing.JRadioButton KnightButton;

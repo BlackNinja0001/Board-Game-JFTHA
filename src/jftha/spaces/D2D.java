@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.main.Player;
 import jftha.spells.*;
 
 public class D2D extends Space{
@@ -11,9 +12,10 @@ public class D2D extends Space{
     }
     
     @Override
-    public void triggerEffect(Hero beingAttacked) {
-        Hero attacker = this.getActivator();
-        duel2death(attacker, beingAttacked);
+    public void triggerEffect(Player beingAttacked) {
+        Player p = getActivator();
+        Hero attacker = p.getCharacter();
+        duel2death(attacker, beingAttacked.getCharacter());
     }
     
     private void duel2death(Hero attacker, Hero beingAttacked){

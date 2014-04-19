@@ -57,6 +57,7 @@ public class CardFactory {
                 } catch(IllegalAccessException | InstantiationException ex) {
                     
                 }
+                break;
             case almostImpossible:
                 i = cardList.getAlmostImpossibleSize();
                 num = rand.nextInt(i);
@@ -66,6 +67,7 @@ public class CardFactory {
                 } catch(IllegalAccessException | InstantiationException ex) {
                     
                 }
+                break;
             default:
                 throw new IllegalArgumentException("Oops. There is no such type of card.");
         }

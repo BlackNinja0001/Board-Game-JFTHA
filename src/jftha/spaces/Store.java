@@ -3,6 +3,7 @@ package jftha.spaces;
 import java.util.*;
 import jftha.heroes.*;
 import jftha.items.*;
+import jftha.main.Player;
 
 public class Store extends Space {
 
@@ -16,7 +17,8 @@ public class Store extends Space {
      */
     @Override
     public void triggerEffect() {
-        Hero hero = this.getActivator();
+        Player p = getActivator();
+        Hero hero = p.getCharacter();
         System.out.println("You have " + hero.getGold() + " gold");
 
         Random rand = new Random(System.currentTimeMillis());
@@ -72,7 +74,7 @@ public class Store extends Space {
     }
 
     @Override
-    public void triggerEffect(Hero affected) {
+    public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

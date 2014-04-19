@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.Hero;
+import jftha.main.Player;
 
 public class Monster extends Space{
     
@@ -29,12 +30,13 @@ public class Monster extends Space{
     
     @Override
     public void triggerEffect() {
-        Hero attacker = this.getActivator();
+        Player p = getActivator();
+        Hero attacker = p.getCharacter();
         combat(attacker, this.monster);
     }
 
     @Override
-    public void triggerEffect(Hero affected) {
+    public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

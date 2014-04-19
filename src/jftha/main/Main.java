@@ -275,12 +275,12 @@ public class Main { //definitely need more error handling
         // choose direction
         System.out.println("It's now " + performer.getCustomName() + "'s turn.");
         System.out.println("You rolled a " + movement);
-        System.out.println("Move forward(f) or backward(b): ");
-        String s = scan.next();
+        /*System.out.println("Move forward(f) or backward(b): ");
+        String s = scan.next();*/
 
         while (movement > 0) {
             movement--;
-            Space current = performer.move(s);
+            Space current = performer.move("f");
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 current.triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
@@ -290,11 +290,16 @@ public class Main { //definitely need more error handling
                     String opponent = scan.next();
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
-                        if (opponent.equalsIgnoreCase(potVictim.getCustomName())) {
-                            current.triggerEffect(potVictim.getCharacter());
-                        } else {
+                        if (opponent.equalsIgnoreCase(performer.getCustomName())){
+                            continue;
+                        }
+                        if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
                             System.out.println("No such player.");
                             i = 0;
+                            System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
+                            opponent = scan.next();
+                        } else {
+                            current.triggerEffect(potVictim);
                         }
                     }
                 } else {
@@ -311,7 +316,7 @@ public class Main { //definitely need more error handling
                 if (current.getActivator() != null) {
                     //Then allow to attack
                     // prompt for response
-                    playerChar.attackEnemy(current.getActivator());
+                    playerChar.attackEnemy(current.getActivator().getCharacter());
 
                 }
             }

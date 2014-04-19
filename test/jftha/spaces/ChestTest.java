@@ -2,6 +2,7 @@ package jftha.spaces;
 
 import jftha.heroes.*;
 import jftha.items.*;
+import jftha.main.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,17 +36,13 @@ public class ChestTest {
      */
     @Test
     public void testGiveItem() {
-        Chest space = new Chest();
-        Hero hero = new Mage();
-        space.setActivator(hero);
-        int luck = space.giveItem();
-        assertEquals(3, hero.getItems().size() + hero.getArtifacts().size());
-        Item item;
-        if(hero.getItems().size() == 3) {
-            item = hero.getItems().get(2);
-        } else {
-            item = hero.getArtifacts().get(0);
-        }
+        Chest instance = new Chest();
+        Player p = new Player("", new Mage());
+        Hero h = p.getCharacter();
+        instance.setActivator(p);
+        int luck = instance.giveItem();
+        assertEquals(3, h.getItems().size());
+        Item item = h.getItems().get(2);
         for(int i = 0; i < 1000; i++) {
             if(luck > 90) {
                 assertEquals(RarityEnum.rare, item.getRarity());
@@ -59,8 +56,9 @@ public class ChestTest {
     
     @Test
     public void testItemsReturnedToResurrectedCharacter() {
-        Chest space = new Chest();
-        Hero hero = new Ninja();
+        Chest instance = new Chest();
+        Player p = new Player("", new Ninja());
+        Hero hero = p.getCharacter();
         hero.makeGhost();
         assertEquals(0, hero.getItems().size());
         hero.unGhost();

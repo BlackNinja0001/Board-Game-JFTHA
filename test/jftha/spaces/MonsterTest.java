@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import jftha.heroes.*;
+import jftha.main.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class MonsterTest {
     Space current;
-    Hero hero;
+    Player hero;
     
     public MonsterTest() {
     }
@@ -26,7 +27,7 @@ public class MonsterTest {
     @Before
     public void setUp() {
         current = new Monster();
-        hero = new Paladin();
+        hero = new Player("", new Paladin());
     }
     
     @After
@@ -36,8 +37,9 @@ public class MonsterTest {
     @Test
     public void testTriggerEffect() {
         current.setActivator(hero);
-        int initGold = hero.getGold();
+        Hero h = hero.getCharacter();
+        int initGold = h.getGold();
         current.triggerEffect();
-        assertEquals((initGold + 10) , hero.getGold());
+        assertEquals((initGold + 10) , h.getGold());
     }
 }
