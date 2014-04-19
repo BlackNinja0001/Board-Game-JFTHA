@@ -9,16 +9,8 @@ public class Monster extends Space{
     public Monster(){
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Monster);
-        monster = new Hero();
-        monster.setMaxHP(5);
-        monster.setCurrentHP(5);
-        monster.setMaxMP(2);
-        monster.setCurrentMP(2);
-        monster.setStrength(2);
-        monster.setAgility(1);
-        monster.setMagic(2);
-        monster.setLuck(2);
-        monster.setDefense(5);
+        monster = new jftha.heroes.Monster();
+        
     }
 
     private void combat(Hero attacker, Hero beingAttacked){
