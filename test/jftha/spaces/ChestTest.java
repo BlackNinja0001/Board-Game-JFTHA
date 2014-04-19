@@ -36,33 +36,23 @@ public class ChestTest {
      */
     @Test
     public void testGiveItem() {
-        Chest instance = new Chest();
+        Chest space = new Chest();
         Player p = new Player("", new Mage());
-        Hero h = p.getCharacter();
-        instance.setActivator(p);
-        int luck = instance.giveItem();
-        assertEquals(3, h.getItems().size());
-        Item item = h.getItems().get(2);
-        for(int i = 0; i < 1000; i++) {
-            if(luck > 90) {
-                assertEquals(RarityEnum.rare, item.getRarity());
-            } else if(luck > 75) {
-                assertEquals(RarityEnum.uncommon, item.getRarity());
-            } else {
-                assertEquals(RarityEnum.common, item.getRarity());
-            }
-        }
+        Hero hero = p.getCharacter();
+        space.setActivator(p);
+        space.triggerEffect();
+        assertEquals(3, hero.getItems().size() + hero.getArtifacts().size());
     }
     
     @Test
     public void testItemsReturnedToResurrectedCharacter() {
-        Chest instance = new Chest();
+        Chest space = new Chest();
         Player p = new Player("", new Ninja());
         Hero hero = p.getCharacter();
         hero.makeGhost();
         assertEquals(0, hero.getItems().size());
         hero.unGhost();
-        space.setActivator(hero);
+        space.setActivator(p);
         space.triggerEffect();
         assertEquals(2, hero.getItems().size());
         assertEquals(hero.getItems().get(0).getClass(), Cloak.class);
