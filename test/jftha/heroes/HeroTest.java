@@ -35,8 +35,8 @@ public class HeroTest {
 
     @Before
     public void setUp() {
-        hero = new Hero();
-        enemy = new Hero();
+        hero = new Barbarian();
+        enemy = new Knight();
         out = new ByteArrayOutputStream();
     }
 
@@ -50,7 +50,7 @@ public class HeroTest {
      */
     @Test
     public void testSetStrength() {
-        assertEquals(10, hero.getStrength());
+        assertEquals(12, hero.getStrength());
         int strength = 15;
         hero.setStrength(strength);
         assertEquals(strength, hero.getStrength());
@@ -72,7 +72,7 @@ public class HeroTest {
      */
     @Test
     public void testSetMagic() {
-        assertEquals(10, hero.getMagic());
+        assertEquals(8, hero.getMagic());
         int magic = 15;
         hero.setMagic(magic);
         assertEquals(magic, hero.getMagic());
@@ -291,12 +291,12 @@ public class HeroTest {
     }
     
     @Test
-    public void testGhostsLoseSpells() {
+    public void testGhostsGainSpectreShot() {
         hero = new Mage();
         assertEquals(2, hero.getSpells().size());
         hero.makeGhost();
-        assertEquals(1, hero.getSpells().size());
-        assertEquals(SpectreShot.class, hero.getSpells().get(0).getClass());
+        assertEquals(3, hero.getSpells().size());
+        assertEquals(SpectreShot.class, hero.getSpells().get(2).getClass());
     }
     
     @Test
@@ -322,7 +322,7 @@ public class HeroTest {
     @Test
     public void testKnightBecomesInvicibleAfterSpecial(){
         hero = new Knight();
-        enemy = new Hero();
+        enemy = new Barbarian();
         hero.triggerSpecial();
         enemy.attackEnemy(hero);
         assertFalse(hero.getCurrentHP() != hero.getMaxHP());
