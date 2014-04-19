@@ -1,16 +1,13 @@
 package jftha.heroes;
 
-import jftha.statchanges.statChangePerTurn;
 import jftha.items.*;
 import jftha.main.*;
 import jftha.spells.*;
 import java.util.*;
-import java.lang.reflect.Method;
 import jftha.statchanges.tempStatChange;
 
-public class Hero {
+public abstract class Hero {
     // Determines how much damage can be dealt to an enemy through weapons
-
     private int strength;
     // Determines how many spaces the player can move per turn
     private int agility;
@@ -24,17 +21,15 @@ public class Hero {
     // Determines how many items a player can hold at any time
     private int storage_space;
     // The items the Hero is currently carrying
-    private List<Item> items;
+    private final List<Item> items;
     // The items the Hero was carrying at time of last death
     private List<Item> lostItems;
     // The artifactPieces the Hero is currently carrying
-    private List<ArtifactPiece> artifactPieces;
+    private final List<ArtifactPiece> artifactPieces;
     // Determines how many spells a player is able to cast
     private int spell_slots;
     // The spells the Hero currently knows
     private List<Spell> spells;
-    // The spells the Hero knew at time of last death
-    private List<Spell> lostSpells;
     // Determined by Defense stat. Also known as health points
     private int maxHP;
     // Health the player currently has
@@ -58,7 +53,7 @@ public class Hero {
     //Used for certain special abilties
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
-    private List<tempStatChange> tempStatChanges;
+    private final List<tempStatChange> tempStatChanges;
     private boolean hasPet;
     private SummonPet pet;
 
@@ -357,7 +352,6 @@ public class Hero {
         //Regen MP
         this.currentMP = this.maxMP;
         this.lostItems = new ArrayList<>();
-        this.lostSpells = new ArrayList<>();
         //Cannot hold items, except spiritual items (see Items).
         Iterator<Item> iter = items.iterator();
         while (iter.hasNext()) {
@@ -367,11 +361,12 @@ public class Hero {
                 iter.remove();
             }
         }
-        for (Spell sp : spells) {
-            lostSpells.add(sp);
+        Iterator<ArtifactPiece> itr = artifactPieces.iterator();
+        while(itr.hasNext()) {
+            Item item = itr.next();
+            lostItems.add(item);
         }
-        //Can cast only Spectre Shot spell (cost 1 SE).
-        this.spells.clear();
+        
         this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
@@ -387,8 +382,7 @@ public class Hero {
         this.isGhost = false;
         this.wasGhost = true;
         this.currentHP = this.maxHP;
-        //ReLearn all spells they knew  //Lose Spectre Shots;
-        this.spells = this.lostSpells;
+        removeSpell(new SpectreShot());
 
         //If find soulStone(unghost)
     }
@@ -401,9 +395,9 @@ public class Hero {
      */
     public void attackEnemy(Hero attacked) {
         Random rand = new Random();
-        int randomDamage = rand.nextInt(3), 
-                amt1 = this.strength - attacked.defense, 
-                amt2 = (int)(0.2 * (this.luck - attacked.luck));
+        int randomDamage = rand.nextInt(3) + 1, 
+               amt1 = this.strength - attacked.defense;
+        double amt2 = (0.2 * (this.luck - attacked.luck));
         if (amt1 < 0){
             amt1 = 0;
         }
@@ -440,7 +434,6 @@ public class Hero {
             }
             attacked.wasAttacked = true;
             checkIfBothAttacked(attacked);
-            return;
         } else { //attacking ghost
             //handle spiritual items
             if (!items.isEmpty()) {
@@ -451,7 +444,10 @@ public class Hero {
                             attacked.currentMP -= intDamage;
                             if (attacked.currentMP <= 0) {
                                 attacked.eliminated = true;
-         // Attacker gets to take all their stuff
+                                // Attacker gets to take all their stuff
+                                for(Item it : attacked.lostItems) {
+                                    addItem(it);
+                                }
                             }
                             attacked.wasAttacked = true;
                             checkIfBothAttacked(attacked);
@@ -463,7 +459,11 @@ public class Hero {
             }
         }
     }
-    
+    /** Helper function for Duel to the Death.  Check if both attacker and 
+     * attacked have their wasAttacked set to true.  If so, set both to false.
+     * 
+     * @param attacked The character that was just attacked
+     */
     private void checkIfBothAttacked(Hero attacked){
         if (this.wasAttacked && attacked.wasAttacked) {
             this.wasAttacked = false;
@@ -627,6 +627,34 @@ public class Hero {
         }
         return result;
     }
+    /**
+     * Removes an item to character's inventory. Will only remove item if
+     * character already has this item in inventory.
+     *
+     * Note: Removed by index, not by passing object to ArrayList.remove(Object
+     * o), just to be safe.
+     *
+     * @param spell The item to be removed to the character's inventory
+     * @return true if item was removed
+     */
+    public boolean removeSpell(Spell spell) {
+        boolean result = false;
+        int spellIndex = 0, spellCount = 0;
+        if (!this.spells.isEmpty()) {
+            for (Spell s : spells) {
+                if (s.getClass().isInstance(spell)) {
+                    spellIndex = spellCount;
+                }
+                spellCount++;
+            }
+            if (spellCount != -1) {
+                result = true;
+                spells.remove(spellIndex);
+            }
+        }
+        return result;
+    }
+    
 
     /**
      * Activates the special for this hero.
