@@ -89,10 +89,20 @@ public class PlayerNames extends javax.swing.JFrame {
         playerType.add(NinjaButton);
         NinjaButton.setText("Ninja");
         NinjaButton.setName("Ninja"); // NOI18N
+        NinjaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NinjaButtonActionPerformed(evt);
+            }
+        });
 
         playerType.add(MageButton);
         MageButton.setText("Mage");
         MageButton.setName("Mage"); // NOI18N
+        MageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MageButtonActionPerformed(evt);
+            }
+        });
 
         playerType.add(KnightButton);
         KnightButton.setText("Knight");
@@ -220,11 +230,32 @@ public class PlayerNames extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BarbarianButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarbarianButtonActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Barbarian knows no peace, only war. As people bullied him as an outcast, he had to learn to defend himself.\n"
+                + "After he found his first weapon, he learned the craft of combat . . . and the joy of killing.\n"
+                + "This man desires only for revenge against those who have wronged him in the past.\n\n"
+                + "Stat Changes: +2 Strength, -2 Magic\n"
+                + "Equipment: Animal Skin and Ax\n"
+                + "Spells: None\n"
+                + "Special: Wild Wrath - If attacked, has a 1-in-5 chance to attack (the attacker) back with 2x Strength.", 
+                "About the Barbarian", 
+                JOptionPane.INFORMATION_MESSAGE
+                /*, "/images/putBarbarianImagehere"*/);
     }//GEN-LAST:event_BarbarianButtonActionPerformed
 
     private void KnightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnightButtonActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Knight is known throughout his hometown as the “Ultimate Shield”. He claims that none can penetrate his unstoppable armor\n"
+                + "Rumor has it that his armor descended from the heavens, blessed by none other than the Almighty One. But deep down inside his armor, he knows that even he is not invincible.\n"
+                + "He plans to pummel through his opponents, retrieve the Artifact, and receive immortality.\n\n"
+                + "Stat Changes: +2 Defense, -2 Agility\n"
+                + "Equipment: Suit of Armor and Iron Sword\n"
+                + "Spells: None\n"
+                + "Special: Portable Protection - When activated, cannot move for the next turn. After missed turn, become invincible for 3 turns.\n"
+                + "Cooldown period: 10 turns.", 
+                "About the Knight",
+                JOptionPane.INFORMATION_MESSAGE
+                /*, "/images/putKnightImagehere"*/);
     }//GEN-LAST:event_KnightButtonActionPerformed
 
     private void ThiefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThiefButtonActionPerformed
@@ -286,6 +317,36 @@ public class PlayerNames extends javax.swing.JFrame {
     private void PaladinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaladinButtonActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Paladin not available in this version.");
     }//GEN-LAST:event_PaladinButtonActionPerformed
+
+    private void MageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MageButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Mage has read plenty of books on magic, making him a dangerous and clever person.\n"
+                + "His arsenal of spells can perform deeds from spawning fearsome creatures to forming spiritual equipment.\n"
+                + "For many years, he has yearned for only one thing: the Necronomicon.\n\n"
+                + "Stat Changes: +2 Magic, -3 Strength, -3 Defense, +2 Spell slots\n"
+                + "Equipment: Mage Robe and Spell Book\n"
+                + "Spells: Fireball, Shield\n"
+                + "Special: Inherent Intellect - Each spell is cast for 10% less SE.", 
+                "About the Mage",
+                JOptionPane.INFORMATION_MESSAGE
+                /*, "/images/putMageImagehere"*/);
+    }//GEN-LAST:event_MageButtonActionPerformed
+
+    private void NinjaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NinjaButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Ninja is not just any assassin, studying ninjutsu masters such as Hattori Hanzō and his rival Fūma Kotarō.\n "
+                + "In return for sacrificing metal armor and a heavy weapon, he has learned to kill and flee the crime scene in 10 seconds flat.\n"
+                + "His wish is to meet the masters, face to face.\n\n"
+                + "Stat Changes: +2 Agility, -2 Defense\n"
+                + "Equipment: Cloak and Dagger\n"
+                + "Spells: None\n"
+                + "Special: Shadow Step - Warp to any space 1-3 spaces away. Does not activate the space. Does not count as a dice roll.\n"
+                + "If an enemy is in the way, no battle will occur, unless enemy is on the space the player lands on.\n"
+                + "Cooldown period: 3 turns.", 
+                "About the Ninja",
+                JOptionPane.INFORMATION_MESSAGE
+                /*, "/images/putNinjaImagehere"*/);
+    }//GEN-LAST:event_NinjaButtonActionPerformed
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
         String s = b.getText();
