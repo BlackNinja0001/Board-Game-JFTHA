@@ -249,6 +249,8 @@ public class PlayerNames extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "No name filled in.");
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No character picked.");
         }
     }//GEN-LAST:event_inputActionPerformed
 
@@ -295,10 +297,7 @@ public class PlayerNames extends javax.swing.JFrame {
             playerHero = new Mage();
         } else if (s.equalsIgnoreCase("Knight")) {
             playerHero = new Knight();
-        } else { //Martial Artist, Thief, Priest, Merchant, Paladin not available
-            // No button pressed
-            JOptionPane.showMessageDialog(rootPane, "No character picked.");
-        }
+        } //Martial Artist, Thief, Priest, Merchant, Paladin not yet available
         return playerHero;
     }
 
