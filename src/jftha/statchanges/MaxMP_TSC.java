@@ -14,8 +14,11 @@ public class MaxMP_TSC extends tempStatChange{
         if (duration > 0) {
             if (!this.isInEffect()) {
                 hero.setMaxMP(hero.getMaxMP() + this.getChange());
+                this.setInEffect(true);
             }
             this.setDuration(--duration);
+        } else {
+            this.setInEffect(false);
         }
     }
 }

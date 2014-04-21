@@ -14,8 +14,11 @@ public class Agility_TSC extends tempStatChange{
         if (duration > 0) {
             if (!this.isInEffect()) {
                 hero.setAgility(hero.getAgility() + this.getChange());
+                this.setInEffect(true);
             }
             this.setDuration(--duration);
+        } else {
+            this.setInEffect(false);
         }
     }
 }
