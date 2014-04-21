@@ -219,21 +219,14 @@ public class PlayerNames extends javax.swing.JFrame {
             } else {
                 System.out.println("No name filled in.");
             }
-
-            JRadioButton button = getSelectedButton(playerType);
-            if (button != null) {
-                playerType.clearSelection();
-            }
-            playerNameField.setText("");
         }
 
+        this.setVisible(false);
         if (count == howmany) {
             BoardGUI board = new BoardGUI();
-            this.setVisible(false);
             board.setVisible(true);
         } else {
             PlayerNames playName = new PlayerNames(howmany, count + 1, players);
-            this.setVisible(false);
             playName.setVisible(true);
         }
     }//GEN-LAST:event_inputActionPerformed
