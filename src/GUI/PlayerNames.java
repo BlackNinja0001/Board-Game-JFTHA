@@ -214,20 +214,21 @@ public class PlayerNames extends javax.swing.JFrame {
         Hero playerHero = null;
         if (anyValidButtonSelected()) {
             playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
-            if ((playerNameField.getText().equals("")) || (playerNameField.getText() != null)) {
+            System.out.println(playerNameField.getText());
+            if ((!playerNameField.getText().trim().isEmpty()) || (playerNameField.getText() != null)) { //Error: if field text is blank, the next player form still displays
                 players[count - 1] = new Player(playerNameField.getText(), playerHero);
+
+                this.setVisible(false);
+                if (count == howmany) {
+                    BoardGUI board = new BoardGUI();
+                    board.setVisible(true);
+                } else {
+                    PlayerNames playName = new PlayerNames(howmany, count + 1, players);
+                    playName.setVisible(true);
+                }
             } else {
                 System.out.println("No name filled in.");
             }
-        }
-
-        this.setVisible(false);
-        if (count == howmany) {
-            BoardGUI board = new BoardGUI();
-            board.setVisible(true);
-        } else {
-            PlayerNames playName = new PlayerNames(howmany, count + 1, players);
-            playName.setVisible(true);
         }
     }//GEN-LAST:event_inputActionPerformed
 
