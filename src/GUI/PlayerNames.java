@@ -214,8 +214,7 @@ public class PlayerNames extends javax.swing.JFrame {
         Hero playerHero = null;
         if (anyValidButtonSelected()) {
             playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
-            System.out.println(playerNameField.getText());
-            if ((!playerNameField.getText().trim().isEmpty()) || (playerNameField.getText() != null)) { //Error: if field text is blank, the next player form still displays
+            if ((!playerNameField.getText().trim().isEmpty()) && (playerNameField.getText() != null)) {
                 players[count - 1] = new Player(playerNameField.getText(), playerHero);
 
                 this.setVisible(false);
