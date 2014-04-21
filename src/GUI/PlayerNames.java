@@ -31,12 +31,14 @@ public class PlayerNames extends javax.swing.JFrame {
 
     public PlayerNames(int numPlayers) {
         this.howmany = numPlayers;
+        players = new Player[howmany];
         count = 1;
         initComponents();
     }
 
-    public PlayerNames(int numPlayers, int c) {
+    public PlayerNames(int numPlayers, int c, Player[] playas) {
         this.howmany = numPlayers;
+        players = playas;
         count = c;
         initComponents();
     }
@@ -209,21 +211,18 @@ public class PlayerNames extends javax.swing.JFrame {
     }//GEN-LAST:event_ThiefButtonActionPerformed
 
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
-        players = new Player[howmany];
         Hero playerHero = null;
         if (anyValidButtonSelected()) {
             playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
-            players[count - 1] = new Player(playerNameField.getText(), playerHero);
             if ((playerNameField.getText().equals("")) || (playerNameField.getText() != null)) {
-                PlayerNames playName = new PlayerNames();
-                title.setText("Player " + count);
+                players[count - 1] = new Player(playerNameField.getText(), playerHero);
             } else {
                 System.out.println("No name filled in.");
             }
 
             JRadioButton button = getSelectedButton(playerType);
             if (button != null) {
-                button.setSelected(false);
+                playerType.clearSelection();
             }
             playerNameField.setText("");
         }
@@ -233,7 +232,9 @@ public class PlayerNames extends javax.swing.JFrame {
             this.setVisible(false);
             board.setVisible(true);
         } else {
-            PlayerNames playName = new PlayerNames(howmany, count + 1);
+            PlayerNames playName = new PlayerNames(howmany, count + 1, players);
+            this.setVisible(false);
+            playName.setVisible(true);
         }
     }//GEN-LAST:event_inputActionPerformed
 
@@ -253,50 +254,37 @@ public class PlayerNames extends javax.swing.JFrame {
         return result;
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.title.setText("Player 1");
+        this.title.setText("Player " + count);
     }//GEN-LAST:event_formWindowOpened
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
-        String s = "";
-        if (playerHero != null) {
-            s = b.getName();
-        }
-        switch (s) {
-            case "Barbarian":
-                playerHero = new Barbarian();
-                break;
-            case "Ninja":
-                playerHero = new Ninja();
-                break;
-            case "Mage":
-                playerHero = new Mage();
-                break;
-            case "Knight":
-                playerHero = new Knight();
-                break;
-            case "Martial Artist":
-                //playerHero = new MartialArtist();
-                System.out.println("Not Available.");
-                break;
-            case "Thief":
-                //playerHero = new Thief();
-                System.out.println("Not Available.");
-                break;
-            case "Priest":
-                //playerHero = new Priest();
-                System.out.println("Not Available.");
-                break;
-            case "Merchant":
-                //playerHero = new Merchant();
-                System.out.println("Not Available.");
-                break;
-            case "Paladin":
-                //playerHero = new Paladin();
-                System.out.println("Not Available.");
-                break;
-            default:
-                // No button pressed
-                System.out.println("Error: No character picked.");
+        String s = b.getText();
+        if (s.equalsIgnoreCase("Barbarian")) {
+            playerHero = new Barbarian();
+        } else if (s.equalsIgnoreCase("Ninja")) {
+            playerHero = new Ninja();
+        } else if (s.equalsIgnoreCase("Mage")) {
+            playerHero = new Mage();
+        } else if (s.equalsIgnoreCase("Knight")) {
+            playerHero = new Knight();
+        } else if (s.equalsIgnoreCase("Martial Artist")) {
+            //playerHero = new MartialArtist();
+            System.out.println("Not Available.");
+        } else if (s.equalsIgnoreCase("Ninja")) {
+            //playerHero = new Thief();
+            System.out.println("Not Available.");
+        } else if (s.equalsIgnoreCase("Priest")) {
+            //playerHero = new Priest();
+            System.out.println("Not Available.");
+        } else if (s.equalsIgnoreCase("Merchant")) {
+            //playerHero = new Merchant();
+            System.out.println("Not Available.");
+        } else if (s.equalsIgnoreCase("Paladin")) {
+            //playerHero = new Paladin();
+            System.out.println("Not Available.");
+        } else {
+            // No button pressed
+            System.out.println("Error: No character picked.");
         }
         return playerHero;
     }
