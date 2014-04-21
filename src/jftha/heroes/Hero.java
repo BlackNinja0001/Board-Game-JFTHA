@@ -53,7 +53,7 @@ public abstract class Hero {
     //Used for certain special abilties
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
-    private final List<tempStatChange> tempStatChanges;
+    private List<tempStatChange> tempStatChanges;
     private boolean hasPet;
     private SummonPet pet;
 
