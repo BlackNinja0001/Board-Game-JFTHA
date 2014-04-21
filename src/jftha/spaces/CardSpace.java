@@ -38,16 +38,12 @@ public class CardSpace extends Space {
         }else{
             drawn.triggerEffect(p);
         }
-        
+        System.out.println(drawn.getMessage());
     }
 
     public void drawNewCard(RarityEnum rarity) {
         CardFactory cf = new CardFactory();
         drawn = cf.buildCard(rarity);
-    }
-    
-    public void activateCard(){
-        System.out.println(drawn.getMessage());
     }
 
     @Override
