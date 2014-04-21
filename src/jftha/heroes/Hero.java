@@ -363,8 +363,8 @@ public abstract class Hero {
         }
         Iterator<ArtifactPiece> itr = artifactPieces.iterator();
         while(itr.hasNext()) {
-            Item item = itr.next();
-            lostItems.add(item);
+            ArtifactPiece item = itr.next();
+            item.setOwner(null);
         }
         
         this.spells.add(new SpectreShot()); // spectre shot;
