@@ -18,6 +18,7 @@ public class Agility_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setAgility(hero.getAgility() - this.getChange());
             this.setInEffect(false);
         }
     }

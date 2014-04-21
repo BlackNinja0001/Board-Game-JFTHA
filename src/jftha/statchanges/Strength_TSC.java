@@ -18,6 +18,7 @@ public class Strength_TSC extends tempStatChange {
             }
             this.setDuration(--duration);
         } else {
+            hero.setStrength(hero.getStrength() - this.getChange());
             this.setInEffect(false);
         }
     }

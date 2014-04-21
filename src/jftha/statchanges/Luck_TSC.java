@@ -18,6 +18,7 @@ public class Luck_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setLuck(hero.getLuck() - this.getChange());
             this.setInEffect(false);
         }
     }

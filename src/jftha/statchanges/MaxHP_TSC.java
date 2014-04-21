@@ -18,6 +18,7 @@ public class MaxHP_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setMaxHP(hero.getMaxHP() - this.getChange());
             this.setInEffect(false);
         }
     }
