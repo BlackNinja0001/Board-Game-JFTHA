@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import jftha.heroes.*;
 import jftha.main.Player;
@@ -104,6 +105,11 @@ public class PlayerNames extends javax.swing.JFrame {
 
         playerType.add(MartialArtistButton);
         MartialArtistButton.setText("Martial Artist");
+        MartialArtistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MartialArtistButtonActionPerformed(evt);
+            }
+        });
 
         playerType.add(ThiefButton);
         ThiefButton.setText("Thief");
@@ -115,12 +121,27 @@ public class PlayerNames extends javax.swing.JFrame {
 
         playerType.add(PriestButton);
         PriestButton.setText("Priest");
+        PriestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PriestButtonActionPerformed(evt);
+            }
+        });
 
         playerType.add(MerchantButton);
         MerchantButton.setText("Merchant");
+        MerchantButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MerchantButtonActionPerformed(evt);
+            }
+        });
 
         playerType.add(PaladinButton);
         PaladinButton.setText("Paladin");
+        PaladinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaladinButtonActionPerformed(evt);
+            }
+        });
 
         input.setText("Go");
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +228,7 @@ public class PlayerNames extends javax.swing.JFrame {
     }//GEN-LAST:event_KnightButtonActionPerformed
 
     private void ThiefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThiefButtonActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Thief not available in this version.");
     }//GEN-LAST:event_ThiefButtonActionPerformed
 
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
@@ -226,7 +247,7 @@ public class PlayerNames extends javax.swing.JFrame {
                     playName.setVisible(true);
                 }
             } else {
-                System.out.println("No name filled in.");
+                JOptionPane.showMessageDialog(rootPane, "No name filled in.");
             }
         }
     }//GEN-LAST:event_inputActionPerformed
@@ -241,14 +262,28 @@ public class PlayerNames extends javax.swing.JFrame {
             result = true;
         } else if (KnightButton.isSelected()) {
             result = true;
-        } else {
-            System.out.println("Invalid Selection."); //more handling
         }
         return result;
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.title.setText("Player " + count);
     }//GEN-LAST:event_formWindowOpened
+
+    private void MartialArtistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MartialArtistButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Martial Artist not available in this version.");
+    }//GEN-LAST:event_MartialArtistButtonActionPerformed
+
+    private void PriestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriestButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Priest not available in this version.");
+    }//GEN-LAST:event_PriestButtonActionPerformed
+
+    private void MerchantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MerchantButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Merchant not available in this version.");
+    }//GEN-LAST:event_MerchantButtonActionPerformed
+
+    private void PaladinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaladinButtonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Paladin not available in this version.");
+    }//GEN-LAST:event_PaladinButtonActionPerformed
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
         String s = b.getText();
@@ -260,24 +295,9 @@ public class PlayerNames extends javax.swing.JFrame {
             playerHero = new Mage();
         } else if (s.equalsIgnoreCase("Knight")) {
             playerHero = new Knight();
-        } else if (s.equalsIgnoreCase("Martial Artist")) {
-            //playerHero = new MartialArtist();
-            System.out.println("Not Available.");
-        } else if (s.equalsIgnoreCase("Ninja")) {
-            //playerHero = new Thief();
-            System.out.println("Not Available.");
-        } else if (s.equalsIgnoreCase("Priest")) {
-            //playerHero = new Priest();
-            System.out.println("Not Available.");
-        } else if (s.equalsIgnoreCase("Merchant")) {
-            //playerHero = new Merchant();
-            System.out.println("Not Available.");
-        } else if (s.equalsIgnoreCase("Paladin")) {
-            //playerHero = new Paladin();
-            System.out.println("Not Available.");
-        } else {
+        } else { //Martial Artist, Thief, Priest, Merchant, Paladin not available
             // No button pressed
-            System.out.println("Error: No character picked.");
+            JOptionPane.showMessageDialog(rootPane, "No character picked.");
         }
         return playerHero;
     }
