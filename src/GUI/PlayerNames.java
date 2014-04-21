@@ -219,7 +219,7 @@ public class PlayerNames extends javax.swing.JFrame {
 
                 this.setVisible(false);
                 if (count == howmany) {
-                    BoardGUI board = new BoardGUI();
+                    BoardGUI board = new BoardGUI(players);
                     board.setVisible(true);
                 } else {
                     PlayerNames playName = new PlayerNames(howmany, count + 1, players);
