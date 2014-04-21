@@ -31,7 +31,8 @@ public class PlayerNames extends javax.swing.JFrame {
     }
 
     public PlayerNames(int numPlayers) {
-
+        this.howmany = numPlayers;
+        this.count = this.howmany;
         initComponents();
     }
 
@@ -70,6 +71,7 @@ public class PlayerNames extends javax.swing.JFrame {
 
         playerType.add(BarbarianButton);
         BarbarianButton.setText("Barbarian");
+        BarbarianButton.setName("Barbarian"); // NOI18N
         BarbarianButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BarbarianButtonActionPerformed(evt);
@@ -78,12 +80,15 @@ public class PlayerNames extends javax.swing.JFrame {
 
         playerType.add(NinjaButton);
         NinjaButton.setText("Ninja");
+        NinjaButton.setName("Ninja"); // NOI18N
 
         playerType.add(MageButton);
         MageButton.setText("Mage");
+        MageButton.setName("Mage"); // NOI18N
 
         playerType.add(KnightButton);
         KnightButton.setText("Knight");
+        KnightButton.setName("Knight"); // NOI18N
         KnightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KnightButtonActionPerformed(evt);
@@ -208,10 +213,9 @@ public class PlayerNames extends javax.swing.JFrame {
         }
         if (anyValidButtonSelected()) {
             if ((playerNameField.getText() != "") || (playerNameField.getText() != null)) {
-                int amt = this.howmany - this.count;
-                count++;
+                count--;
                 this.setVisible(false);
-                if (amt < 0) { //no more players to initialize
+                if (count == 0) { //no more players to initialize
                     BoardGUI board = new BoardGUI();
                     board.setVisible(true);
                 } else {
@@ -244,7 +248,13 @@ public class PlayerNames extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
-        String s = b.getName();
+        String s = new String();
+        try {
+            s = b.getName();
+        } catch (NullPointerException e) {
+            System.out.println("No character picked.");
+            return null;
+        }
         switch (s) {
             case "Barbarian":
                 playerHero = new Barbarian();
@@ -259,19 +269,24 @@ public class PlayerNames extends javax.swing.JFrame {
                 playerHero = new Knight();
                 break;
             case "Martial Artist":
-                playerHero = new MartialArtist();
+                //playerHero = new MartialArtist();
+                System.out.println("Not Available.");
                 break;
             case "Thief":
-                playerHero = new Thief();
+                //playerHero = new Thief();
+                System.out.println("Not Available.");
                 break;
             case "Priest":
-                playerHero = new Priest();
+                //playerHero = new Priest();
+                System.out.println("Not Available.");
                 break;
             case "Merchant":
-                playerHero = new Merchant();
+                //playerHero = new Merchant();
+                System.out.println("Not Available.");
                 break;
             case "Paladin":
-                playerHero = new Paladin();
+                //playerHero = new Paladin();
+                System.out.println("Not Available.");
                 break;
             default:
             // No button pressed

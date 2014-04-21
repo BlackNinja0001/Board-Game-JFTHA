@@ -127,6 +127,7 @@
           <ComponentRef name="playerType"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Barbarian"/>
+        <Property name="name" type="java.lang.String" value="Barbarian" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BarbarianButtonActionPerformed"/>
@@ -138,6 +139,7 @@
           <ComponentRef name="playerType"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ninja"/>
+        <Property name="name" type="java.lang.String" value="Ninja" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="MageButton">
@@ -146,6 +148,7 @@
           <ComponentRef name="playerType"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Mage"/>
+        <Property name="name" type="java.lang.String" value="Mage" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="KnightButton">
@@ -154,6 +157,7 @@
           <ComponentRef name="playerType"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Knight"/>
+        <Property name="name" type="java.lang.String" value="Knight" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KnightButtonActionPerformed"/>
