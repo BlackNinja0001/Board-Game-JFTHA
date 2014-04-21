@@ -19,9 +19,8 @@ import jftha.main.Player;
  */
 public class PlayerNames extends javax.swing.JFrame {
 
-    private int howmany;
+    private int howmany, count;
     Player[] players;
-    private int count;
 
     /**
      * Creates new form PlayerNames
@@ -32,7 +31,13 @@ public class PlayerNames extends javax.swing.JFrame {
 
     public PlayerNames(int numPlayers) {
         this.howmany = numPlayers;
-        this.count = this.howmany;
+        count = 1;
+        initComponents();
+    }
+
+    public PlayerNames(int numPlayers, int c) {
+        this.howmany = numPlayers;
+        count = c;
         initComponents();
     }
 
@@ -205,26 +210,30 @@ public class PlayerNames extends javax.swing.JFrame {
 
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
         players = new Player[howmany];
-        for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
-            title.setText("Player " + i);
-            Hero playerHero = null;
-            playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
-            players[i - 1] = new Player(playerNameField.getText(), playerHero);
-        }
+        Hero playerHero = null;
         if (anyValidButtonSelected()) {
-            if ((playerNameField.getText() != "") || (playerNameField.getText() != null)) {
-                count--;
-                this.setVisible(false);
-                if (count == 0) { //no more players to initialize
-                    BoardGUI board = new BoardGUI();
-                    board.setVisible(true);
-                } else {
-                    PlayerNames playName = new PlayerNames();
-                    playName.setVisible(true);
-                }
+            playerHero = assignPlayer(getSelectedButton(playerType), playerHero);
+            players[count - 1] = new Player(playerNameField.getText(), playerHero);
+            if ((playerNameField.getText().equals("")) || (playerNameField.getText() != null)) {
+                PlayerNames playName = new PlayerNames();
+                title.setText("Player " + count);
             } else {
                 System.out.println("No name filled in.");
             }
+
+            JRadioButton button = getSelectedButton(playerType);
+            if (button != null) {
+                button.setSelected(false);
+            }
+            playerNameField.setText("");
+        }
+
+        if (count == howmany) {
+            BoardGUI board = new BoardGUI();
+            this.setVisible(false);
+            board.setVisible(true);
+        } else {
+            PlayerNames playName = new PlayerNames(howmany, count + 1);
         }
     }//GEN-LAST:event_inputActionPerformed
 
@@ -244,16 +253,13 @@ public class PlayerNames extends javax.swing.JFrame {
         return result;
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.title.setText("Player " + (this.howmany - this.count + 1));
+        this.title.setText("Player 1");
     }//GEN-LAST:event_formWindowOpened
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
-        String s = new String();
-        try {
+        String s = "";
+        if (playerHero != null) {
             s = b.getName();
-        } catch (NullPointerException e) {
-            System.out.println("No character picked.");
-            return null;
         }
         switch (s) {
             case "Barbarian":
@@ -289,8 +295,8 @@ public class PlayerNames extends javax.swing.JFrame {
                 System.out.println("Not Available.");
                 break;
             default:
-            // No button pressed
-            //System.out.println("Error: No character picked.");
+                // No button pressed
+                System.out.println("Error: No character picked.");
         }
         return playerHero;
     }
