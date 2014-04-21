@@ -10,6 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
+import jftha.main.Player;
 
 /**
  *
@@ -17,10 +18,18 @@ import java.awt.event.ActionListener;
  */
 public class BoardGUI extends javax.swing.JFrame {
 
+    Player players[];
+    int howmany;
+    
+   public BoardGUI() {
+        initComponents();
+    }
     /**
      * Creates new form BoardGUI
      */
-    public BoardGUI() {
+    public BoardGUI(Player playas[]) {
+        howmany = playas.length;
+        players = playas;
         initComponents();
     }
 
