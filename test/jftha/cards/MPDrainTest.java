@@ -81,7 +81,7 @@ public class MPDrainTest {
         msg = msg.replace("Lancelot became a magic vampire for 10 seconds and drained ", "");
         msg = msg.replace(" MP from you.", "");
         int diff = Integer.parseInt(msg);
-        assertTrue(diff < 10 && diff >= 0);
+        assertTrue(diff <= 10 && diff > 0);
         assertEquals(diff, hero.getCurrentMP() - heroMP);
         assertEquals(diff, enemyMP - enemy.getCurrentMP());
     }
@@ -100,6 +100,7 @@ public class MPDrainTest {
         msg = msg.replace(" MP from you.", "");
         int diff = Integer.parseInt(msg);
         assertEquals(diff, hero.getCurrentMP() - heroMP);
-        assertTrue(enemy.getEliminated());
+        assertTrue("Enemy was not eleminated.", enemy.getEliminated());
+        assertEquals("Hero didn't get defeated enemy's items.", 4, hero.getItems().size());
     }
 }
