@@ -34,18 +34,19 @@ public class Main { //definitely need more error handling
         Main main = new Main();
         //They take turns
         main.orderedPlayers = new Player[howmany];
-        int count = 1;
         for (int i = 0; i < howmany; i++) {
             main.orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
         }
-
-        while (main.anyoneWon(main.orderedPlayers) == -1) {
+        int winner;
+        do {
             int i;
             for (i = 0; i < howmany; i++) {
                 main.executeTurn(main.orderedPlayers[i]);
             }
             i = 0;
-        }
+            winner = main.anyoneWon(main.orderedPlayers);
+        } while (winner == -1) ;
+        //Win message for winner
     }
 
     protected static void setTurnOrder(int howmany, Player[] players, Dice die) {
@@ -149,6 +150,13 @@ public class Main { //definitely need more error handling
     public Player winner(Player[] players) {
         Player ret = null;
         int winnerIndex;
+        for (Player p : players) {
+            if(5 == p.getCharacter().getArtifacts().size()) {
+                p.setIsWinner(true);
+                return p;
+            }
+        }
+        
         if (players.length == 4) {
             // Have all opponents dead for at least a period of 5 turns (4 player only)
 
@@ -169,6 +177,7 @@ public class Main { //definitely need more error handling
         else {
             for (int i = 0; i < players.length; i++) {
                 if (allOpponentsNonExistent(players, i)) {
+                    players[i].setIsWinner(true);
                     ret = players[i];
                 }
             }
