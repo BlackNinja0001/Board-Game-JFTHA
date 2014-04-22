@@ -48,8 +48,8 @@ public class ArtifactPiece1Test {
     
     @Test
     public void testOwnerChange() {
-        hero.addArtifact(part1);
-        hero.addArtifact(part2);
+        hero.addItem(part1);
+        hero.addItem(part2);
         assertEquals(hero, part1.getOwner());
         assertEquals(hero, part2.getOwner());
     }
