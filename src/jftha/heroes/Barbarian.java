@@ -33,5 +33,6 @@ public class Barbarian extends Hero {
                 this.addTSC(new Strength_TSC(1, this.getStrength()));
             }
         }
+        super.attackEnemy(enemy);
     }
 }
