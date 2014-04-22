@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 public class ItemFactoryTest {
     
@@ -50,19 +49,16 @@ public class ItemFactoryTest {
         p3 = ArtifactPiece3.getInstance();
         p4 = ArtifactPiece4.getInstance();
         p5 = ArtifactPiece5.getInstance();
-        h1.addArtifact(p1);
-        h1.addArtifact(p2);
-        h2.addArtifact(p3);
-        h2.addArtifact(p4);
-        h2.addArtifact(p5);
+        h1.addItem(p1);
+        h1.addItem(p2);
+        h2.addItem(p3);
+        h2.addItem(p4);
+        h2.addItem(p5);
         ItemFactory instance = new ItemFactory();
-        Item result = null;
+        Item result;
         for (int i = 0; i < 100; i++) {
             result = instance.buildItem(RarityEnum.rare);
             assertNotNull(result);
-            if (ArtifactPiece.class == result.getClass().getSuperclass()) {
-                System.err.println("oops");
-            }
             assertNotSame(ArtifactPiece.class, result.getClass().getSuperclass());
         }
         
