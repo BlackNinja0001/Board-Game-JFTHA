@@ -590,7 +590,7 @@ public abstract class Hero {
      * @param part Artifact Piece to be added
      * @return true if piece was added
      */
-    public boolean addArtifact(ArtifactPiece part) {
+    private boolean addArtifact(ArtifactPiece part) {
         for (ArtifactPiece a: artifactPieces) {
             if(a.getClass().equals(part.getClass())) {
                 return false;
