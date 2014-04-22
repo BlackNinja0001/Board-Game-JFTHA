@@ -2,6 +2,7 @@ package jftha.cards;
 
 import java.util.*;
 import jftha.heroes.*;
+import jftha.items.Item;
 import jftha.main.Player;
 
 public class MPDrain extends Card{
@@ -47,6 +48,9 @@ public class MPDrain extends Card{
         victim.setCurrentMP(victim.getCurrentMP() - mpdrain);
         if((victim.isGhost() == true) && (victim.getCurrentMP() <= 0)){
             victim.setEliminated(true);
+            for(Item it : victim.getLostItems()) {
+                drainer.addItem(it);
+            }
         }
         
         drainer.setCurrentMP(drainer.getCurrentMP() + mpdrain);        
