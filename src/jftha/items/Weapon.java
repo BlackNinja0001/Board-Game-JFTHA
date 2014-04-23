@@ -11,5 +11,4 @@ public abstract class Weapon extends Equippable{
     public abstract void equipWeap(Player player);
     public abstract void dropWeap(Player player);
     public abstract void weapEffect(Player player);
-    public abstract void weapEffect(Player attacker, Player attacked);
 }
