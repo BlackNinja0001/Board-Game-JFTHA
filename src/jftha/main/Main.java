@@ -340,16 +340,16 @@ public class Main { //definitely need more error handling
 
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
+        Hero hero = performer.getCharacter();
         int itemCount = 0;
         List<Item> myItems;
 
         char yesOrNo;  //arbitrary character not 'y' or 'n'
-        int mistakes = 0;
         while (true) { //will break
             System.out.println("Use item ('y' for yes, 'n' for no)?");
             yesOrNo = s.next().trim().charAt(0);
             if (yesOrNo == 'y') {
-                myItems = performer.getCharacter().getItems();
+                myItems = hero.getItems();
                 if (!(myItems).isEmpty()) {
                     for (Item item : myItems) {
                         itemCount++;
@@ -365,6 +365,15 @@ public class Main { //definitely need more error handling
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
                             if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
+                                if(Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
+                                    performer.setWeapon((Weapon)toBeUsed);
+                                    performer.setHasWeapon(true);
+                                    ((Weapon)toBeUsed).equipWeap(performer);
+                                } else if(Armor.class.isAssignableFrom(toBeUsed.getClass())) {
+                                    performer.setArmor((Armor)toBeUsed);
+                                    performer.setHasArmor(true);
+                                    ((Armor)toBeUsed).equipArmor(performer);
+                                }
                             } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
                             }
                         } else {
@@ -375,28 +384,7 @@ public class Main { //definitely need more error handling
                 break;
             } else if (yesOrNo == 'n') {
                 break;
-            } else {
-                if (mistakes <= 2) {
-                    System.out.println("Invalid Answer.");
-                } else if (mistakes == 3) {
-                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
-                } else if (mistakes == 4) {
-                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
-                } else if (mistakes == 5) {
-                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
-                } else if (mistakes == 6) {
-                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
-                } else if (mistakes == 7) {
-                    System.out.println("Is that even a letter? Seriously you need to try.");
-                } else {
-                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
-                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
-                    performer.getCharacter().setEliminated(true);
-                    System.out.println("Game Over");
-                    break;
-                }
-                mistakes++;
-            }
+            } 
         }
     }
 }
