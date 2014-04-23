@@ -122,26 +122,25 @@ public class HeroTest {
         assertEquals(spell_slots, hero.getSpellSlots());
     }
 
-    /**
-     * Test of setMaxHP method, of class Hero.
-     */
     @Test
-    public void testSetHP() {
+    public void testSetMaxHP() {
         assertEquals(60, hero.getMaxHP());
         int hp = 55;
         hero.setMaxHP(hp);
         assertEquals(hp, hero.getMaxHP());
+        assertEquals(hp, hero.getCurrentHP());
     }
 
     /**
      * Test of setMaxMP method, of class Hero.
      */
     @Test
-    public void testSetMP() {
+    public void testSetMaxMP() {
         assertEquals(30, hero.getMaxMP());
         int mp = 25;
         hero.setMaxMP(mp);
         assertEquals(mp, hero.getMaxMP());
+        assertEquals(mp, hero.getCurrentMP());
     }
 
     /**
