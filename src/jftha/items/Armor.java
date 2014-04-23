@@ -7,5 +7,4 @@ public abstract class Armor extends Equippable{
     public abstract void equipArmor(Player player);
     public abstract void dropArmor(Player player);
     public abstract void armorEffect(Player player);
-    public abstract void armorEffect(Player attacker, Player attacked);
 }
