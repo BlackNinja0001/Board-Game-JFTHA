@@ -1,6 +1,8 @@
 package jftha.main;
 
 import jftha.heroes.*;
+import jftha.items.Armor;
+import jftha.items.Weapon;
 import jftha.spaces.Space;
 
 public class Player {
@@ -12,7 +14,13 @@ public class Player {
     private int winCount = 0;
     private Space currentSpace;
     private int lostTurns;
-
+    // Keeps track of the weapon that player has equipped
+    private Weapon weapon;
+    private boolean hasWeapon;
+    // Keeps track of the armor that player has equipped
+    private Armor armor;
+    private boolean hasArmor;
+    
     public Player() {
         this.customName = "";
         this.character = null;
@@ -51,6 +59,21 @@ public class Player {
     public int getLostTurns() {
         return lostTurns;
     }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    
+    public boolean hasWeapon() {
+        return hasWeapon;
+    }
+    
+    public Armor getArmor() {
+        return armor;
+    }
+    
+    public boolean hasArmor() {
+        return hasArmor;
+    }
 
     //Setter methods
     public void setCustomName(String customName) {
@@ -84,6 +107,23 @@ public class Player {
     public void setLostTurns(int lostTurns) {
         this.lostTurns = lostTurns;
     }
+    
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    
+    public void setHasWeapon(boolean hasWeapon) {
+        this.hasWeapon = hasWeapon;
+    }
+    
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+    
+    public void setHasArmor(boolean hasArmor) {
+        this.hasArmor = hasArmor;
+    }
+    
 
     public Space move(String s) {
         if (this.lostTurns == 0) {
