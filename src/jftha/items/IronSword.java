@@ -29,9 +29,4 @@ public class IronSword extends Weapon {
     public void weapEffect(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void weapEffect(Player attacker, Player attacked) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
