@@ -5,6 +5,7 @@ import jftha.heroes.*;
 import jftha.items.*;
 import java.util.Scanner;
 import jftha.spaces.*;
+import jftha.spells.Spell;
 
 public class Main { //definitely need more error handling
 
@@ -344,7 +345,13 @@ public class Main { //definitely need more error handling
         System.out.println("Spell(1), special(2), item(3), or cancel(0)");
         int choice = s.nextInt();
         if (choice == 1) {
-            //playerChar
+            List<Spell> spells = playerChar.getSpells();
+            int i = 0;
+            for (Spell sp: spells){
+                System.out.println(i + ". ");
+                
+                i++;
+            }
         } else if (choice == 2) {
             playerChar.triggerSpecial();
             if (playerChar instanceof Ninja) { //special instance
