@@ -18,6 +18,7 @@ public class Defense_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setDefense(hero.getDefense() - this.getChange());
             this.setInEffect(false);
         }
     }

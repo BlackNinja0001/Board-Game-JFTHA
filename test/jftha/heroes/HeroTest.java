@@ -36,7 +36,7 @@ public class HeroTest {
     @Before
     public void setUp() {
         hero = new Barbarian();
-        enemy = new Knight();
+        enemy = new Mage();
         out = new ByteArrayOutputStream();
     }
 
@@ -122,26 +122,25 @@ public class HeroTest {
         assertEquals(spell_slots, hero.getSpellSlots());
     }
 
-    /**
-     * Test of setMaxHP method, of class Hero.
-     */
     @Test
-    public void testSetHP() {
+    public void testSetMaxHP() {
         assertEquals(60, hero.getMaxHP());
         int hp = 55;
         hero.setMaxHP(hp);
         assertEquals(hp, hero.getMaxHP());
+        assertEquals(hp, hero.getCurrentHP());
     }
 
     /**
      * Test of setMaxMP method, of class Hero.
      */
     @Test
-    public void testSetMP() {
+    public void testSetMaxMP() {
         assertEquals(30, hero.getMaxMP());
         int mp = 25;
         hero.setMaxMP(mp);
         assertEquals(mp, hero.getMaxMP());
+        assertEquals(mp, hero.getCurrentMP());
     }
 
     /**
@@ -237,9 +236,10 @@ public class HeroTest {
         hero.setStrength(12);
         enemy.setCurrentHP(1);
         hero.attackEnemy(enemy);
+        assertEquals("Hero starts with wrong number of items", 2, hero.getItems().size());
         assertTrue("Enemy did not die.", enemy.isGhost());
-        assertTrue(enemy.getCurrentHP() <= 0);
-        assertEquals(enemy.getMaxMP(), enemy.getCurrentMP());
+        assertTrue("Enemy has positive HP as ghost.", enemy.getCurrentHP() <= 0);
+        assertEquals(enemy.getMaxMP(), enemy.getCurrentMP());      
     }
     
     @Test
@@ -248,14 +248,14 @@ public class HeroTest {
         enemy.makeGhost();
         int prevMP = enemy.getCurrentMP(); //ghost'a MP acts like "HP", but still can be used for spells
         hero.attackEnemy(enemy);
-        assertTrue(prevMP == enemy.getCurrentMP());
+        assertEquals(prevMP, enemy.getCurrentMP());
     }
     
     @Test
     public void testBuy() {
         assertEquals(500, hero.getGold());
         Spell fireball = new Fireball();
-        assertTrue(hero.buy(fireball));
+        assertTrue("Hero did not buy spell.", hero.buy(fireball));
         assertEquals(fireball.getGoldCost(), 500 - hero.getGold());
         List<Spell> spells = hero.getSpells();
         boolean thereis = false;
@@ -263,7 +263,7 @@ public class HeroTest {
             if(s.getClass().equals(Fireball.class))
                 thereis = true;
         }
-        assertTrue(thereis);
+        assertTrue("Hero does not have spell.", thereis);
     }
     @Test
     public void testGhostsWithNoSpiritualItemsLoseAllItems() {
@@ -274,7 +274,7 @@ public class HeroTest {
         hero.addItem(new MageRobe());
         hero.makeGhost();
         List i = hero.getItems();
-        assertEquals(0, i.size());
+        assertEquals("Ghost kept nonspiritual items.", 0, i.size());
     }
     
     @Test
@@ -286,8 +286,8 @@ public class HeroTest {
         hero.addItem(new Bible());
         hero.makeGhost();
         List i = hero.getItems();
-        assertEquals(1, i.size());
-        assertEquals(Bible.class, i.get(0).getClass());
+        assertEquals("Hero has wrong number of items.", 1, i.size());
+        assertEquals("Ghost didn't keep spiritual item.", Bible.class, i.get(0).getClass());
     }
     
     @Test
@@ -303,8 +303,8 @@ public class HeroTest {
     public void testUnghostStatUpdates() {
         hero.makeGhost();
         hero.unGhost();
-        assertFalse(hero.isGhost());
-        assertTrue(hero.getWasGhost());
+        assertFalse("Hero is still a ghost", hero.isGhost());
+        assertTrue("Hero was never a ghost", hero.getWasGhost());
         assertEquals(hero.getMaxHP(), hero.getCurrentHP());
     }
     
@@ -325,7 +325,6 @@ public class HeroTest {
         enemy = new Barbarian();
         hero.triggerSpecial();
         enemy.attackEnemy(hero);
-        assertFalse(hero.getCurrentHP() != hero.getMaxHP());
+        assertEquals(hero.getCurrentHP(), hero.getMaxHP());
     }
-    
 }

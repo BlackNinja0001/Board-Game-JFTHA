@@ -10,7 +10,7 @@ public class Goldskin extends Armor {
     
     public Goldskin() {
         this.setRarity(RarityEnum.rare);
-        this.setMessage("Goldskin: +" + hp + " HP, " + "+" + strength + " Strength, " + "+" + def + " Defense");
+        this.setMessage("Goldskin: +" + hp + " HP, +" + strength + " Strength, +" + def + " Defense");
         this.setGoldCost(50);
     }
 

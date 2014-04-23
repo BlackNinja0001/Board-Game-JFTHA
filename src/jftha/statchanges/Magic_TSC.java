@@ -18,6 +18,7 @@ public class Magic_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setMagic(hero.getMagic() - this.getChange());
             this.setInEffect(false);
         }
     }

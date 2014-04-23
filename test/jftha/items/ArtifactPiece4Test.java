@@ -8,11 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ArtifactPiece1Test {
-    ArtifactPiece1 part1, part2;
+public class ArtifactPiece4Test {
+    ArtifactPiece4 part1, part2;
     Hero hero;
     
-    public ArtifactPiece1Test() {
+    public ArtifactPiece4Test() {
     }
     
     @BeforeClass
@@ -25,8 +25,8 @@ public class ArtifactPiece1Test {
     
     @Before
     public void setUp() {
-        part1 = ArtifactPiece1.getInstance();
-        part2 = ArtifactPiece1.getInstance();
+        part1 = ArtifactPiece4.getInstance();
+        part2 = ArtifactPiece4.getInstance();
         hero = new Knight();
     }
     
@@ -53,6 +53,4 @@ public class ArtifactPiece1Test {
         assertEquals(hero, part1.getOwner());
         assertEquals(hero, part2.getOwner());
     }
-    
-    
 }

@@ -5,10 +5,14 @@ import jftha.items.AnimalSkin;
 import jftha.items.Ax;
 import jftha.items.Equippable;
 import jftha.items.Item;
+import jftha.statchanges.Strength_TSC;
 
 public class Barbarian extends Hero {
 
     //Constructor
+    /**
+     * 
+     */
     public Barbarian() {
         this.setStrength(super.getStrength() + 2);
         this.setMagic(super.getMagic() - 2);
@@ -16,20 +20,19 @@ public class Barbarian extends Hero {
         this.addItem(new Ax());
         this.setClassName("Barbarian");
     }
-
+    
+    /**
+     * 
+     * @param enemy 
+     */
     @Override
     public void attackEnemy(Hero enemy) {
-        int strength = this.getStrength();
         Random rand = new Random();
-        if (getWasAttacked()) { //Barbarian's special
-            int tempStrength = this.getStrength();
-            if ((rand.nextInt(5) + 1) == 1) {
-                tempStrength *= 2;
-                this.setStrength(tempStrength);
+        if(getWasAttacked()) { // Barbarian's Special
+            if((rand.nextInt(5) + 1) == 1) {
+                this.addTSC(new Strength_TSC(1, this.getStrength()));
             }
         }
         super.attackEnemy(enemy);
-        this.setStrength(strength);
-        
     }
 }

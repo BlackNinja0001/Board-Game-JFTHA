@@ -115,6 +115,9 @@ public abstract class Hero {
 
     public void setMaxHP(int hp) {
         this.maxHP = hp;
+        if(currentHP > maxHP) {
+            currentHP = maxHP;
+        }
     }
 
     public void setCurrentHP(int hp) {
@@ -127,6 +130,9 @@ public abstract class Hero {
 
     public void setMaxMP(int mp) {
         this.maxMP = mp;
+        if(currentMP > maxMP) {
+            currentMP = maxMP;
+        }
     }
 
     public void setCurrentMP(int mp) {
@@ -363,8 +369,8 @@ public abstract class Hero {
         }
         Iterator<ArtifactPiece> itr = artifactPieces.iterator();
         while(itr.hasNext()) {
-            Item item = itr.next();
-            lostItems.add(item);
+            ArtifactPiece item = itr.next();
+            item.setOwner(null);
         }
         
         this.spells.add(new SpectreShot()); // spectre shot;
@@ -590,7 +596,7 @@ public abstract class Hero {
      * @param part Artifact Piece to be added
      * @return true if piece was added
      */
-    public boolean addArtifact(ArtifactPiece part) {
+    private boolean addArtifact(ArtifactPiece part) {
         for (ArtifactPiece a: artifactPieces) {
             if(a.getClass().equals(part.getClass())) {
                 return false;

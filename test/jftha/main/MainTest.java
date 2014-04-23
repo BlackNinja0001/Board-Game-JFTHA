@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 import jftha.heroes.*;
+import jftha.items.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -179,6 +180,44 @@ public class MainTest {
     }
     
     @Test
+    public void testWinner5ArtifactPieces() {
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[3].getCharacter().addItem(ArtifactPiece1.getInstance());
+        players[3].getCharacter().addItem(ArtifactPiece2.getInstance());
+        players[3].getCharacter().addItem(ArtifactPiece3.getInstance());
+        players[3].getCharacter().addItem(ArtifactPiece4.getInstance());
+        players[3].getCharacter().addItem(ArtifactPiece5.getInstance());
+        Player res = main.winner(players);
+        assertEquals(players[3], res);
+    }
+    
+    @Test
+    public void testWinner() {
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[3].setIsWinner(true);
+        Player res = main.winner(players);
+        assertEquals(res, players[3]);
+    }
+    
+    @Test
+    public void testUpWinCountValidated() {
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        players[1].getCharacter().makeGhost();
+        players[2].getCharacter().makeGhost();
+        players[3].getCharacter().makeGhost();
+        //assertTrue(main.upWinCountValidated(players, 0)); // 
+        //assertEquals(1, );
+    }
+    @Test
     public void testUpWinCount() {
         Player[] players = {new Player("player1", new Paladin()), 
                             new Player("player2", new Barbarian()),
@@ -204,17 +243,5 @@ public class MainTest {
         players[3].getCharacter().unGhost();
         assertFalse(main.upWinCountValidated(players, 1));
         assertEquals(0, players[1].getWinCount());
-    }
-    
-    @Ignore("Needs work/Another test. UpWinCount sets isWinner")
-    @Test
-    public void testWinner() {
-        Player[] players = {new Player("player1", new Paladin()), 
-                            new Player("player2", new Barbarian()),
-                            new Player("player3", new Ninja()),
-                            new Player("player4", new Mage())};
-        players[3].setIsWinner(true);
-        Player winner = main.winner(players);
-        assertEquals(winner, players[3]);
     }
 }

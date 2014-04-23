@@ -18,6 +18,7 @@ public class MaxMP_TSC extends tempStatChange{
             }
             this.setDuration(--duration);
         } else {
+            hero.setMaxMP(hero.getMaxMP() - this.getChange());
             this.setInEffect(false);
         }
     }
