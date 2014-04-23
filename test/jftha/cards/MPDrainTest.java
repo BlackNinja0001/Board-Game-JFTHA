@@ -44,7 +44,7 @@ public class MPDrainTest {
         card.triggerEffect(player1);
         int diff = curMP - h.getCurrentMP();
         assertTrue(h.getCurrentMP() <= curMP);
-        assertTrue(diff < 10 && diff >= 0);
+        assertTrue(diff <= 10 && diff > 0);
     }
     
     @Test
