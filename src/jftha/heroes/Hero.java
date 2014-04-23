@@ -115,6 +115,9 @@ public abstract class Hero {
 
     public void setMaxHP(int hp) {
         this.maxHP = hp;
+        if(currentHP > maxHP) {
+            currentHP = maxHP;
+        }
     }
 
     public void setCurrentHP(int hp) {
@@ -127,6 +130,9 @@ public abstract class Hero {
 
     public void setMaxMP(int mp) {
         this.maxMP = mp;
+        if(currentMP > maxMP) {
+            currentMP = maxMP;
+        }
     }
 
     public void setCurrentMP(int mp) {
