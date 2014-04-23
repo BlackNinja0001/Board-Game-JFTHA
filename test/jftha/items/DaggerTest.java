@@ -41,7 +41,7 @@ public class DaggerTest {
     }
 
     @Test
-    public void testEquipArmor() {
+    public void testEquipWeapon() {
         Hero h = p.getCharacter();
         Dagger w = (Dagger)h.getItems().get(1);
         w.equipWeap(p);
@@ -52,7 +52,7 @@ public class DaggerTest {
     }
 
     @Test
-    public void testDropArmor() {
+    public void testDropWeapon() {
         Hero h = p.getCharacter();
         Dagger w = (Dagger)h.getItems().get(1);
         w.equipWeap(p);
