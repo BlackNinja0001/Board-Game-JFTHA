@@ -40,19 +40,23 @@ public class AxTest {
     }
 
     @Test
-    public void testEquipArmor() {
+    public void testEquipWeapon() {
         Hero h = p.getCharacter();
-        Ax a = (Ax)h.getItems().get(1);
-        a.equipWeap(p);
+        Ax w = (Ax)h.getItems().get(1);
+        w.equipWeap(p);
         assertEquals(14, h.getStrength());
+        assertTrue(p.hasWeapon());
+        assertEquals(w, p.getWeapon());
     }
 
     @Test
-    public void testDropArmor() {
+    public void testDropWeapon() {
         Hero h = p.getCharacter();
-        Ax a = (Ax)h.getItems().get(1);
-        a.equipWeap(p);
-        a.dropWeap(p);
+        Ax w = (Ax)h.getItems().get(1);
+        w.equipWeap(p);
+        w.dropWeap(p);
         assertEquals(12, h.getStrength());
+        assertFalse(p.hasWeapon());
+        assertNull(p.getWeapon());
     }
 }
