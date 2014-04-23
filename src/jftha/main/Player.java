@@ -20,11 +20,6 @@ public class Player {
     // Keeps track of the armor that player has equipped
     private Armor armor;
     private boolean hasArmor;
-    
-    public Player() {
-        this.customName = "";
-        this.character = null;
-    }
 
     public Player(String customName, Hero character) {
         this.customName = customName;
