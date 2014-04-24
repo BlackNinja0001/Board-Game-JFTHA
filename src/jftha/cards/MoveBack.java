@@ -14,6 +14,11 @@ public class MoveBack extends Card {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes in Player Class as a parameter.
+     * Moves current player back 3 spaces.
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         int movement = 3;

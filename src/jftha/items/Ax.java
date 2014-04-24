@@ -6,12 +6,20 @@ import jftha.main.Player;
 public class Ax extends Weapon{
     private final int strength = 2;
     
+    /**
+     * Constructor
+     */
     public Ax() {
         this.setRarity(RarityEnum.common);
         this.setMessage("Ax: +" + strength + " Strength");
         this.setGoldCost(50);
     }
 
+    /**
+     * Takes in Player class as a parameter.
+     * Lets current player equip this weapon.
+     * @param player 
+     */
     @Override
     public void equipWeap(Player player) {
         Hero hero = player.getCharacter();
@@ -20,6 +28,11 @@ public class Ax extends Weapon{
         hero.setStrength(hero.getStrength() + strength);
     }
 
+    /**
+     * Takes in Player class as a parameter.
+     * Lets current player un-equip this armor.
+     * @param player 
+     */
     @Override
     public void dropWeap(Player player) {
         Hero hero = player.getCharacter();
@@ -28,6 +41,10 @@ public class Ax extends Weapon{
         hero.setStrength(hero.getStrength() - strength);
     }
 
+    /**
+     * No Effect
+     * @param player 
+     */
     @Override
     public void weapEffect(Player player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

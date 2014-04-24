@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jftha.cards;
 
 import java.util.Random;
 
-/**
- *
- * @author tue75856
- */
 public class CardFactory {
     public Card buildCard(RarityEnum rarity) {
         Card item = null;

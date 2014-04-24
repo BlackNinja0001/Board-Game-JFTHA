@@ -14,6 +14,11 @@ public class FreeRareItem extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes Player Class as a parameter.
+     * Utilizes the ItemFactory Class to give current player a free rare item.
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();

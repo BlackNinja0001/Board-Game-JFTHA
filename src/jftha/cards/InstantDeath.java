@@ -16,6 +16,11 @@ public class InstantDeath extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes in Player Class as a parameter.
+     * The true terror of all Card Effects. Player instantly dies(eliminated if Ghost).
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         Hero playerHero = affected.getCharacter();

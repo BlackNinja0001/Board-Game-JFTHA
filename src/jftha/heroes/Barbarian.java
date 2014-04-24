@@ -22,7 +22,8 @@ public class Barbarian extends Hero {
     }
     
     /**
-     * 
+     * Takes in Hero as a parameter.
+     * Barbarian's returns double damage.
      * @param enemy 
      */
     @Override

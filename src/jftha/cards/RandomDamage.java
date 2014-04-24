@@ -15,6 +15,11 @@ public class RandomDamage extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes in Player class as a parameter.
+     * Current player takes random damage as TRUE damage.
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();

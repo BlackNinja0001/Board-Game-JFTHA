@@ -18,7 +18,6 @@ public class CardSpace extends Space {
     public void triggerEffect() {
         Player p = getActivator();
         Hero hero = p.getCharacter();
-        
         CardFactory cf = new CardFactory();
         Random rand = new Random(System.currentTimeMillis());
         int luck = rand.nextInt(100) + hero.getLuck() + 1;

@@ -13,6 +13,11 @@ public class RestoreAll extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes in Player class as a parameter.
+     * Fully restore current player's HP and MP(only MP if Ghost).
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();

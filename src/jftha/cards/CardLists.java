@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jftha.cards;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author tue75856
- */
 public class CardLists {
     private List<Class> commonClasses = new ArrayList<>();
     private List<Class> uncommonClasses = new ArrayList<>();

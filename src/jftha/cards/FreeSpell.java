@@ -16,6 +16,11 @@ public class FreeSpell extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Takes in Player Class as a parameter.
+     * Give current player a free spell.
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
