@@ -16,6 +16,8 @@ public class MageStaff extends Weapon{
     @Override
     public void equipWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(this);
+        player.setHasWeapon(true);
         hero.setMagic(hero.getMagic() + magic);
         hero.setMaxMP(hero.getMaxMP() + mp);
     }
@@ -23,6 +25,8 @@ public class MageStaff extends Weapon{
     @Override
     public void dropWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(null);
+        player.setHasWeapon(false);
         hero.setMagic(hero.getMagic() - magic);
         hero.setMaxMP(hero.getMaxMP() - mp);
     }

@@ -16,12 +16,16 @@ public class IronSword extends Weapon {
     @Override
     public void equipWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(this);
+        player.setHasWeapon(true);
         hero.setStrength(hero.getStrength() + strength);
     }
 
     @Override
     public void dropWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(null);
+        player.setHasWeapon(false);
         hero.setStrength(hero.getStrength() - strength);
     }
 

@@ -15,12 +15,16 @@ public class SpellBook extends Weapon{
     @Override
     public void equipWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(this);
+        player.setHasWeapon(true);
         hero.setMagic(hero.getMagic() + magic);
     }
 
     @Override
     public void dropWeap(Player player) {
         Hero hero = player.getCharacter();
+        player.setWeapon(null);
+        player.setHasWeapon(false);
         hero.setMagic(hero.getMagic() - magic);
     }
 
