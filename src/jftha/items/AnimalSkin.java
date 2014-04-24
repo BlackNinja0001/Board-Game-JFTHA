@@ -16,12 +16,16 @@ public class AnimalSkin extends Armor {
     @Override
     public void equipArmor(Player player) {
         Hero hero = player.getCharacter();
+        player.setArmor(this);
+        player.setHasArmor(true);
         hero.setDefense(hero.getDefense() + def);
     }
 
     @Override
     public void dropArmor(Player player) {
         Hero hero = player.getCharacter();
+        player.setArmor(null);
+        player.setHasArmor(false);
         hero.setDefense(hero.getDefense() - def);
     }
 
