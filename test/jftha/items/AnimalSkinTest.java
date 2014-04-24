@@ -45,6 +45,8 @@ public class AnimalSkinTest {
         AnimalSkin a = (AnimalSkin)h.getItems().get(0);
         a.equipArmor(p);
         assertEquals(12, h.getDefense());
+        assertTrue(p.hasArmor());
+        assertEquals(a, p.getArmor());
     }
 
     @Test
@@ -54,5 +56,7 @@ public class AnimalSkinTest {
         a.equipArmor(p);
         a.dropArmor(p);
         assertEquals(10, h.getDefense());
+        assertFalse(p.hasArmor());
+        assertNull(p.getArmor());
     }
 }

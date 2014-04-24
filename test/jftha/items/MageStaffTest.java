@@ -9,11 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class MageRobeTest {
+public class MageStaffTest {
     
     Player p = new Player("", new Mage());
     
-    public MageRobeTest() {
+    public MageStaffTest() {
     }
     
     @BeforeClass
@@ -34,32 +34,33 @@ public class MageRobeTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        MageStaff item = new MageStaff();
         assertEquals(RarityEnum.common, item.getRarity());
-        assertEquals("Mage Robe: +2 Magic, " + "+5 MP", item.getMessage());
+        assertEquals("Mage Staff: +2 Magic, " + "+5 MP", item.getMessage());
         assertEquals(50, item.getGoldCost());
     }
 
     @Test
-    public void testEquipArmor() {
+    public void testEquipWeapon() {
         Hero h = p.getCharacter();
-        MageRobe a = (MageRobe)h.getItems().get(0);
-        a.equipArmor(p);
+        MageStaff item = new MageStaff();
+        item.equipWeap(p);
         assertEquals(14, h.getMagic());
         assertEquals(35, h.getMaxMP());
-        assertTrue(p.hasArmor());
-        assertEquals(a, p.getArmor());
+        assertTrue(p.hasWeapon());
+        assertEquals(item, p.getWeapon());
     }
 
     @Test
-    public void testDropArmor() {
+    public void testDropWeapon() {
         Hero h = p.getCharacter();
-        MageRobe a = (MageRobe)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
+        MageStaff item = new MageStaff();
+        item.equipWeap(p);
+        item.dropWeap(p);
         assertEquals(12, h.getMagic());
         assertEquals(30, h.getMaxMP());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        assertEquals(30, h.getCurrentMP());
+        assertFalse(p.hasWeapon());
+        assertNull(p.getWeapon());
     }
 }

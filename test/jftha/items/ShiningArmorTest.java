@@ -47,6 +47,8 @@ public class ShiningArmorTest {
         a.equipArmor(p);
         assertEquals(100, h.getMaxHP());
         assertEquals(20, h.getDefense());
+        assertTrue(p.hasArmor());
+        assertEquals(a, p.getArmor());
     }
 
     @Test
@@ -57,5 +59,7 @@ public class ShiningArmorTest {
         a.dropArmor(p);
         assertEquals(80, h.getMaxHP());
         assertEquals(15, h.getDefense());
+        assertFalse(p.hasArmor());
+        assertNull(p.getArmor());
     }
 }

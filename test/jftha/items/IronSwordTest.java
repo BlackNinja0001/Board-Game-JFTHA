@@ -9,11 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CloakTest {
+public class IronSwordTest {
     
-    Player p = new Player("", new Ninja());
+    Player p = new Player("", new Knight());
     
-    public CloakTest() {
+    public IronSwordTest() {
     }
     
     @BeforeClass
@@ -34,30 +34,30 @@ public class CloakTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        Item item = p.getCharacter().getItems().get(1);
         assertEquals(RarityEnum.common, item.getRarity());
-        assertEquals("Cloak: +2 Agility", item.getMessage());
+        assertEquals("Iron Sword: +2 Strength", item.getMessage());
         assertEquals(50, item.getGoldCost());
     }
 
     @Test
-    public void testEquipArmor() {
+    public void testEquipWeapon() {
         Hero h = p.getCharacter();
-        Cloak c = (Cloak)h.getItems().get(0);
-        c.equipArmor(p);
-        assertEquals(14, h.getAgility());
-        assertTrue(p.hasArmor());
-        assertEquals(c, p.getArmor());
+        IronSword w = (IronSword)h.getItems().get(1);
+        w.equipWeap(p);
+        assertEquals(12, h.getStrength());
+        assertTrue(p.hasWeapon());
+        assertEquals(w, p.getWeapon());
     }
 
     @Test
-    public void testDropArmor() {
+    public void testDropWeapon() {
         Hero h = p.getCharacter();
-        Cloak a = (Cloak)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
-        assertEquals(12, h.getAgility());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        IronSword w = (IronSword)h.getItems().get(1);
+        w.equipWeap(p);
+        w.dropWeap(p);
+        assertEquals(10, h.getStrength());
+        assertFalse(p.hasWeapon());
+        assertNull(p.getWeapon());
     }
 }

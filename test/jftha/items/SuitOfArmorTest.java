@@ -46,6 +46,8 @@ public class SuitOfArmorTest {
         SuitOfArmor c = (SuitOfArmor)h.getItems().get(0);
         c.equipArmor(p);
         assertEquals(14, h.getDefense());
+        assertTrue(p.hasArmor());
+        assertEquals(c, p.getArmor());
     }
 
     @Test
@@ -55,5 +57,7 @@ public class SuitOfArmorTest {
         a.equipArmor(p);
         a.dropArmor(p);
         assertEquals(12, h.getDefense());
+        assertFalse(p.hasArmor());
+        assertNull(p.getArmor());
     }
 }
