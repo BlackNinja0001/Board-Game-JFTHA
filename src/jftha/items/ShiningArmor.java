@@ -25,7 +25,7 @@ public class ShiningArmor extends Armor {
     @Override
     public void dropArmor(Player player) {
         Hero hero = player.getCharacter();
-        player.setArmor(this);
+        player.setArmor(null);
         player.setHasArmor(false);
         hero.setMaxHP(hero.getMaxHP() - hp);
         hero.setDefense(hero.getDefense() - def);
