@@ -28,6 +28,11 @@ public class Board {
         end = null;
     }
 
+    /**
+     * Takes in SpaceEnum class as a parameter.
+     * Adds a space node using the Circle Linked List.
+     * @param type 
+     */
     public void addSpace(SpaceEnum type) {
         SpaceFactory factory = new SpaceFactory();
         Space newSpace = factory.buildItem(type);
@@ -50,6 +55,11 @@ public class Board {
         }
     }
 
+    /**
+     * Takes in an Integer as a parameter.
+     * Deletes the space node at index "index"
+     * @param index 
+     */
     public void deleteSpace(int index) {
         Space current = start;
         int ret = index;
@@ -102,14 +112,17 @@ public class Board {
         }
     }
 
+    /**
+     * Takes in an Integer as a parameter.
+     * Uses addSpace method to create a Circle Linked List.
+     * numSpaces = number of spaces this method will generate.
+     * @param numSpaces 
+     */
     public void generateBoard(int numSpaces) {
-        for(int i = 0; i < numSpaces; i++){
-            addSpace(SpaceEnum.Card);
-        }
-        /*
+
         for (int i = 0; i < numSpaces; i++) {
             addSpace(SpaceEnum.D2D);
-            /*
+
             if (i == 2) {
                 addSpace(SpaceEnum.Store);
             } else if (i == 4) {
@@ -130,7 +143,6 @@ public class Board {
                 addSpace(SpaceEnum.Blank);
             }
         }
-    */
     }
 /*
     public void placePlayers(Player players[], int numSpaces) {
