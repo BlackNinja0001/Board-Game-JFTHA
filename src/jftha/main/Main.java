@@ -5,6 +5,7 @@ import jftha.heroes.*;
 import jftha.items.*;
 import java.util.Scanner;
 import jftha.spaces.*;
+import jftha.spells.Spell;
 
 public class Main { //definitely need more error handling
 
@@ -45,7 +46,7 @@ public class Main { //definitely need more error handling
             }
             i = 0;
             winner = main.anyoneWon(main.orderedPlayers);
-        } while (winner == -1) ;
+        } while (winner == -1);
         //Win message for winner
     }
 
@@ -151,12 +152,12 @@ public class Main { //definitely need more error handling
         Player ret = null;
         int winnerIndex;
         for (Player p : players) {
-            if(5 == p.getCharacter().getArtifacts().size()) {
+            if (5 == p.getCharacter().getArtifacts().size()) {
                 p.setIsWinner(true);
                 return p;
             }
         }
-        
+
         if (players.length == 4) {
             // Have all opponents dead for at least a period of 5 turns (4 player only)
 
@@ -285,7 +286,7 @@ public class Main { //definitely need more error handling
         System.out.println("It's now " + performer.getCustomName() + "'s turn.");
         System.out.println("You rolled a " + movement);
         /*System.out.println("Move forward(f) or backward(b): ");
-        String s = scan.next();*/
+         String s = scan.next();*/
 
         while (movement > 0) {
             movement--;
@@ -299,7 +300,7 @@ public class Main { //definitely need more error handling
                     String opponent = scan.next();
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
-                        if (opponent.equalsIgnoreCase(performer.getCustomName())){
+                        if (opponent.equalsIgnoreCase(performer.getCustomName())) {
                             continue;
                         }
                         if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
@@ -340,16 +341,61 @@ public class Main { //definitely need more error handling
 
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
-        Hero hero = performer.getCharacter();
+        Hero playerChar = performer.getCharacter();
+        System.out.println("Spell(1), special(2), item(3), or cancel(0)");
+        int choice = s.nextInt();
+        if (choice == 1) {
+            List<Spell> spells = playerChar.getSpells();
+            int i = 0;
+            for (Spell sp: spells){
+                System.out.println(i + ". ");
+                
+                i++;
+            }
+        } else if (choice == 2) {
+            playerChar.triggerSpecial();
+            if (playerChar instanceof Ninja) { //special instance
+                //ask if forward or backward
+
+
+                for (int i = 0; i < 3; i++) {
+                    performer.move("f"); //can only move forward for now
+                }
+
+                for (int i = 0; i < orderedPlayers.length; i++) {
+                    if (i != performer.getTurnOrder()) { //prevent comparing performer to itself
+                        if (performer.getCurrentSpace() == orderedPlayers[i].getCurrentSpace()) {
+                            playerChar.attackEnemy(orderedPlayers[i].getCharacter());
+                            orderedPlayers[i].getCharacter().attackEnemy(playerChar);
+                        }
+                    }
+                }
+            }
+        } else if (choice == 3) {
+            this.askForItem(performer);
+        } else if (choice == 0) {
+            return;
+        } else {
+            System.out.println("Invalid Answer.");
+        }
+    }
+
+    /**
+     * Asks if "performer" wants to use an item
+     *
+     * @param performer
+     */
+    public void askForItem(Player performer) {
+        Scanner s = new Scanner(System.in);
         int itemCount = 0;
         List<Item> myItems;
-
         char yesOrNo;  //arbitrary character not 'y' or 'n'
-        while (true) { //will break
+        int mistakes = 0;
+        while (true) {
             System.out.println("Use item ('y' for yes, 'n' for no)?");
             yesOrNo = s.next().trim().charAt(0);
             if (yesOrNo == 'y') {
-                myItems = hero.getItems();
+                myItems = performer.getCharacter().getItems();
                 if (!(myItems).isEmpty()) {
                     for (Item item : myItems) {
                         itemCount++;
@@ -365,22 +411,22 @@ public class Main { //definitely need more error handling
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
                             if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
-                                if(Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if(performer.hasWeapon()) {
+                                if (Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
+                                    if (performer.hasWeapon()) {
                                         Weapon temp = performer.getWeapon();
                                         temp.dropWeap(performer);
                                         performer.setHasWeapon(false);
                                     }
 
-                                    ((Weapon)toBeUsed).equipWeap(performer);
-                                } else if(Armor.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if(performer.hasWeapon()) {
+                                    ((Weapon) toBeUsed).equipWeap(performer);
+                                } else if (Armor.class.isAssignableFrom(toBeUsed.getClass())) {
+                                    if (performer.hasWeapon()) {
                                         Armor temp = performer.getArmor();
                                         temp.dropArmor(performer);
                                         performer.setHasArmor(false);
                                     }
 
-                                    ((Armor)toBeUsed).equipArmor(performer);
+                                    ((Armor) toBeUsed).equipArmor(performer);
                                 }
                             } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
                             }
@@ -392,7 +438,29 @@ public class Main { //definitely need more error handling
                 break;
             } else if (yesOrNo == 'n') {
                 break;
-            } 
+            } else {
+                if (mistakes <= 2) {
+                    System.out.println("Invalid Answer.");
+                } else if (mistakes == 3) {
+                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
+                } else if (mistakes == 4) {
+                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
+                } else if (mistakes == 5) {
+                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
+                } else if (mistakes == 6) {
+                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
+                } else if (mistakes == 7) {
+                    System.out.println("Is that even a letter? Seriously you need to try.");
+                } else {
+                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
+                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
+                    performer.getCharacter().setEliminated(true);
+                    System.out.println("Game Over");
+                    //End game
+                    break;
+                }
+                mistakes++;
+            }
         }
     }
 }
