@@ -41,9 +41,16 @@ public class ArtifactPiece3Test {
     
     @Test
     public void testProperties() {
-        assertEquals(500, part1.getGoldCost());
-        assertEquals(RarityEnum.rare, part1.getRarity());
-        assertNull(part1.getOwner());
+        for(int i = 0; i < 100; i++) {
+            part1 = ArtifactPiece3.getInstance();
+        
+            assertEquals(500, part1.getGoldCost());
+            assertEquals(RarityEnum.rare, part1.getRarity());
+            if(part1.getOwner() != null) {
+                System.out.println(part1.getOwner());
+            }
+            assertNull(part1.getOwner());
+        }
     }
     
     @Test

@@ -43,6 +43,9 @@ public class ArtifactPiece4Test {
     public void testProperties() {
         assertEquals(500, part1.getGoldCost());
         assertEquals(RarityEnum.rare, part1.getRarity());
+        if(part1.getOwner() != null) {
+            System.out.println(part1.getOwner());
+        }
         assertNull(part1.getOwner());
     }
     
