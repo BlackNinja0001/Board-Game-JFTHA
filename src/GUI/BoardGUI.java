@@ -20,17 +20,16 @@ public class BoardGUI extends javax.swing.JFrame {
 
     Player players[];
     int howmany;
-
+    
     //Turn phases
-    public static final int ITEM_1 = 0,
-            DICE_ROLL = 1,
-            ATTACK = 2,
-            ITEM_2 = 3;
-
-    public BoardGUI() {
+    public static final int ITEM_1    = 0, 
+                            DICE_ROLL = 1,
+                            ATTACK    = 2,
+                            ITEM_2    = 3;
+    
+   public BoardGUI() {
         initComponents();
     }
-
     /**
      * Creates new form BoardGUI
      */
@@ -52,6 +51,7 @@ public class BoardGUI extends javax.swing.JFrame {
         rollDieButton = new javax.swing.JButton();
         dieLabel = new javax.swing.JLabel();
         PlayerOneInfoLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         PlayerTwoInfoLabel = new javax.swing.JLabel();
         PlayerThreeInfoLabel = new javax.swing.JLabel();
         PlayerFourInfoLabel = new javax.swing.JLabel();
@@ -69,9 +69,6 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSevenLabel = new javax.swing.JLabel();
         ItemEightLabel = new javax.swing.JLabel();
         ItemSixLabel = new javax.swing.JLabel();
-        boardLayeredPane = new javax.swing.JLayeredPane();
-        boardLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -94,6 +91,8 @@ public class BoardGUI extends javax.swing.JFrame {
 
         PlayerOneInfoLabel.setText("Player 1 Info");
         PlayerOneInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
+
+        jLabel3.setText("board");
 
         PlayerTwoInfoLabel.setText("Player 2 Info");
         PlayerTwoInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
@@ -141,54 +140,14 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSixLabel.setText("Item 6");
         ItemSixLabel.setToolTipText("Item 6");
 
-        boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces).png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout boardLayeredPaneLayout = new javax.swing.GroupLayout(boardLayeredPane);
-        boardLayeredPane.setLayout(boardLayeredPaneLayout);
-        boardLayeredPaneLayout.setHorizontalGroup(
-            boardLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boardLayeredPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(boardLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        boardLayeredPaneLayout.setVerticalGroup(
-            boardLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boardLayeredPaneLayout.createSequentialGroup()
-                .addGroup(boardLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardLayeredPaneLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boardLabel))
-                    .addGroup(boardLayeredPaneLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        boardLayeredPane.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        boardLayeredPane.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(OutputScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,9 +173,13 @@ public class BoardGUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ItemFourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(CurPhaseLabel)))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(481, 481, 481)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -243,9 +206,9 @@ public class BoardGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,9 +222,8 @@ public class BoardGUI extends javax.swing.JFrame {
                         .addComponent(rollDieButton)
                         .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(345, 345, 345)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,9 +256,7 @@ public class BoardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (players != null) {
-            PlayerOneInfoLabel.setText("Player 1 Name: " + players[0].getCustomName());
-        }
+        PlayerOneInfoLabel.setText("Player 1 Name: " + players[0].getCustomName());
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -350,10 +310,8 @@ public class BoardGUI extends javax.swing.JFrame {
     private javax.swing.JLabel PlayerOneInfoLabel;
     private javax.swing.JLabel PlayerThreeInfoLabel;
     private javax.swing.JLabel PlayerTwoInfoLabel;
-    private javax.swing.JLabel boardLabel;
-    private javax.swing.JLayeredPane boardLayeredPane;
     private javax.swing.JLabel dieLabel;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton rollDieButton;
