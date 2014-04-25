@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.heroes.Hero;
-import jftha.main.Player;
 
 public class AnimalSkin extends Armor {
     private final int def = 2;
