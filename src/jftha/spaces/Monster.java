@@ -7,6 +7,9 @@ public class Monster extends Space{
     
     Hero monster;
     
+    /**
+     * Constructor
+     */
     public Monster(){
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Monster);
@@ -14,6 +17,13 @@ public class Monster extends Space{
         
     }
 
+    /**
+     * Takes in two Hero Class as parameters.
+     * Current player enters Duel to Death with a monster.
+     * Earn 10Gold when monster is defeated.
+     * @param attacker
+     * @param beingAttacked 
+     */
     private void combat(Hero attacker, Hero beingAttacked){
         while(attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0){
             attacker.attackEnemy(beingAttacked);
@@ -28,6 +38,9 @@ public class Monster extends Space{
         beingAttacked.setCurrentHP(beingAttacked.getMaxHP());
     }
     
+    /**
+     * Current player enters Duel to Death with a monster.
+     */
     @Override
     public void triggerEffect() {
         Player p = getActivator();
@@ -35,6 +48,10 @@ public class Monster extends Space{
         combat(attacker, this.monster);
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

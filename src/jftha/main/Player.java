@@ -119,7 +119,13 @@ public class Player {
         this.hasArmor = hasArmor;
     }
     
-
+    /**
+     * Takes in String as a parameter.
+     * "f" to move forward.
+     * "b" to move backward.
+     * @param s
+     * @return 
+     */
     public Space move(String s) {
         if (this.lostTurns == 0) {
             if (s.equalsIgnoreCase("f")) { // move forward

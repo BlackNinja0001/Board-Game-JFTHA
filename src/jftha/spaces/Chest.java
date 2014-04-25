@@ -6,6 +6,10 @@ import jftha.items.*;
 import jftha.main.Player;
 
 public class Chest extends Space {
+    
+    /**
+     * Constructor
+     */
     public Chest() {
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Chest);
@@ -18,8 +22,10 @@ public class Chest extends Space {
         giveItem();
     }
 
-
-    // Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
+    /**
+     * Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
+     * @return 
+     */
     protected int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
         
@@ -55,6 +61,10 @@ public class Chest extends Space {
         return luck;
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

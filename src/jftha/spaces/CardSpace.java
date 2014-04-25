@@ -7,6 +7,9 @@ import jftha.main.Player;
 
 public class CardSpace extends Space {
     
+    /**
+     * Constructor
+     */
     public CardSpace() {
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Card);
@@ -14,6 +17,10 @@ public class CardSpace extends Space {
 
     private Card drawn;
 
+    /**
+     * Uses the CardFactory Class to randomly generate a card.
+     * Uses the effect of the specific Card.
+     */
     @Override
     public void triggerEffect() {
         Player p = getActivator();
@@ -40,11 +47,19 @@ public class CardSpace extends Space {
         System.out.println(drawn.getMessage());
     }
 
+    /**
+     * No Effect
+     * @param rarity 
+     */
     public void drawNewCard(RarityEnum rarity) {
         CardFactory cf = new CardFactory();
         drawn = cf.buildCard(rarity);
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

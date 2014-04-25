@@ -7,6 +7,9 @@ public abstract class tempStatChange {
     private int change;
     private boolean inEffect;
 
+    /**
+     * Constructor
+     */
     public tempStatChange() {
         duration = 0;
         change = 0;

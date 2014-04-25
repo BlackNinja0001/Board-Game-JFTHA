@@ -2,7 +2,9 @@ package jftha.spells;
 
 public class Heal extends Spell{
     
-    // Constructor
+    /**
+     * Constructor
+     */
     public Heal() {
         this.setmpCost(super.getmpCost()); //**Placeholder until real value is set**
         

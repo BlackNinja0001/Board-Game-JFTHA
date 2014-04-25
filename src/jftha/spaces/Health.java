@@ -9,6 +9,9 @@ public class Health extends Space{
     private int statChange;
     private int statChange2; //Sometimes health and magic will be regenerated at the same time
 
+    /**
+     * Constructor
+     */
     public Health() {
         this.setActivationType('p');
         this.setSpaceType(SpaceEnum.Health);
@@ -46,6 +49,10 @@ public class Health extends Space{
         }
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

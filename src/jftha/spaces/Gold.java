@@ -8,6 +8,9 @@ public class Gold extends Space {
     
     private int amount;
     
+    /**
+     * Constructor
+     */
     public Gold() {
         this.setActivationType('p');
         this.setSpaceType(SpaceEnum.Gold);
@@ -23,7 +26,6 @@ public class Gold extends Space {
 
     /**
      * Gives the hero an amount of gold between 1 and 5.
-     *
      */
     @Override
     public void triggerEffect() {
@@ -34,6 +36,10 @@ public class Gold extends Space {
         
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

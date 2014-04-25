@@ -6,14 +6,18 @@ import jftha.items.*;
 import jftha.main.Player;
 
 public class Store extends Space {
-
+    
+    /**
+     * Constructor
+     */
     public Store() {
         this.setActivationType('p');
         this.setSpaceType(SpaceEnum.Store);
     }
-
+    
     /**
-     *
+     * Generates 5 random items(base on current player's luck).
+     * Lets current player choose which item to buy.
      */
     @Override
     public void triggerEffect() {
@@ -73,6 +77,10 @@ public class Store extends Space {
         }
     }
 
+    /**
+     * No Effect
+     * @param affected 
+     */
     @Override
     public void triggerEffect(Player affected) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

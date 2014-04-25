@@ -2,6 +2,9 @@ package jftha.spells;
 
 public class HPMPDrain extends Spell{
 
+    /**
+     * Constructor
+     */
     public HPMPDrain() {
         this.setMaxDuration(5);
         this.setmpCost(15);

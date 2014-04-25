@@ -269,6 +269,11 @@ public class Main { //definitely need more error handling
         return valid;
     }
 
+    /**
+     * Current Player's Turn Phase
+     * @param performer
+     * @throws IllegalActivationTypeException 
+     */
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
@@ -339,6 +344,10 @@ public class Main { //definitely need more error handling
         //Need to remove buff of hero after duration is over to prevent ridiculous stacking of buffs
     }
 
+    /**
+     * Current player's item phase
+     * @param performer 
+     */
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();

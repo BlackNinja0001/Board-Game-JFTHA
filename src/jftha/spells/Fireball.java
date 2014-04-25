@@ -1,6 +1,10 @@
 package jftha.spells;
 
 public class Fireball extends Spell {
+    
+    /**
+     * Constructor
+     */
     public Fireball() {
         this.setGoldCost(10);
         this.setMinDamage(1);
