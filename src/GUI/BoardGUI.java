@@ -20,16 +20,18 @@ public class BoardGUI extends javax.swing.JFrame {
 
     Player players[];
     int howmany;
-    
     //Turn phases
-    public static final int ITEM_1    = 0, 
-                            DICE_ROLL = 1,
-                            ATTACK    = 2,
-                            ITEM_2    = 3;
-    
-   public BoardGUI() {
+    public static final int ITEM_1 = 0,
+            DICE_ROLL = 1,
+            ATTACK = 2,
+            ITEM_2 = 3;
+
+    public BoardGUI() {
+        howmany = 4;
+        players = new Player[howmany];
         initComponents();
     }
+
     /**
      * Creates new form BoardGUI
      */
@@ -256,7 +258,9 @@ public class BoardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        PlayerOneInfoLabel.setText("Player 1 Name: " + players[0].getCustomName());
+        if (players[0] != null) {
+            PlayerOneInfoLabel.setText("Player 1 Name: " + players[0].getCustomName());
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
