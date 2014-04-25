@@ -354,13 +354,7 @@ public class Main { //definitely need more error handling
         System.out.println("Spell(1), special(2), item(3), or cancel(0)");
         int choice = s.nextInt();
         if (choice == 1) {
-            List<Spell> spells = playerChar.getSpells();
-            int i = 0;
-            for (Spell sp: spells){
-                System.out.println(i + ". ");
-                
-                i++;
-            }
+            this.askForSpell(performer);
         } else if (choice == 2) {
             playerChar.triggerSpecial();
             if (playerChar instanceof Ninja) { //special instance
@@ -389,6 +383,69 @@ public class Main { //definitely need more error handling
         }
     }
 
+    /**
+     * Ask if "performer" wants to use a spell.
+     * @param performer 
+     */
+    public void askForSpell(Player performer){
+        Hero playerChar = performer.getCharacter();
+        Scanner s = new Scanner(System.in);
+        int spellCount = 0;
+        List<Spell> mySpells;
+        char yesOrNo;
+        int mistakes = 0;
+        while(true){
+            System.out.println("Use spell('y' for yes, 'n' for no)?");
+            yesOrNo = s.next().trim().charAt(0);
+            if(yesOrNo == 'y'){
+                mySpells = playerChar.getSpells();
+                if(!(mySpells).isEmpty()){
+                    for(Spell spell : mySpells){
+                        spellCount++;
+                        System.out.println(spellCount + ". " + spell.getMessage());
+                    }
+                    int choice = -1;
+                    while((choice < 0) || (choice >= mySpells.size())){
+                        System.out.println("Which spell would you like to use (0 to cancel)");
+                        choice = s.nextInt();
+                        
+                        if(choice == 0){
+                            return;
+                        }else if((choice >= 0) && (choice < mySpells.size())){
+                            Spell toBeUsed = mySpells.get(choice + 1);
+                        }else{
+                            System.out.println("Invalid Choice");
+                        }
+                    }
+                }
+                break;
+            }else if(yesOrNo == 'n'){
+                break;
+            }else{
+                if (mistakes <= 2) {
+                    System.out.println("Invalid Answer.");
+                } else if (mistakes == 3) {
+                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
+                } else if (mistakes == 4) {
+                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
+                } else if (mistakes == 5) {
+                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
+                } else if (mistakes == 6) {
+                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
+                } else if (mistakes == 7) {
+                    System.out.println("Is that even a letter? Seriously you need to try.");
+                } else {
+                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
+                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
+                    performer.getCharacter().setEliminated(true);
+                    System.out.println("Game Over");
+                    //End game
+                    break;
+                }
+                mistakes++;
+            }
+        }
+    }
     /**
      * Asks if "performer" wants to use an item
      *
