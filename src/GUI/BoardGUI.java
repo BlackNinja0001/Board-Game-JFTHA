@@ -53,7 +53,6 @@ public class BoardGUI extends javax.swing.JFrame {
         rollDieButton = new javax.swing.JButton();
         dieLabel = new javax.swing.JLabel();
         PlayerOneInfoLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         PlayerTwoInfoLabel = new javax.swing.JLabel();
         PlayerThreeInfoLabel = new javax.swing.JLabel();
         PlayerFourInfoLabel = new javax.swing.JLabel();
@@ -71,6 +70,30 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSevenLabel = new javax.swing.JLabel();
         ItemEightLabel = new javax.swing.JLabel();
         ItemSixLabel = new javax.swing.JLabel();
+        boardLayeredPane = new javax.swing.JLayeredPane();
+        boardLabel = new javax.swing.JLabel();
+        spaceLabel1 = new javax.swing.JLabel();
+        spaceLabel18 = new javax.swing.JLabel();
+        spaceLabel22 = new javax.swing.JLabel();
+        spaceLabel21 = new javax.swing.JLabel();
+        spaceLabel20 = new javax.swing.JLabel();
+        spaceLabel19 = new javax.swing.JLabel();
+        spaceLabel2 = new javax.swing.JLabel();
+        spaceLabel3 = new javax.swing.JLabel();
+        spaceLabel4 = new javax.swing.JLabel();
+        spaceLabel5 = new javax.swing.JLabel();
+        spaceLabel6 = new javax.swing.JLabel();
+        spaceLabel7 = new javax.swing.JLabel();
+        spaceLabel8 = new javax.swing.JLabel();
+        spaceLabel9 = new javax.swing.JLabel();
+        spaceLabel10 = new javax.swing.JLabel();
+        spaceLabel11 = new javax.swing.JLabel();
+        spaceLabel12 = new javax.swing.JLabel();
+        spaceLabel13 = new javax.swing.JLabel();
+        spaceLabel14 = new javax.swing.JLabel();
+        spaceLabel15 = new javax.swing.JLabel();
+        spaceLabel16 = new javax.swing.JLabel();
+        spaceLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -93,8 +116,6 @@ public class BoardGUI extends javax.swing.JFrame {
 
         PlayerOneInfoLabel.setText("Player 1 Info");
         PlayerOneInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
-
-        jLabel3.setText("board");
 
         PlayerTwoInfoLabel.setText("Player 2 Info");
         PlayerTwoInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
@@ -142,14 +163,110 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSixLabel.setText("Item 6");
         ItemSixLabel.setToolTipText("Item 6");
 
+        boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces)-blownup.png"))); // NOI18N
+        boardLabel.setBounds(0, 0, 943, 700);
+        boardLayeredPane.add(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        spaceLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel1.setBounds(850, 610, 70, 70);
+        boardLayeredPane.add(spaceLabel1, javax.swing.JLayeredPane.PALETTE_LAYER);
+        spaceLabel1.getAccessibleContext().setAccessibleName("spaceLabel1");
+
+        spaceLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel18.setBounds(650, 110, 70, 70);
+        boardLayeredPane.add(spaceLabel18, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel22.setBounds(830, 480, 70, 70);
+        boardLayeredPane.add(spaceLabel22, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel21.setBounds(710, 400, 70, 70);
+        boardLayeredPane.add(spaceLabel21, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel20.setBounds(700, 290, 70, 70);
+        boardLayeredPane.add(spaceLabel20, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel19.setBounds(720, 190, 70, 70);
+        boardLayeredPane.add(spaceLabel19, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel2.setBounds(750, 550, 70, 70);
+        boardLayeredPane.add(spaceLabel2, javax.swing.JLayeredPane.PALETTE_LAYER);
+        spaceLabel2.getAccessibleContext().setAccessibleName("spaceLabel2");
+
+        spaceLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel3.setBounds(640, 490, 70, 70);
+        boardLayeredPane.add(spaceLabel3, javax.swing.JLayeredPane.PALETTE_LAYER);
+        spaceLabel3.getAccessibleContext().setAccessibleName("spaceLabel1");
+
+        spaceLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel4.setBounds(490, 460, 70, 70);
+        boardLayeredPane.add(spaceLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel5.setBounds(300, 500, 70, 70);
+        boardLayeredPane.add(spaceLabel5, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel6.setBounds(330, 390, 70, 70);
+        boardLayeredPane.add(spaceLabel6, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel7.setBounds(210, 380, 70, 70);
+        boardLayeredPane.add(spaceLabel7, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel8.setBounds(100, 350, 70, 70);
+        boardLayeredPane.add(spaceLabel8, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel9.setBounds(80, 260, 70, 70);
+        boardLayeredPane.add(spaceLabel9, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel10.setBounds(80, 180, 70, 70);
+        boardLayeredPane.add(spaceLabel10, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel11.setBounds(20, 100, 70, 70);
+        boardLayeredPane.add(spaceLabel11, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel12.setBounds(100, 30, 70, 70);
+        boardLayeredPane.add(spaceLabel12, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel13.setBounds(220, 40, 70, 70);
+        boardLayeredPane.add(spaceLabel13, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel14.setBounds(300, 110, 70, 70);
+        boardLayeredPane.add(spaceLabel14, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel15.setBounds(370, 190, 70, 70);
+        boardLayeredPane.add(spaceLabel15, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel16.setBounds(450, 120, 70, 70);
+        boardLayeredPane.add(spaceLabel16, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        spaceLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        spaceLabel17.setBounds(560, 150, 70, 70);
+        boardLayeredPane.add(spaceLabel17, javax.swing.JLayeredPane.PALETTE_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(OutputScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,57 +292,47 @@ public class BoardGUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ItemFourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(CurPhaseLabel)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(481, 481, 481)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rollDieButton)
-                            .addComponent(dieLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(75, 75, 75))))
+                            .addComponent(dieLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rollDieButton))
+                        .addGap(93, 93, 93))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)
+                        .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dieLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(5, 5, 5)
                         .addComponent(rollDieButton)
-                        .addGap(19, 19, 19))
+                        .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(345, 345, 345)
+                        .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -245,8 +352,11 @@ public class BoardGUI extends javax.swing.JFrame {
                                 .addComponent(CurPlayerLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CurPhaseLabel))
-                            .addComponent(OutputScrollPane))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(OutputScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 11, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -314,10 +424,33 @@ public class BoardGUI extends javax.swing.JFrame {
     private javax.swing.JLabel PlayerOneInfoLabel;
     private javax.swing.JLabel PlayerThreeInfoLabel;
     private javax.swing.JLabel PlayerTwoInfoLabel;
+    private javax.swing.JLabel boardLabel;
+    private javax.swing.JLayeredPane boardLayeredPane;
     private javax.swing.JLabel dieLabel;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton rollDieButton;
+    private javax.swing.JLabel spaceLabel1;
+    private javax.swing.JLabel spaceLabel10;
+    private javax.swing.JLabel spaceLabel11;
+    private javax.swing.JLabel spaceLabel12;
+    private javax.swing.JLabel spaceLabel13;
+    private javax.swing.JLabel spaceLabel14;
+    private javax.swing.JLabel spaceLabel15;
+    private javax.swing.JLabel spaceLabel16;
+    private javax.swing.JLabel spaceLabel17;
+    private javax.swing.JLabel spaceLabel18;
+    private javax.swing.JLabel spaceLabel19;
+    private javax.swing.JLabel spaceLabel2;
+    private javax.swing.JLabel spaceLabel20;
+    private javax.swing.JLabel spaceLabel21;
+    private javax.swing.JLabel spaceLabel22;
+    private javax.swing.JLabel spaceLabel3;
+    private javax.swing.JLabel spaceLabel4;
+    private javax.swing.JLabel spaceLabel5;
+    private javax.swing.JLabel spaceLabel6;
+    private javax.swing.JLabel spaceLabel7;
+    private javax.swing.JLabel spaceLabel8;
+    private javax.swing.JLabel spaceLabel9;
     // End of variables declaration//GEN-END:variables
 }

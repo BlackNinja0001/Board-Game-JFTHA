@@ -14,6 +14,8 @@ public class Spell extends Buyable{
     private int currentCD;
     private int currentDuraton;
     
+    String message;
+    
     // Constructor
     public Spell() {
     }
@@ -58,6 +60,9 @@ public class Spell extends Buyable{
         this.currentDuraton = currentDuraton;
     }
     
+    public void setMessage(String message){
+        this.message = message;
+    }
     
     // Gettter methods
     public int getmpCost(){
@@ -91,5 +96,9 @@ public class Spell extends Buyable{
     
     public int getCurrentDuraton() {
         return currentDuraton;
+    }
+    
+    public String getMessage(){
+        return this.message;
     }
 }
