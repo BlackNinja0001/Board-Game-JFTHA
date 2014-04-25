@@ -395,6 +395,7 @@ public class Main { //definitely need more error handling
      * @param performer
      */
     public void askForItem(Player performer) {
+        Hero playerChar = performer.getCharacter();
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
         List<Item> myItems;
@@ -404,7 +405,7 @@ public class Main { //definitely need more error handling
             System.out.println("Use item ('y' for yes, 'n' for no)?");
             yesOrNo = s.next().trim().charAt(0);
             if (yesOrNo == 'y') {
-                myItems = performer.getCharacter().getItems();
+                myItems = playerChar.getItems();
                 if (!(myItems).isEmpty()) {
                     for (Item item : myItems) {
                         itemCount++;
@@ -421,18 +422,14 @@ public class Main { //definitely need more error handling
                             Item toBeUsed = myItems.get(choice + 1);
                             if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
                                 if (Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if (performer.hasWeapon()) {
-                                        Weapon temp = performer.getWeapon();
-                                        temp.dropWeap(performer);
-                                        performer.setHasWeapon(false);
+                                    if (playerChar.hasWeapon()) {
+                                        playerChar.getWeapon().dropWeap(playerChar);
                                     }
 
-                                    ((Weapon) toBeUsed).equipWeap(performer);
+                                    ((Weapon) toBeUsed).equipWeap(playerChar);
                                 } else if (Armor.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if (performer.hasWeapon()) {
-                                        Armor temp = performer.getArmor();
-                                        temp.dropArmor(performer);
-                                        performer.setHasArmor(false);
+                                    if (playerChar.hasArmor()) {
+                                        playerChar.getArmor().dropArmor(performer);
                                     }
 
                                     ((Armor) toBeUsed).equipArmor(performer);
