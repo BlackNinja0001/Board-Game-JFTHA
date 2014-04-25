@@ -1,6 +1,6 @@
 package jftha.items;
 
-import jftha.main.Player;
+import jftha.heroes.Hero;
 
 public abstract class Weapon extends Equippable{
     
@@ -8,7 +8,7 @@ public abstract class Weapon extends Equippable{
         
     }
     
-    public abstract void equipWeap(Player player);
-    public abstract void dropWeap(Player player);
-    public abstract void weapEffect(Player player);
+    public abstract void equipWeap(Hero hero);
+    public abstract void dropWeap(Hero hero);
+    public abstract void weapEffect(Hero hero);
 }
