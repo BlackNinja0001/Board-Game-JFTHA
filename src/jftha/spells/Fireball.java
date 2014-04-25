@@ -7,8 +7,10 @@ public class Fireball extends Spell {
      */
     public Fireball() {
         this.setGoldCost(10);
+        this.setmpCost(5);
         this.setMinDamage(1);
         this.setMaxDamage(5);
+        this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + "MP");
     }
     
     /*
