@@ -164,7 +164,7 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSixLabel.setToolTipText("Item 6");
 
         boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces)-blownup.png"))); // NOI18N
-        boardLabel.setBounds(0, 0, 943, 700);
+        boardLabel.setBounds(0, 0, 0, 700);
         boardLayeredPane.add(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         spaceLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
@@ -305,7 +305,6 @@ public class BoardGUI extends javax.swing.JFrame {
                             .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dieLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rollDieButton))
@@ -368,8 +367,26 @@ public class BoardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (players[0] != null) {
-            PlayerOneInfoLabel.setText("Player 1 Name: " + players[0].getCustomName());
+        if (players != null) {
+            StringBuilder sb;
+            for (int i = 0; i < players.length; i++) {
+                sb = new StringBuilder();
+                if (players[i] != null) {
+                    sb.append("Player " + (i + 1) + " Name: " + players[i].getCustomName());
+                    sb.append("\n");
+                    sb.append("Class: " + players[i].getCharacter().getClassName());
+                    sb.append("\n");
+                }
+                if (i == 0) {
+                    PlayerOneInfoLabel.setText(sb.toString());
+                } else if (i == 1){
+                    PlayerTwoInfoLabel.setText(sb.toString());
+                } else if (i == 2){
+                    PlayerThreeInfoLabel.setText(sb.toString());
+                } else if (i == 3){
+                    PlayerFourInfoLabel.setText(sb.toString());
+                }
+            }
         }
     }//GEN-LAST:event_formWindowOpened
 
