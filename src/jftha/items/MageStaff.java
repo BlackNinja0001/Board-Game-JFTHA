@@ -15,41 +15,38 @@ public class MageStaff extends Weapon{
         this.setMessage("Mage Staff: +" + magic + " Magic, " + "+" + mp + " MP");
         this.setGoldCost(50);
     }
-
+    
+    
     /**
-     * Takes in Player class as a parameter.
-     * Lets current player equip this weapon.
-     * @param player 
+     * Lets current hero equip this weapon.
+     * @param hero The hero that is equipping the weapon.
      */
     @Override
-    public void equipWeap(Player player) {
-        Hero hero = player.getCharacter();
-        player.setWeapon(this);
-        player.setHasWeapon(true);
+    public void equipWeap(Hero hero) {
+        hero.setWeapon(this);
+        hero.setHasWeapon(true);
         hero.setMagic(hero.getMagic() + magic);
         hero.setMaxMP(hero.getMaxMP() + mp);
     }
 
     /**
-     * Takes in Player class as a parameter.
      * Lets current player un-equip this weapon.
-     * @param player 
+     * @param hero The hero that is un-equipping the weapon.
      */
     @Override
-    public void dropWeap(Player player) {
-        Hero hero = player.getCharacter();
-        player.setWeapon(null);
-        player.setHasWeapon(false);
+    public void dropWeap(Hero hero) {
+        hero.setWeapon(null);
+        hero.setHasWeapon(false);
         hero.setMagic(hero.getMagic() - magic);
         hero.setMaxMP(hero.getMaxMP() - mp);
     }
 
     /**
      * No Effect
-     * @param player 
+     * @param hero 
      */
     @Override
-    public void weapEffect(Player player) {
+    public void weapEffect(Hero hero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

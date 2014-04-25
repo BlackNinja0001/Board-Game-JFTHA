@@ -17,44 +17,37 @@ public class SwordOf1000Truth extends Weapon{
         this.setGoldCost(100);
         this.hasWeapon = false;
     }
-
+    
     /**
-     * Takes in Player class as a parameter.
-     * Lets current player equip this weapon.
-     * @param player 
+     * Lets current hero equip this weapon.
+     * @param hero The hero that is equipping the weapon.
      */
     @Override
-    public void equipWeap(Player player) {
-        Hero hero = player.getCharacter();
-        player.setWeapon(this);
-        player.setHasWeapon(true);
+    public void equipWeap(Hero hero) {
+        hero.setWeapon(this);
+        hero.setHasWeapon(true);
         hero.setStrength(hero.getStrength() + strength);
         hero.setMaxMP(hero.getMaxMP() + mp);
-        
     }
 
     /**
-     * Takes in Player class as a parameter.
      * Lets current player un-equip this weapon.
-     * @param player 
+     * @param hero The hero that is un-equipping the weapon.
      */
     @Override
-    public void dropWeap(Player player) {
-        Hero hero = player.getCharacter();
-        player.setHasWeapon(false);
-        player.setWeapon(null);
+    public void dropWeap(Hero hero) {
+        hero.setWeapon(null);
+        hero.setHasWeapon(false);
         hero.setStrength(hero.getStrength() - strength);
         hero.setMaxMP(hero.getMaxMP() - mp);
     }
-
+    
     /**
-     * Takes in Player class as a parameter.
      * Enemy hit with this weapon will lose all MP.
-     * @param player 
+     * @param enemy The enemy being hit with the weapon
      */
     @Override
-    public void weapEffect(Player player) {
-        Hero enemy = player.getCharacter();
+    public void weapEffect(Hero enemy) {
         if(enemy.getWasAttacked() == true){
             enemy.setCurrentMP(0);
         }
