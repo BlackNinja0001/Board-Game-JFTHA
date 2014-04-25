@@ -429,10 +429,10 @@ public class Main { //definitely need more error handling
                                     ((Weapon) toBeUsed).equipWeap(playerChar);
                                 } else if (Armor.class.isAssignableFrom(toBeUsed.getClass())) {
                                     if (playerChar.hasArmor()) {
-                                        playerChar.getArmor().dropArmor(performer);
+                                        playerChar.getArmor().dropArmor(playerChar);
                                     }
 
-                                    ((Armor) toBeUsed).equipArmor(performer);
+                                    ((Armor) toBeUsed).equipArmor(playerChar);
                                 }
                             } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
                             }
