@@ -56,7 +56,13 @@ public abstract class Hero {
     private List<tempStatChange> tempStatChanges;
     private boolean hasPet;
     private SummonPet pet;
-
+    // Keeps track of the weapon that player has equipped
+    private Weapon weapon;
+    private boolean hasWeapon;
+    // Keeps track of the armor that player has equipped
+    private Armor armor;
+    private boolean hasArmor;
+    
     //Constructor
     public Hero() {
         this.strength = 10;
@@ -196,7 +202,22 @@ public abstract class Hero {
         this.hasPet = false;
         pet.setPetHealth(0);
     }
-
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    
+    public boolean hasWeapon() {
+        return hasWeapon;
+    }
+    
+    public Armor getArmor() {
+        return armor;
+    }
+    
+    public boolean hasArmor() {
+        return hasArmor;
+    }
+    
     //Getter Methods
     public int getStrength() {
         return strength;
@@ -301,7 +322,23 @@ public abstract class Hero {
     public List<tempStatChange> getTempStatChanges() {
         return tempStatChanges;
     }
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        }
 
+    public void setHasWeapon(boolean hasWeapon) {
+        this.hasWeapon = hasWeapon;
+        }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+        }
+
+    public void setHasArmor(boolean hasArmor) {
+        this.hasArmor = hasArmor;
+    }
+    
+    
     /**
      * Allows a character to cast a damage inflicting spell at another player.
      *
