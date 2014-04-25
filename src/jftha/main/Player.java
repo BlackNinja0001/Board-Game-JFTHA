@@ -14,13 +14,7 @@ public class Player {
     private int winCount = 0;
     private Space currentSpace;
     private int lostTurns;
-    // Keeps track of the weapon that player has equipped
-    private Weapon weapon;
-    private boolean hasWeapon;
-    // Keeps track of the armor that player has equipped
-    private Armor armor;
-    private boolean hasArmor;
-
+    
     public Player(String customName, Hero character) {
         this.customName = customName;
         this.character = character;
@@ -54,22 +48,7 @@ public class Player {
     public int getLostTurns() {
         return lostTurns;
     }
-    public Weapon getWeapon() {
-        return weapon;
-    }
     
-    public boolean hasWeapon() {
-        return hasWeapon;
-    }
-    
-    public Armor getArmor() {
-        return armor;
-    }
-    
-    public boolean hasArmor() {
-        return hasArmor;
-    }
-
     //Setter methods
     public void setCustomName(String customName) {
         this.customName = customName;
@@ -103,23 +82,7 @@ public class Player {
         this.lostTurns = lostTurns;
     }
     
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-    
-    public void setHasWeapon(boolean hasWeapon) {
-        this.hasWeapon = hasWeapon;
-    }
-    
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-    
-    public void setHasArmor(boolean hasArmor) {
-        this.hasArmor = hasArmor;
-    }
-    
-    /**
+     /**
      * Takes in String as a parameter.
      * "f" to move forward.
      * "b" to move backward.
