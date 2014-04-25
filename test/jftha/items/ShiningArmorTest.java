@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class ShiningArmorTest {
     
-    Player p = new Player("", new Paladin());
+    Hero hero = new Paladin();
     
     public ShiningArmorTest() {
     }
@@ -34,7 +33,7 @@ public class ShiningArmorTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        Item item = hero.getItems().get(0);
         assertEquals(RarityEnum.uncommon, item.getRarity());
         assertEquals("Shining Armor: +20 HP, " + "+5 Defense", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -42,24 +41,22 @@ public class ShiningArmorTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
-        ShiningArmor a = (ShiningArmor)h.getItems().get(0);
-        a.equipArmor(p);
-        assertEquals(100, h.getMaxHP());
-        assertEquals(20, h.getDefense());
-        assertTrue(p.hasArmor());
-        assertEquals(a, p.getArmor());
+        ShiningArmor a = (ShiningArmor)hero.getItems().get(0);
+        a.equipArmor(hero);
+        assertEquals(100, hero.getMaxHP());
+        assertEquals(20, hero.getDefense());
+        assertTrue(hero.hasArmor());
+        assertEquals(a, hero.getArmor());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        ShiningArmor a = (ShiningArmor)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
-        assertEquals(80, h.getMaxHP());
-        assertEquals(15, h.getDefense());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        ShiningArmor a = (ShiningArmor)hero.getItems().get(0);
+        a.equipArmor(hero);
+        a.dropArmor(hero);
+        assertEquals(80, hero.getMaxHP());
+        assertEquals(15, hero.getDefense());
+        assertFalse(hero.hasArmor());
+        assertNull(hero.getArmor());
     }
 }

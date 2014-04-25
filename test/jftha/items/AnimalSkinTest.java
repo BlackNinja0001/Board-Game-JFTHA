@@ -1,6 +1,6 @@
 package jftha.items;
 
-import jftha.main.Player;
+
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AnimalSkinTest {
-    Player p = new Player("", new Barbarian());
+    Hero hero = new Barbarian();
     
     public AnimalSkinTest() {
     }
@@ -33,7 +33,7 @@ public class AnimalSkinTest {
     
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        Item item = hero.getItems().get(0);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Animal Skin: +2 Defense", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -41,22 +41,20 @@ public class AnimalSkinTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
-        AnimalSkin a = (AnimalSkin)h.getItems().get(0);
-        a.equipArmor(p);
-        assertEquals(12, h.getDefense());
-        assertTrue(p.hasArmor());
-        assertEquals(a, p.getArmor());
+        AnimalSkin a = (AnimalSkin)hero.getItems().get(0);
+        a.equipArmor(hero);
+        assertEquals(12, hero.getDefense());
+        assertTrue(hero.hasArmor());
+        assertEquals(a, hero.getArmor());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        AnimalSkin a = (AnimalSkin)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
-        assertEquals(10, h.getDefense());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        AnimalSkin a = (AnimalSkin)hero.getItems().get(0);
+        a.equipArmor(hero);
+        a.dropArmor(hero);
+        assertEquals(10, hero.getDefense());
+        assertFalse(hero.hasArmor());
+        assertNull(hero.getArmor());
     }
 }

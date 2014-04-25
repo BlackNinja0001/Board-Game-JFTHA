@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class SuitOfArmorTest {
     
-    Player p = new Player("", new Knight());
+    Hero hero = new Knight();
     
     public SuitOfArmorTest() {
     }
@@ -34,7 +33,7 @@ public class SuitOfArmorTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        Item item = hero.getItems().get(0);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Suit of Armor: +2 Defense", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -42,22 +41,20 @@ public class SuitOfArmorTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
-        SuitOfArmor c = (SuitOfArmor)h.getItems().get(0);
-        c.equipArmor(p);
-        assertEquals(14, h.getDefense());
-        assertTrue(p.hasArmor());
-        assertEquals(c, p.getArmor());
+        SuitOfArmor c = (SuitOfArmor)hero.getItems().get(0);
+        c.equipArmor(hero);
+        assertEquals(14, hero.getDefense());
+        assertTrue(hero.hasArmor());
+        assertEquals(c, hero.getArmor());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        SuitOfArmor a = (SuitOfArmor)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
-        assertEquals(12, h.getDefense());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        SuitOfArmor a = (SuitOfArmor)hero.getItems().get(0);
+        a.equipArmor(hero);
+        a.dropArmor(hero);
+        assertEquals(12, hero.getDefense());
+        assertFalse(hero.hasArmor());
+        assertNull(hero.getArmor());
     }
 }

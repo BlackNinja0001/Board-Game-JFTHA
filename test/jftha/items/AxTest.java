@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AxTest {
-    Player p = new Player("", new Barbarian());
+    Hero hero = new Barbarian();
     
     public AxTest() {
     }
@@ -33,7 +32,7 @@ public class AxTest {
     
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(1);
+        Item item = hero.getItems().get(1);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Ax: +2 Strength", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -41,22 +40,20 @@ public class AxTest {
 
     @Test
     public void testEquipWeapon() {
-        Hero h = p.getCharacter();
-        Ax w = (Ax)h.getItems().get(1);
-        w.equipWeap(p);
-        assertEquals(14, h.getStrength());
-        assertTrue(p.hasWeapon());
-        assertEquals(w, p.getWeapon());
+        Ax w = (Ax)hero.getItems().get(1);
+        w.equipWeap(this.hero);
+        assertEquals(14, hero.getStrength());
+        assertTrue(this.hero.hasWeapon());
+        assertEquals(w, this.hero.getWeapon());
     }
 
     @Test
     public void testDropWeapon() {
-        Hero h = p.getCharacter();
-        Ax w = (Ax)h.getItems().get(1);
-        w.equipWeap(p);
-        w.dropWeap(p);
-        assertEquals(12, h.getStrength());
-        assertFalse(p.hasWeapon());
-        assertNull(p.getWeapon());
+        Ax w = (Ax)hero.getItems().get(1);
+        w.equipWeap(this.hero);
+        w.dropWeap(this.hero);
+        assertEquals(12, hero.getStrength());
+        assertFalse(this.hero.hasWeapon());
+        assertNull(this.hero.getWeapon());
     }
 }

@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class MageRobeTest {
     
-    Player p = new Player("", new Mage());
+    Hero hero = new Mage();
     
     public MageRobeTest() {
     }
@@ -34,7 +33,7 @@ public class MageRobeTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(0);
+        Item item = hero.getItems().get(0);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Mage Robe: +2 Magic, " + "+5 MP", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -42,24 +41,22 @@ public class MageRobeTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
-        MageRobe a = (MageRobe)h.getItems().get(0);
-        a.equipArmor(p);
-        assertEquals(14, h.getMagic());
-        assertEquals(35, h.getMaxMP());
-        assertTrue(p.hasArmor());
-        assertEquals(a, p.getArmor());
+        MageRobe a = (MageRobe)hero.getItems().get(0);
+        a.equipArmor(hero);
+        assertEquals(14, hero.getMagic());
+        assertEquals(35, hero.getMaxMP());
+        assertTrue(hero.hasArmor());
+        assertEquals(a, hero.getArmor());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        MageRobe a = (MageRobe)h.getItems().get(0);
-        a.equipArmor(p);
-        a.dropArmor(p);
-        assertEquals(12, h.getMagic());
-        assertEquals(30, h.getMaxMP());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        MageRobe a = (MageRobe)hero.getItems().get(0);
+        a.equipArmor(hero);
+        a.dropArmor(hero);
+        assertEquals(12, hero.getMagic());
+        assertEquals(30, hero.getMaxMP());
+        assertFalse(hero.hasArmor());
+        assertNull(hero.getArmor());
     }
 }

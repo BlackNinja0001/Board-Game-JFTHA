@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class GoldskinTest {
     
-    Player p = new Player("", new Barbarian());
+    Hero hero = new Barbarian();
     
     public GoldskinTest() {
     }
@@ -42,27 +41,25 @@ public class GoldskinTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
         Goldskin gs = new Goldskin();
-        gs.equipArmor(p);
-        assertEquals(85, h.getMaxHP());
-        assertEquals(22, h.getStrength());
-        assertEquals(16, h.getDefense());
-        assertTrue(p.hasArmor());
-        assertEquals(gs, p.getArmor());
+        gs.equipArmor(hero);
+        assertEquals(85, hero.getMaxHP());
+        assertEquals(22, hero.getStrength());
+        assertEquals(16, hero.getDefense());
+        assertTrue(hero.hasArmor());
+        assertEquals(gs, hero.getArmor());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        h.setCurrentHP(25);
+        hero.setCurrentHP(25);
         Goldskin gs = new Goldskin();
-        gs.equipArmor(p);
-        gs.dropArmor(p);
-        assertEquals(60, h.getMaxHP());
-        assertEquals(12, h.getStrength());
-        assertEquals(10, h.getDefense());
-        assertFalse(p.hasArmor());
-        assertNull(p.getArmor());
+        gs.equipArmor(hero);
+        gs.dropArmor(hero);
+        assertEquals(60, hero.getMaxHP());
+        assertEquals(12, hero.getStrength());
+        assertEquals(10, hero.getDefense());
+        assertFalse(hero.hasArmor());
+        assertNull(hero.getArmor());
     }
 }

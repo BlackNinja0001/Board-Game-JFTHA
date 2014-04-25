@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.heroes.*;
-import jftha.main.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class DivineBladeTest {
     
-    Player p = new Player("", new Paladin());
+    Hero hero = new Paladin();
     
     public DivineBladeTest() {
     }
@@ -34,7 +33,7 @@ public class DivineBladeTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(1);
+        Item item = hero.getItems().get(1);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Divine Blade: +4 Strength", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -42,22 +41,20 @@ public class DivineBladeTest {
 
     @Test
     public void testEquipArmor() {
-        Hero h = p.getCharacter();
-        DivineBlade w = (DivineBlade)h.getItems().get(1);
-        w.equipWeap(p);
-        assertEquals(19, h.getStrength());
-        assertTrue(p.hasWeapon());
-        assertEquals(w, p.getWeapon());
+        DivineBlade w = (DivineBlade)hero.getItems().get(1);
+        w.equipWeap(hero);
+        assertEquals(19, hero.getStrength());
+        assertTrue(hero.hasWeapon());
+        assertEquals(w, hero.getWeapon());
     }
 
     @Test
     public void testDropArmor() {
-        Hero h = p.getCharacter();
-        DivineBlade w = (DivineBlade)h.getItems().get(1);
-        w.equipWeap(p);
-        w.dropWeap(p);
-        assertEquals(15, h.getStrength());
-        assertFalse(p.hasWeapon());
-        assertNull(p.getWeapon());
+        DivineBlade w = (DivineBlade)hero.getItems().get(1);
+        w.equipWeap(hero);
+        w.dropWeap(hero);
+        assertEquals(15, hero.getStrength());
+        assertFalse(hero.hasWeapon());
+        assertNull(hero.getWeapon());
     }
 }

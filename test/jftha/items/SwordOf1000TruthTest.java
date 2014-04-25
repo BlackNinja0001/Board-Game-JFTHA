@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,8 +10,8 @@ import static org.junit.Assert.*;
 
 public class SwordOf1000TruthTest {
     
-    Player p = new Player("", new Barbarian());
-    Player p2 = new Player("", new Ninja());
+    Hero hero = new Barbarian();
+    Hero enemy = new Ninja();
     
     public SwordOf1000TruthTest() {
     }
@@ -43,38 +42,35 @@ public class SwordOf1000TruthTest {
 
     @Test
     public void testEquipWeapon() {
-        Hero h = p.getCharacter();
         SwordOf1000Truth a = new SwordOf1000Truth();
-        h.addItem(a);
-        a.equipWeap(p);
-        assertEquals(7, h.getStrength());
-        assertEquals(20, h.getMaxMP());
-        assertEquals(20, h.getCurrentMP());
-        assertTrue(p.hasWeapon());
-        assertEquals(a, p.getWeapon());
+        hero.addItem(a);
+        a.equipWeap(hero);
+        assertEquals(7, hero.getStrength());
+        assertEquals(20, hero.getMaxMP());
+        assertEquals(20, hero.getCurrentMP());
+        assertTrue(hero.hasWeapon());
+        assertEquals(a, hero.getWeapon());
     }
     
     @Test
     public void testDropWeapon() {
-        Hero h = p.getCharacter();
         SwordOf1000Truth a = new SwordOf1000Truth();
-        h.addItem(a);
-        a.equipWeap(p);
-        a.dropWeap(p);
-        assertEquals(12, h.getStrength());
-        assertEquals(30, h.getMaxMP());
-        assertEquals(20, h.getCurrentMP());
-        assertFalse(p.hasWeapon());
-        assertNull(p.getWeapon());
+        hero.addItem(a);
+        a.equipWeap(hero);
+        a.dropWeap(hero);
+        assertEquals(12, hero.getStrength());
+        assertEquals(30, hero.getMaxMP());
+        assertEquals(20, hero.getCurrentMP());
+        assertFalse(hero.hasWeapon());
+        assertNull(hero.getWeapon());
     }
     
     @Test
     public void testTriggerEffect() {
-        Hero h = p.getCharacter();
         SwordOf1000Truth a = new SwordOf1000Truth();
-        h.addItem(a);
-        a.equipWeap(p);
-        a.weapEffect(p2);
-        assertEquals(0, p2.getCharacter().getCurrentMP());
+        hero.addItem(a);
+        a.equipWeap(hero);
+        a.weapEffect(enemy);
+        assertEquals(0, enemy.getCurrentMP());
     }
 }

@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class MageStaffTest {
     
-    Player p = new Player("", new Mage());
+    Hero hero = new Mage();
     
     public MageStaffTest() {
     }
@@ -42,25 +41,23 @@ public class MageStaffTest {
 
     @Test
     public void testEquipWeapon() {
-        Hero h = p.getCharacter();
         MageStaff item = new MageStaff();
-        item.equipWeap(p);
-        assertEquals(14, h.getMagic());
-        assertEquals(35, h.getMaxMP());
-        assertTrue(p.hasWeapon());
-        assertEquals(item, p.getWeapon());
+        item.equipWeap(hero);
+        assertEquals(14, hero.getMagic());
+        assertEquals(35, hero.getMaxMP());
+        assertTrue(hero.hasWeapon());
+        assertEquals(item, hero.getWeapon());
     }
 
     @Test
-    public void testDropWeapon() {
-        Hero h = p.getCharacter();
+    public void testDropWeapon() {;
         MageStaff item = new MageStaff();
-        item.equipWeap(p);
-        item.dropWeap(p);
-        assertEquals(12, h.getMagic());
-        assertEquals(30, h.getMaxMP());
-        assertEquals(30, h.getCurrentMP());
-        assertFalse(p.hasWeapon());
-        assertNull(p.getWeapon());
+        item.equipWeap(hero);
+        item.dropWeap(hero);
+        assertEquals(12, hero.getMagic());
+        assertEquals(30, hero.getMaxMP());
+        assertEquals(30, hero.getCurrentMP());
+        assertFalse(hero.hasWeapon());
+        assertNull(hero.getWeapon());
     }
 }

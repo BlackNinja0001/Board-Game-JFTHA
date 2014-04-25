@@ -1,6 +1,5 @@
 package jftha.items;
 
-import jftha.main.Player;
 import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class DaggerTest {
     
-    Player p = new Player("", new Ninja());
+    Hero hero = new Ninja();
     
     public DaggerTest() {
     }
@@ -34,7 +33,7 @@ public class DaggerTest {
 
     @Test
     public void testProperties() {
-        Item item = p.getCharacter().getItems().get(1);
+        Item item = hero.getItems().get(1);
         assertEquals(RarityEnum.common, item.getRarity());
         assertEquals("Dagger: +2 Strength, +1 Agility", item.getMessage());
         assertEquals(50, item.getGoldCost());
@@ -42,24 +41,22 @@ public class DaggerTest {
 
     @Test
     public void testEquipWeapon() {
-        Hero h = p.getCharacter();
-        Dagger w = (Dagger)h.getItems().get(1);
-        w.equipWeap(p);
-        assertEquals(12, h.getStrength());
-        assertEquals(13, h.getAgility());
-        assertTrue(p.hasWeapon());
-        assertEquals(w, p.getWeapon());
+        Dagger w = (Dagger)hero.getItems().get(1);
+        w.equipWeap(this.hero);
+        assertEquals(12, hero.getStrength());
+        assertEquals(13, hero.getAgility());
+        assertTrue(this.hero.hasWeapon());
+        assertEquals(w, this.hero.getWeapon());
     }
 
     @Test
     public void testDropWeapon() {
-        Hero h = p.getCharacter();
-        Dagger w = (Dagger)h.getItems().get(1);
-        w.equipWeap(p);
-        w.dropWeap(p);
-        assertEquals(10, h.getStrength());
-        assertEquals(12, h.getAgility());
-        assertFalse(p.hasWeapon());
-        assertNull(p.getWeapon());
+        Dagger w = (Dagger)hero.getItems().get(1);
+        w.equipWeap(this.hero);
+        w.dropWeap(this.hero);
+        assertEquals(10, hero.getStrength());
+        assertEquals(12, hero.getAgility());
+        assertFalse(this.hero.hasWeapon());
+        assertNull(this.hero.getWeapon());
     }
 }
