@@ -17,37 +17,34 @@ public class AnimalSkin extends Armor {
 
 
     /**
-     * Takes in Player class as a parameter.
-     * Lets current player equip this armor.
-     * @param player 
+     * Lets current hero equip this armor.
+     * @param hero The hero that is equipping the armor.
      */
     @Override
-    public void equipArmor(Player player) {
-        Hero hero = player.getCharacter();
-        player.setArmor(this);
-        player.setHasArmor(true);
+    public void equipArmor(Hero hero) {
+        hero.setArmor(this);
+        hero.setHasArmor(true);
         hero.setDefense(hero.getDefense() + def);
     }
 
     /**
-     * Takes in Player class as a parameter.
-     * Lets current player un-equip this armor.
-     * @param player 
+     * 
+     * Lets current hero un-equip this armor.
+     * @param hero The character that is un-equipping the armor.
      */
     @Override
-    public void dropArmor(Player player) {
-        Hero hero = player.getCharacter();
-        player.setArmor(null);
-        player.setHasArmor(false);
+    public void dropArmor(Hero hero) {
+        hero.setArmor(null);
+        hero.setHasArmor(false);
         hero.setDefense(hero.getDefense() - def);
     }
     
     /**
      * No Effect.
-     * @param player 
+     * @param hero 
      */
     @Override
-    public void armorEffect(Player player) {
+    public void armorEffect(Hero hero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
