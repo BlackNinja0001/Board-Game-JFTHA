@@ -45,7 +45,7 @@ public class DaggerTest {
         w.equipWeap(this.hero);
         assertEquals(12, hero.getStrength());
         assertEquals(13, hero.getAgility());
-        assertTrue(this.hero.hasWeapon());
+        assertTrue(this.hero.getWeaponEquipped());
         assertEquals(w, this.hero.getWeapon());
     }
 
@@ -56,7 +56,7 @@ public class DaggerTest {
         w.dropWeap(this.hero);
         assertEquals(10, hero.getStrength());
         assertEquals(12, hero.getAgility());
-        assertFalse(this.hero.hasWeapon());
+        assertFalse(this.hero.getWeaponEquipped());
         assertNull(this.hero.getWeapon());
     }
 }

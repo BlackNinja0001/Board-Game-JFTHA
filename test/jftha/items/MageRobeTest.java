@@ -45,7 +45,7 @@ public class MageRobeTest {
         a.equipArmor(hero);
         assertEquals(14, hero.getMagic());
         assertEquals(35, hero.getMaxMP());
-        assertTrue(hero.hasArmor());
+        assertTrue(hero.getArmorEquipped());
         assertEquals(a, hero.getArmor());
     }
 
@@ -56,7 +56,7 @@ public class MageRobeTest {
         a.dropArmor(hero);
         assertEquals(12, hero.getMagic());
         assertEquals(30, hero.getMaxMP());
-        assertFalse(hero.hasArmor());
+        assertFalse(hero.getArmorEquipped());
         assertNull(hero.getArmor());
     }
 }

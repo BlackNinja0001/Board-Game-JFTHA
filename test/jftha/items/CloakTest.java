@@ -44,7 +44,7 @@ public class CloakTest {
         Cloak c = (Cloak)hero.getItems().get(0);
         c.equipArmor(hero);
         assertEquals(14, hero.getAgility());
-        assertTrue(hero.hasArmor());
+        assertTrue(hero.getArmorEquipped());
         assertEquals(c, hero.getArmor());
     }
 
@@ -54,7 +54,7 @@ public class CloakTest {
         a.equipArmor(hero);
         a.dropArmor(hero);
         assertEquals(12, hero.getAgility());
-        assertFalse(hero.hasArmor());
+        assertFalse(hero.getArmorEquipped());
         assertNull(hero.getArmor());
     }
 }

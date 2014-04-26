@@ -44,7 +44,7 @@ public class SpellBookTest {
         SpellBook w = (SpellBook)hero.getItems().get(1);
         w.equipWeap(hero);
         assertEquals(14, hero.getMagic());
-        assertTrue(hero.hasWeapon());
+        assertTrue(hero.getWeaponEquipped());
         assertEquals(w, hero.getWeapon());
     }
 
@@ -54,7 +54,7 @@ public class SpellBookTest {
         w.equipWeap(hero);
         w.dropWeap(hero);
         assertEquals(12, hero.getMagic());
-        assertFalse(hero.hasWeapon());
+        assertFalse(hero.getWeaponEquipped());
         assertNull(hero.getWeapon());
     }
 }

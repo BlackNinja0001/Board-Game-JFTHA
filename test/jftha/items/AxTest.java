@@ -43,7 +43,7 @@ public class AxTest {
         Ax w = (Ax)hero.getItems().get(1);
         w.equipWeap(this.hero);
         assertEquals(14, hero.getStrength());
-        assertTrue(this.hero.hasWeapon());
+        assertTrue(this.hero.getWeaponEquipped());
         assertEquals(w, this.hero.getWeapon());
     }
 
@@ -53,7 +53,7 @@ public class AxTest {
         w.equipWeap(this.hero);
         w.dropWeap(this.hero);
         assertEquals(12, hero.getStrength());
-        assertFalse(this.hero.hasWeapon());
+        assertFalse(this.hero.getWeaponEquipped());
         assertNull(this.hero.getWeapon());
     }
 }

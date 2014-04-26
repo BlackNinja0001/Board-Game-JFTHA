@@ -45,7 +45,7 @@ public class MageStaffTest {
         item.equipWeap(hero);
         assertEquals(14, hero.getMagic());
         assertEquals(35, hero.getMaxMP());
-        assertTrue(hero.hasWeapon());
+        assertTrue(hero.getWeaponEquipped());
         assertEquals(item, hero.getWeapon());
     }
 
@@ -57,7 +57,7 @@ public class MageStaffTest {
         assertEquals(12, hero.getMagic());
         assertEquals(30, hero.getMaxMP());
         assertEquals(30, hero.getCurrentMP());
-        assertFalse(hero.hasWeapon());
+        assertFalse(hero.getWeaponEquipped());
         assertNull(hero.getWeapon());
     }
 }

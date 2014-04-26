@@ -44,7 +44,7 @@ public class IronSwordTest {
         IronSword w = (IronSword)hero.getItems().get(1);
         w.equipWeap(hero);
         assertEquals(12, hero.getStrength());
-        assertTrue(hero.hasWeapon());
+        assertTrue(hero.getWeaponEquipped());
         assertEquals(w, hero.getWeapon());
     }
 
@@ -54,7 +54,7 @@ public class IronSwordTest {
         w.equipWeap(hero);
         w.dropWeap(hero);
         assertEquals(10, hero.getStrength());
-        assertFalse(hero.hasWeapon());
+        assertFalse(hero.getWeaponEquipped());
         assertNull(hero.getWeapon());
     }
 }

@@ -44,7 +44,7 @@ public class DivineBladeTest {
         DivineBlade w = (DivineBlade)hero.getItems().get(1);
         w.equipWeap(hero);
         assertEquals(19, hero.getStrength());
-        assertTrue(hero.hasWeapon());
+        assertTrue(hero.getWeaponEquipped());
         assertEquals(w, hero.getWeapon());
     }
 
@@ -54,7 +54,7 @@ public class DivineBladeTest {
         w.equipWeap(hero);
         w.dropWeap(hero);
         assertEquals(15, hero.getStrength());
-        assertFalse(hero.hasWeapon());
+        assertFalse(hero.getWeaponEquipped());
         assertNull(hero.getWeapon());
     }
 }

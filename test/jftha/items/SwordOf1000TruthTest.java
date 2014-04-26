@@ -48,7 +48,7 @@ public class SwordOf1000TruthTest {
         assertEquals(7, hero.getStrength());
         assertEquals(20, hero.getMaxMP());
         assertEquals(20, hero.getCurrentMP());
-        assertTrue(hero.hasWeapon());
+        assertTrue(hero.getWeaponEquipped());
         assertEquals(a, hero.getWeapon());
     }
     
@@ -61,7 +61,7 @@ public class SwordOf1000TruthTest {
         assertEquals(12, hero.getStrength());
         assertEquals(30, hero.getMaxMP());
         assertEquals(20, hero.getCurrentMP());
-        assertFalse(hero.hasWeapon());
+        assertFalse(hero.getWeaponEquipped());
         assertNull(hero.getWeapon());
     }
     

@@ -46,7 +46,7 @@ public class GoldskinTest {
         assertEquals(85, hero.getMaxHP());
         assertEquals(22, hero.getStrength());
         assertEquals(16, hero.getDefense());
-        assertTrue(hero.hasArmor());
+        assertTrue(hero.getArmorEquipped());
         assertEquals(gs, hero.getArmor());
     }
 
@@ -59,7 +59,7 @@ public class GoldskinTest {
         assertEquals(60, hero.getMaxHP());
         assertEquals(12, hero.getStrength());
         assertEquals(10, hero.getDefense());
-        assertFalse(hero.hasArmor());
+        assertFalse(hero.getArmorEquipped());
         assertNull(hero.getArmor());
     }
 }
