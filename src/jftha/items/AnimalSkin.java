@@ -44,6 +44,5 @@ public class AnimalSkin extends Armor {
      */
     @Override
     public void armorEffect(Hero hero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

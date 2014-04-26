@@ -19,9 +19,7 @@ public class Potion extends Item{
      * No Effect
      */
     @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void triggerEffect() {}
 
     /**
      * Takes in Player Class as a parameter.
@@ -35,13 +33,5 @@ public class Potion extends Item{
     }
 
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    public void triggerEffect(Player affected1, Player affected2) {}
 }

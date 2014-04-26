@@ -43,6 +43,4 @@ public abstract class Item extends Buyable{
     public abstract void triggerEffect(Player affected);
     
     public abstract void triggerEffect(Player affected1, Player affected2);
-    
-    public abstract void triggerEffect(Player affected1, Player affected2, Player affected3);
 }
