@@ -479,13 +479,13 @@ public class Main { //definitely need more error handling
                             Item toBeUsed = myItems.get(choice + 1);
                             if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
                                 if (Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if (playerChar.hasWeapon()) {
+                                    if (playerChar.getWeaponEquipped()) {
                                         playerChar.getWeapon().dropWeap(playerChar);
                                     }
 
                                     ((Weapon) toBeUsed).equipWeap(playerChar);
                                 } else if (Armor.class.isAssignableFrom(toBeUsed.getClass())) {
-                                    if (playerChar.hasArmor()) {
+                                    if (playerChar.getArmorEquipped()) {
                                         playerChar.getArmor().dropArmor(playerChar);
                                     }
 
