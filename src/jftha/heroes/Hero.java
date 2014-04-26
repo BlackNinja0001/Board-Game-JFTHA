@@ -29,7 +29,7 @@ public abstract class Hero {
     // Determines how many spells a player is able to cast
     private int spell_slots;
     // The spells the Hero currently knows
-    private List<Spell> spells;
+    private final List<Spell> spells;
     // Determined by Defense stat. Also known as health points
     private int maxHP;
     // Health the player currently has
@@ -53,15 +53,15 @@ public abstract class Hero {
     //Used for certain special abilties
     private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
     //Measures what stat changes happen per turn
-    private List<tempStatChange> tempStatChanges;
+    private final List<tempStatChange> tempStatChanges;
     private boolean hasPet;
-    private SummonPet pet;
+    private final SummonPet pet;
     // Keeps track of the weapon that player has equipped
     private Weapon weapon;
-    private boolean hasWeapon;
+    private boolean weaponEquipped;
     // Keeps track of the armor that player has equipped
     private Armor armor;
-    private boolean hasArmor;
+    private boolean armorEquipped;
     
     //Constructor
     public Hero() {
@@ -206,16 +206,16 @@ public abstract class Hero {
         return weapon;
     }
     
-    public boolean hasWeapon() {
-        return hasWeapon;
+    public boolean getWeaponEquipped() {
+        return weaponEquipped;
     }
     
     public Armor getArmor() {
         return armor;
     }
     
-    public boolean hasArmor() {
-        return hasArmor;
+    public boolean getArmorEquipped() {
+        return armorEquipped;
     }
     
     //Getter Methods
@@ -326,16 +326,16 @@ public abstract class Hero {
         this.weapon = weapon;
         }
 
-    public void setHasWeapon(boolean hasWeapon) {
-        this.hasWeapon = hasWeapon;
+    public void setWeaponEquipped(boolean hasWeapon) {
+        this.weaponEquipped = hasWeapon;
         }
 
     public void setArmor(Armor armor) {
         this.armor = armor;
         }
 
-    public void setHasArmor(boolean hasArmor) {
-        this.hasArmor = hasArmor;
+    public void setArmorEquipped(boolean hasArmor) {
+        this.armorEquipped = hasArmor;
     }
     
     
@@ -437,6 +437,12 @@ public abstract class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
+        if(weapon!= null && !weaponEquipped) {
+            weapon.equipWeap(this);
+        }
+        if(armor != null && !armorEquipped) {
+            armor.equipArmor(this);
+        }
         Random rand = new Random();
         int randomDamage = rand.nextInt(3) + 1, 
                amt1 = this.strength - attacked.defense;
@@ -482,8 +488,7 @@ public abstract class Hero {
             if (!items.isEmpty()) {
                 for (Item i : items) {
                     if (i instanceof Equippable) {
-                        Equippable eq = (Equippable) i; //cannot use isEquippedOn() right away, must downcast to child class
-                        if (eq.isEquippedOn(this) && (eq.getSpiritual())) {
+                        if ((weapon.equals(i) || armor.equals(i)) && (i.getSpiritual())) {
                             attacked.currentMP -= intDamage;
                             if (attacked.currentMP <= 0) {
                                 attacked.eliminated = true;
