@@ -24,7 +24,7 @@ public class Goldskin extends Armor {
     @Override
     public void equipArmor(Hero hero) {
         hero.setArmor(this);
-        hero.setHasArmor(true);
+        hero.setArmorEquipped(true);
         hero.setMaxHP(hero.getMaxHP() + hp);
         hero.setDefense(hero.getDefense() + def);
         hero.setStrength(hero.getStrength() + strength);
@@ -38,7 +38,7 @@ public class Goldskin extends Armor {
     @Override
     public void dropArmor(Hero hero) {
         hero.setArmor(null);
-        hero.setHasArmor(false);
+        hero.setArmorEquipped(false);
         hero.setMaxHP(hero.getMaxHP() - hp);
         hero.setDefense(hero.getDefense() - def);
         hero.setStrength(hero.getStrength() - strength);

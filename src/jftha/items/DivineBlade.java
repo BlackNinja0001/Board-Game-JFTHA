@@ -22,7 +22,7 @@ public class DivineBlade extends Weapon {
     @Override
     public void equipWeap(Hero hero) {
         hero.setWeapon(this);
-        hero.setHasWeapon(true);
+        hero.setWeaponEquipped(true);
         hero.setStrength(hero.getStrength() + strength);
     }
 
@@ -33,7 +33,7 @@ public class DivineBlade extends Weapon {
     @Override
     public void dropWeap(Hero hero) {
         hero.setWeapon(null);
-        hero.setHasWeapon(false);
+        hero.setWeaponEquipped(false);
         hero.setStrength(hero.getStrength() - strength);
     }
 

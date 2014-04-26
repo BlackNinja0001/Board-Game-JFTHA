@@ -23,7 +23,7 @@ public class MageRobe extends Armor {
     @Override
     public void equipArmor(Hero hero) {
         hero.setArmor(this);
-        hero.setHasArmor(true);
+        hero.setArmorEquipped(true);
         hero.setMagic(hero.getMagic() + magic);
         hero.setMaxMP(hero.getMaxMP() + mp);
     }
@@ -36,7 +36,7 @@ public class MageRobe extends Armor {
     @Override
     public void dropArmor(Hero hero) {
         hero.setArmor(null);
-        hero.setHasArmor(false);
+        hero.setArmorEquipped(false);
         hero.setMagic(hero.getMagic() - magic);
         hero.setMaxMP(hero.getMaxMP() - mp);
     }

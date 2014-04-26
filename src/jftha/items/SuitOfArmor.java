@@ -22,7 +22,7 @@ public class SuitOfArmor extends Armor{
     @Override
     public void equipArmor(Hero hero) {
         hero.setArmor(this);
-        hero.setHasArmor(true);
+        hero.setArmorEquipped(true);
         hero.setDefense(hero.getDefense() + def);
     }
 
@@ -34,7 +34,7 @@ public class SuitOfArmor extends Armor{
     @Override
     public void dropArmor(Hero hero) {
         hero.setArmor(null);
-        hero.setHasArmor(false);
+        hero.setArmorEquipped(false);
         hero.setDefense(hero.getDefense() - def);
     }
     

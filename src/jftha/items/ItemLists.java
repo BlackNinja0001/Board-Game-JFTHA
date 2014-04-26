@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemLists {
-    private List<Class> commonClasses = new ArrayList<>();
-    private List<Class> uncommonClasses = new ArrayList<>();
-    private List<Class> rareClasses = new ArrayList<>();
+    private final List<Class> commonClasses = new ArrayList<>();
+    private final List<Class> uncommonClasses = new ArrayList<>();
+    private final List<Class> rareClasses = new ArrayList<>();
     
     public int getCommonSize() {
         return commonClasses.size();

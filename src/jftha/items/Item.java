@@ -7,7 +7,6 @@ public abstract class Item extends Buyable{
 
     private RarityEnum rarity;
     private boolean isSpiritual;
-    private String description;
     private String message;
     
     public void setMessage(String message){
@@ -22,20 +21,12 @@ public abstract class Item extends Buyable{
         this.isSpiritual = isSpiritual;
     }
     
-    public void setDesc(String desc){
-        this.description = desc;
-    }
-    
     public RarityEnum getRarity(){
         return this.rarity;
     }
     
     public boolean getSpiritual(){
         return this.isSpiritual;
-    }
-    
-    public String getDesc(){
-        return this.description;
     }
     
     public String getMessage(){
