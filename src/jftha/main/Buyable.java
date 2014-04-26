@@ -1,7 +1,5 @@
 package jftha.main;
 
-import java.util.*;
-
 public class Buyable { //created because Spell and Item share many characteristics
     private String name;
     private int goldCost;
