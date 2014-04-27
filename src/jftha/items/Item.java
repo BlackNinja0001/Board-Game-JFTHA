@@ -1,7 +1,7 @@
 package jftha.items;
 
 import jftha.main.Buyable;
-import jftha.main.Player;
+import jftha.heroes.Hero;
 
 public abstract class Item extends Buyable{
 
@@ -40,7 +40,7 @@ public abstract class Item extends Buyable{
     
     public abstract void triggerEffect();
     
-    public abstract void triggerEffect(Player affected);
+    public abstract void triggerEffect(Hero affected);
     
-    public abstract void triggerEffect(Player affected1, Player affected2);
+    public abstract void triggerEffect(Hero affected1, Hero affected2);
 }

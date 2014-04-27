@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.heroes.Hero;
-import jftha.main.Player;
 
 public class Elixir extends Item{
     
@@ -21,13 +20,12 @@ public class Elixir extends Item{
     public void triggerEffect() {}
 
     /**
-     * Takes in Player class as a parameter.
+     * Takes in Hero class as a parameter.
      * Fully restore current player's HP and MP.
      * @param affected 
      */
     @Override
-    public void triggerEffect(Player affected) {
-        Hero hero = affected.getCharacter();
+    public void triggerEffect(Hero hero) {
         hero.setCurrentHP(hero.getMaxHP());
         hero.setCurrentMP(hero.getMaxMP());
     }
@@ -38,5 +36,5 @@ public class Elixir extends Item{
      * @param affected2 
      */
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {}
+    public void triggerEffect(Hero affected1, Hero affected2) {}
 }

@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.heroes.Hero;
-import jftha.main.Player;
 
 public class Potion extends Item{
     private final int heal = 20;
@@ -22,16 +21,15 @@ public class Potion extends Item{
     public void triggerEffect() {}
 
     /**
-     * Takes in Player Class as a parameter.
+     * Takes in Hero Class as a parameter.
      * Current player restores 20HP.
      * @param affected 
      */
     @Override
-    public void triggerEffect(Player affected) {
-        Hero hero = affected.getCharacter();
+    public void triggerEffect(Hero hero) {
         hero.setCurrentHP(hero.getCurrentHP() + heal);
     }
 
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {}
+    public void triggerEffect(Hero affected1, Hero affected2) {}
 }
