@@ -186,187 +186,231 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSixLabel.setToolTipText("Item 6");
 
         spaceLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel1);
         spaceLabel1.setBounds(850, 610, 70, 70);
-        boardLayeredPane.add(spaceLabel1, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel1, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel1.getAccessibleContext().setAccessibleName("spaceLabel1");
 
         spaceLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel18);
         spaceLabel18.setBounds(650, 110, 70, 70);
-        boardLayeredPane.add(spaceLabel18, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel18, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel22);
         spaceLabel22.setBounds(830, 480, 70, 70);
-        boardLayeredPane.add(spaceLabel22, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel22, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel21);
         spaceLabel21.setBounds(710, 400, 70, 70);
-        boardLayeredPane.add(spaceLabel21, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel21, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel20);
         spaceLabel20.setBounds(700, 290, 70, 70);
-        boardLayeredPane.add(spaceLabel20, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel20, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel19);
         spaceLabel19.setBounds(720, 190, 70, 70);
-        boardLayeredPane.add(spaceLabel19, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel19, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel2);
         spaceLabel2.setBounds(750, 550, 70, 70);
-        boardLayeredPane.add(spaceLabel2, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel2, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel2.getAccessibleContext().setAccessibleName("spaceLabel2");
 
         spaceLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel3);
         spaceLabel3.setBounds(640, 490, 70, 70);
-        boardLayeredPane.add(spaceLabel3, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel3, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel3.getAccessibleContext().setAccessibleName("spaceLabel1");
 
         spaceLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel4);
         spaceLabel4.setBounds(490, 460, 70, 70);
-        boardLayeredPane.add(spaceLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel5);
         spaceLabel5.setBounds(300, 500, 70, 70);
-        boardLayeredPane.add(spaceLabel5, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel5, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel6);
         spaceLabel6.setBounds(330, 390, 70, 70);
-        boardLayeredPane.add(spaceLabel6, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel6, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel7);
         spaceLabel7.setBounds(210, 380, 70, 70);
-        boardLayeredPane.add(spaceLabel7, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel7, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel8);
         spaceLabel8.setBounds(100, 350, 70, 70);
-        boardLayeredPane.add(spaceLabel8, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel8, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel9);
         spaceLabel9.setBounds(80, 260, 70, 70);
-        boardLayeredPane.add(spaceLabel9, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel9, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel10);
         spaceLabel10.setBounds(80, 180, 70, 70);
-        boardLayeredPane.add(spaceLabel10, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel10, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel11);
         spaceLabel11.setBounds(20, 100, 70, 70);
-        boardLayeredPane.add(spaceLabel11, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel11, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel12);
         spaceLabel12.setBounds(100, 30, 70, 70);
-        boardLayeredPane.add(spaceLabel12, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel12, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel13);
         spaceLabel13.setBounds(220, 40, 70, 70);
-        boardLayeredPane.add(spaceLabel13, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel13, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel14);
         spaceLabel14.setBounds(300, 110, 70, 70);
-        boardLayeredPane.add(spaceLabel14, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel14, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel15);
         spaceLabel15.setBounds(370, 190, 70, 70);
-        boardLayeredPane.add(spaceLabel15, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel15, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel16);
         spaceLabel16.setBounds(450, 120, 70, 70);
-        boardLayeredPane.add(spaceLabel16, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel16, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        boardLayeredPane.add(spaceLabel17);
         spaceLabel17.setBounds(560, 150, 70, 70);
-        boardLayeredPane.add(spaceLabel17, javax.swing.JLayeredPane.PALETTE_LAYER);
+        boardLayeredPane.setLayer(spaceLabel17, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces).png"))); // NOI18N
+        boardLayeredPane.add(boardLabel);
         boardLabel.setBounds(0, 0, 942, 697);
-        boardLayeredPane.add(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         characterLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel1);
         characterLabel1.setBounds(860, 620, 50, 50);
-        boardLayeredPane.add(characterLabel1, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel1, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel2);
         characterLabel2.setBounds(760, 560, 50, 50);
-        boardLayeredPane.add(characterLabel2, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel2, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel3);
         characterLabel3.setBounds(650, 500, 50, 50);
-        boardLayeredPane.add(characterLabel3, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel3, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel4);
         characterLabel4.setBounds(500, 470, 50, 50);
-        boardLayeredPane.add(characterLabel4, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel4, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel5);
         characterLabel5.setBounds(310, 510, 50, 50);
-        boardLayeredPane.add(characterLabel5, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel5, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel6);
         characterLabel6.setBounds(340, 400, 50, 50);
-        boardLayeredPane.add(characterLabel6, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel6, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel7);
         characterLabel7.setBounds(220, 390, 50, 50);
-        boardLayeredPane.add(characterLabel7, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel7, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel8);
         characterLabel8.setBounds(110, 360, 50, 50);
-        boardLayeredPane.add(characterLabel8, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel8, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel9);
         characterLabel9.setBounds(90, 270, 50, 50);
-        boardLayeredPane.add(characterLabel9, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel9, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel10);
         characterLabel10.setBounds(90, 190, 50, 50);
-        boardLayeredPane.add(characterLabel10, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel10, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel11);
         characterLabel11.setBounds(30, 110, 50, 50);
-        boardLayeredPane.add(characterLabel11, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel11, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel12);
         characterLabel12.setBounds(110, 40, 50, 50);
-        boardLayeredPane.add(characterLabel12, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel12, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel13);
         characterLabel13.setBounds(230, 50, 50, 50);
-        boardLayeredPane.add(characterLabel13, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel13, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel14);
         characterLabel14.setBounds(310, 120, 50, 50);
-        boardLayeredPane.add(characterLabel14, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel14, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel15);
         characterLabel15.setBounds(380, 200, 50, 50);
-        boardLayeredPane.add(characterLabel15, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel15, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel16);
         characterLabel16.setBounds(460, 130, 50, 50);
-        boardLayeredPane.add(characterLabel16, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel16, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel17);
         characterLabel17.setBounds(570, 160, 50, 50);
-        boardLayeredPane.add(characterLabel17, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel17, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel18);
         characterLabel18.setBounds(660, 120, 50, 50);
-        boardLayeredPane.add(characterLabel18, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel18, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel19);
         characterLabel19.setBounds(730, 200, 50, 50);
-        boardLayeredPane.add(characterLabel19, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel19, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel20);
         characterLabel20.setBounds(710, 300, 50, 50);
-        boardLayeredPane.add(characterLabel20, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel20, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel21);
         characterLabel21.setBounds(720, 410, 50, 50);
-        boardLayeredPane.add(characterLabel21, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel21, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        boardLayeredPane.add(characterLabel22);
         characterLabel22.setBounds(840, 490, 50, 50);
-        boardLayeredPane.add(characterLabel22, javax.swing.JLayeredPane.MODAL_LAYER);
+        boardLayeredPane.setLayer(characterLabel22, javax.swing.JLayeredPane.MODAL_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
