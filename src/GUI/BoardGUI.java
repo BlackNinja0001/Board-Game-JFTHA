@@ -187,229 +187,229 @@ public class BoardGUI extends javax.swing.JFrame {
 
         spaceLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel1);
-        spaceLabel1.setBounds(850, 610, 70, 70);
+        spaceLabel1.setBounds(600, 430, 50, 50);
         boardLayeredPane.setLayer(spaceLabel1, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel1.getAccessibleContext().setAccessibleName("spaceLabel1");
 
         spaceLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel18);
-        spaceLabel18.setBounds(650, 110, 70, 70);
+        spaceLabel18.setBounds(460, 80, 50, 50);
         boardLayeredPane.setLayer(spaceLabel18, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel22);
-        spaceLabel22.setBounds(830, 480, 70, 70);
+        spaceLabel22.setBounds(580, 340, 50, 50);
         boardLayeredPane.setLayer(spaceLabel22, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel21);
-        spaceLabel21.setBounds(710, 400, 70, 70);
+        spaceLabel21.setBounds(500, 280, 50, 50);
         boardLayeredPane.setLayer(spaceLabel21, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel20);
-        spaceLabel20.setBounds(700, 290, 70, 70);
+        spaceLabel20.setBounds(490, 210, 50, 50);
         boardLayeredPane.setLayer(spaceLabel20, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel19);
-        spaceLabel19.setBounds(720, 190, 70, 70);
+        spaceLabel19.setBounds(500, 130, 50, 50);
         boardLayeredPane.setLayer(spaceLabel19, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel2);
-        spaceLabel2.setBounds(750, 550, 70, 70);
+        spaceLabel2.setBounds(530, 380, 50, 50);
         boardLayeredPane.setLayer(spaceLabel2, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel2.getAccessibleContext().setAccessibleName("spaceLabel2");
 
         spaceLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel3);
-        spaceLabel3.setBounds(640, 490, 70, 70);
+        spaceLabel3.setBounds(450, 340, 50, 50);
         boardLayeredPane.setLayer(spaceLabel3, javax.swing.JLayeredPane.PALETTE_LAYER);
         spaceLabel3.getAccessibleContext().setAccessibleName("spaceLabel1");
 
         spaceLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel4);
-        spaceLabel4.setBounds(490, 460, 70, 70);
+        spaceLabel4.setBounds(340, 320, 50, 50);
         boardLayeredPane.setLayer(spaceLabel4, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel5);
-        spaceLabel5.setBounds(300, 500, 70, 70);
+        spaceLabel5.setBounds(210, 350, 50, 50);
         boardLayeredPane.setLayer(spaceLabel5, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel6);
-        spaceLabel6.setBounds(330, 390, 70, 70);
+        spaceLabel6.setBounds(230, 270, 50, 50);
         boardLayeredPane.setLayer(spaceLabel6, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel7);
-        spaceLabel7.setBounds(210, 380, 70, 70);
+        spaceLabel7.setBounds(150, 270, 50, 50);
         boardLayeredPane.setLayer(spaceLabel7, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel8);
-        spaceLabel8.setBounds(100, 350, 70, 70);
+        spaceLabel8.setBounds(70, 250, 50, 50);
         boardLayeredPane.setLayer(spaceLabel8, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel9);
-        spaceLabel9.setBounds(80, 260, 70, 70);
+        spaceLabel9.setBounds(60, 180, 50, 50);
         boardLayeredPane.setLayer(spaceLabel9, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel10);
-        spaceLabel10.setBounds(80, 180, 70, 70);
+        spaceLabel10.setBounds(60, 120, 50, 50);
         boardLayeredPane.setLayer(spaceLabel10, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel11);
-        spaceLabel11.setBounds(20, 100, 70, 70);
+        spaceLabel11.setBounds(10, 70, 50, 50);
         boardLayeredPane.setLayer(spaceLabel11, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel12);
-        spaceLabel12.setBounds(100, 30, 70, 70);
+        spaceLabel12.setBounds(70, 20, 50, 50);
         boardLayeredPane.setLayer(spaceLabel12, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel13);
-        spaceLabel13.setBounds(220, 40, 70, 70);
+        spaceLabel13.setBounds(160, 30, 50, 50);
         boardLayeredPane.setLayer(spaceLabel13, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel14);
-        spaceLabel14.setBounds(300, 110, 70, 70);
+        spaceLabel14.setBounds(210, 80, 50, 50);
         boardLayeredPane.setLayer(spaceLabel14, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel15);
-        spaceLabel15.setBounds(370, 190, 70, 70);
+        spaceLabel15.setBounds(260, 130, 50, 50);
         boardLayeredPane.setLayer(spaceLabel15, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel16);
-        spaceLabel16.setBounds(450, 120, 70, 70);
+        spaceLabel16.setBounds(310, 90, 50, 50);
         boardLayeredPane.setLayer(spaceLabel16, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         spaceLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         boardLayeredPane.add(spaceLabel17);
-        spaceLabel17.setBounds(560, 150, 70, 70);
+        spaceLabel17.setBounds(390, 100, 50, 50);
         boardLayeredPane.setLayer(spaceLabel17, javax.swing.JLayeredPane.PALETTE_LAYER);
 
-        boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces).png"))); // NOI18N
+        boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fantasy Map (22 Spaces)-resized.png"))); // NOI18N
         boardLayeredPane.add(boardLabel);
-        boardLabel.setBounds(0, 0, 942, 697);
+        boardLabel.setBounds(0, 0, 660, 488);
 
         characterLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel1);
-        characterLabel1.setBounds(860, 620, 50, 50);
+        characterLabel1.setBounds(610, 440, 30, 30);
         boardLayeredPane.setLayer(characterLabel1, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel2);
-        characterLabel2.setBounds(760, 560, 50, 50);
+        characterLabel2.setBounds(540, 390, 30, 30);
         boardLayeredPane.setLayer(characterLabel2, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel3);
-        characterLabel3.setBounds(650, 500, 50, 50);
+        characterLabel3.setBounds(460, 350, 30, 30);
         boardLayeredPane.setLayer(characterLabel3, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel4);
-        characterLabel4.setBounds(500, 470, 50, 50);
+        characterLabel4.setBounds(350, 330, 30, 30);
         boardLayeredPane.setLayer(characterLabel4, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel5);
-        characterLabel5.setBounds(310, 510, 50, 50);
+        characterLabel5.setBounds(220, 360, 30, 30);
         boardLayeredPane.setLayer(characterLabel5, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel6);
-        characterLabel6.setBounds(340, 400, 50, 50);
+        characterLabel6.setBounds(240, 280, 30, 30);
         boardLayeredPane.setLayer(characterLabel6, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel7);
-        characterLabel7.setBounds(220, 390, 50, 50);
+        characterLabel7.setBounds(160, 280, 30, 30);
         boardLayeredPane.setLayer(characterLabel7, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel8);
-        characterLabel8.setBounds(110, 360, 50, 50);
+        characterLabel8.setBounds(80, 260, 30, 30);
         boardLayeredPane.setLayer(characterLabel8, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel9);
-        characterLabel9.setBounds(90, 270, 50, 50);
+        characterLabel9.setBounds(70, 190, 30, 30);
         boardLayeredPane.setLayer(characterLabel9, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel10);
-        characterLabel10.setBounds(90, 190, 50, 50);
+        characterLabel10.setBounds(70, 130, 30, 30);
         boardLayeredPane.setLayer(characterLabel10, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel11);
-        characterLabel11.setBounds(30, 110, 50, 50);
+        characterLabel11.setBounds(20, 80, 30, 30);
         boardLayeredPane.setLayer(characterLabel11, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel12);
-        characterLabel12.setBounds(110, 40, 50, 50);
+        characterLabel12.setBounds(80, 30, 30, 30);
         boardLayeredPane.setLayer(characterLabel12, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel13);
-        characterLabel13.setBounds(230, 50, 50, 50);
+        characterLabel13.setBounds(170, 40, 30, 30);
         boardLayeredPane.setLayer(characterLabel13, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel14);
-        characterLabel14.setBounds(310, 120, 50, 50);
+        characterLabel14.setBounds(220, 90, 30, 30);
         boardLayeredPane.setLayer(characterLabel14, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel15);
-        characterLabel15.setBounds(380, 200, 50, 50);
+        characterLabel15.setBounds(270, 140, 30, 30);
         boardLayeredPane.setLayer(characterLabel15, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel16);
-        characterLabel16.setBounds(460, 130, 50, 50);
+        characterLabel16.setBounds(320, 100, 30, 30);
         boardLayeredPane.setLayer(characterLabel16, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel17);
-        characterLabel17.setBounds(570, 160, 50, 50);
+        characterLabel17.setBounds(400, 110, 30, 30);
         boardLayeredPane.setLayer(characterLabel17, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel18);
-        characterLabel18.setBounds(660, 120, 50, 50);
+        characterLabel18.setBounds(470, 90, 30, 30);
         boardLayeredPane.setLayer(characterLabel18, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel19);
-        characterLabel19.setBounds(730, 200, 50, 50);
+        characterLabel19.setBounds(510, 140, 30, 30);
         boardLayeredPane.setLayer(characterLabel19, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel20);
-        characterLabel20.setBounds(710, 300, 50, 50);
+        characterLabel20.setBounds(500, 220, 30, 30);
         boardLayeredPane.setLayer(characterLabel20, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel21);
-        characterLabel21.setBounds(720, 410, 50, 50);
+        characterLabel21.setBounds(510, 290, 30, 30);
         boardLayeredPane.setLayer(characterLabel21, javax.swing.JLayeredPane.MODAL_LAYER);
 
         characterLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         boardLayeredPane.add(characterLabel22);
-        characterLabel22.setBounds(840, 490, 50, 50);
+        characterLabel22.setBounds(590, 350, 30, 30);
         boardLayeredPane.setLayer(characterLabel22, javax.swing.JLayeredPane.MODAL_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -419,72 +419,81 @@ public class BoardGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(OutputScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CurPlayerLabel)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ItemOneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ItemTwoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ItemFiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ItemSixLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ItemOneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ItemSevenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ItemEightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ItemThreeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ItemFourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(CurPhaseLabel)))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ItemTwoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ItemFiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ItemSixLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ItemSevenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ItemEightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ItemThreeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ItemFourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
+                            .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dieLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rollDieButton))
-                        .addGap(93, 93, 93))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CurPlayerLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(CurPhaseLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rollDieButton)
+                            .addComponent(dieLabel))
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dieLabel)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(CurPlayerLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CurPhaseLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rollDieButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dieLabel)
-                        .addGap(5, 5, 5)
-                        .addComponent(rollDieButton)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boardLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -500,15 +509,9 @@ public class BoardGUI extends javax.swing.JFrame {
                                     .addComponent(ItemFiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ItemSevenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ItemEightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ItemSixLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CurPlayerLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CurPhaseLabel))
-                            .addComponent(OutputScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ItemSixLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(OutputScrollPane))
+                        .addGap(0, 0, 0)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -539,6 +542,14 @@ public class BoardGUI extends javax.swing.JFrame {
                     PlayerThreeInfoLabel.setText(sb.toString());
                 } else if (i == 3){
                     PlayerFourInfoLabel.setText(sb.toString());
+                }
+            }
+            
+            //Clear "Player ? Info" for nonexistent players 
+            if (howmany < 4){
+                PlayerFourInfoLabel.setText("");
+                if (howmany < 3){
+                    PlayerThreeInfoLabel.setText("");
                 }
             }
         }
