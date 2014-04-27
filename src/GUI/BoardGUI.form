@@ -71,34 +71,25 @@
               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="PlayerFourInfoLabel" alignment="0" pref="235" max="32767" attributes="0"/>
+                      <Component id="PlayerThreeInfoLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="PlayerTwoInfoLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="PlayerOneInfoLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="rollDieButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="CurPlayerLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="CurPhaseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
-                              <Component id="CurPhaseLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rollDieButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="dieLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="PlayerFourInfoLabel" alignment="0" pref="235" max="32767" attributes="0"/>
-                          <Component id="PlayerThreeInfoLabel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="PlayerTwoInfoLabel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="PlayerOneInfoLabel" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,13 +105,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PlayerFourInfoLabel" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="dieLabel" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="CurPlayerLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CurPhaseLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="dieLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="rollDieButton" min="-2" max="-2" attributes="0"/>
@@ -152,7 +143,6 @@
                           </Group>
                           <Component id="OutputScrollPane" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -180,6 +170,7 @@
     <Component class="javax.swing.JLabel" name="PlayerOneInfoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 1 Info"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[35, 35]"/>
         </Property>
@@ -188,6 +179,7 @@
     <Component class="javax.swing.JLabel" name="PlayerTwoInfoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 2 Info"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[35, 35]"/>
         </Property>
@@ -196,6 +188,7 @@
     <Component class="javax.swing.JLabel" name="PlayerThreeInfoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 3 Info"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[35, 35]"/>
         </Property>
@@ -204,6 +197,7 @@
     <Component class="javax.swing.JLabel" name="PlayerFourInfoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 4 Info"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[35, 35]"/>
         </Property>

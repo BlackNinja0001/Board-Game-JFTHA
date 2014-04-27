@@ -20,6 +20,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
     Player players[];
     int howmany;
+    
     //Turn phases
     public static final int ITEM_1 = 0,
             DICE_ROLL = 1,
@@ -137,15 +138,19 @@ public class BoardGUI extends javax.swing.JFrame {
         dieLabel.setName("dieLabel"); // NOI18N
 
         PlayerOneInfoLabel.setText("Player 1 Info");
+        PlayerOneInfoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         PlayerOneInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
 
         PlayerTwoInfoLabel.setText("Player 2 Info");
+        PlayerTwoInfoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         PlayerTwoInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
 
         PlayerThreeInfoLabel.setText("Player 3 Info");
+        PlayerThreeInfoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         PlayerThreeInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
 
         PlayerFourInfoLabel.setText("Player 4 Info");
+        PlayerFourInfoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         PlayerFourInfoLabel.setPreferredSize(new java.awt.Dimension(35, 35));
 
         OutputTextArea.setEditable(false);
@@ -447,26 +452,20 @@ public class BoardGUI extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(rollDieButton)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(CurPlayerLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 15, Short.MAX_VALUE)
-                                .addComponent(CurPhaseLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rollDieButton)
-                            .addComponent(dieLabel))
-                        .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                            .addComponent(PlayerThreeInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PlayerTwoInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PlayerOneInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(CurPhaseLabel))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(dieLabel))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,12 +479,12 @@ public class BoardGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PlayerFourInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dieLabel)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(CurPlayerLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CurPhaseLabel)))
+                        .addComponent(CurPhaseLabel))
+                    .addComponent(dieLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rollDieButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -510,8 +509,7 @@ public class BoardGUI extends javax.swing.JFrame {
                                     .addComponent(ItemSevenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ItemEightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ItemSixLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(OutputScrollPane))
-                        .addGap(0, 0, 0)))
+                            .addComponent(OutputScrollPane))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -524,36 +522,46 @@ public class BoardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        updatePlayerInfo();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void updatePlayerInfo() {
         if (players != null) {
             StringBuilder sb;
             for (int i = 0; i < players.length; i++) {
                 sb = new StringBuilder();
                 if (players[i] != null) {
+                    sb.append("<html>");
                     sb.append("Player " + (i + 1) + " Name: " + players[i].getCustomName());
-                    sb.append("\n");
+                    sb.append("<br>");
                     sb.append("Class: " + players[i].getCharacter().getClassName());
-                    sb.append("\n");
+                    sb.append("<br>");
+                    sb.append("HP: " + players[i].getCharacter().getCurrentHP());
+                    sb.append("<br>");
+                    sb.append("MP: " + players[i].getCharacter().getCurrentMP());
+                    sb.append("<br>");
+                    sb.append("</html>");
                 }
                 if (i == 0) {
                     PlayerOneInfoLabel.setText(sb.toString());
-                } else if (i == 1){
+                } else if (i == 1) {
                     PlayerTwoInfoLabel.setText(sb.toString());
-                } else if (i == 2){
+                } else if (i == 2) {
                     PlayerThreeInfoLabel.setText(sb.toString());
-                } else if (i == 3){
+                } else if (i == 3) {
                     PlayerFourInfoLabel.setText(sb.toString());
                 }
             }
-            
+
             //Clear "Player ? Info" for nonexistent players 
-            if (howmany < 4){
+            if (howmany < 4) {
                 PlayerFourInfoLabel.setText("");
-                if (howmany < 3){
+                if (howmany < 3) {
                     PlayerThreeInfoLabel.setText("");
                 }
             }
         }
-    }//GEN-LAST:event_formWindowOpened
+    }
 
     /**
      * @param args the command line arguments
