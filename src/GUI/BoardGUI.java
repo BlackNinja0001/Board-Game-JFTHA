@@ -20,12 +20,15 @@ public class BoardGUI extends javax.swing.JFrame {
 
     Player players[];
     int howmany;
+    int turnCount;
+    int turnPhase;
     
     //Turn phases
     public static final int ITEM_1 = 0,
             DICE_ROLL = 1,
             ATTACK = 2,
-            ITEM_2 = 3;
+            ITEM_2 = 3,
+            END = 4;
 
     public BoardGUI() {
         howmany = 4;
@@ -519,6 +522,7 @@ public class BoardGUI extends javax.swing.JFrame {
     private void rollDieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDieButtonActionPerformed
         Dice die = new Dice(6);
         die.rollGUI(dieLabel);
+        turnPhase = ITEM_1;
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -536,9 +540,13 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb.append("<br>");
                     sb.append("Class: " + players[i].getCharacter().getClassName());
                     sb.append("<br>");
-                    sb.append("HP: " + players[i].getCharacter().getCurrentHP());
+                    sb.append("STR: " + players[i].getCharacter().getStrength() + " AGL: " + players[i].getCharacter().getAgility());
                     sb.append("<br>");
-                    sb.append("MP: " + players[i].getCharacter().getCurrentMP());
+                    sb.append("MAG: " + players[i].getCharacter().getMagic() + " DEF: " + players[i].getCharacter().getDefense());
+                    sb.append("<br>");
+                    sb.append("Luck: " + players[i].getCharacter().getLuck() + " Gold: " + players[i].getCharacter().getGold());
+                    sb.append("<br>");
+                    sb.append("HP: " + players[i].getCharacter().getCurrentHP() + " MP: " + players[i].getCharacter().getCurrentMP());
                     sb.append("<br>");
                     sb.append("</html>");
                 }
