@@ -1,6 +1,7 @@
 package jftha.spaces;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 import jftha.heroes.*;
 import jftha.items.*;
 import jftha.main.Player;
@@ -23,7 +24,8 @@ public class Store extends Space {
     public void triggerEffect() {
         Player p = getActivator();
         Hero hero = p.getCharacter();
-        System.out.println("You have " + hero.getGold() + " gold");
+        StringBuilder sb = new StringBuilder();
+        sb.append("You have " + hero.getGold() + " gold\n");
 
         Random rand = new Random(System.currentTimeMillis());
         int luck;
@@ -53,12 +55,12 @@ public class Store extends Space {
 
         for (int j = 0; j < 5; j++) {
             String item = items.get(j).toString();
-            System.out.println("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
+            sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
         }
 
-        System.out.println("Input 6 to choose not to buy");
-        Scanner scan = new Scanner(System.in);
-        int select = scan.nextInt();
+        sb.append("Input 6 to choose not to buy\n");
+        //Scanner scan = new Scanner(System.in);
+        int select = Integer.parseInt(JOptionPane.showInputDialog(null, sb.toString()));
         boolean crap;
 
         if ((select >= 1) && (select < 6)) {
