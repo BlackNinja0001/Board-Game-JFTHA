@@ -749,8 +749,8 @@ public class BoardGUI extends javax.swing.JFrame {
         int movement = die.roll();
         //move the player
         // choose direction
-        System.out.println("It's now " + performer.getCustomName() + "'s turn.");
-        System.out.println("You rolled a " + movement);
+        OutputTextArea.append("It's now " + performer.getCustomName() + "'s turn.\n");
+        OutputTextArea.append("You rolled a " + movement + "\n");
         /*System.out.println("Move forward(f) or backward(b): ");
          String s = scan.next();*/
 
@@ -762,18 +762,16 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
-                    System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
-                    String opponent = scan.next();
+                    String opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
                         if (opponent.equalsIgnoreCase(performer.getCustomName())) {
                             continue;
                         }
                         if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
-                            System.out.println("No such player.");
+                            JOptionPane.showConfirmDialog(rootPane, "No such player.");
                             i = 0;
-                            System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
-                            opponent = scan.next();
+                            opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                         } else {
                             current.triggerEffect(potVictim);
                         }
@@ -784,7 +782,7 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
             } else {
-                System.out.println("Error");
+                JOptionPane.showMessageDialog(rootPane, "Error");
                 throw new IllegalActivationTypeException();
             }
             //Attack
@@ -813,14 +811,14 @@ public class BoardGUI extends javax.swing.JFrame {
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        //System.out.println("Spell(1), special(2), item(3), or cancel(0)");
         String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?");
         //int choice = s.nextInt();
         boolean isValid = false;
         while (!isValid) {
-            if (choice.equalsIgnoreCase("spell")) {
+            if (choice.trim().equalsIgnoreCase("spell")) {
                 this.askForSpell(performer);
-            } else if (choice.equalsIgnoreCase("special")) {
+                isValid = true;
+            } else if (choice.trim().equalsIgnoreCase("special")) {
                 playerChar.triggerSpecial();
                 if (playerChar instanceof Ninja) { //special instance
                     //ask if forward or backward
@@ -838,9 +836,11 @@ public class BoardGUI extends javax.swing.JFrame {
                         }
                     }
                 }
-            } else if (choice.equalsIgnoreCase("item")) {
+                isValid = true;
+            } else if (choice.trim().equalsIgnoreCase("item")) {
                 this.askForItem(performer);
-            } else if (choice.equalsIgnoreCase("cancel")) {
+                isValid = true;
+            } else if (choice.trim().equalsIgnoreCase("cancel")) {
                 return;
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
@@ -858,36 +858,36 @@ public class BoardGUI extends javax.swing.JFrame {
         Scanner s = new Scanner(System.in);
         int spellCount = 0;
         List<Spell> mySpells;
-        char yesOrNo;
+        int yesOrNo;
         int mistakes = 0;
         while (true) {
-            System.out.println("Use spell('y' for yes, 'n' for no)?");
-            yesOrNo = s.next().trim().charAt(0);
-            if (yesOrNo == 'y') {
+            yesOrNo = JOptionPane.showConfirmDialog(rootPane, "Confirm using spell('y' for yes, 'n' for no)?", null, JOptionPane.YES_NO_OPTION);
+            if (yesOrNo == JOptionPane.YES_OPTION) {
                 mySpells = playerChar.getSpells();
                 if (!(mySpells).isEmpty()) {
+                    StringBuilder sb = new StringBuilder();
                     for (Spell spell : mySpells) {
                         spellCount++;
-                        System.out.println(spellCount + ". " + spell.getMessage());
+                        sb.append(spellCount + ". " + spell.getMessage());
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= mySpells.size())) {
-                        System.out.println("Which spell would you like to use (0 to cancel)");
-                        choice = s.nextInt();
+                        choice = Integer.parseInt(JOptionPane.showInputDialog(rootPane, sb.toString() + "Which spell would you like to use (0 to cancel)?"));
 
                         if (choice == 0) {
                             return;
                         } else if ((choice >= 0) && (choice < mySpells.size())) {
                             Spell toBeUsed = mySpells.get(choice + 1);
                         } else {
-                            System.out.println("Invalid Choice");
+                            JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
                         }
                     }
                 }
                 break;
-            } else if (yesOrNo == 'n') {
+            } else if (yesOrNo == JOptionPane.NO_OPTION) {
+                itemPhase(performer);
                 break;
-            } else {
+            } else { //cannot occur anymore
                 if (mistakes <= 2) {
                     System.out.println("Invalid Answer.");
                 } else if (mistakes == 3) {
@@ -923,22 +923,21 @@ public class BoardGUI extends javax.swing.JFrame {
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
         List<Item> myItems;
-        char yesOrNo;  //arbitrary character not 'y' or 'n'
+        int yesOrNo;  //arbitrary character not 'y' or 'n'
         int mistakes = 0;
         while (true) {
-            System.out.println("Use item ('y' for yes, 'n' for no)?");
-            yesOrNo = s.next().trim().charAt(0);
-            if (yesOrNo == 'y') {
+            yesOrNo = JOptionPane.showConfirmDialog(rootPane, "Confirm using item ('y' for yes, 'n' for no)?", null, JOptionPane.YES_NO_OPTION);
+            if (yesOrNo == JOptionPane.YES_OPTION) {
                 myItems = playerChar.getItems();
                 if (!(myItems).isEmpty()) {
+                    StringBuilder sb = new StringBuilder();
                     for (Item item : myItems) {
                         itemCount++;
-                        System.out.println(itemCount + ". " + item.getMessage());
+                        sb.append(itemCount + ". " + item.getMessage());
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= myItems.size())) {
-                        System.out.println("Which item would you like to use/equip (0 for cancel)");
-                        choice = s.nextInt();
+                        choice = Integer.parseInt(JOptionPane.showInputDialog(rootPane, sb.toString() + "Which item would you like to use (0 to cancel)?"));
 
                         if (choice == 0) {
                             return;
@@ -961,14 +960,15 @@ public class BoardGUI extends javax.swing.JFrame {
                             } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
                             }
                         } else {
-                            System.out.println("Invalid Choice.");
+                            JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
                         }
                     }
                 }
                 break;
-            } else if (yesOrNo == 'n') {
+            } else if (yesOrNo == JOptionPane.NO_OPTION) {
+                itemPhase(performer);
                 break;
-            } else {
+            } else { //cannot occur anymore
                 if (mistakes <= 2) {
                     System.out.println("Invalid Answer.");
                 } else if (mistakes == 3) {
