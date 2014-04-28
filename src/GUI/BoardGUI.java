@@ -612,7 +612,7 @@ public class BoardGUI extends javax.swing.JFrame {
         ItemSixLabel.setText("");
         ItemSevenLabel.setText("");
         ItemEightLabel.setText("");
-        
+
         OutputTextArea.append("Generating board...\n");
         board.generateBoard(spaceTotal);
         displayBoard(board);
@@ -860,7 +860,10 @@ public class BoardGUI extends javax.swing.JFrame {
                             i = 0;
                             opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                         } else {
-                            current.triggerEffect(potVictim);
+                            StringBuilder sb = new StringBuilder();
+                            D2D current2 = (D2D) current;
+                            current2.triggerEffect(potVictim, sb);
+                            OutputTextArea.append(sb.toString());
                         }
                     }
                 } else {
@@ -905,11 +908,11 @@ public class BoardGUI extends javax.swing.JFrame {
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?", JOptionPane.OK_OPTION);
+        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
         //int choice = s.nextInt();
-        boolean isValid = false;
-        if (choice != null) {
-            while (!isValid) {
+        boolean isValid = true;
+        while (!isValid) {
+            if (choice != null) {
                 if (choice.trim().equalsIgnoreCase("spell")) {
                     this.askForSpell(performer);
                     isValid = true;
@@ -940,9 +943,9 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
         }
     }
 
