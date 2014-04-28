@@ -654,18 +654,20 @@ public class BoardGUI extends javax.swing.JFrame {
                 executeTurn(orderedPlayers[i]);
             }
             i = 0;
+            //orderedPlayers[0].setIsWinner(true);
             winner = anyoneWon(orderedPlayers);
         } while (winner == -1);
 
         //Win message for winner
         for (int i = 0; i < orderedPlayers.length; i++) {
             if (orderedPlayers[i].isWinner()) {
-                JOptionPane.showMessageDialog(this, i, 
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", i, 
+                JOptionPane.showMessageDialog(this, "Wiener!", 
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", JOptionPane.PLAIN_MESSAGE, 
                         new ImageIcon(getClass().getResource("/images/win or lose.jpg")));
+                OutputTextArea.append(orderedPlayers[i].getCustomName() + " is the winner!");
             } else {
-                JOptionPane.showMessageDialog(this, i, 
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", i, 
+                JOptionPane.showMessageDialog(this, "Loser!", 
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", JOptionPane.PLAIN_MESSAGE, 
                         new ImageIcon(getClass().getResource("/images/your-a-loser2.jpg")));
             }
         }
