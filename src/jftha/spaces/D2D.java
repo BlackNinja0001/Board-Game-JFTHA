@@ -27,13 +27,20 @@ public class D2D extends Space{
         duel2death(attacker, beingAttacked.getCharacter());
     }
     
-    private void duel2death(Hero attacker, Hero beingAttacked){
+    public void triggerEffect(Player beingAttacked, StringBuilder sb) {
+        Player p = getActivator();
+        Hero attacker = p.getCharacter();
+        sb = duel2death(attacker, beingAttacked.getCharacter());
+    }
+    
+    private StringBuilder duel2death(Hero attacker, Hero beingAttacked){
+        StringBuilder sb = new StringBuilder();
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
         int num = 1;
         if(beingAttacked instanceof Mage){
             Spell fireball = new Fireball();
             while(attackerHP > 0 && beingAttackedHP > 0){
-                System.out.println("Turn #" + num + " Attacker hp: " + attackerHP + ", Enemy HP: " + beingAttackedHP);
+                sb.append("Turn #" + num + " Attacker hp: " + attackerHP + ", Enemy HP: " + beingAttackedHP + "\n");
             attacker.attackEnemy(beingAttacked);
                 beingAttacked.castSpell(fireball, attacker);
                 attackerHP = attacker.getCurrentHP();
@@ -47,6 +54,7 @@ public class D2D extends Space{
                 beingAttackedHP = beingAttacked.getCurrentHP();
             }
         }
+        return sb;
     }
 
     /**
