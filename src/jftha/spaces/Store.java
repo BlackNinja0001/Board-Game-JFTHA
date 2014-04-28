@@ -94,7 +94,7 @@ public class Store extends Space {
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
-        sb.append("You have " + hero.getGold() + " gold\n");
+        sb.append(p.getCustomName() + ", you have " + hero.getGold() + " gold\n");
 
         Random rand = new Random(System.currentTimeMillis());
         int luck;
@@ -141,7 +141,7 @@ public class Store extends Space {
                     sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
                     sb.append("You have " + hero.getGold() + " gold left");
                 } else {
-                    sb.append("You don't have enough gold");
+                    sb.append(p.getCustomName() + ", you don't have enough gold");
                     sb.append("You still have " + hero.getGold() + " gold");
                 }
             } else if (s.equals("")) {
