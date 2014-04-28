@@ -866,10 +866,10 @@ public class BoardGUI extends javax.swing.JFrame {
             Space current = performer.move("f"); //always move forward for now
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 if (current.getSpaceType() == SpaceEnum.Store) {
+                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     current2.triggerEffect(sb);
-                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
                     OutputTextArea.append(sb.toString());
                 } else {
                     current.triggerEffect();
