@@ -739,7 +739,9 @@ public class BoardGUI extends javax.swing.JFrame {
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
         //Item phase 1
-        itemPhase(performer);
+        if (turnNumber > 2) {
+            itemPhase(performer);
+        }
 
         //Dice Roll (factoring in Agility and Luck)
         Dice die = new Dice();
@@ -796,9 +798,13 @@ public class BoardGUI extends javax.swing.JFrame {
             }
         }
         //Item 2
-        itemPhase(performer);
+        if (turnNumber > 2) {
+            itemPhase(performer);
+        }
 
         //Turn End
+        turnNumber++;
+        playerChar.activateTSCs();
         //Decrement CD and duration of spells if casted
         //Need to remove buff of hero after duration is over to prevent ridiculous stacking of buffs
     }
@@ -868,7 +874,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     for (Spell spell : mySpells) {
                         spellCount++;
-                        sb.append(spellCount + ". " + spell.getMessage());
+                        sb.append(spellCount + ". " + spell.getMessage() + "\n");
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= mySpells.size())) {
@@ -933,7 +939,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     for (Item item : myItems) {
                         itemCount++;
-                        sb.append(itemCount + ". " + item.getMessage());
+                        sb.append(itemCount + ". " + item.getMessage() + "\n");
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= myItems.size())) {
