@@ -546,7 +546,8 @@ public class BoardGUI extends javax.swing.JFrame {
 
     /**
      * Displays the board in the spaceLabels
-     * @param board 
+     *
+     * @param board
      */
     private void displayBoard(Board board) {
         Space current = board.getStart();
@@ -881,18 +882,20 @@ public class BoardGUI extends javax.swing.JFrame {
                     String opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
-                        if (opponent.equalsIgnoreCase(performer.getCustomName())) {
-                            continue;
-                        }
-                        if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
-                            JOptionPane.showMessageDialog(rootPane, "No such player.");
-                            i = 0;
-                            opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
-                        } else {
-                            StringBuilder sb = new StringBuilder();
-                            D2D current2 = (D2D) current;
-                            current2.triggerEffect(potVictim, sb);
-                            OutputTextArea.append(sb.toString());
+                        if (opponent != null) {
+                            if (opponent.equalsIgnoreCase(performer.getCustomName())) {
+                                continue;
+                            }
+                            if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
+                                JOptionPane.showMessageDialog(rootPane, "No such player.");
+                                i = 0;
+                                opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
+                            } else {
+                                StringBuilder sb = new StringBuilder();
+                                D2D current2 = (D2D) current;
+                                current2.triggerEffect(potVictim, sb);
+                                OutputTextArea.append(sb.toString());
+                            }
                         }
                     }
                 } else {
