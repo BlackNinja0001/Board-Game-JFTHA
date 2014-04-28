@@ -671,6 +671,7 @@ public class BoardGUI extends javax.swing.JFrame {
                         new ImageIcon(getClass().getResource("/images/your-a-loser2.jpg")));
             }
         }
+        this.dispose(); //close window
     }//GEN-LAST:event_formWindowOpened
 
     public static void setTurnOrder(int howmany, Player[] players, Dice die) {
@@ -864,6 +865,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     current2.triggerEffect(sb);
+                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.");
                     OutputTextArea.append(sb.toString());
                 } else {
                     current.triggerEffect();
@@ -935,10 +937,11 @@ public class BoardGUI extends javax.swing.JFrame {
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
+        String choice = new String();
         //int choice = s.nextInt();
         boolean valid = false;
         while (valid) {
+            choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
             if (choice != null) {
                 if (choice.trim().equalsIgnoreCase("spell")) {
                     this.askForSpell(performer);

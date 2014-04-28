@@ -129,7 +129,7 @@ public class Store extends Space {
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
         int select = -1;
-        if (s != null || !s.equals("")) {
+        if ((s != null) && (!s.equals(""))) {
             select = Integer.parseInt(s);
 
             boolean crap;
