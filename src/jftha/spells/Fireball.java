@@ -1,5 +1,7 @@
 package jftha.spells;
 
+import jftha.heroes.Hero;
+
 public class Fireball extends Spell {
     
     /**
@@ -13,13 +15,25 @@ public class Fireball extends Spell {
         this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + "MP");
     }
     
-    /*
-    public int fireball(Hero caster){
-        double damage;
-        damage = caster.getMagic() + (caster.getLuck() * .2);
-        int intdamage = (int)Math.round(damage);
-        return intdamage;
+    @Override
+    public void castSpell(Hero caster) {}
+    
+    /**
+     * Allows a character to cast a damage inflicting spell at another player.
+     *
+     * @param caster The caster of the spell
+     * @param enemy The victim of the spell
+     */
+    @Override
+    public void castSpell(Hero caster, Hero enemy) {
+        int spellDmg = getDamage();
+        double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
+                - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
+        int finalDmg = (int) Math.round(actualDmg);
+        caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
+        if (finalDmg <= 0) {
+            finalDmg = 1;
+        }
+        enemy.setCurrentHP(enemy.getCurrentHP() - finalDmg);
     }
-    * 
-    */
 }
