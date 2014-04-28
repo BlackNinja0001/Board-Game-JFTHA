@@ -60,8 +60,13 @@ public class Store extends Space {
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
         int select = -1;
-        if (s != null) {
-            select = Integer.parseInt(s);
+        if (s != null && !s.equals("")) {
+            try {
+                select = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sb.append("Not a valid response.\n");
+                return;
+            }
 
             boolean crap;
             sb = new StringBuilder();//erases old dialog
@@ -129,9 +134,13 @@ public class Store extends Space {
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
         int select = -1;
-        if (s != null) {
-            select = Integer.parseInt(s);
-
+        if ((s != null) && (!s.equals(""))) {
+            try {
+                select = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sb.append("Not a valid response.\n");
+                return;
+            }
             boolean crap;
             sb = new StringBuilder();//erases old dialog
 
@@ -144,11 +153,11 @@ public class Store extends Space {
                     sb.append(p.getCustomName() + ", you don't have enough gold");
                     sb.append("You still have " + hero.getGold() + " gold");
                 }
-            } else if (s.equals("")) {
-                System.out.println("You chose not to buy anything");
             } else {
                 throw new IllegalArgumentException("Error: Did not select an option");
             }
+        } else {
+            sb.append(p.getCustomName() + " has chosen not to buy anything\n");
         }
     }
 
