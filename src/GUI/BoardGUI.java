@@ -544,6 +544,10 @@ public class BoardGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
+    /**
+     * Displays the board in the spaceLabels
+     * @param board 
+     */
     private void displayBoard(Board board) {
         Space current = board.getStart();
         JLabel spaceLabels[] = new JLabel[spaceTotal];
