@@ -121,8 +121,6 @@ public class Board {
     public void generateBoard(int numSpaces) {
 
         for (int i = 0; i < numSpaces; i++) {
-            addSpace(SpaceEnum.D2D);
-
             if (i == 2) {
                 addSpace(SpaceEnum.Store);
             } else if (i == 4) {
