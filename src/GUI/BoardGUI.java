@@ -937,12 +937,12 @@ public class BoardGUI extends javax.swing.JFrame {
         Hero playerChar = performer.getCharacter();
         String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
         //int choice = s.nextInt();
-        boolean isValid = true;
-        while (!isValid) {
+        boolean valid = false;
+        while (valid) {
             if (choice != null) {
                 if (choice.trim().equalsIgnoreCase("spell")) {
                     this.askForSpell(performer);
-                    isValid = true;
+                    valid = true;
                 } else if (choice.trim().equalsIgnoreCase("special")) {
                     playerChar.triggerSpecial();
                     if (playerChar instanceof Ninja) { //special instance
@@ -961,10 +961,10 @@ public class BoardGUI extends javax.swing.JFrame {
                             }
                         }
                     }
-                    isValid = true;
+                    valid = true;
                 } else if (choice.trim().equalsIgnoreCase("item")) {
                     this.askForItem(performer);
-                    isValid = true;
+                    valid = true;
                 } else if ((choice.trim().equalsIgnoreCase("cancel"))) {
                     return;
                 } else {
