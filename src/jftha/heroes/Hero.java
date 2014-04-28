@@ -7,6 +7,7 @@ import java.util.*;
 import jftha.statchanges.tempStatChange;
 
 public abstract class Hero {
+
     // Determines how much damage can be dealt to an enemy through weapons
     private int strength;
     // Determines how many spaces the player can move per turn
@@ -62,7 +63,7 @@ public abstract class Hero {
     // Keeps track of the armor that player has equipped
     private Armor armor;
     private boolean armorEquipped;
-    
+
     //Constructor
     public Hero() {
         this.strength = 10;
@@ -121,7 +122,7 @@ public abstract class Hero {
 
     public void setMaxHP(int hp) {
         this.maxHP = hp;
-        if(currentHP > maxHP) {
+        if (currentHP > maxHP) {
             currentHP = maxHP;
         }
     }
@@ -136,7 +137,7 @@ public abstract class Hero {
 
     public void setMaxMP(int mp) {
         this.maxMP = mp;
-        if(currentMP > maxMP) {
+        if (currentMP > maxMP) {
             currentMP = maxMP;
         }
     }
@@ -202,22 +203,23 @@ public abstract class Hero {
         this.hasPet = false;
         pet.setPetHealth(0);
     }
+
     public Weapon getWeapon() {
         return weapon;
     }
-    
+
     public boolean getWeaponEquipped() {
         return weaponEquipped;
     }
-    
+
     public Armor getArmor() {
         return armor;
     }
-    
+
     public boolean getArmorEquipped() {
         return armorEquipped;
     }
-    
+
     //Getter Methods
     public int getStrength() {
         return strength;
@@ -322,23 +324,23 @@ public abstract class Hero {
     public List<tempStatChange> getTempStatChanges() {
         return tempStatChanges;
     }
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        }
+    }
 
     public void setWeaponEquipped(boolean hasWeapon) {
         this.weaponEquipped = hasWeapon;
-        }
+    }
 
     public void setArmor(Armor armor) {
         this.armor = armor;
-        }
+    }
 
     public void setArmorEquipped(boolean hasArmor) {
         this.armorEquipped = hasArmor;
     }
-    
-    
+
     /**
      * Allows a character to cast a damage inflicting spell at another player.
      *
@@ -405,11 +407,11 @@ public abstract class Hero {
             }
         }
         Iterator<ArtifactPiece> itr = artifactPieces.iterator();
-        while(itr.hasNext()) {
+        while (itr.hasNext()) {
             ArtifactPiece item = itr.next();
             item.setOwner(null);
         }
-        
+
         this.spells.add(new SpectreShot()); // spectre shot;
 
         //If killed again (all of MP depleted), you are eliminated from the game.
@@ -437,20 +439,20 @@ public abstract class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if(weapon!= null && !weaponEquipped) {
+        if (weapon != null && !weaponEquipped) {
             weapon.equipWeap(this);
         }
-        if(armor != null && !armorEquipped) {
+        if (armor != null && !armorEquipped) {
             armor.equipArmor(this);
         }
         Random rand = new Random();
-        int randomDamage = rand.nextInt(3) + 1, 
-               amt1 = this.strength - attacked.defense;
+        int randomDamage = rand.nextInt(3) + 1,
+                amt1 = this.strength - attacked.defense;
         double amt2 = (0.2 * (this.luck - attacked.luck));
-        if (amt1 < 0){
+        if (amt1 < 0) {
             amt1 = 0;
         }
-        if (amt2 < 0){
+        if (amt2 < 0) {
             amt2 = 0;
         }
         double damage = amt1 - amt2 + randomDamage;
@@ -468,51 +470,54 @@ public abstract class Hero {
             return;
         }
 
-        if (this.pet.getPetHealth() > 0) {
-            this.pet.setPetHealth(this.pet.getPetHealth() - intDamage);
-            attacked.wasAttacked = true;
-            checkIfBothAttacked(attacked);
-            return;
+        if (this.pet != null) {
+            if (this.pet.getPetHealth() > 0) {
+                this.pet.setPetHealth(this.pet.getPetHealth() - intDamage);
+                attacked.wasAttacked = true;
+                checkIfBothAttacked(attacked);
+                return;
+            }
         }
 
-
-        if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-            attacked.currentHP -= intDamage;
-            if (attacked.currentHP <= 0) {
-                attacked.makeGhost();
-            }
-            attacked.wasAttacked = true;
-            checkIfBothAttacked(attacked);
-        } else { //attacking ghost
-            //handle spiritual items
-            if (!items.isEmpty()) {
-                for (Item i : items) {
-                    if (i instanceof Equippable) {
-                        if ((weapon.equals(i) || armor.equals(i)) && (i.getSpiritual())) {
-                            attacked.currentMP -= intDamage;
-                            if (attacked.currentMP <= 0) {
-                                attacked.eliminated = true;
-                                // Attacker gets to take all their stuff
-                                for(Item it : attacked.lostItems) {
-                                    addItem(it);
+            if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
+                attacked.currentHP -= intDamage;
+                if (attacked.currentHP <= 0) {
+                    attacked.makeGhost();
+                }
+                attacked.wasAttacked = true;
+                checkIfBothAttacked(attacked);
+            } else { //attacking ghost
+                //handle spiritual items
+                if (!items.isEmpty()) {
+                    for (Item i : items) {
+                        if (i instanceof Equippable) {
+                            if ((weapon.equals(i) || armor.equals(i)) && (i.getSpiritual())) {
+                                attacked.currentMP -= intDamage;
+                                if (attacked.currentMP <= 0) {
+                                    attacked.eliminated = true;
+                                    // Attacker gets to take all their stuff
+                                    for (Item it : attacked.lostItems) {
+                                        addItem(it);
+                                    }
                                 }
+                                attacked.wasAttacked = true;
+                                checkIfBothAttacked(attacked);
+                                return;
                             }
-                            attacked.wasAttacked = true;
-                            checkIfBothAttacked(attacked);
-                            return;
                         }
                     }
+                    //if no spiritual items, the Attack phase is skipped
                 }
-                //if no spiritual items, the Attack phase is skipped
             }
         }
-    }
-    /** Helper function for Duel to the Death.  Check if both attacker and 
-     * attacked have their wasAttacked set to true.  If so, set both to false.
-     * 
-     * @param attacked The character that was just attacked
-     */
-    private void checkIfBothAttacked(Hero attacked){
+        /**
+         * Helper function for Duel to the Death. Check if both attacker and
+         * attacked have their wasAttacked set to true. If so, set both to
+         * false.
+         *
+         * @param attacked The character that was just attacked
+         */
+    private void checkIfBothAttacked(Hero attacked) {
         if (this.wasAttacked && attacked.wasAttacked) {
             this.wasAttacked = false;
             attacked.wasAttacked = false;
@@ -533,13 +538,13 @@ public abstract class Hero {
         if (this.getGold() >= buy.getGoldCost()) {
             // buy is an Item
             if (Item.class.isAssignableFrom(buy.getClass())) {
-                
+
                 buyVal = addItem((Item) buy);
             } // buy is a Spell 
             else if (Spell.class.isAssignableFrom(buy.getClass())) {
                 buyVal = addSpell((Spell) buy);
             }
-            if(buyVal) {
+            if (buyVal) {
                 setGold(currentGold - buy.getGoldCost());
             }
             return true;
@@ -559,10 +564,10 @@ public abstract class Hero {
      * @return true if item was added
      */
     public boolean addItem(Item item) {
-        if(item.getClass().getSuperclass().equals(ArtifactPiece.class)) {
-            return addArtifact((ArtifactPiece)item);
+        if (item.getClass().getSuperclass().equals(ArtifactPiece.class)) {
+            return addArtifact((ArtifactPiece) item);
         }
-        
+
         for (Item i : items) {
             if (i.getClass().equals(item.getClass())) {
                 return false;
@@ -585,8 +590,8 @@ public abstract class Hero {
             if (i == storage_space + 1) {
                 return false;
             } else {
-                items.remove(i-1);
-                items.add(i-1, item);
+                items.remove(i - 1);
+                items.add(i - 1, item);
                 return true;
             }
         }
@@ -597,7 +602,7 @@ public abstract class Hero {
      * Adds a spell to character's spells. Will only add spell if: <\t>1) The
      * character does not already know this spell <\t>2) The character has a
      * spell slot for the spell
-     * 
+     *
      * If character's spell book is full they have the option to lose a spell in
      * exchange for another.
      *
@@ -626,21 +631,23 @@ public abstract class Hero {
             if (i == spell_slots + 1) {
                 return false;
             } else {
-                spells.remove(i-1);
-                spells.add(i-1, spell);
+                spells.remove(i - 1);
+                spells.add(i - 1, spell);
                 return true;
             }
         }
         return false;
     }
-    /**Adds a artifact piece to hero's list.
-     * 
+
+    /**
+     * Adds a artifact piece to hero's list.
+     *
      * @param part Artifact Piece to be added
      * @return true if piece was added
      */
     private boolean addArtifact(ArtifactPiece part) {
-        for (ArtifactPiece a: artifactPieces) {
-            if(a.getClass().equals(part.getClass())) {
+        for (ArtifactPiece a : artifactPieces) {
+            if (a.getClass().equals(part.getClass())) {
                 return false;
             }
         }
@@ -675,6 +682,7 @@ public abstract class Hero {
         }
         return result;
     }
+
     /**
      * Removes an item to character's inventory. Will only remove item if
      * character already has this item in inventory.
@@ -702,7 +710,6 @@ public abstract class Hero {
         }
         return result;
     }
-    
 
     /**
      * Activates the special for this hero.
