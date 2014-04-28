@@ -2,8 +2,9 @@ package jftha.spells;
 
 import java.util.Random;
 import jftha.main.Buyable;
+import jftha.heroes.Hero;
 
-public class Spell extends Buyable{
+public abstract class Spell extends Buyable{
     private int mpCost;
     private int damage;
     private int maxCooldown = (-1);
@@ -25,9 +26,9 @@ public class Spell extends Buyable{
         this.damage = minDamage + (int)(rand.nextDouble() * (maxDamage - minDamage) + 1); //potential off by one error, thx to Shane       
     }
     
-    public void countdown(){
-        
-    }
+    public abstract void castSpell(Hero caster);
+    
+    public abstract void castSpell(Hero caster, Hero victim);
     
     // Setter methods
     public void setmpCost(int newmpCost){
