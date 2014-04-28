@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import jftha.heroes.*;
@@ -67,6 +68,10 @@ public class PlayerNames extends javax.swing.JFrame {
         MerchantButton = new javax.swing.JRadioButton();
         PaladinButton = new javax.swing.JRadioButton();
         input = new javax.swing.JButton();
+        BarbarianInfoLabel = new javax.swing.JLabel();
+        NinjaInfoLabel = new javax.swing.JLabel();
+        MageInfoLabel = new javax.swing.JLabel();
+        KnightInfoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -160,6 +165,34 @@ public class PlayerNames extends javax.swing.JFrame {
             }
         });
 
+        BarbarianInfoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-resized.png"))); // NOI18N
+        BarbarianInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BarbarianInfoLabelMouseClicked(evt);
+            }
+        });
+
+        NinjaInfoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-resized.png"))); // NOI18N
+        NinjaInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NinjaInfoLabelMouseClicked(evt);
+            }
+        });
+
+        MageInfoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-resized.png"))); // NOI18N
+        MageInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MageInfoLabelMouseClicked(evt);
+            }
+        });
+
+        KnightInfoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-resized.png"))); // NOI18N
+        KnightInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KnightInfoLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,57 +201,76 @@ public class PlayerNames extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BarbarianButton)
-                                    .addComponent(NinjaButton)
-                                    .addComponent(MageButton)
-                                    .addComponent(KnightButton))
-                                .addGap(56, 56, 56)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BarbarianButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BarbarianInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(NinjaButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(NinjaInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(MageButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(MageInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(KnightButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(KnightInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(MerchantButton)
                                     .addComponent(PriestButton)
                                     .addComponent(ThiefButton)
                                     .addComponent(MartialArtistButton)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(name)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(name)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(PaladinButton)
                             .addComponent(input))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name)
                     .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BarbarianButton)
-                    .addComponent(MartialArtistButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BarbarianButton)
+                        .addComponent(MartialArtistButton))
+                    .addComponent(BarbarianInfoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NinjaButton)
-                    .addComponent(ThiefButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NinjaButton)
+                        .addComponent(ThiefButton))
+                    .addComponent(NinjaInfoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MageButton)
-                    .addComponent(PriestButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(MageButton)
+                        .addComponent(PriestButton))
+                    .addComponent(MageInfoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(KnightButton)
-                    .addComponent(MerchantButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(KnightButton)
+                        .addComponent(MerchantButton))
+                    .addComponent(KnightInfoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PaladinButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -230,32 +282,11 @@ public class PlayerNames extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BarbarianButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarbarianButtonActionPerformed
-        JOptionPane.showMessageDialog(rootPane, 
-                "The Barbarian knows no peace, only war. As people bullied him as an outcast, he had to learn to defend himself.\n"
-                + "After he found his first weapon, he learned the craft of combat . . . and the joy of killing.\n"
-                + "This man desires only for revenge against those who have wronged him in the past.\n\n"
-                + "Stat Changes: +2 Strength, -2 Magic\n"
-                + "Equipment: Animal Skin and Ax\n"
-                + "Spells: None\n"
-                + "Special: Wild Wrath - If attacked, has a 1-in-5 chance to attack (the attacker) back with 2x Strength.", 
-                "About the Barbarian", 
-                JOptionPane.INFORMATION_MESSAGE
-                /*, "/images/putBarbarianImagehere"*/);
+        
     }//GEN-LAST:event_BarbarianButtonActionPerformed
 
     private void KnightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnightButtonActionPerformed
-        JOptionPane.showMessageDialog(rootPane, 
-                "The Knight is known throughout his hometown as the “Ultimate Shield”. He claims that none can penetrate his unstoppable armor\n"
-                + "Rumor has it that his armor descended from the heavens, blessed by none other than the Almighty One. But deep down inside his armor, he knows that even he is not invincible.\n"
-                + "He plans to pummel through his opponents, retrieve the Artifact, and receive immortality.\n\n"
-                + "Stat Changes: +2 Defense, -2 Agility\n"
-                + "Equipment: Suit of Armor and Iron Sword\n"
-                + "Spells: None\n"
-                + "Special: Portable Protection - When activated, cannot move for the next turn. After missed turn, become invincible for 3 turns.\n"
-                + "Cooldown period: 10 turns.", 
-                "About the Knight",
-                JOptionPane.INFORMATION_MESSAGE
-                /*, "/images/putKnightImagehere"*/);
+        
     }//GEN-LAST:event_KnightButtonActionPerformed
 
     private void ThiefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThiefButtonActionPerformed
@@ -319,20 +350,28 @@ public class PlayerNames extends javax.swing.JFrame {
     }//GEN-LAST:event_PaladinButtonActionPerformed
 
     private void MageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MageButtonActionPerformed
-        JOptionPane.showMessageDialog(rootPane, 
-                "The Mage has read plenty of books on magic, making him a dangerous and clever person.\n"
-                + "His arsenal of spells can perform deeds from spawning fearsome creatures to forming spiritual equipment.\n"
-                + "For many years, he has yearned for only one thing: the Necronomicon.\n\n"
-                + "Stat Changes: +2 Magic, -3 Strength, -3 Defense, +2 Spell slots\n"
-                + "Equipment: Mage Robe and Spell Book\n"
-                + "Spells: Fireball, Shield\n"
-                + "Special: Inherent Intellect - Each spell is cast for 10% less SE.", 
-                "About the Mage",
-                JOptionPane.INFORMATION_MESSAGE
-                /*, "/images/putMageImagehere"*/);
+        
     }//GEN-LAST:event_MageButtonActionPerformed
 
     private void NinjaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NinjaButtonActionPerformed
+        
+    }//GEN-LAST:event_NinjaButtonActionPerformed
+
+    private void BarbarianInfoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BarbarianInfoLabelMouseClicked
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Barbarian knows no peace, only war. As people bullied him as an outcast, he had to learn to defend himself.\n"
+                + "After he found his first weapon, he learned the craft of combat . . . and the joy of killing.\n"
+                + "This man desires only for revenge against those who have wronged him in the past.\n\n"
+                + "Stat Changes: +2 Strength, -2 Magic\n"
+                + "Equipment: Animal Skin and Ax\n"
+                + "Spells: None\n"
+                + "Special: Wild Wrath - If attacked, has a 1-in-5 chance to attack (the attacker) back with 2x Strength.", 
+                "About the Barbarian", 
+                JOptionPane.INFORMATION_MESSAGE
+                , new ImageIcon(getClass().getResource("/images/Barbarian-MedResize.png")));
+    }//GEN-LAST:event_BarbarianInfoLabelMouseClicked
+
+    private void NinjaInfoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NinjaInfoLabelMouseClicked
         JOptionPane.showMessageDialog(rootPane, 
                 "The Ninja is not just any assassin, studying ninjutsu masters such as Hattori Hanzō and his rival Fūma Kotarō.\n "
                 + "In return for sacrificing metal armor and a heavy weapon, he has learned to kill and flee the crime scene in 10 seconds flat.\n"
@@ -345,8 +384,37 @@ public class PlayerNames extends javax.swing.JFrame {
                 + "Cooldown period: 3 turns.", 
                 "About the Ninja",
                 JOptionPane.INFORMATION_MESSAGE
-                /*, "/images/putNinjaImagehere"*/);
-    }//GEN-LAST:event_NinjaButtonActionPerformed
+                , new ImageIcon(getClass().getResource("/images/Ninja-MedResize.png")));
+    }//GEN-LAST:event_NinjaInfoLabelMouseClicked
+
+    private void MageInfoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MageInfoLabelMouseClicked
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Mage has read plenty of books on magic, making him a dangerous and clever person.\n"
+                + "His arsenal of spells can perform deeds from spawning fearsome creatures to forming spiritual equipment.\n"
+                + "For many years, he has yearned for only one thing: the Necronomicon.\n\n"
+                + "Stat Changes: +2 Magic, -3 Strength, -3 Defense, +2 Spell slots\n"
+                + "Equipment: Mage Robe and Spell Book\n"
+                + "Spells: Fireball, Shield\n"
+                + "Special: Inherent Intellect - Each spell is cast for 10% less SE.", 
+                "About the Mage",
+                JOptionPane.INFORMATION_MESSAGE
+                , new ImageIcon(getClass().getResource("/images/Mage-MedResize.png")));
+    }//GEN-LAST:event_MageInfoLabelMouseClicked
+
+    private void KnightInfoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KnightInfoLabelMouseClicked
+        JOptionPane.showMessageDialog(rootPane, 
+                "The Knight is known throughout his hometown as the “Ultimate Shield”. He claims that none can penetrate his unstoppable armor\n"
+                + "Rumor has it that his armor descended from the heavens, blessed by none other than the Almighty One. But deep down inside his armor, he knows that even he is not invincible.\n"
+                + "He plans to pummel through his opponents, retrieve the Artifact, and receive immortality.\n\n"
+                + "Stat Changes: +2 Defense, -2 Agility\n"
+                + "Equipment: Suit of Armor and Iron Sword\n"
+                + "Spells: None\n"
+                + "Special: Portable Protection - When activated, cannot move for the next turn. After missed turn, become invincible for 3 turns.\n"
+                + "Cooldown period: 10 turns.", 
+                "About the Knight",
+                JOptionPane.INFORMATION_MESSAGE
+                , new ImageIcon(getClass().getResource("/images/Knight-MedResize.png")));
+    }//GEN-LAST:event_KnightInfoLabelMouseClicked
 
     private Hero assignPlayer(JRadioButton b, Hero playerHero) {
         String s = b.getText();
@@ -408,11 +476,15 @@ public class PlayerNames extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton BarbarianButton;
+    private javax.swing.JLabel BarbarianInfoLabel;
     private javax.swing.JRadioButton KnightButton;
+    private javax.swing.JLabel KnightInfoLabel;
     private javax.swing.JRadioButton MageButton;
+    private javax.swing.JLabel MageInfoLabel;
     private javax.swing.JRadioButton MartialArtistButton;
     private javax.swing.JRadioButton MerchantButton;
     private javax.swing.JRadioButton NinjaButton;
+    private javax.swing.JLabel NinjaInfoLabel;
     private javax.swing.JRadioButton PaladinButton;
     private javax.swing.JRadioButton PriestButton;
     private javax.swing.JRadioButton ThiefButton;
