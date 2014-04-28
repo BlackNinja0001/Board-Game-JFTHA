@@ -4,17 +4,18 @@
  */
 package GUI;
 
-import jftha.main.*;
-import java.util.Random;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import jftha.heroes.*;
 import jftha.items.*;
+import jftha.main.*;
 import jftha.spaces.*;
 import jftha.spells.*;
 
@@ -29,6 +30,7 @@ public class BoardGUI extends javax.swing.JFrame {
     int turnNumber;
     int turnPhase;
     Dice die;
+    Board board = new Board();
 
     //Turn phases
     public static final int ITEM_1 = 0,
@@ -534,11 +536,68 @@ public class BoardGUI extends javax.swing.JFrame {
         Dice die = new Dice(6);
         die.rollGUI(dieLabel);
         turnPhase = ITEM_1;
-
+        
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
+    private void displayBoard(){
+        Space current = board.getStart();
+        int curSpaceID = 1;
+        JLabel spaceLabels[] = new JLabel[22];
+        
+        //assign spaceLabels manually
+        spaceLabels[0] = spaceLabel1;
+        spaceLabels[1] = spaceLabel2;
+        spaceLabels[2] = spaceLabel3;
+        spaceLabels[3] = spaceLabel4;
+        spaceLabels[4] = spaceLabel5;
+        spaceLabels[5] = spaceLabel6;
+        spaceLabels[6] = spaceLabel7;
+        spaceLabels[7] = spaceLabel8;
+        spaceLabels[8] = spaceLabel9;
+        spaceLabels[9] = spaceLabel10;
+        spaceLabels[10] = spaceLabel11;
+        spaceLabels[11] = spaceLabel12;
+        spaceLabels[12] = spaceLabel13;
+        spaceLabels[13] = spaceLabel14;
+        spaceLabels[14] = spaceLabel15;
+        spaceLabels[15] = spaceLabel16;
+        spaceLabels[16] = spaceLabel17;
+        spaceLabels[17] = spaceLabel18;
+        spaceLabels[18] = spaceLabel19;
+        spaceLabels[19] = spaceLabel20;
+        spaceLabels[20] = spaceLabel21;
+        spaceLabels[21] = spaceLabel22;
+        
+        for (int i = 0; current.next != board.getStart(); i++) {
+            ImageIcon icon = new ImageIcon();
+            if (current.getSpaceType() == SpaceEnum.Card) {
+                icon = new ImageIcon(getClass().getResource("/images/Random Card space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.Chest) {
+                icon = new ImageIcon(getClass().getResource("/images/Chest space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.D2D) {
+                icon = new ImageIcon(getClass().getResource("/images/Duel to the death space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.Gold) {
+                icon = new ImageIcon(getClass().getResource("/images/gold space-resized.jpg"));
+            } else if (current.getSpaceType() == SpaceEnum.Health) {
+                icon = new ImageIcon(getClass().getResource("/images/Duel to the death space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.Store) {
+                icon = new ImageIcon(getClass().getResource("/images/Shop space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.Blank) {
+                icon = new ImageIcon(getClass().getResource("/images/blank space-resized.png"));
+            } else if (current.getSpaceType() == SpaceEnum.Bank) {
+                icon = new ImageIcon(getClass().getResource("/images/bank space-resized.jpg"));
+            } else if (current.getSpaceType() == SpaceEnum.Monster) {
+                icon = new ImageIcon(getClass().getResource("/images/monster image-resized.jpg"));
+            }
+            spaceLabels[i].setIcon(icon);
+            current = current.next;
+        }
+    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         OutputTextArea.append("Welcome to Journey for the Holy Artifact!\n");
+        OutputTextArea.append("Generating board...\n");
+        board.generateBoard(22);
         OutputTextArea.append("Determining turn order...\n");
         BoardGUI.setTurnOrder(howmany, players, die);
         //They take turns
