@@ -656,7 +656,19 @@ public class BoardGUI extends javax.swing.JFrame {
             i = 0;
             winner = anyoneWon(orderedPlayers);
         } while (winner == -1);
+
         //Win message for winner
+        for (int i = 0; i < orderedPlayers.length; i++) {
+            if (orderedPlayers[i].isWinner()) {
+                JOptionPane.showMessageDialog(this, i, 
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", i, 
+                        new ImageIcon(getClass().getResource("/images/win or lose.jpg")));
+            } else {
+                JOptionPane.showMessageDialog(this, i, 
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", i, 
+                        new ImageIcon(getClass().getResource("/images/your-a-loser2.jpg")));
+            }
+        }
     }//GEN-LAST:event_formWindowOpened
 
     public static void setTurnOrder(int howmany, Player[] players, Dice die) {
@@ -829,6 +841,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
         //Dice Roll (factoring in Agility and Luck)
         turnPhase = DICE_ROLL;
+        CurPhaseLabel.setText("Dice Roll Phase");
         OutputTextArea.append(performer.getCustomName() + ", it's your turn.\n");
         Dice die = new Dice();
         double maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2); //may need tinkering
@@ -845,7 +858,7 @@ public class BoardGUI extends javax.swing.JFrame {
             movement--;
             Space current = performer.move("f"); //always move forward for now
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
-                if (current.getSpaceType() == SpaceEnum.Store){
+                if (current.getSpaceType() == SpaceEnum.Store) {
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     current2.triggerEffect(sb);
@@ -886,6 +899,7 @@ public class BoardGUI extends javax.swing.JFrame {
             if (turnNumber > 2) {
                 if (current.getActivator() != null) {
                     turnPhase = ATTACK;
+                    CurPhaseLabel.setText("Attack Phase");
                     //Then allow to attack
                     // prompt for response
                     playerChar.attackEnemy(current.getActivator().getCharacter());
@@ -896,11 +910,15 @@ public class BoardGUI extends javax.swing.JFrame {
         }
         //Item 2
         if (turnNumber > 2) {
+            turnPhase = ITEM_2;
+            CurPhaseLabel.setText("Item Phase 2");
             itemPhase(performer);
         }
 
         //Turn End
         turnNumber++;
+        turnPhase = END;
+        CurPhaseLabel.setText("End Phase");
         playerChar.activateTSCs();
         updatePlayerInfo();
         //Decrement CD and duration of spells if casted
