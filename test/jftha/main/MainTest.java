@@ -109,8 +109,8 @@ public class MainTest {
             System.setOut(new PrintStream(out));
             Dice die = new Dice(howmany);
             Player[] players = new Player[howmany];
-            Main.playerSelection(howmany, scan, players);
-            Main.setTurnOrder(howmany, players, die);
+            main.playerSelection(howmany, scan, players);
+            main.setTurnOrder(howmany, players, die);
             for(int j = 0; j < howmany; j++) {
                 stb.append(players[j].getTurnOrder());
             }
@@ -132,7 +132,7 @@ public class MainTest {
             Dice die = new Dice(howmany);
             Player[] players = new Player[howmany];
             Main.playerSelection(howmany, scan, players);
-            Main.setTurnOrder(howmany, players, die);
+            main.setTurnOrder(howmany, players, die);
             for(int j = 0; j < howmany; j++) {
                 stb.append(players[j].getTurnOrder());
             }
@@ -154,8 +154,8 @@ public class MainTest {
             System.setOut(new PrintStream(out));
             Dice die = new Dice(howmany);
             Player[] players = new Player[howmany];
-            Main.playerSelection(howmany, scan, players);
-            Main.setTurnOrder(howmany, players, die);
+            main.playerSelection(howmany, scan, players);
+            main.setTurnOrder(howmany, players, die);
             for(int j = 0; j < howmany; j++) {
                 stb.append(players[j].getTurnOrder());
             }
