@@ -879,7 +879,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
                     OutputTextArea.append(performer.getCustomName() + " has landed on a Duel to the Death space.\n");
-                    String opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
+                    String opponent = JOptionPane.showInputDialog(performer.getCustomName() + ", select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
                         if (opponent != null) {
