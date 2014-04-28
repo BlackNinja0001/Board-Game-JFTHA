@@ -658,7 +658,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 executeTurn(orderedPlayers[i]);
             }
             i = 0;
-            //orderedPlayers[0].setIsWinner(true);
+            //orderedPlayers[0].setIsWinner(true); //test winner
             winner = anyoneWon(orderedPlayers);
         } while (winner == -1);
 
@@ -877,6 +877,7 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
+                    OutputTextArea.append(performer.getCustomName() + " has landed on a Duel to the Death space.\n");
                     String opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
@@ -884,7 +885,7 @@ public class BoardGUI extends javax.swing.JFrame {
                             continue;
                         }
                         if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
-                            JOptionPane.showConfirmDialog(rootPane, "No such player.");
+                            JOptionPane.showMessageDialog(rootPane, "No such player.");
                             i = 0;
                             opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
                         } else {
