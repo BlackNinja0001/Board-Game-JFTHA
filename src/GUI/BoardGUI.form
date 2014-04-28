@@ -154,6 +154,7 @@
     <Component class="javax.swing.JButton" name="rollDieButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Roll Die"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rollDieButtonActionPerformed"/>
@@ -164,6 +165,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/die1.png"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="dieLabel" noResource="true"/>
       </Properties>
     </Component>

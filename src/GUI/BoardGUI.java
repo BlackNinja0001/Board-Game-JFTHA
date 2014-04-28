@@ -146,6 +146,7 @@ public class BoardGUI extends javax.swing.JFrame {
         });
 
         rollDieButton.setText("Roll Die");
+        rollDieButton.setEnabled(false);
         rollDieButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rollDieButtonActionPerformed(evt);
@@ -153,6 +154,7 @@ public class BoardGUI extends javax.swing.JFrame {
         });
 
         dieLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/die1.png"))); // NOI18N
+        dieLabel.setEnabled(false);
         dieLabel.setName("dieLabel"); // NOI18N
 
         PlayerOneInfoLabel.setText("Player 1 Info");
@@ -819,9 +821,8 @@ public class BoardGUI extends javax.swing.JFrame {
         die.setMaxAmount(intMaxAmount);
         int movement = die.roll();
         //move the player
-        // choose direction
-        OutputTextArea.append("It's now " + performer.getCustomName() + "'s turn.\n");
-        OutputTextArea.append("You rolled a " + movement + "\n");
+        // choose direction;
+        OutputTextArea.append(performer.getCustomName() + " has rolled a " + movement + "\n");
         /*System.out.println("Move forward(f) or backward(b): ");
          String s = scan.next();*/
 
