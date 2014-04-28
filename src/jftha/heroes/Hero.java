@@ -479,18 +479,19 @@ public abstract class Hero {
             }
         }
 
-            if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
-                attacked.currentHP -= intDamage;
-                if (attacked.currentHP <= 0) {
-                    attacked.makeGhost();
-                }
-                attacked.wasAttacked = true;
-                checkIfBothAttacked(attacked);
-            } else { //attacking ghost
-                //handle spiritual items
-                if (!items.isEmpty()) {
-                    for (Item i : items) {
-                        if (i instanceof Equippable) {
+        if (attacked.isGhost == false) { //cannot attack ghost unless under certain circumstances
+            attacked.currentHP -= intDamage;
+            if (attacked.currentHP <= 0) {
+                attacked.makeGhost();
+            }
+            attacked.wasAttacked = true;
+            checkIfBothAttacked(attacked);
+        } else { //attacking ghost
+            //handle spiritual items
+            if (!items.isEmpty()) {
+                for (Item i : items) {
+                    if (i instanceof Equippable) {
+                        if (weapon != null && armor != null) {
                             if ((weapon.equals(i) || armor.equals(i)) && (i.getSpiritual())) {
                                 attacked.currentMP -= intDamage;
                                 if (attacked.currentMP <= 0) {
@@ -506,17 +507,18 @@ public abstract class Hero {
                             }
                         }
                     }
-                    //if no spiritual items, the Attack phase is skipped
                 }
+                //if no spiritual items, the Attack phase is skipped
             }
         }
-        /**
-         * Helper function for Duel to the Death. Check if both attacker and
-         * attacked have their wasAttacked set to true. If so, set both to
-         * false.
-         *
-         * @param attacked The character that was just attacked
-         */
+    }
+
+    /**
+     * Helper function for Duel to the Death. Check if both attacker and
+     * attacked have their wasAttacked set to true. If so, set both to false.
+     *
+     * @param attacked The character that was just attacked
+     */
     private void checkIfBothAttacked(Hero attacked) {
         if (this.wasAttacked && attacked.wasAttacked) {
             this.wasAttacked = false;
