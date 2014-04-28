@@ -826,7 +826,7 @@ public class BoardGUI extends javax.swing.JFrame {
         int movement = die.roll();
         //move the player
         // choose direction;
-        OutputTextArea.append(performer.getCustomName() + " will move " + movement + "spaces.\n");
+        OutputTextArea.append(performer.getCustomName() + " will move " + movement + " spaces.\n");
         /*System.out.println("Move forward(f) or backward(b): ");
          String s = scan.next();*/
 

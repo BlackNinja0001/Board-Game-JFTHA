@@ -7,7 +7,7 @@ import jftha.items.*;
 import jftha.main.Player;
 
 public class Store extends Space {
-    
+
     /**
      * Constructor
      */
@@ -15,10 +15,10 @@ public class Store extends Space {
         this.setActivationType('p');
         this.setSpaceType(SpaceEnum.Store);
     }
-    
+
     /**
-     * Generates 5 random items(base on current player's luck).
-     * Lets current player choose which item to buy.
+     * Generates 5 random items(base on current player's luck). Lets current
+     * player choose which item to buy.
      */
     @Override
     public void triggerEffect() {
@@ -58,30 +58,36 @@ public class Store extends Space {
             sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
         }
         //Scanner scan = new Scanner(System.in);
-        int select = Integer.parseInt(JOptionPane.showInputDialog(null, sb.toString()));
-        boolean crap;
-        sb = new StringBuilder();//erases old dialog
+        String s = JOptionPane.showInputDialog(null, sb.toString());
+        int select = -1;
+        if (s != null) {
+            select = Integer.parseInt(s);
 
-        if ((select >= 1) && (select < 6)) {
-            crap = hero.buy(items.get(select - 1));
-            if (crap) {
-                sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
-                sb.append("You have " + hero.getGold() + " gold left");
+            boolean crap;
+            sb = new StringBuilder();//erases old dialog
+
+            if ((select >= 1) && (select < 6)) {
+                crap = hero.buy(items.get(select - 1));
+                if (crap) {
+                    sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
+                    sb.append("You have " + hero.getGold() + " gold left");
+                } else {
+                    sb.append("You don't have enough gold");
+                    sb.append("You still have " + hero.getGold() + " gold");
+                }
+            } else if (s.equals("")) {
+                System.out.println("You chose not to buy anything");
             } else {
-                sb.append("You don't have enough gold");
-                sb.append("You still have " + hero.getGold() + " gold");
+                throw new IllegalArgumentException("Error: Did not select an option");
             }
-        } else if (select == JOptionPane.CANCEL_OPTION) {
-            System.out.println("You chose not to buy anything");
-        } else {
-            throw new IllegalArgumentException("Error: Did not select an option");
         }
     }
-    
+
     /**
-     * Generates 5 random items(base on current player's luck).
-     * Lets current player choose which item to buy.
-     * Very similar to triggerEffect() except this has a StringBuilder parameter
+     * Generates 5 random items(base on current player's luck). Lets current
+     * player choose which item to buy. Very similar to triggerEffect() except
+     * this has a StringBuilder parameter
+     *
      * @param StringBuilder sb Used to print to GUI
      */
     public void triggerEffect(StringBuilder sb) {
@@ -121,29 +127,35 @@ public class Store extends Space {
             sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
         }
         //Scanner scan = new Scanner(System.in);
-        int select = Integer.parseInt(JOptionPane.showInputDialog(null, sb.toString()));
-        boolean crap;
-        sb = new StringBuilder();//erases old dialog
+        String s = JOptionPane.showInputDialog(null, sb.toString());
+        int select = -1;
+        if (s != null) {
+            select = Integer.parseInt(s);
 
-        if ((select >= 1) && (select < 6)) {
-            crap = hero.buy(items.get(select - 1));
-            if (crap) {
-                sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
-                sb.append("You have " + hero.getGold() + " gold left");
+            boolean crap;
+            sb = new StringBuilder();//erases old dialog
+
+            if ((select >= 1) && (select < 6)) {
+                crap = hero.buy(items.get(select - 1));
+                if (crap) {
+                    sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
+                    sb.append("You have " + hero.getGold() + " gold left");
+                } else {
+                    sb.append("You don't have enough gold");
+                    sb.append("You still have " + hero.getGold() + " gold");
+                }
+            } else if (s.equals("")) {
+                System.out.println("You chose not to buy anything");
             } else {
-                sb.append("You don't have enough gold");
-                sb.append("You still have " + hero.getGold() + " gold");
+                throw new IllegalArgumentException("Error: Did not select an option");
             }
-        } else if (select == JOptionPane.CANCEL_OPTION) {
-            System.out.println("You chose not to buy anything");
-        } else {
-            throw new IllegalArgumentException("Error: Did not select an option");
         }
     }
 
     /**
      * No Effect
-     * @param affected 
+     *
+     * @param affected
      */
     @Override
     public void triggerEffect(Player affected) {
