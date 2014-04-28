@@ -825,6 +825,7 @@ public class BoardGUI extends javax.swing.JFrame {
         if (turnNumber > 2) {
             itemPhase(performer);
         }
+        updatePlayerInfo();
 
         //Dice Roll (factoring in Agility and Luck)
         turnPhase = DICE_ROLL;
@@ -874,12 +875,14 @@ public class BoardGUI extends javax.swing.JFrame {
             //Attack
             if (turnNumber > 2) {
                 if (current.getActivator() != null) {
+                    turnPhase = ATTACK;
                     //Then allow to attack
                     // prompt for response
                     playerChar.attackEnemy(current.getActivator().getCharacter());
 
                 }
             }
+            updatePlayerInfo();
         }
         //Item 2
         if (turnNumber > 2) {
@@ -902,7 +905,7 @@ public class BoardGUI extends javax.swing.JFrame {
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?");
+        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?", JOptionPane.OK_OPTION);
         //int choice = s.nextInt();
         boolean isValid = false;
         if (choice != null) {
@@ -932,7 +935,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (choice.trim().equalsIgnoreCase("item")) {
                     this.askForItem(performer);
                     isValid = true;
-                } else if ((choice.trim().equalsIgnoreCase("cancel")) || ((Integer.parseInt(choice) == JOptionPane.CANCEL_OPTION))) {
+                } else if ((choice.trim().equalsIgnoreCase("cancel"))) {
                     return;
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
