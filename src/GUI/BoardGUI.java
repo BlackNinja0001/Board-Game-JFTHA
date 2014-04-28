@@ -12,6 +12,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import jftha.heroes.*;
 import jftha.items.*;
 import jftha.spaces.*;
@@ -533,7 +534,7 @@ public class BoardGUI extends javax.swing.JFrame {
         Dice die = new Dice(6);
         die.rollGUI(dieLabel);
         turnPhase = ITEM_1;
-        
+
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -545,7 +546,7 @@ public class BoardGUI extends javax.swing.JFrame {
         for (int i = 0; i < howmany; i++) {
             orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
         }
-        
+
         for (int i = 1; (i - 1) < howmany; i++) {
             StringBuilder sb = new StringBuilder();
             String order = "";
@@ -560,8 +561,8 @@ public class BoardGUI extends javax.swing.JFrame {
                 order = "4th";
             }
             sb.append("Player ").append(i)
-                    .append(" is a ").append(players[i - 1].getCharacter().getClassName())
-                    .append(" named ").append(players[i - 1].getCustomName())
+                    .append(" is a ").append(orderedPlayers[i - 1].getCharacter().getClassName())
+                    .append(" named ").append(orderedPlayers[i - 1].getCustomName())
                     .append(" and is going ").append(order).append(".");
             OutputTextArea.append(sb.toString() + "\n");
         }
@@ -600,56 +601,7 @@ public class BoardGUI extends javax.swing.JFrame {
             players[j].setTurnOrder(roll);
         }
     }
-    
-    protected static void playerSelection(int howmany, Scanner scan, Player[] players) {
-        for (int i = 1; (i - 1) < howmany; i++) { //may need more error handling
-            System.out.println("Player " + i + ", what is your name?");
-            String name = scan.next();
-            System.out.println("Player " + i + ", which character do you pick?"); // handle error/exception for non-int
-            System.out.println("Input 1 for Barbarian\nInput 2 for Ninja\nInput 3 for Mage\nInput 4 for Knight\nInput 5 for MartialArtist\n"
-                    + "Input 6 for Thief\nInput 7 for Priest\nInput 8 for Merchant\nInput 9 for Paladin");
-            int heroNum = scan.nextInt();
-            Hero playerHero = null;
-            playerHero = assignPlayer(heroNum, playerHero);
-            players[i - 1] = new Player(name, playerHero);
-        }
-    }
-    
-    protected static Hero assignPlayer(int heroNum, Hero playerHero) {
-        switch (heroNum) {
-            case 1:
-                playerHero = new Barbarian();
-                break;
-            case 2:
-                playerHero = new Ninja();
-                break;
-            case 3:
-                playerHero = new Mage();
-                break;
-            case 4:
-                playerHero = new Knight();
-                break;
-            case 5:
-                playerHero = new MartialArtist();
-                break;
-            case 6:
-                playerHero = new Thief();
-                break;
-            case 7:
-                playerHero = new Priest();
-                break;
-            case 8:
-                playerHero = new Merchant();
-                break;
-            case 9:
-                playerHero = new Paladin();
-                break;
-            default:
-                System.out.println("Error: No character picked.");
-        }
-        return playerHero;
-    }
-    
+
     /**
      * Checks whether or not a player has won the game.
      *
@@ -693,7 +645,7 @@ public class BoardGUI extends javax.swing.JFrame {
         }
         return ret;
     }
-    
+
     /**
      * Checks if players[winningPlayer]'s winCount can be upped (all opponents
      * dead). If so, then increment players[winningPlayer]'s winCount. If not
@@ -730,7 +682,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
         return valid;
     }
-    
+
     /**
      * Checks if anyone won the game.
      *
@@ -749,7 +701,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
         return winnerIndex;
     }
-    
+
     /**
      * Checks if all opponents of "winningPlayer" are non-existent (died as
      * ghost)
@@ -776,11 +728,12 @@ public class BoardGUI extends javax.swing.JFrame {
 
         return valid;
     }
-    
+
     /**
      * Current Player's Turn Phase
+     *
      * @param performer
-     * @throws IllegalActivationTypeException 
+     * @throws IllegalActivationTypeException
      */
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
         Scanner scan = new Scanner(System.in);
@@ -803,7 +756,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
         while (movement > 0) {
             movement--;
-            Space current = performer.move("f");
+            Space current = performer.move("f"); //always move forward for now
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 current.triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
@@ -851,85 +804,90 @@ public class BoardGUI extends javax.swing.JFrame {
         //Decrement CD and duration of spells if casted
         //Need to remove buff of hero after duration is over to prevent ridiculous stacking of buffs
     }
-    
+
     /**
      * Current player's item phase
-     * @param performer 
+     *
+     * @param performer
      */
     public void itemPhase(Player performer) {
         Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        System.out.println("Spell(1), special(2), item(3), or cancel(0)");
-        int choice = s.nextInt();
-        if (choice == 1) {
-            this.askForSpell(performer);
-        } else if (choice == 2) {
-            playerChar.triggerSpecial();
-            if (playerChar instanceof Ninja) { //special instance
-                //ask if forward or backward
+        //System.out.println("Spell(1), special(2), item(3), or cancel(0)");
+        String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?");
+        //int choice = s.nextInt();
+        boolean isValid = false;
+        while (!isValid) {
+            if (choice.equalsIgnoreCase("spell")) {
+                this.askForSpell(performer);
+            } else if (choice.equalsIgnoreCase("special")) {
+                playerChar.triggerSpecial();
+                if (playerChar instanceof Ninja) { //special instance
+                    //ask if forward or backward
 
+                    for (int i = 0; i < 3; i++) {
+                        performer.move("f"); //can only move forward for now
+                    }
 
-                for (int i = 0; i < 3; i++) {
-                    performer.move("f"); //can only move forward for now
-                }
-
-                for (int i = 0; i < orderedPlayers.length; i++) {
-                    if (i != performer.getTurnOrder()) { //prevent comparing performer to itself
-                        if (performer.getCurrentSpace() == orderedPlayers[i].getCurrentSpace()) {
-                            playerChar.attackEnemy(orderedPlayers[i].getCharacter());
-                            orderedPlayers[i].getCharacter().attackEnemy(playerChar);
+                    for (int i = 0; i < orderedPlayers.length; i++) {
+                        if (i != performer.getTurnOrder()) { //prevent comparing performer to itself
+                            if (performer.getCurrentSpace() == orderedPlayers[i].getCurrentSpace()) {
+                                playerChar.attackEnemy(orderedPlayers[i].getCharacter());
+                                orderedPlayers[i].getCharacter().attackEnemy(playerChar);
+                            }
                         }
                     }
                 }
+            } else if (choice.equalsIgnoreCase("item")) {
+                this.askForItem(performer);
+            } else if (choice.equalsIgnoreCase("cancel")) {
+                return;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
             }
-        } else if (choice == 3) {
-            this.askForItem(performer);
-        } else if (choice == 0) {
-            return;
-        } else {
-            System.out.println("Invalid Answer.");
         }
     }
-    
+
     /**
      * Ask if "performer" wants to use a spell.
-     * @param performer 
+     *
+     * @param performer
      */
-    public void askForSpell(Player performer){
+    public void askForSpell(Player performer) {
         Hero playerChar = performer.getCharacter();
         Scanner s = new Scanner(System.in);
         int spellCount = 0;
         List<Spell> mySpells;
         char yesOrNo;
         int mistakes = 0;
-        while(true){
+        while (true) {
             System.out.println("Use spell('y' for yes, 'n' for no)?");
             yesOrNo = s.next().trim().charAt(0);
-            if(yesOrNo == 'y'){
+            if (yesOrNo == 'y') {
                 mySpells = playerChar.getSpells();
-                if(!(mySpells).isEmpty()){
-                    for(Spell spell : mySpells){
+                if (!(mySpells).isEmpty()) {
+                    for (Spell spell : mySpells) {
                         spellCount++;
                         System.out.println(spellCount + ". " + spell.getMessage());
                     }
                     int choice = -1;
-                    while((choice < 0) || (choice >= mySpells.size())){
+                    while ((choice < 0) || (choice >= mySpells.size())) {
                         System.out.println("Which spell would you like to use (0 to cancel)");
                         choice = s.nextInt();
-                        
-                        if(choice == 0){
+
+                        if (choice == 0) {
                             return;
-                        }else if((choice >= 0) && (choice < mySpells.size())){
+                        } else if ((choice >= 0) && (choice < mySpells.size())) {
                             Spell toBeUsed = mySpells.get(choice + 1);
-                        }else{
+                        } else {
                             System.out.println("Invalid Choice");
                         }
                     }
                 }
                 break;
-            }else if(yesOrNo == 'n'){
+            } else if (yesOrNo == 'n') {
                 break;
-            }else{
+            } else {
                 if (mistakes <= 2) {
                     System.out.println("Invalid Answer.");
                 } else if (mistakes == 3) {
@@ -954,7 +912,7 @@ public class BoardGUI extends javax.swing.JFrame {
             }
         }
     }
-    
+
     /**
      * Asks if "performer" wants to use an item
      *
@@ -1035,7 +993,7 @@ public class BoardGUI extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void updatePlayerInfo() {
         if (players != null) {
             StringBuilder sb;
