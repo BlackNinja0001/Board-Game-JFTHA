@@ -1,6 +1,6 @@
 package jftha.items;
 
-import jftha.main.Player;
+import jftha.heroes.Hero;
 
 public class Bible extends Item {
     
@@ -25,7 +25,7 @@ public class Bible extends Item {
      * @param affected 
      */
     @Override
-    public void triggerEffect(Player affected) {}
+    public void triggerEffect(Hero affected) {}
 
     /**
      * No Effect
@@ -33,6 +33,6 @@ public class Bible extends Item {
      * @param affected2 
      */
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {}
+    public void triggerEffect(Hero affected1, Hero affected2) {}
 
 }

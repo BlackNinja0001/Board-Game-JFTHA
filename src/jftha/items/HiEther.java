@@ -1,7 +1,6 @@
 package jftha.items;
 
 import jftha.heroes.Hero;
-import jftha.main.Player;
 
 public class HiEther extends Item{
     private final int recoverMP = 25;
@@ -22,16 +21,15 @@ public class HiEther extends Item{
     public void triggerEffect() {}
 
     /**
-     * Takes in Player class as a parameter.
+     * Takes in Hero class as a parameter.
      * Current player restores 25MP.
-     * @param affected 
+     * @param hero
      */
     @Override
-    public void triggerEffect(Player affected) {
-        Hero hero = affected.getCharacter();
+    public void triggerEffect(Hero hero) {
         hero.setCurrentMP(hero.getCurrentMP() + recoverMP);
     }
 
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {}
+    public void triggerEffect(Hero affected1, Hero affected2) {}
 }

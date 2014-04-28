@@ -1,6 +1,6 @@
 package jftha.items;
 
-import jftha.main.Player;
+import jftha.heroes.Hero;
 
 public class ArtifactPiece5 extends ArtifactPiece {
     private static final ArtifactPiece5 INSTANCE = new ArtifactPiece5();
@@ -18,8 +18,8 @@ public class ArtifactPiece5 extends ArtifactPiece {
     public void triggerEffect() {}
 
     @Override
-    public void triggerEffect(Player affected) {}
+    public void triggerEffect(Hero affected) {}
 
     @Override
-    public void triggerEffect(Player affected1, Player affected2) {}
+    public void triggerEffect(Hero affected1, Hero affected2) {}
 }
