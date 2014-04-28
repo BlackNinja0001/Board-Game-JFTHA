@@ -32,11 +32,11 @@ public class ItemLists {
     public ItemLists() {
         commonClasses.add(AnimalSkin.class);
         commonClasses.add(Ax.class);
-        commonClasses.add(Bible.class);
+        //commonClasses.add(Bible.class);
 //        commonClasses.add(Chasuble.class);
         commonClasses.add(Cloak.class);
         commonClasses.add(Dagger.class);
-        commonClasses.add(DivineBlade.class);
+        //commonClasses.add(DivineBlade.class);
         commonClasses.add(Ether.class);
 //        commonClasses.add(FastHands.class);
         commonClasses.add(IronSword.class);
@@ -50,7 +50,7 @@ public class ItemLists {
         commonClasses.add(SuitOfArmor.class);
         uncommonClasses.add(HiEther.class);
         uncommonClasses.add(HiPotion.class);
-        uncommonClasses.add(ShiningArmor.class);
+        //uncommonClasses.add(ShiningArmor.class);
         rareClasses.add(Elixir.class);
         rareClasses.add(Goldskin.class);
         rareClasses.add(SwordOf1000Truth.class);
