@@ -603,6 +603,16 @@ public class BoardGUI extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         OutputTextArea.append("Welcome to Journey for the Holy Artifact!\n");
 
+        //Make itemLabels "invisible
+        ItemOneLabel.setText("");
+        ItemTwoLabel.setText("");
+        ItemThreeLabel.setText("");
+        ItemFourLabel.setText("");
+        ItemFiveLabel.setText("");
+        ItemSixLabel.setText("");
+        ItemSevenLabel.setText("");
+        ItemEightLabel.setText("");
+        
         OutputTextArea.append("Generating board...\n");
         board.generateBoard(spaceTotal);
         displayBoard(board);
@@ -879,6 +889,7 @@ public class BoardGUI extends javax.swing.JFrame {
         //Turn End
         turnNumber++;
         playerChar.activateTSCs();
+        updatePlayerInfo();
         //Decrement CD and duration of spells if casted
         //Need to remove buff of hero after duration is over to prevent ridiculous stacking of buffs
     }
@@ -921,7 +932,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (choice.trim().equalsIgnoreCase("item")) {
                     this.askForItem(performer);
                     isValid = true;
-                } else if (choice.trim().equalsIgnoreCase("cancel")) {
+                } else if ((choice.trim().equalsIgnoreCase("cancel")) || ((Integer.parseInt(choice) == JOptionPane.CANCEL_OPTION))) {
                     return;
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
