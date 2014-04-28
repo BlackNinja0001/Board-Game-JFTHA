@@ -278,6 +278,7 @@ public class Main { //definitely need more error handling
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
+        playerChar.activateTSCs();
         //Item phase 1
         itemPhase(performer);
 
