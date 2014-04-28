@@ -24,9 +24,11 @@ public class FreeCommonItem extends Card{
     public void triggerEffect(Player affected) {
         Hero hero = affected.getCharacter();
         ItemFactory i = new ItemFactory();
-        Item item = i.buildItem(jftha.items.RarityEnum.common);
-        hero.addItem(item);
-        this.setMessage("Free giveaway from the store! You got a " + item.toString() + "!");
+        Item item;
+        do {
+            item = i.buildItem(jftha.items.RarityEnum.common);
+            this.setMessage("Free giveaway from the store! You got a " + item.toString() + "!");
+        } while(!hero.addItem(item));
     }
 
     /**NO EFFECT.
