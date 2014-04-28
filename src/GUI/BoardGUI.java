@@ -865,7 +865,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     current2.triggerEffect(sb);
-                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.");
+                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
                     OutputTextArea.append(sb.toString());
                 } else {
                     current.triggerEffect();
@@ -1172,6 +1172,28 @@ public class BoardGUI extends javax.swing.JFrame {
         }
     }
 
+    private void clearNonPlayerLabels(JLabel[] charLabels, Player[] playas) {
+
+        int takenSpaces[] = new int[playas.length];
+        int k = 0;
+        for (int i = 0; i < charLabels.length; i++) {
+            for (int j = 0; j < playas.length; j++) {
+                if (playas[j].getCurrentSpace().getSpaceID() != i) { //if player is on space i
+                    takenSpaces[k] = i; //store for later]
+                    k++;
+                }
+            }
+        }
+
+        for (int i = 0; i < charLabels.length; i++) {
+            for (int j = 0; j < k; j++) {
+                if (takenSpaces[j] != i) { //space is not taken
+                    charLabels[i].setIcon(null);
+                }
+            }
+        }
+    }
+
     private void updatePlayerLoc(Player playa) {
         String imageName = new String();
         if (playa.getCharacter() instanceof Barbarian) {
@@ -1189,7 +1211,7 @@ public class BoardGUI extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
 
         JLabel[] charLabels = new JLabel[spaceTotal];
-        //assign spaceLabels manually
+        //assign charLabels manually
         charLabels[0] = characterLabel1;
         charLabels[1] = characterLabel2;
         charLabels[2] = characterLabel3;
@@ -1218,6 +1240,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 charLabels[i].setIcon(icon);
             }
         }
+        clearNonPlayerLabels(charLabels, orderedPlayers);
     }
 
     /**
