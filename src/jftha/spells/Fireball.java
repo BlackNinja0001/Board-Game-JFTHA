@@ -1,6 +1,7 @@
 package jftha.spells;
 
 import jftha.heroes.Hero;
+import jftha.heroes.Mage;
 
 public class Fireball extends Spell {
     
@@ -34,6 +35,13 @@ public class Fireball extends Spell {
         if (finalDmg <= 0) {
             finalDmg = 1;
         }
+        
+        if(caster instanceof Mage) {
+                caster.setCurrentMP(caster.getCurrentMP() - (int)(getmpCost() * Mage.multiplier));
+            } else {
+                caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
+            }
+        
         enemy.setCurrentHP(enemy.getCurrentHP() - finalDmg);
     }
 }

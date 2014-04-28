@@ -1,6 +1,8 @@
 package jftha.spells;
 
 import java.util.Random;
+import jftha.heroes.Hero;
+import jftha.heroes.Mage;
 
 public class SummonPet extends Spell {
 
@@ -40,7 +42,7 @@ public class SummonPet extends Spell {
      * @return 
      * Pet Damage
      */
-    public int randomizeDamage(){
+    public final int randomizeDamage(){
         Random rand = new Random();
         petDamage = rand.nextInt(9) + 2; //2-10
         return petDamage;
@@ -56,4 +58,23 @@ public class SummonPet extends Spell {
         petHealth = rand.nextInt(10) + 5; //5-15
         return petHealth;
     }
+
+    @Override
+    public void castSpell(Hero caster) {
+        if(this.getCurrentCD() > 0) {
+            setCurrentCD(this.getMaxCooldown());
+        caster.addPet();
+        if(caster instanceof Mage) {
+                caster.setCurrentMP(caster.getCurrentMP() - (int)(getmpCost() * Mage.multiplier));
+            } else {
+                caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
+            }
+        } else {
+            setCurrentCD(this.getCurrentCD() - 1);
+        }
+        
+    }
+
+    @Override
+    public void castSpell(Hero caster, Hero victim) {}
 }

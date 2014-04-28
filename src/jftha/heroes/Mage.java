@@ -6,7 +6,7 @@ import jftha.spells.*;
 
 public class Mage extends Hero{
     
-    final static double multiplier = 0.9;
+    public final static double multiplier = 0.9;
     
     //Constructor
     public Mage(){

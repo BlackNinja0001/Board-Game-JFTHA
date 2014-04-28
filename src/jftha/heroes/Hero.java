@@ -87,7 +87,7 @@ public abstract class Hero {
         curSpecCooldown = curSpecDuration = maxSpecCooldown = maxSpecDuration = 0;
         this.tempStatChanges = new ArrayList<>();
         this.hasPet = false;
-        pet = new SummonPet();
+        pet = null;
     }
 
     //Setter methods
