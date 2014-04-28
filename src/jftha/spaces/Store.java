@@ -60,8 +60,13 @@ public class Store extends Space {
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
         int select = -1;
-        if (s != null) {
-            select = Integer.parseInt(s);
+        if (s != null && !s.equals("")) {
+            try {
+                select = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sb.append("Not a valid response.\n");
+                return;
+            }
 
             boolean crap;
             sb = new StringBuilder();//erases old dialog
@@ -130,8 +135,12 @@ public class Store extends Space {
         String s = JOptionPane.showInputDialog(null, sb.toString());
         int select = -1;
         if ((s != null) && (!s.equals(""))) {
-            select = Integer.parseInt(s);
-
+            try {
+                select = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sb.append("Not a valid response.\n");
+                return;
+            }
             boolean crap;
             sb = new StringBuilder();//erases old dialog
 
