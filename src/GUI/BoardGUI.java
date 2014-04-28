@@ -661,13 +661,13 @@ public class BoardGUI extends javax.swing.JFrame {
         //Win message for winner
         for (int i = 0; i < orderedPlayers.length; i++) {
             if (orderedPlayers[i].isWinner()) {
-                JOptionPane.showMessageDialog(this, "Wiener!", 
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", JOptionPane.PLAIN_MESSAGE, 
+                JOptionPane.showMessageDialog(this, "Wiener!",
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", JOptionPane.PLAIN_MESSAGE,
                         new ImageIcon(getClass().getResource("/images/win or lose.jpg")));
                 OutputTextArea.append(orderedPlayers[i].getCustomName() + " is the winner!");
             } else {
-                JOptionPane.showMessageDialog(this, "Loser!", 
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", JOptionPane.PLAIN_MESSAGE, 
+                JOptionPane.showMessageDialog(this, "Loser!",
+                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", JOptionPane.PLAIN_MESSAGE,
                         new ImageIcon(getClass().getResource("/images/your-a-loser2.jpg")));
             }
         }
@@ -1165,6 +1165,59 @@ public class BoardGUI extends javax.swing.JFrame {
                 }
             }
         }
+
+        //Locations
+        for (int i = 0; i < orderedPlayers.length; i++) {
+            updatePlayerLoc(orderedPlayers[i]);
+        }
+    }
+
+    private void updatePlayerLoc(Player playa) {
+        String imageName = new String();
+        if (playa.getCharacter() instanceof Barbarian) {
+            imageName = "Barbarian-resized.png";
+        } else if (playa.getCharacter() instanceof Ninja) {
+            imageName = "Ninja-resized.png";
+        } else if (playa.getCharacter() instanceof Mage) {
+            imageName = "Mage-resized.png";
+        } else if (playa.getCharacter() instanceof Knight) {
+            imageName = "Knight-resized.png";
+        } else {
+            OutputTextArea.append(playa.getCustomName() + " is not using a valid class.");
+            return;
+        }
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
+
+        JLabel[] charLabels = new JLabel[spaceTotal];
+        //assign spaceLabels manually
+        charLabels[0] = characterLabel1;
+        charLabels[1] = characterLabel2;
+        charLabels[2] = characterLabel3;
+        charLabels[3] = characterLabel4;
+        charLabels[4] = characterLabel5;
+        charLabels[5] = characterLabel6;
+        charLabels[6] = characterLabel7;
+        charLabels[7] = characterLabel8;
+        charLabels[8] = characterLabel9;
+        charLabels[9] = characterLabel10;
+        charLabels[10] = characterLabel11;
+        charLabels[11] = characterLabel12;
+        charLabels[12] = characterLabel13;
+        charLabels[13] = characterLabel14;
+        charLabels[14] = characterLabel15;
+        charLabels[15] = characterLabel16;
+        charLabels[16] = characterLabel17;
+        charLabels[17] = characterLabel18;
+        charLabels[18] = characterLabel19;
+        charLabels[19] = characterLabel20;
+        charLabels[20] = characterLabel21;
+        charLabels[21] = characterLabel22;
+
+        for (int i = 0; i < charLabels.length; i++) {
+            if (playa.getCurrentSpace().getSpaceID() == i) {
+                charLabels[i].setIcon(icon);
+            }
+        }
     }
 
     /**
@@ -1181,16 +1234,21 @@ public class BoardGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BoardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BoardGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BoardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BoardGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BoardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BoardGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BoardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BoardGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
