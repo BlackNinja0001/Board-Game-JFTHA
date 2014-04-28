@@ -57,8 +57,6 @@ public class Store extends Space {
             String item = items.get(j).toString();
             sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
         }
-
-        sb.append("Input 6 to choose not to buy\n");
         //Scanner scan = new Scanner(System.in);
         int select = Integer.parseInt(JOptionPane.showInputDialog(null, sb.toString()));
         boolean crap;
@@ -72,7 +70,7 @@ public class Store extends Space {
                 System.out.println("You don't have enough gold");
                 System.out.println("You still have " + hero.getGold() + " gold");
             }
-        } else if (select == 6) {
+        } else if (select == JOptionPane.CANCEL_OPTION) {
             System.out.println("You chose not to buy anything");
         } else {
             throw new IllegalArgumentException("Error: Did not select an option");

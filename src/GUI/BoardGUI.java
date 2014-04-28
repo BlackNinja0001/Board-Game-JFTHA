@@ -31,6 +31,8 @@ public class BoardGUI extends javax.swing.JFrame {
     int turnPhase;
     Dice die;
     Board board = new Board();
+    int spaceTotal = 22;
+    int currentDieRoll = 0;
 
     //Turn phases
     public static final int ITEM_1 = 0,
@@ -533,17 +535,17 @@ public class BoardGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rollDieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDieButtonActionPerformed
-        Dice die = new Dice(6);
-        die.rollGUI(dieLabel);
-        turnPhase = ITEM_1;
-        
+        if (turnPhase == DICE_ROLL) {
+            Dice die = new Dice(6);
+            currentDieRoll = die.rollGUI(dieLabel);
+        }
+
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
-    private void displayBoard(){
+    private void displayBoard(Board board) {
         Space current = board.getStart();
-        int curSpaceID = 1;
-        JLabel spaceLabels[] = new JLabel[22];
-        
+        JLabel spaceLabels[] = new JLabel[spaceTotal];
+
         //assign spaceLabels manually
         spaceLabels[0] = spaceLabel1;
         spaceLabels[1] = spaceLabel2;
@@ -567,7 +569,7 @@ public class BoardGUI extends javax.swing.JFrame {
         spaceLabels[19] = spaceLabel20;
         spaceLabels[20] = spaceLabel21;
         spaceLabels[21] = spaceLabel22;
-        
+
         for (int i = 0; current.next != board.getStart(); i++) {
             ImageIcon icon = new ImageIcon();
             if (current.getSpaceType() == SpaceEnum.Card) {
@@ -593,17 +595,22 @@ public class BoardGUI extends javax.swing.JFrame {
             current = current.next;
         }
     }
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         OutputTextArea.append("Welcome to Journey for the Holy Artifact!\n");
+
         OutputTextArea.append("Generating board...\n");
-        board.generateBoard(22);
+        board.generateBoard(spaceTotal);
+        displayBoard(board);
+
         OutputTextArea.append("Determining turn order...\n");
         BoardGUI.setTurnOrder(howmany, players, die);
-        //They take turns
+
+        //Order the players based on when they go and assign their spawn points (currently all at space 1)
         orderedPlayers = new Player[howmany];
         for (int i = 0; i < howmany; i++) {
             orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
+            players[i].setCurrentSpace(board.getStart());
         }
 
         for (int i = 1; (i - 1) < howmany; i++) {
@@ -798,11 +805,14 @@ public class BoardGUI extends javax.swing.JFrame {
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
         //Item phase 1
+        turnPhase = ITEM_1;
         if (turnNumber > 2) {
             itemPhase(performer);
         }
 
         //Dice Roll (factoring in Agility and Luck)
+        turnPhase = DICE_ROLL;
+        OutputTextArea.append(performer.getCustomName() + ", it's your turn to roll.\n");
         Dice die = new Dice();
         double maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2); //may need tinkering
         int intMaxAmount = (int) Math.round(maxAmount);
