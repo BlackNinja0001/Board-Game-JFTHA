@@ -1182,9 +1182,10 @@ public class BoardGUI extends javax.swing.JFrame {
         int k = 0;
         for (int i = 0; i < charLabels.length; i++) {
             for (int j = 0; j < playas.length; j++) {
-                if (playas[j].getCurrentSpace().getSpaceID() != i) { //if player is on space i
-                    takenSpaces[k] = i; //store for later]
+                if (playas[j].getCurrentSpace().getSpaceID() == i) { //if player is on space i
+                    takenSpaces[k] = i; //store for later
                     k++;
+                    i++;
                 }
             }
         }
