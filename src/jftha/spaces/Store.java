@@ -88,7 +88,7 @@ public class Store extends Space {
      * player choose which item to buy. Very similar to triggerEffect() except
      * this has a StringBuilder parameter
      *
-     * @param StringBuilder sb Used to print to GUI
+     * @param sb Used to print to GUI
      */
     public void triggerEffect(StringBuilder sb) {
         Player p = getActivator();

@@ -845,7 +845,14 @@ public class BoardGUI extends javax.swing.JFrame {
             movement--;
             Space current = performer.move("f"); //always move forward for now
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
-                current.triggerEffect();
+                if (current.getSpaceType() == SpaceEnum.Store){
+                    StringBuilder sb = new StringBuilder();
+                    Store current2 = (Store) current;
+                    current2.triggerEffect(sb);
+                    OutputTextArea.append(sb.toString());
+                } else {
+                    current.triggerEffect();
+                }
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
