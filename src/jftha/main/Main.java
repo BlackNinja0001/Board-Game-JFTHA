@@ -22,7 +22,8 @@ public class Main { //definitely need more error handling
         playerSelection(howmany, scan, players);
 
         System.out.println("Determining turn order...");
-        setTurnOrder(howmany, players, die);
+        Main main = new Main();
+        main.setTurnOrder(howmany, players, die);
 
         //Spawn board
         Board board = new Board();
@@ -32,7 +33,7 @@ public class Main { //definitely need more error handling
         for (int i = 0; i < howmany; i++) {
             players[i].setCurrentSpace(board.getStart());
         }
-        Main main = new Main();
+        //Main main = new Main();
         //They take turns
         main.orderedPlayers = new Player[howmany];
         for (int i = 0; i < howmany; i++) {
@@ -50,7 +51,7 @@ public class Main { //definitely need more error handling
         //Win message for winner
     }
 
-    protected static void setTurnOrder(int howmany, Player[] players, Dice die) {
+    public void setTurnOrder(int howmany, Player[] players, Dice die) {
         for (int i = 0; i < howmany; i++) { //Give every player an initial turn order
             players[i].setTurnOrder(die.roll());
         }

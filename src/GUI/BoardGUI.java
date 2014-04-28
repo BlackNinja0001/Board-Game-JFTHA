@@ -4,13 +4,12 @@
  */
 package GUI;
 
-import jftha.main.Dice;
+import jftha.main.*;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
-import jftha.main.Player;
 
 /**
  *
@@ -18,11 +17,12 @@ import jftha.main.Player;
  */
 public class BoardGUI extends javax.swing.JFrame {
 
-    Player players[];
+    Player players[], orderedPlayers[];
     int howmany;
     int turnCount;
     int turnPhase;
-    
+    Dice die;
+
     //Turn phases
     public static final int ITEM_1 = 0,
             DICE_ROLL = 1,
@@ -34,6 +34,7 @@ public class BoardGUI extends javax.swing.JFrame {
         howmany = 4;
         players = new Player[howmany];
         initComponents();
+        die = new Dice(howmany);
     }
 
     /**
@@ -43,6 +44,7 @@ public class BoardGUI extends javax.swing.JFrame {
         howmany = playas.length;
         players = playas;
         initComponents();
+        die = new Dice(howmany);
     }
 
     /**
@@ -526,9 +528,70 @@ public class BoardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rollDieButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        OutputTextArea.append("Welcome to Journey for the Holy Artifact!\n");
+        OutputTextArea.append("Determining turn order...\n");
+        BoardGUI.setTurnOrder(howmany, players, die);
+        //They take turns
+        orderedPlayers = new Player[howmany];
+        for (int i = 0; i < howmany; i++) {
+            orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
+        }
+        for (int i = 0; i < orderedPlayers.length; i++){
+            if (i == 0){
+                OutputTextArea.append(orderedPlayers[i].getCustomName() + " will go 1st.\n");
+            } else if (i == 1){
+                OutputTextArea.append(orderedPlayers[i].getCustomName() + " will go 2nd.\n");
+            } else if (i == 2){
+                OutputTextArea.append(orderedPlayers[i].getCustomName() + " will go 3rd.\n");
+            } else if (i == 3){
+                OutputTextArea.append(orderedPlayers[i].getCustomName() + " will go 4th.\n");
+            }
+        }
         updatePlayerInfo();
     }//GEN-LAST:event_formWindowOpened
 
+    public static void setTurnOrder(int howmany, Player[] players, Dice die) {
+        for (int i = 0; i < howmany; i++) { //Give every player an initial turn order
+            players[i].setTurnOrder(die.roll());
+        }
+
+        for (int j = 0; j < howmany; j++) { //for every player
+            int roll = die.roll();
+            boolean didReroll = true;
+            while (didReroll) {
+                didReroll = false;
+                for (int k = 0; k < howmany; k++) { //check if any turnOrders match and changes accordingly
+                    if (j != k) { //not checking player to itself
+                        while (roll == players[k].getTurnOrder()) { //reroll until it doesn't match the current player
+                            roll = die.roll();
+                            didReroll = true;
+                        }
+                    }
+                }
+            }
+            players[j].setTurnOrder(roll);
+        }
+
+        for (int i = 1; (i - 1) < howmany; i++) {
+            StringBuilder sb = new StringBuilder();
+            String order = "";
+            int curTurnOrder = players[i - 1].getTurnOrder();
+            if (curTurnOrder == 1) {
+                order = "1st";
+            } else if (curTurnOrder == 2) {
+                order = "2nd";
+            } else if (curTurnOrder == 3) {
+                order = "3rd";
+            } else if (curTurnOrder == 4) {
+                order = "4th";
+            }
+            sb.append("Player ").append(i)
+                    .append(" is a ").append(players[i - 1].getCharacter().getClassName())
+                    .append(" named ").append(players[i - 1].getCustomName())
+                    .append(" and is going ").append(order).append(".");
+            System.out.println(sb.toString());
+        }
+    }
     private void updatePlayerInfo() {
         if (players != null) {
             StringBuilder sb;
