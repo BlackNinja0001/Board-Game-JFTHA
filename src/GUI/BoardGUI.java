@@ -485,7 +485,7 @@ public class BoardGUI extends javax.swing.JFrame {
                                 .addComponent(CurPhaseLabel))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(dieLabel))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -596,6 +596,8 @@ public class BoardGUI extends javax.swing.JFrame {
             spaceLabels[i].setIcon(icon);
             current = current.next;
         }
+        //last label needs to be displayed manually (as Blank)
+        spaceLabels[spaceTotal - 1].setIcon(new ImageIcon(getClass().getResource("/images/blank space-resized.png")));
     }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -804,17 +806,19 @@ public class BoardGUI extends javax.swing.JFrame {
      * @throws IllegalActivationTypeException
      */
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
+        CurPlayerLabel.setText(performer.getCustomName() + "'s turn.");
         Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
         //Item phase 1
         turnPhase = ITEM_1;
+        CurPhaseLabel.setText("Item Phase 1");
         if (turnNumber > 2) {
             itemPhase(performer);
         }
 
         //Dice Roll (factoring in Agility and Luck)
         turnPhase = DICE_ROLL;
-        OutputTextArea.append(performer.getCustomName() + ", it's your turn to roll.\n");
+        OutputTextArea.append(performer.getCustomName() + ", it's your turn.\n");
         Dice die = new Dice();
         double maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2); //may need tinkering
         int intMaxAmount = (int) Math.round(maxAmount);
@@ -822,7 +826,7 @@ public class BoardGUI extends javax.swing.JFrame {
         int movement = die.roll();
         //move the player
         // choose direction;
-        OutputTextArea.append(performer.getCustomName() + " has rolled a " + movement + "\n");
+        OutputTextArea.append(performer.getCustomName() + " will move " + movement + "spaces.\n");
         /*System.out.println("Move forward(f) or backward(b): ");
          String s = scan.next();*/
 
@@ -890,37 +894,41 @@ public class BoardGUI extends javax.swing.JFrame {
         String choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?");
         //int choice = s.nextInt();
         boolean isValid = false;
-        while (!isValid) {
-            if (choice.trim().equalsIgnoreCase("spell")) {
-                this.askForSpell(performer);
-                isValid = true;
-            } else if (choice.trim().equalsIgnoreCase("special")) {
-                playerChar.triggerSpecial();
-                if (playerChar instanceof Ninja) { //special instance
-                    //ask if forward or backward
+        if (choice != null) {
+            while (!isValid) {
+                if (choice.trim().equalsIgnoreCase("spell")) {
+                    this.askForSpell(performer);
+                    isValid = true;
+                } else if (choice.trim().equalsIgnoreCase("special")) {
+                    playerChar.triggerSpecial();
+                    if (playerChar instanceof Ninja) { //special instance
+                        //ask if forward or backward
 
-                    for (int i = 0; i < 3; i++) {
-                        performer.move("f"); //can only move forward for now
-                    }
+                        for (int i = 0; i < 3; i++) {
+                            performer.move("f"); //can only move forward for now
+                        }
 
-                    for (int i = 0; i < orderedPlayers.length; i++) {
-                        if (i != performer.getTurnOrder()) { //prevent comparing performer to itself
-                            if (performer.getCurrentSpace() == orderedPlayers[i].getCurrentSpace()) {
-                                playerChar.attackEnemy(orderedPlayers[i].getCharacter());
-                                orderedPlayers[i].getCharacter().attackEnemy(playerChar);
+                        for (int i = 0; i < orderedPlayers.length; i++) {
+                            if (i != performer.getTurnOrder()) { //prevent comparing performer to itself
+                                if (performer.getCurrentSpace() == orderedPlayers[i].getCurrentSpace()) {
+                                    playerChar.attackEnemy(orderedPlayers[i].getCharacter());
+                                    orderedPlayers[i].getCharacter().attackEnemy(playerChar);
+                                }
                             }
                         }
                     }
+                    isValid = true;
+                } else if (choice.trim().equalsIgnoreCase("item")) {
+                    this.askForItem(performer);
+                    isValid = true;
+                } else if (choice.trim().equalsIgnoreCase("cancel")) {
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
                 }
-                isValid = true;
-            } else if (choice.trim().equalsIgnoreCase("item")) {
-                this.askForItem(performer);
-                isValid = true;
-            } else if (choice.trim().equalsIgnoreCase("cancel")) {
-                return;
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Invalid Answer. Try again.");
         }
     }
 
