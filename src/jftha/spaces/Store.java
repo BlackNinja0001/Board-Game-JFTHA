@@ -24,8 +24,7 @@ public class Store extends Space {
     public void triggerEffect() {
         Player p = getActivator();
         Hero hero = p.getCharacter();
-        StringBuilder sb = new StringBuilder();
-        sb.append("You have " + hero.getGold() + " gold\n");
+        System.out.println("You have " + hero.getGold() + " gold");
 
         Random rand = new Random(System.currentTimeMillis());
         int luck;
@@ -55,36 +54,27 @@ public class Store extends Space {
 
         for (int j = 0; j < 5; j++) {
             String item = items.get(j).toString();
-            sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
+            System.out.println("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold");
         }
-        //Scanner scan = new Scanner(System.in);
-        String s = JOptionPane.showInputDialog(null, sb.toString());
-        int select = -1;
-        if (s != null && !s.equals("")) {
-            try {
-                select = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                sb.append("Not a valid response.\n");
-                return;
-            }
 
-            boolean crap;
-            sb = new StringBuilder();//erases old dialog
+        System.out.println("Input 6 to choose not to buy");
+        Scanner scan = new Scanner(System.in);
+        int select = scan.nextInt();
+        boolean res;
 
-            if ((select >= 1) && (select < 6)) {
-                crap = hero.buy(items.get(select - 1));
-                if (crap) {
-                    sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
-                    sb.append("You have " + hero.getGold() + " gold left");
-                } else {
-                    sb.append("You don't have enough gold");
-                    sb.append("You still have " + hero.getGold() + " gold");
-                }
-            } else if (s.equals("")) {
-                System.out.println("You chose not to buy anything");
+        if ((select >= 1) && (select < 6)) {
+            res = hero.buy(items.get(select - 1));
+            if (res) {
+                System.out.println("You bought a " + items.get(select - 1).toString());
+                System.out.println("You have " + hero.getGold() + " gold left");
             } else {
-                throw new IllegalArgumentException("Error: Did not select an option");
+                System.out.println("You don't have enough gold");
+                System.out.println("You still have " + hero.getGold() + " gold");
             }
+        } else if (select == 6) {
+            System.out.println("You chose not to buy anything");
+        } else {
+            throw new IllegalArgumentException("Error: Did not select an option");
         }
     }
 
@@ -99,7 +89,8 @@ public class Store extends Space {
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
-        sb.append(p.getCustomName() + ", you have " + hero.getGold() + " gold\n");
+        sb.append(p.getCustomName()).append(", you have ").append(hero.getGold())
+                .append(" gold\n");
 
         Random rand = new Random(System.currentTimeMillis());
         int luck;
@@ -129,11 +120,13 @@ public class Store extends Space {
 
         for (int j = 0; j < 5; j++) {
             String item = items.get(j).toString();
-            sb.append("Input " + (j + 1) + " to buy " + item + ". Cost " + items.get(j).getGoldCost() + " gold\n");
+            sb.append("Input ").append(j + 1).append(" to buy ").append(item)
+                    .append(". Cost ").append(items.get(j).getGoldCost())
+                    .append(" gold\n");
         }
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
-        int select = -1;
+        int select;
         if ((s != null) && (!s.equals(""))) {
             try {
                 select = Integer.parseInt(s);
@@ -141,23 +134,24 @@ public class Store extends Space {
                 sb.append("Not a valid response.\n");
                 return;
             }
-            boolean crap;
+            boolean res;
             sb = new StringBuilder();//erases old dialog
 
             if ((select >= 1) && (select < 6)) {
-                crap = hero.buy(items.get(select - 1));
-                if (crap) {
-                    sb.append(p.getCustomName() + " has bought a " + items.get(select - 1).toString());
-                    sb.append("You have " + hero.getGold() + " gold left");
+                res = hero.buy(items.get(select - 1));
+                if (res) {
+                    sb.append(p.getCustomName()).append(" has bought a ")
+                            .append(items.get(select - 1).toString());
+                    sb.append("You have ").append(hero.getGold()).append(" gold left");
                 } else {
-                    sb.append(p.getCustomName() + ", you don't have enough gold");
-                    sb.append("You still have " + hero.getGold() + " gold");
+                    sb.append(p.getCustomName()).append(", you don't have enough gold");
+                    sb.append("You still have ").append(hero.getGold()).append(" gold");
                 }
             } else {
                 throw new IllegalArgumentException("Error: Did not select an option");
             }
         } else {
-            sb.append(p.getCustomName() + " has chosen not to buy anything\n");
+            sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
         }
     }
 
@@ -167,7 +161,5 @@ public class Store extends Space {
      * @param affected
      */
     @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void triggerEffect(Player affected) {}
 }
