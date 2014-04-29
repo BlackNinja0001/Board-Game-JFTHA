@@ -365,6 +365,10 @@ public abstract class Hero {
      */
     public boolean removeItem(Item item) {
         boolean result = false;
+        if(item instanceof ArtifactPiece) {
+            return removeArtifact((ArtifactPiece)item);
+        }
+        
         int itemIndex = 0, itemCount = 0;
         if (!this.items.isEmpty()) {
             for (Item i : items) {
@@ -409,6 +413,30 @@ public abstract class Hero {
         return result;
     }
 
+    /**Removes an artifact piece from hero's list.
+     * 
+     * @param part Artifact Piece to be removed
+     * @return true if piece was removed
+     */
+    private boolean removeArtifact(ArtifactPiece part) {
+        boolean result = false;
+        int partIndex = 0, partCount = 0;
+        if (!this.artifactPieces.isEmpty()) {
+            for (ArtifactPiece i : artifactPieces) {
+                if (i.getClass().isInstance(part)) {
+                    partIndex = partCount;
+                }
+                partCount++;
+            }
+            if (partCount != -1) {
+                result = true;
+                part.setOwner(null);
+                artifactPieces.remove(partIndex);
+            }
+        }
+        return result;
+    }
+    
     /**
      * Activates the special for this hero.
      */
