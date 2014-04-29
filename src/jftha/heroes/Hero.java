@@ -8,62 +8,6 @@ import jftha.statchanges.tempStatChange;
 
 public abstract class Hero {
 
-    // Determines how much damage can be dealt to an enemy through weapons
-    private int strength;
-    // Determines how many spaces the player can move per turn
-    private int agility;
-    // Determines how many MP(magic points) the player has, what spells the player can cast,
-    // and how much damage can be dealt to an enemy
-    private int magic;
-    // Determines how much HP(health point) a player has and how much damage a player can endure
-    private int defense;
-    // Affect all skills by a little bit
-    private int luck;
-    // Determines how many items a player can hold at any time
-    private int storage_space;
-    // The items the Hero is currently carrying
-    private final List<Item> items;
-    // The items the Hero was carrying at time of last death
-    private List<Item> lostItems;
-    // The artifactPieces the Hero is currently carrying
-    private final List<ArtifactPiece> artifactPieces;
-    // Determines how many spells a player is able to cast
-    private int spell_slots;
-    // The spells the Hero currently knows
-    private final List<Spell> spells;
-    // Determined by Defense stat. Also known as health points
-    private int maxHP;
-    // Health the player currently has
-    private int currentHP;
-    // Determined by Magic stat. Also known as magic points
-    private int maxMP;
-    // Magic the player currently has
-    private int currentMP;
-    // Gold the player currently has
-    private int gold;
-    // Determines if player is a ghost
-    private boolean isGhost = false;
-    // Determines if the player had been a ghost and came back
-    private boolean wasGhost = false;
-    //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
-    private boolean wasAttacked;
-    //Determined whether someone is completely out of the game or not
-    private boolean eliminated;
-    //String name of the class
-    private String className;
-    //Used for certain special abilties
-    private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
-    //Measures what stat changes happen per turn
-    private final List<tempStatChange> tempStatChanges;
-    private boolean hasPet;
-    private final SummonPet pet;
-    // Keeps track of the weapon that player has equipped
-    private Weapon weapon;
-    private boolean weaponEquipped;
-    // Keeps track of the armor that player has equipped
-    private Armor armor;
-    private boolean armorEquipped;
-
     //Constructor
     public Hero() {
         this.strength = 10;
@@ -90,257 +34,7 @@ public abstract class Hero {
         this.hasPet = false;
         pet = null;
     }
-
-    //Setter methods
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public void setMagic(int magic) {
-        this.magic = magic;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
-    public void setLuck(int luck) {
-        this.luck = luck;
-    }
-
-    public void setStorageSpace(int storage_space) {
-        this.storage_space = storage_space;
-    }
-
-    public void setSpellSlots(int spell_slots) {
-        this.spell_slots = spell_slots;
-    }
-
-    public void setMaxHP(int hp) {
-        this.maxHP = hp;
-        if (currentHP > maxHP) {
-            currentHP = maxHP;
-        }
-    }
-
-    public void setCurrentHP(int hp) {
-        if (hp > maxHP) {
-            currentHP = maxHP;
-        } else {
-            this.currentHP = hp;
-        }
-    }
-
-    public void setMaxMP(int mp) {
-        this.maxMP = mp;
-        if (currentMP > maxMP) {
-            currentMP = maxMP;
-        }
-    }
-
-    public void setCurrentMP(int mp) {
-        if (mp > maxMP) {
-            currentMP = maxMP;
-        } else {
-            this.currentMP = mp;
-        }
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-    public void setWasAttacked(boolean jA) {
-        this.wasAttacked = jA;
-    }
-
-    public void setWasGhost(boolean wasGhost) {
-        this.wasGhost = wasGhost;
-    }
-
-    public void setEliminated(boolean elim) {
-        this.eliminated = elim;
-    }
-
-    public void setClassName(String name) {
-        this.className = name;
-    }
-
-    public void setCurCooldown(int curCooldown) {
-        this.curSpecCooldown = curCooldown;
-    }
-
-    public void setCurDuration(int curDuration) {
-        this.curSpecDuration = curDuration;
-    }
-
-    public void setMaxCooldown(int maxCooldown) {
-        this.maxSpecCooldown = maxCooldown;
-    }
-
-    public void setMaxDuration(int maxDuration) {
-        this.maxSpecDuration = maxDuration;
-    }
-
-    public void addTSC(tempStatChange tsc) {
-        this.tempStatChanges.add(tsc);
-    }
-
-    public void removeTSC(tempStatChange tsc) {
-        this.tempStatChanges.remove(tsc);
-    }
-
-    public void addPet() {
-        this.hasPet = true;
-        pet.randomizeHealth();
-    }
-
-    public void killPet() {
-        this.hasPet = false;
-        pet.setPetHealth(0);
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public boolean getWeaponEquipped() {
-        return weaponEquipped;
-    }
-
-    public Armor getArmor() {
-        return armor;
-    }
-
-    public boolean getArmorEquipped() {
-        return armorEquipped;
-    }
-
-    //Getter Methods
-    public int getStrength() {
-        return strength;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public int getMagic() {
-        return magic;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public int getLuck() {
-        return luck;
-    }
-
-    public int getStorageSpace() {
-        return storage_space;
-    }
-
-    public int getSpellSlots() {
-        return spell_slots;
-    }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public int getCurrentHP() {
-        return currentHP;
-    }
-
-    public int getMaxMP() {
-        return maxMP;
-    }
-
-    public int getCurrentMP() {
-        return currentMP;
-    }
-
-    public int getGold() {
-        return gold;
-    }
-
-    public boolean getWasAttacked() {
-        return wasAttacked;
-    }
-
-    public boolean getEliminated() {
-        return eliminated;
-    }
-
-    public boolean isGhost() {
-        return isGhost;
-    }
-
-    public boolean getWasGhost() {
-        return wasGhost;
-    }
-
-    public List<Item> getLostItems() {
-        return lostItems;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public List<Spell> getSpells() {
-        return spells;
-    }
-
-    public List<ArtifactPiece> getArtifacts() {
-        return artifactPieces;
-    }
-
-    public int getCurCooldown() {
-        return curSpecCooldown;
-    }
-
-    public int getCurDuration() {
-        return curSpecDuration;
-    }
-
-    public int getMaxCooldown() {
-        return maxSpecCooldown;
-    }
-
-    public int getMaxDuration() {
-        return maxSpecDuration;
-    }
-
-    public List<tempStatChange> getTempStatChanges() {
-        return tempStatChanges;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    public void setWeaponEquipped(boolean hasWeapon) {
-        this.weaponEquipped = hasWeapon;
-    }
-
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-
-    public void setArmorEquipped(boolean hasArmor) {
-        this.armorEquipped = hasArmor;
-    }
-
+    
     /**
      * Allows a character to cast a damage inflicting spell at another player.
      *
@@ -731,5 +425,307 @@ public abstract class Hero {
                 scpt.triggerEffect(this);
             }
         }
+    }
+    
+    // Determines how much damage can be dealt to an enemy through weapons
+    private int strength;
+    // Determines how many spaces the player can move per turn
+    private int agility;
+    // Determines how many MP(magic points) the player has, what spells the player can cast,
+    // and how much damage can be dealt to an enemy
+    private int magic;
+    // Determines how much HP(health point) a player has and how much damage a player can endure
+    private int defense;
+    // Affect all skills by a little bit
+    private int luck;
+    // Determines how many items a player can hold at any time
+    private int storage_space;
+    // The items the Hero is currently carrying
+    private final List<Item> items;
+    // The items the Hero was carrying at time of last death
+    private List<Item> lostItems;
+    // The artifactPieces the Hero is currently carrying
+    private final List<ArtifactPiece> artifactPieces;
+    // Determines how many spells a player is able to cast
+    private int spell_slots;
+    // The spells the Hero currently knows
+    private final List<Spell> spells;
+    // Determined by Defense stat. Also known as health points
+    private int maxHP;
+    // Health the player currently has
+    private int currentHP;
+    // Determined by Magic stat. Also known as magic points
+    private int maxMP;
+    // Magic the player currently has
+    private int currentMP;
+    // Gold the player currently has
+    private int gold;
+    // Determines if player is a ghost
+    private boolean isGhost = false;
+    // Determines if the player had been a ghost and came back
+    private boolean wasGhost = false;
+    //Helper variable for attackEnemy, watched if Hero was attacked during Attack phase or not
+    private boolean wasAttacked;
+    //Determined whether someone is completely out of the game or not
+    private boolean eliminated;
+    //String name of the class
+    private String className;
+    //Used for certain special abilties
+    private int curSpecCooldown, curSpecDuration, maxSpecCooldown, maxSpecDuration;
+    //Measures what stat changes happen per turn
+    private final List<tempStatChange> tempStatChanges;
+    private boolean hasPet;
+    private final SummonPet pet;
+    // Keeps track of the weapon that player has equipped
+    private Weapon weapon;
+    private boolean weaponEquipped;
+    // Keeps track of the armor that player has equipped
+    private Armor armor;
+    private boolean armorEquipped;
+    
+    //Setter methods
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    public void setMagic(int magic) {
+        this.magic = magic;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setLuck(int luck) {
+        this.luck = luck;
+    }
+
+    public void setStorageSpace(int storage_space) {
+        this.storage_space = storage_space;
+    }
+
+    public void setSpellSlots(int spell_slots) {
+        this.spell_slots = spell_slots;
+    }
+
+    public void setMaxHP(int hp) {
+        this.maxHP = hp;
+        if(currentHP > maxHP) {
+            currentHP = maxHP;
+        }
+    }
+
+    public void setCurrentHP(int hp) {
+        if (hp > maxHP) {
+            currentHP = maxHP;
+        } else {
+            this.currentHP = hp;
+        }
+    }
+
+    public void setMaxMP(int mp) {
+        this.maxMP = mp;
+        if(currentMP > maxMP) {
+            currentMP = maxMP;
+        }
+    }
+
+    public void setCurrentMP(int mp) {
+        if (mp > maxMP) {
+            currentMP = maxMP;
+        } else {
+            this.currentMP = mp;
+        }
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public void setWasAttacked(boolean jA) {
+        this.wasAttacked = jA;
+    }
+
+    public void setWasGhost(boolean wasGhost) {
+        this.wasGhost = wasGhost;
+    }
+
+    public void setEliminated(boolean elim) {
+        this.eliminated = elim;
+    }
+
+    public void setClassName(String name) {
+        this.className = name;
+    }
+
+    public void setCurCooldown(int curCooldown) {
+        this.curSpecCooldown = curCooldown;
+    }
+
+    public void setCurDuration(int curDuration) {
+        this.curSpecDuration = curDuration;
+    }
+
+    public void setMaxCooldown(int maxCooldown) {
+        this.maxSpecCooldown = maxCooldown;
+    }
+
+    public void setMaxDuration(int maxDuration) {
+        this.maxSpecDuration = maxDuration;
+    }
+
+    public void addTSC(tempStatChange tsc) {
+        this.tempStatChanges.add(tsc);
+    }
+
+    public void removeTSC(tempStatChange tsc) {
+        this.tempStatChanges.remove(tsc);
+    }
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        }
+
+    public void setWeaponEquipped(boolean hasWeapon) {
+        this.weaponEquipped = hasWeapon;
+        }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
+    public void setArmorEquipped(boolean hasArmor) {
+        this.armorEquipped = hasArmor;
+    }
+    public void addPet() {
+        this.hasPet = true;
+        pet.randomizeHealth();
+    }
+
+    public void killPet() {
+        this.hasPet = false;
+        pet.setPetHealth(0);
+    }
+    
+    //Getter Methods
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getMagic() {
+        return magic;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getLuck() {
+        return luck;
+    }
+
+    public int getStorageSpace() {
+        return storage_space;
+    }
+
+    public int getSpellSlots() {
+        return spell_slots;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public int getCurrentHP() {
+        return currentHP;
+    }
+
+    public int getMaxMP() {
+        return maxMP;
+    }
+
+    public int getCurrentMP() {
+        return currentMP;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public boolean getWasAttacked() {
+        return wasAttacked;
+    }
+
+    public boolean getEliminated() {
+        return eliminated;
+    }
+
+    public boolean isGhost() {
+        return isGhost;
+    }
+
+    public boolean getWasGhost() {
+        return wasGhost;
+    }
+
+    public List<Item> getLostItems() {
+        return lostItems;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public List<Spell> getSpells() {
+        return spells;
+    }
+
+    public List<ArtifactPiece> getArtifacts() {
+        return artifactPieces;
+    }
+
+    public int getCurCooldown() {
+        return curSpecCooldown;
+    }
+
+    public int getCurDuration() {
+        return curSpecDuration;
+    }
+
+    public int getMaxCooldown() {
+        return maxSpecCooldown;
+    }
+
+    public int getMaxDuration() {
+        return maxSpecDuration;
+    }
+
+    public List<tempStatChange> getTempStatChanges() {
+        return tempStatChanges;
+    }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    
+    public boolean getWeaponEquipped() {
+        return weaponEquipped;
+    }
+    
+    public Armor getArmor() {
+        return armor;
+    }
+    public boolean getArmorEquipped() {
+        return armorEquipped;
     }
 }
