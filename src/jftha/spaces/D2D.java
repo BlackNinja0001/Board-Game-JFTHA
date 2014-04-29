@@ -40,14 +40,16 @@ public class D2D extends Space{
         if(beingAttacked instanceof Mage){
             Spell fireball = new Fireball();
             while(attackerHP > 0 && beingAttackedHP > 0){
-                sb.append("Turn #" + num + " Attacker hp: " + attackerHP + ", Enemy HP: " + beingAttackedHP + "\n");
-            attacker.attackEnemy(beingAttacked);
-                beingAttacked.castSpell(fireball, attacker);
+                sb.append("Turn #").append(num).append(" Attacker hp: ")
+                        .append(attackerHP).append(", Enemy HP: ")
+                        .append(beingAttackedHP).append("\n");
+                attacker.attackEnemy(beingAttacked);
+                fireball.castSpell(beingAttacked, attacker);
                 attackerHP = attacker.getCurrentHP();
                 beingAttackedHP = beingAttacked.getCurrentHP();
                 num++;
             }
-        }else{
+        } else {
             while(attackerHP > 0 && beingAttackedHP > 0){
                 beingAttacked.attackEnemy(attacker);
                 attackerHP = attacker.getCurrentHP();
@@ -61,7 +63,5 @@ public class D2D extends Space{
      * No Effect
      */
     @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void triggerEffect() {}
 }
