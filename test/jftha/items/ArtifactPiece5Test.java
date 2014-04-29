@@ -43,17 +43,16 @@ public class ArtifactPiece5Test {
     public void testProperties() {
         assertEquals(500, part1.getGoldCost());
         assertEquals(RarityEnum.rare, part1.getRarity());
-        if(part1.getOwner() != null) {
-            System.out.println(part1.getOwner());
-        }
         assertNull(part1.getOwner());
     }
     
     @Test
     public void testOwnerChange() {
         hero.addItem(part1);
-        hero.addItem(part2);
+        assertEquals(1, hero.getArtifacts().size());
         assertEquals(hero, part1.getOwner());
-        assertEquals(hero, part2.getOwner());
-    }
+        hero.removeItem(part1);
+        assertEquals(0, hero.getArtifacts().size());
+        assertNull(part1.getOwner());
+    }  
 }

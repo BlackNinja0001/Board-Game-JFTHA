@@ -36,33 +36,23 @@ public class ArtifactPiece2Test {
 
     @Test
     public void testUnique() {
-        System.out.println("Unique");
         assertEquals(part1, part2);
     }
     
     @Test
     public void testProperties() {
-        System.out.println("Properties");
-        for(int i = 0; i < 1000; i++) {
-            part1 = ArtifactPiece2.getInstance();
-        
-            assertEquals(500, part1.getGoldCost());
-            assertEquals(RarityEnum.rare, part1.getRarity());
-            if(part1.getOwner() != null) {
-                System.out.println(part1.getOwner());
-            }
-            assertNull(part1.getOwner());
-        }
+        assertEquals(500, part1.getGoldCost());
+        assertEquals(RarityEnum.rare, part1.getRarity());
+        assertNull(part1.getOwner());
     }
     
     @Test
     public void testOwnerChange() {
-        System.out.println("Owner Change");
         hero.addItem(part1);
-        hero.addItem(part2);
+        assertEquals(1, hero.getArtifacts().size());
         assertEquals(hero, part1.getOwner());
-        assertEquals(hero, part2.getOwner());
-    }
-    
-    
+        hero.removeItem(part1);
+        assertEquals(0, hero.getArtifacts().size());
+        assertNull(part1.getOwner());
+    }  
 }
