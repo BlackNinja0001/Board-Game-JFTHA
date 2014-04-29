@@ -133,11 +133,18 @@ public abstract class Hero {
      * @param attacked The character that is getting attacked
      */
     public void attackEnemy(Hero attacked) {
-        if (weapon != null && !weaponEquipped) {
+        attacked.wasAttacked = true;
+        if(weapon != null && !weaponEquipped) {
             weapon.equipWeap(this);
         }
-        if (armor != null && !armorEquipped) {
+        if(weaponEquipped){
+            weapon.weapEffect(attacked);
+        }
+        if(armor != null && !armorEquipped) {
             armor.equipArmor(this);
+        }
+        if(armorEquipped) {
+            armor.armorEffect(attacked);
         }
         Random rand = new Random();
         int randomDamage = rand.nextInt(3) + 1,
@@ -159,15 +166,13 @@ public abstract class Hero {
         int intDamage = (int) Math.round(damage);
 
         if ((attacked instanceof Knight) && (attacked.getCurDuration() != 0)) { //watch for Knight's special
-            attacked.wasAttacked = true;
             checkIfBothAttacked(attacked);
             return;
         }
 
-        if (this.pet != null) {
+        if (hasPet) {
             if (this.pet.getPetHealth() > 0) {
                 this.pet.setPetHealth(this.pet.getPetHealth() - intDamage);
-                attacked.wasAttacked = true;
                 checkIfBothAttacked(attacked);
                 return;
             }
@@ -185,20 +190,17 @@ public abstract class Hero {
             if (!items.isEmpty()) {
                 for (Item i : items) {
                     if (i instanceof Equippable) {
-                        if (weapon != null && armor != null) {
-                            if ((weapon.equals(i) || armor.equals(i)) && (i.getSpiritual())) {
-                                attacked.currentMP -= intDamage;
-                                if (attacked.currentMP <= 0) {
-                                    attacked.eliminated = true;
-                                    // Attacker gets to take all their stuff
-                                    for (Item it : attacked.lostItems) {
-                                        addItem(it);
-                                    }
+                        if ((i.equals(weapon) || i.equals(armor)) && (i.getSpiritual())) {
+                            attacked.currentMP -= intDamage;
+                            if (attacked.currentMP <= 0) {
+                                attacked.eliminated = true;
+                                // Attacker gets to take all their stuff
+                                for (Item it : attacked.lostItems) {
+                                    addItem(it);
                                 }
-                                attacked.wasAttacked = true;
-                                checkIfBothAttacked(attacked);
-                                return;
                             }
+                            checkIfBothAttacked(attacked);
+                            return;
                         }
                     }
                 }
