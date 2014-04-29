@@ -42,7 +42,7 @@ public abstract class Hero {
      * @param enemy The victim of the spell
      */
     public void castSpell(Spell spell, Hero enemy) {
-        int spellDmg = spell.getDamage();
+        int spellDmg = spell.getHpChange();
         double actualDmg = ((this.getMagic() * .5) + spellDmg + (this.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);
@@ -57,7 +57,7 @@ public abstract class Hero {
     public void castHealSpell(Spell spell) {
         //Damage is the heal amount
         if (spell.getCurrentCD() > 0) {
-            int spellEffect = spell.getDamage();
+            int spellEffect = spell.getHpChange();
             double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
             int finalEffect = (int) Math.round(actualEffect);
 
@@ -70,7 +70,7 @@ public abstract class Hero {
     public void castBuffSpell(Spell spell) {
         //Damage is the buff amount
         if (spell.getCurrentCD() > 0) {
-            int spellEffect = spell.getDamage();
+            int spellEffect = spell.getHpChange();
             double actualEffect = ((this.getMagic() * .5) + spellEffect + (this.getLuck() * .2));
             int finalEffect = (int) Math.round(actualEffect);
             this.setCurrentMP(this.getCurrentMP() - spell.getmpCost());
