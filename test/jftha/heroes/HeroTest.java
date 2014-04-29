@@ -44,105 +44,7 @@ public class HeroTest {
     public void tearDown() {
         System.setOut(original);
     }
-
-    /**
-     * Test of setStrength method, of class Hero.
-     */
-    @Test
-    public void testSetStrength() {
-        assertEquals(12, hero.getStrength());
-        int strength = 15;
-        hero.setStrength(strength);
-        assertEquals(strength, hero.getStrength());
-    }
-
-    /**
-     * Test of setAgility method, of class Hero.
-     */
-    @Test
-    public void testSetAgility() {
-        assertEquals(10, hero.getAgility());
-        int agility = 15;
-        hero.setAgility(agility);
-        assertEquals(agility, hero.getAgility());
-    }
-
-    /**
-     * Test of setMagic method, of class Hero.
-     */
-    @Test
-    public void testSetMagic() {
-        assertEquals(8, hero.getMagic());
-        int magic = 15;
-        hero.setMagic(magic);
-        assertEquals(magic, hero.getMagic());
-    }
-
-    /**
-     * Test of setDefense method, of class Hero.
-     */
-    @Test
-    public void testSetDefense() {
-        assertEquals(10, hero.getDefense());
-        int defense = 15;
-        hero.setDefense(defense);
-        assertEquals(defense, hero.getDefense());
-    }
-
-    /**
-     * Test of setLuck method, of class Hero.
-     */
-    @Test
-    public void testSetLuck() {
-        assertEquals(10, hero.getLuck());
-        int luck = 15;
-        hero.setLuck(luck);
-        assertEquals(luck, hero.getLuck());
-    }
-
-    /**
-     * Test of setStorageSpace method, of class Hero.
-     */
-    @Test
-    public void testSetStorageSpace() {
-        assertEquals(5, hero.getStorageSpace());
-        int storage_space = 7;
-        hero.setStorageSpace(storage_space);
-        assertEquals(storage_space, hero.getStorageSpace());
-    }
-
-    /**
-     * Test of setSpellSlots method, of class Hero.
-     */
-    @Test
-    public void testSetSpellSlots() {
-        assertEquals(2, hero.getSpellSlots());
-        int spell_slots = 4;
-        hero.setSpellSlots(spell_slots);
-        assertEquals(spell_slots, hero.getSpellSlots());
-    }
-
-    @Test
-    public void testSetMaxHP() {
-        assertEquals(60, hero.getMaxHP());
-        int hp = 55;
-        hero.setMaxHP(hp);
-        assertEquals(hp, hero.getMaxHP());
-        assertEquals(hp, hero.getCurrentHP());
-    }
-
-    /**
-     * Test of setMaxMP method, of class Hero.
-     */
-    @Test
-    public void testSetMaxMP() {
-        assertEquals(30, hero.getMaxMP());
-        int mp = 25;
-        hero.setMaxMP(mp);
-        assertEquals(mp, hero.getMaxMP());
-        assertEquals(mp, hero.getCurrentMP());
-    }
-
+    
     /**
      * Test to ensure that spell_slots is the maximum amount of spells
      */
@@ -326,5 +228,112 @@ public class HeroTest {
         hero.triggerSpecial();
         enemy.attackEnemy(hero);
         assertEquals(hero.getCurrentHP(), hero.getMaxHP());
+    }
+    
+    @Test
+    public void testRemoveItem() {
+        hero = new Knight();
+        Item item = hero.getItems().get(0);
+        assertTrue(hero.removeItem(item));
+        assertEquals(1, hero.getItems().size());
+        assertTrue(hero.getItems().get(0) instanceof IronSword); 
+    }
+    
+    /**
+     * Test of setStrength method, of class Hero.
+     */
+    @Test
+    public void testSetStrength() {
+        assertEquals(12, hero.getStrength());
+        int strength = 15;
+        hero.setStrength(strength);
+        assertEquals(strength, hero.getStrength());
+    }
+
+    /**
+     * Test of setAgility method, of class Hero.
+     */
+    @Test
+    public void testSetAgility() {
+        assertEquals(10, hero.getAgility());
+        int agility = 15;
+        hero.setAgility(agility);
+        assertEquals(agility, hero.getAgility());
+    }
+
+    /**
+     * Test of setMagic method, of class Hero.
+     */
+    @Test
+    public void testSetMagic() {
+        assertEquals(8, hero.getMagic());
+        int magic = 15;
+        hero.setMagic(magic);
+        assertEquals(magic, hero.getMagic());
+    }
+
+    /**
+     * Test of setDefense method, of class Hero.
+     */
+    @Test
+    public void testSetDefense() {
+        assertEquals(10, hero.getDefense());
+        int defense = 15;
+        hero.setDefense(defense);
+        assertEquals(defense, hero.getDefense());
+    }
+
+    /**
+     * Test of setLuck method, of class Hero.
+     */
+    @Test
+    public void testSetLuck() {
+        assertEquals(10, hero.getLuck());
+        int luck = 15;
+        hero.setLuck(luck);
+        assertEquals(luck, hero.getLuck());
+    }
+
+    /**
+     * Test of setStorageSpace method, of class Hero.
+     */
+    @Test
+    public void testSetStorageSpace() {
+        assertEquals(5, hero.getStorageSpace());
+        int storage_space = 7;
+        hero.setStorageSpace(storage_space);
+        assertEquals(storage_space, hero.getStorageSpace());
+    }
+
+    /**
+     * Test of setSpellSlots method, of class Hero.
+     */
+    @Test
+    public void testSetSpellSlots() {
+        assertEquals(2, hero.getSpellSlots());
+        int spell_slots = 4;
+        hero.setSpellSlots(spell_slots);
+        assertEquals(spell_slots, hero.getSpellSlots());
+    }
+
+    @Test
+    public void testSetMaxHP() {
+        assertEquals(60, hero.getMaxHP());
+        int hp = 55;
+        hero.setMaxHP(hp);
+        assertEquals(hp, hero.getMaxHP());
+        assertEquals(hp, hero.getCurrentHP());
+    }
+
+    /**
+     * Test of setMaxMP method, of class Hero.
+     */
+    @Test
+    public void testSetMaxMP() {
+        assertEquals(30, hero.getMaxMP());
+        int mp = 25;
+        hero.setMaxMP(mp);
+        assertEquals(mp, hero.getMaxMP());
+        assertEquals(mp, hero.getCurrentMP());
     }
 }
