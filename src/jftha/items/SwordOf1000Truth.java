@@ -1,12 +1,10 @@
 package jftha.items;
 
 import jftha.heroes.Hero;
-import jftha.main.Player;
 
 public class SwordOf1000Truth extends Weapon{
     private final int strength = (-5);
     private final int mp = (-10);
-    private boolean hasWeapon = false;
     
     /**
      * Constructor
@@ -15,7 +13,6 @@ public class SwordOf1000Truth extends Weapon{
         this.setRarity(RarityEnum.rare);
         this.setMessage("Sword of 1000 Truths: " + strength + " Strength, " + mp + " MP\n" + "Effect: Reduce opponent MP to zero");
         this.setGoldCost(100);
-        this.hasWeapon = false;
     }
     
     /**
@@ -50,6 +47,9 @@ public class SwordOf1000Truth extends Weapon{
     public void weapEffect(Hero enemy) {
         if(enemy.getWasAttacked() == true){
             enemy.setCurrentMP(0);
+            if(enemy.isGhost()) {
+                enemy.setEliminated(true);
+            }
         }
     }
 }
