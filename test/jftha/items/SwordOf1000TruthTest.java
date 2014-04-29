@@ -70,7 +70,12 @@ public class SwordOf1000TruthTest {
         SwordOf1000Truth a = new SwordOf1000Truth();
         hero.addItem(a);
         a.equipWeap(hero);
-        a.weapEffect(enemy);
+        hero.attackEnemy(enemy);
         assertEquals(0, enemy.getCurrentMP());
+    }
+    
+    @Test
+    public void testTriggerEffectOnGhostMakesEliminated() {
+        
     }
 }
