@@ -13,7 +13,7 @@ public class Fireball extends Spell {
         this.setmpCost(5);
         this.setMinDamage(1);
         this.setMaxDamage(5);
-        this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + "MP");
+        this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + " MP");
     }
     
     @Override
@@ -31,7 +31,6 @@ public class Fireball extends Spell {
         double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);
-        caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
         if (finalDmg <= 0) {
             finalDmg = 1;
         }
