@@ -27,7 +27,7 @@ public class Shield extends Spell {
         //Damage is the heal amount
         if (getCurrentCD() > 0) {
             setCurrentCD(this.getMaxCooldown());
-            int spellEffect = getDamage();
+            int spellEffect = getHpChange();
             double actualEffect = ((caster.getMagic() * .5) + spellEffect + (caster.getLuck() * .2));
             int finalEffect = (int) Math.round(actualEffect);
             if(finalEffect <=0) {

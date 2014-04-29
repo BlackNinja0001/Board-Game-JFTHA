@@ -28,7 +28,7 @@ public class HPMPDrain extends Spell{
         //Damage is the buff amount
         if (getCurrentCD() > 0) {
             setCurrentCD(this.getMaxCooldown());
-            int spellEffect = getDamage();
+            int spellEffect = getHpChange();
             double actualEffect = ((caster.getMagic() * .5) + spellEffect + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
             int finalEffect = (int) Math.round(actualEffect);

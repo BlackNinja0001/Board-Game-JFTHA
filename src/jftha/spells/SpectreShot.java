@@ -23,7 +23,7 @@ public class SpectreShot extends Spell {
      */
     @Override
     public void castSpell(Hero caster, Hero enemy) {
-        int spellDmg = getDamage();
+        int spellDmg = getHpChange();
         double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);

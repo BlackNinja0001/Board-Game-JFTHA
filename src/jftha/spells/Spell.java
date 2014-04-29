@@ -6,7 +6,7 @@ import jftha.heroes.Hero;
 
 public abstract class Spell extends Buyable{
     private int mpCost;
-    private int damage;
+    private int hpChange;
     private int maxCooldown = (-1);
     private int maxDuration = (-1);
 
@@ -23,7 +23,7 @@ public abstract class Spell extends Buyable{
     
     private void randomize(){
         Random rand = new Random();
-        this.damage = minDamage + (int)(rand.nextDouble() * (maxDamage - minDamage) + 1); //potential off by one error, thx to Shane       
+        this.hpChange = minDamage + (int)(rand.nextDouble() * (maxDamage - minDamage) + 1); //potential off by one error, thx to Shane       
     }
     
     public abstract void castSpell(Hero caster);
@@ -78,9 +78,9 @@ public abstract class Spell extends Buyable{
         return maxDuration;
     }
     
-    public int getDamage() {
+    public int getHpChange() {
         this.randomize();
-        return damage;
+        return hpChange;
     }
     
     public int getMinDamage() {
