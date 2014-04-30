@@ -15,7 +15,7 @@ public abstract class Spell extends Buyable{
     private int currentCD;
     private int currentDuraton;
     
-    String message;
+    private String message;
     
     // Constructor
     public Spell() {
