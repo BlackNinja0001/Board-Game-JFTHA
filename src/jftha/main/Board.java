@@ -136,7 +136,7 @@ public class Board {
             } else if (i == 14) {
                 addSpace(SpaceEnum.Monster);
             } else if (i == 16) {
-                addSpace(SpaceEnum.Bank);
+                addSpace(SpaceEnum.Gold);
             } else {
                 addSpace(SpaceEnum.Blank);
             }
