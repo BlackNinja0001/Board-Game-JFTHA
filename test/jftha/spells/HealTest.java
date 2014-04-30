@@ -55,7 +55,6 @@ public class HealTest {
         caster.setCurrentHP(initHP);
         spell.castSpell(caster);
         int diff = caster.getCurrentHP() - initHP;
-        System.out.print(diff);
         assertTrue(diff >= 5 && diff <= 10);
     }
     
