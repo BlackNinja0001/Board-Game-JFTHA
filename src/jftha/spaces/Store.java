@@ -86,7 +86,7 @@ public class Store extends Space {
      *
      * @param sb Used to print to GUI
      */
-    public void triggerEffect(Component rootPane, StringBuilder sb) {
+    public StringBuilder triggerEffect(Component rootPane, StringBuilder sb) {
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
@@ -127,28 +127,28 @@ public class Store extends Space {
         }
         //Scanner scan = new Scanner(System.in);
         String s = JOptionPane.showInputDialog(null, sb.toString());
+        sb = new StringBuilder(); //erases old dialog
         int select;
         if ((s != null) && (!s.equals(""))) {
             try {
                 select = Integer.parseInt(s);
             } catch (NumberFormatException e) {
                 sb.append("Not a valid response.\n");
-                return;
+                return sb;
             }
             boolean res;
-            sb = new StringBuilder();//erases old dialog
 
             while (true) { //will break for correct input
                 if ((select >= 1) && (select < 6)) {
                     res = hero.buy(items.get(select - 1));
                     if (res) {
                         sb.append(p.getCustomName()).append(" has bought a ")
-                                .append(items.get(select - 1).toString());
-                        sb.append("You have ").append(hero.getGold()).append(" gold left");
+                                .append(items.get(select - 1).toString() + ".\n");
+                        sb.append(p.getCustomName() + " has ").append(hero.getGold()).append(" gold left.\n");
                         break;
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold\n" + 
-                                "You still have " + hero.getGold() + " gold");
+                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold.\n" + 
+                                "You still have " + hero.getGold() + " gold.");
                     }
                 } else {
                     //IllegalArgumentException
@@ -158,6 +158,7 @@ public class Store extends Space {
         } else {
             sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
         }
+        return sb;
     }
 
     /**
