@@ -7,9 +7,10 @@ public class SpectreShot extends Spell {
     public SpectreShot() {
         this.setGoldCost(10);
         this.setmpCost(7);
-        this.setMinDamage(5);
-        this.setMaxDamage(10);
-        this.setMessage("Spectre Shot. Random magic damage between 5-10 to enemy player. Cost " + this.getmpCost() + "MP");
+        this.setMinHPChange(5);
+        this.setMaxHPChange(10);
+        this.setMessage("Spectre Shot. Random magic damage between 5-10 to enemy player. Cost "
+                + this.getmpCost() + " MP");
     }
     
     @Override
@@ -27,9 +28,8 @@ public class SpectreShot extends Spell {
         double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);
-        caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
-        if (finalDmg <= 0) {
-            finalDmg = 1;
+        if (finalDmg < this.getMinHPChange()) {
+            finalDmg = this.getMinHPChange();
         }
         
         if(caster instanceof Mage) {
