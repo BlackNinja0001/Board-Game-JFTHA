@@ -1152,7 +1152,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb.append("<br>");
                     sb.append("HP: " + players[i].getCharacter().getCurrentHP() + " MP: " + players[i].getCharacter().getCurrentMP());
                     sb.append("<br>");
-                    sb.append("Current Space ID: " + players[i].getCurrentSpace());
+                    sb.append("Current Space: #" + players[i].getCurrentSpace().getSpaceID() + ", " + players[i].getCurrentSpace().getSpaceType());
                     sb.append("</html>");
                 }
                 if (i == 0) {
