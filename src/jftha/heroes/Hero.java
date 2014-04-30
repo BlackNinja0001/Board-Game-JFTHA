@@ -505,7 +505,7 @@ public abstract class Hero {
     //Measures what stat changes happen per turn
     private final List<tempStatChange> tempStatChanges;
     private boolean hasPet;
-    private final SummonPet pet;
+    private SummonPet pet;
     // Keeps track of the weapon that player has equipped
     private Weapon weapon;
     private boolean weaponEquipped;
@@ -632,6 +632,7 @@ public abstract class Hero {
     }
     public void addPet() {
         this.hasPet = true;
+        pet = new SummonPet();
         pet.randomizeHealth();
     }
 
@@ -757,5 +758,8 @@ public abstract class Hero {
     }
     public boolean getArmorEquipped() {
         return armorEquipped;
+    }
+    public boolean getHasPet() {
+        return hasPet;
     }
 }
