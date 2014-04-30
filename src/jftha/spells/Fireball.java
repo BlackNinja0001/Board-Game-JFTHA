@@ -1,7 +1,6 @@
 package jftha.spells;
 
-import jftha.heroes.Hero;
-import jftha.heroes.Mage;
+import jftha.heroes.*;
 
 public class Fireball extends Spell {
     
@@ -11,8 +10,8 @@ public class Fireball extends Spell {
     public Fireball() {
         this.setGoldCost(10);
         this.setmpCost(5);
-        this.setMinDamage(1);
-        this.setMaxDamage(5);
+        this.setMinHPChange(1);
+        this.setMaxHPChange(5);
         this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + " MP");
     }
     
@@ -31,8 +30,8 @@ public class Fireball extends Spell {
         double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);
-        if (finalDmg <= 0) {
-            finalDmg = 1;
+        if (finalDmg <= this.getMinHPChange()) {
+            finalDmg = this.getMinHPChange();
         }
         
         if(caster instanceof Mage) {
