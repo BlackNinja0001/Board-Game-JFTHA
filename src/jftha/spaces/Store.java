@@ -86,18 +86,17 @@ public class Store extends Space {
      *
      * @param sb Used to print to GUI
      */
-    public StringBuilder triggerEffect(Component rootPane, StringBuilder sb) {
+    public StringBuilder triggerEffect(Component rootPane) {
+        StringBuilder sb = new StringBuilder();
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
         ArrayList<Item> items = new ArrayList<>();
-        sb.append(p.getCustomName()).append(", you have ").append(hero.getGold())
-                .append(" gold\n");
-        
-        askForInput(hero, items, sb);
-        
+
+        sb = askForInput(p, items);
+
         //Scanner scan = new Scanner(System.in);
-        String s = JOptionPane.showInputDialog(null, sb.toString());
+        String s = askForInput(p, items).toString();
         sb = new StringBuilder(); //erases old dialog
         int select;
         if ((s != null) && (!s.equals(""))) {
@@ -118,24 +117,27 @@ public class Store extends Space {
                         sb.append(p.getCustomName() + " has ").append(hero.getGold()).append(" gold left.\n");
                         break;
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold.\n" + 
-                                "You still have " + hero.getGold() + " gold.");
-                        askForInput(hero, items, sb);
+                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold.\n"
+                                + "You still have " + hero.getGold() + " gold.");
                     }
                 } else {
                     //IllegalArgumentException
                     JOptionPane.showMessageDialog(rootPane, "Error: Did not select an option");
-                    askForInput(hero, items, sb);
                 }
+                sb = askForInput(p, items);
             }
         } else {
             sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
         }
         return sb;
     }
-    
-    public void askForInput (Hero hero, ArrayList<Item> items, StringBuilder sb){
-                Random rand = new Random(System.currentTimeMillis());
+
+    private StringBuilder askForInput(Player p, ArrayList<Item> items) {
+        StringBuilder sb = new StringBuilder();
+        Hero hero = p.getCharacter();
+        sb.append(p.getCustomName()).append(", you have ").append(hero.getGold())
+                .append(" gold\n");
+        Random rand = new Random(System.currentTimeMillis());
         int luck;
         ItemFactory factory = new ItemFactory();
 
@@ -166,6 +168,8 @@ public class Store extends Space {
                     .append(". Cost ").append(items.get(j).getGoldCost())
                     .append(" gold\n");
         }
+        JOptionPane.showInputDialog(null, sb.toString());
+        return sb;
     }
 
     /**
