@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jftha.spells;
 
-import jftha.heroes.Hero;
+import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,10 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author shane
- */
 public class HPMPDrainTest {
     
     public HPMPDrainTest() {
@@ -40,22 +30,39 @@ public class HPMPDrainTest {
     }
 
     @Test
-    public void testCastSpell_Hero() {
-        System.out.println("castSpell");
-        Hero caster = null;
-        HPMPDrain instance = new HPMPDrain();
-        instance.castSpell(caster);
-        fail("The test case is a prototype.");
+    public void testProperties() {
+        Spell spell = new HPMPDrain();
+        assertEquals(10, spell.getGoldCost());
+        assertEquals(15, spell.getmpCost());
+        assertEquals(5, spell.getMaxDuration());
+        assertEquals("HP/MP Drain. Absorb HP/MP from enemy player for 5 turns. Cost 15 MP", spell.getMessage());
     }
 
     @Test
-    public void testCastSpell_Hero_Hero() {
-        System.out.println("castSpell");
-        Hero caster = null;
-        Hero enemy = null;
-        HPMPDrain instance = new HPMPDrain();
-        instance.castSpell(caster, enemy);
-        fail("The test case is a prototype.");
+    public void buySpell() {
+        Spell spell = new HPMPDrain();
+        Hero hero = new Barbarian();
+        int initGold = hero.getGold();
+        assertTrue(hero.buy(spell));
+        int diff = initGold - hero.getGold();
+        assertEquals(spell.getGoldCost(), diff);
+    }
+
+    @Test
+    public void testCastSpell() {
+        Spell spell = new HPMPDrain();
+        Hero caster = new Knight();
+        Hero enemy = new Mage();
+        int initHP = 2;
+        int enemyHP = enemy.getCurrentHP();
+        caster.setCurrentHP(initHP);
+        spell.castSpell(caster, enemy);
+        caster.activateTSCs();
+        enemy.activateTSCs();
+        int diff = caster.getCurrentHP() - initHP;
+        assertTrue(diff >= 1);
+        int enemyDiff = enemyHP - enemy.getCurrentHP();
+        assertEquals(diff, enemyDiff);
     }
     
 }
