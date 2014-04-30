@@ -53,16 +53,19 @@ public class HPMPDrainTest {
         Spell spell = new HPMPDrain();
         Hero caster = new Knight();
         Hero enemy = new Mage();
-        int initHP = 2;
-        int enemyHP = enemy.getCurrentHP();
+        int initHP = 2, initMP = 2;
+        int enemyHP = enemy.getCurrentHP(), enemyMP = enemy.getCurrentMP();
         caster.setCurrentHP(initHP);
+        caster.setCurrentMP(initMP);
         spell.castSpell(caster, enemy);
         caster.activateTSCs();
         enemy.activateTSCs();
-        int diff = caster.getCurrentHP() - initHP;
-        assertTrue(diff >= 1);
-        int enemyDiff = enemyHP - enemy.getCurrentHP();
-        assertEquals(diff, enemyDiff);
+        int diffHP = caster.getCurrentHP() - initHP;
+        int diffMP = caster.getCurrentMP() - initMP;
+        assertTrue(diffHP >= 1 || diffMP >=1);
+        int enemyHPDiff = enemyHP - enemy.getCurrentHP();
+        int enemyMPDiff = enemyMP - enemy.getCurrentMP();
+        assertTrue(diffHP == enemyHPDiff || diffMP == enemyMPDiff);
     }
     
 }
