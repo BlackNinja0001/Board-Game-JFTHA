@@ -10,8 +10,8 @@ public abstract class Spell extends Buyable{
     private int maxCooldown = (-1);
     private int maxDuration = (-1);
 
-    private int minDamage;
-    private int maxDamage;
+    private int minHPChange;
+    private int maxHPChange;
     private int currentCD;
     private int currentDuraton;
     
@@ -23,7 +23,7 @@ public abstract class Spell extends Buyable{
     
     private void randomize(){
         Random rand = new Random();
-        this.hpChange = minDamage + (int)(rand.nextDouble() * (maxDamage - minDamage) + 1); //potential off by one error, thx to Shane       
+        this.hpChange = minHPChange + (int)(rand.nextDouble() * (maxHPChange - minHPChange) + 1); //potential off by one error, thx to Shane       
     }
     
     public abstract void castSpell(Hero caster);
@@ -45,12 +45,12 @@ public abstract class Spell extends Buyable{
         this.setCurrentDuraton(maxDuration);
     }
 
-    public void setMinDamage(int minDamage) {
-        this.minDamage = minDamage;
+    public void setMinHPChange(int minHPChange) {
+        this.minHPChange = minHPChange;
     }
     
-    public void setMaxDamage(int maxDamage) {
-        this.maxDamage = maxDamage;
+    public void setMaxHPChange(int maxHPChange) {
+        this.maxHPChange = maxHPChange;
     }
     
     public void setCurrentCD(int currentCD) {
@@ -83,12 +83,12 @@ public abstract class Spell extends Buyable{
         return hpChange;
     }
     
-    public int getMinDamage() {
-        return minDamage;
+    public int getMinHPChange() {
+        return minHPChange;
     }
     
-    public int getMaxDamage() {
-        return maxDamage;
+    public int getMaxHPChange() {
+        return maxHPChange;
     }
     
     public int getCurrentCD() {
