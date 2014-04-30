@@ -30,8 +30,11 @@ public class Fireball extends Spell {
         double actualDmg = ((caster.getMagic() * .5) + spellDmg + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
         int finalDmg = (int) Math.round(actualDmg);
-        if (finalDmg <= this.getMinHPChange()) {
+        if(finalDmg < this.getMinHPChange()) {
             finalDmg = this.getMinHPChange();
+        }
+        if(finalDmg > this.getMaxHPChange()) {
+            finalDmg = this.getMaxHPChange();
         }
         
         if(caster instanceof Mage) {
