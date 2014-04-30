@@ -15,10 +15,12 @@ public class SummonPet extends Spell {
      */
     public SummonPet() {
         this.setMaxCooldown(6);
+        this.setGoldCost(15);
         this.setmpCost(30);
         randomizeDamage();
-        this.petDamage = 0;
-        this.petHealth = 0;
+        randomizeHealth();
+        this.setMessage("Summon Pet. Allows hero to summon a pet to his/her side."
+                + " Cost " + this.getmpCost() + " MP");
     }
 
     public int getPetDamage() {
@@ -53,7 +55,7 @@ public class SummonPet extends Spell {
      * @return 
      * Pet Health
      */
-    public int randomizeHealth(){
+    public final int randomizeHealth(){
         Random rand = new Random();
         petHealth = rand.nextInt(10) + 5; //5-15
         return petHealth;
@@ -62,17 +64,17 @@ public class SummonPet extends Spell {
     @Override
     public void castSpell(Hero caster) {
         if(this.getCurrentCD() > 0) {
-            setCurrentCD(this.getMaxCooldown());
-        caster.addPet();
-        if(caster instanceof Mage) {
-                caster.setCurrentMP(caster.getCurrentMP() - (int)(getmpCost() * Mage.multiplier));
+            caster.addPet();
+            if(caster instanceof Mage) {
+                    caster.setCurrentMP(caster.getCurrentMP() - (int)(getmpCost() * Mage.multiplier));
+                } else {
+                    caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
+                }
+            } else if (this.getCurrentCD() == 0) {
+                setCurrentCD(this.getMaxCooldown());
             } else {
-                caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
+                setCurrentCD(this.getCurrentCD() - 1);
             }
-        } else {
-            setCurrentCD(this.getCurrentCD() - 1);
-        }
-        
     }
 
     @Override
