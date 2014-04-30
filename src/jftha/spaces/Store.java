@@ -1,5 +1,6 @@
 package jftha.spaces;
 
+import java.awt.Component;
 import java.util.*;
 import javax.swing.JOptionPane;
 import jftha.heroes.*;
@@ -85,7 +86,7 @@ public class Store extends Space {
      *
      * @param sb Used to print to GUI
      */
-    public void triggerEffect(StringBuilder sb) {
+    public void triggerEffect(Component rootPane, StringBuilder sb) {
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
@@ -137,18 +138,22 @@ public class Store extends Space {
             boolean res;
             sb = new StringBuilder();//erases old dialog
 
-            if ((select >= 1) && (select < 6)) {
-                res = hero.buy(items.get(select - 1));
-                if (res) {
-                    sb.append(p.getCustomName()).append(" has bought a ")
-                            .append(items.get(select - 1).toString());
-                    sb.append("You have ").append(hero.getGold()).append(" gold left");
+            while (true) { //will break for correct input
+                if ((select >= 1) && (select < 6)) {
+                    res = hero.buy(items.get(select - 1));
+                    if (res) {
+                        sb.append(p.getCustomName()).append(" has bought a ")
+                                .append(items.get(select - 1).toString());
+                        sb.append("You have ").append(hero.getGold()).append(" gold left");
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold\n" + 
+                                "You still have " + hero.getGold() + " gold");
+                    }
                 } else {
-                    sb.append(p.getCustomName()).append(", you don't have enough gold");
-                    sb.append("You still have ").append(hero.getGold()).append(" gold");
+                    //IllegalArgumentException
+                    JOptionPane.showMessageDialog(rootPane, "Error: Did not select an option");
                 }
-            } else {
-                throw new IllegalArgumentException("Error: Did not select an option");
             }
         } else {
             sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
@@ -161,5 +166,6 @@ public class Store extends Space {
      * @param affected
      */
     @Override
-    public void triggerEffect(Player affected) {}
+    public void triggerEffect(Player affected) {
+    }
 }

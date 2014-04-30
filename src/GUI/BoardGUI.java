@@ -870,7 +870,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
-                    current2.triggerEffect(sb);
+                    current2.triggerEffect(rootPane, sb);
                     OutputTextArea.append(sb.toString());
                 } else {
                     current.triggerEffect();
