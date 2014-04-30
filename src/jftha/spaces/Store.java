@@ -1,5 +1,6 @@
 package jftha.spaces;
 
+import java.awt.Component;
 import java.util.*;
 import javax.swing.JOptionPane;
 import jftha.heroes.*;
@@ -85,17 +86,60 @@ public class Store extends Space {
      *
      * @param sb Used to print to GUI
      */
-    public void triggerEffect(StringBuilder sb) {
+    public StringBuilder triggerEffect(Component rootPane) {
+        StringBuilder sb = new StringBuilder();
         Player p = getActivator();
         Hero hero = p.getCharacter();
         sb = new StringBuilder();
+        ArrayList<Item> items = new ArrayList<>();
+
+        sb = askForInput(p, items);
+
+        //Scanner scan = new Scanner(System.in);
+        String s = askForInput(p, items).toString();
+        sb = new StringBuilder(); //erases old dialog
+        int select;
+        if ((s != null) && (!s.equals(""))) {
+            try {
+                select = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sb.append("Not a valid response.\n");
+                return sb;
+            }
+            boolean res;
+
+            while (true) { //will break for correct input
+                if ((select >= 1) && (select < 6)) {
+                    res = hero.buy(items.get(select - 1));
+                    if (res) {
+                        sb.append(p.getCustomName()).append(" has bought a ")
+                                .append(items.get(select - 1).toString() + ".\n");
+                        sb.append(p.getCustomName() + " has ").append(hero.getGold()).append(" gold left.\n");
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, p.getCustomName() + ", you don't have enough gold.\n"
+                                + "You still have " + hero.getGold() + " gold.");
+                    }
+                } else {
+                    //IllegalArgumentException
+                    JOptionPane.showMessageDialog(rootPane, "Error: Did not select an option");
+                }
+                sb = askForInput(p, items);
+            }
+        } else {
+            sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
+        }
+        return sb;
+    }
+
+    private StringBuilder askForInput(Player p, ArrayList<Item> items) {
+        StringBuilder sb = new StringBuilder();
+        Hero hero = p.getCharacter();
         sb.append(p.getCustomName()).append(", you have ").append(hero.getGold())
                 .append(" gold\n");
-
         Random rand = new Random(System.currentTimeMillis());
         int luck;
         ItemFactory factory = new ItemFactory();
-        ArrayList<Item> items = new ArrayList<>();
 
         while (items.size() < 5) {
             boolean shouldAdd = true;
@@ -124,35 +168,8 @@ public class Store extends Space {
                     .append(". Cost ").append(items.get(j).getGoldCost())
                     .append(" gold\n");
         }
-        //Scanner scan = new Scanner(System.in);
-        String s = JOptionPane.showInputDialog(null, sb.toString());
-        int select;
-        if ((s != null) && (!s.equals(""))) {
-            try {
-                select = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                sb.append("Not a valid response.\n");
-                return;
-            }
-            boolean res;
-            sb = new StringBuilder();//erases old dialog
-
-            if ((select >= 1) && (select < 6)) {
-                res = hero.buy(items.get(select - 1));
-                if (res) {
-                    sb.append(p.getCustomName()).append(" has bought a ")
-                            .append(items.get(select - 1).toString());
-                    sb.append("You have ").append(hero.getGold()).append(" gold left");
-                } else {
-                    sb.append(p.getCustomName()).append(", you don't have enough gold");
-                    sb.append("You still have ").append(hero.getGold()).append(" gold");
-                }
-            } else {
-                throw new IllegalArgumentException("Error: Did not select an option");
-            }
-        } else {
-            sb.append(p.getCustomName()).append(" has chosen not to buy anything\n");
-        }
+        JOptionPane.showInputDialog(null, sb.toString());
+        return sb;
     }
 
     /**
@@ -161,5 +178,6 @@ public class Store extends Space {
      * @param affected
      */
     @Override
-    public void triggerEffect(Player affected) {}
+    public void triggerEffect(Player affected) {
+    }
 }

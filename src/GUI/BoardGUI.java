@@ -870,7 +870,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
-                    current2.triggerEffect(sb);
+                    sb = current2.triggerEffect(rootPane);
                     OutputTextArea.append(sb.toString());
                 } else {
                     current.triggerEffect();
@@ -1152,6 +1152,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb.append("<br>");
                     sb.append("HP: " + players[i].getCharacter().getCurrentHP() + " MP: " + players[i].getCharacter().getCurrentMP());
                     sb.append("<br>");
+                    sb.append("Current Space: #" + players[i].getCurrentSpace().getSpaceID() + ", " + players[i].getCurrentSpace().getSpaceType());
                     sb.append("</html>");
                 }
                 if (i == 0) {
