@@ -56,6 +56,7 @@ public class ShieldTest {
         int initDef = 2;
         caster.setDefense(initDef);
         spell.castSpell(caster);
+        caster.activateTSCs();
         int diff = caster.getDefense() - initDef;
         assertTrue(diff >= 1 && diff <= 3);
     }
