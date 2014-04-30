@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jftha.spells;
 
-import jftha.heroes.Hero;
+import jftha.heroes.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,10 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author shane
- */
 public class ShieldTest {
     
     public ShieldTest() {
@@ -40,22 +30,34 @@ public class ShieldTest {
     }
 
     @Test
-    public void testCastSpell_Hero() {
-        System.out.println("castSpell");
-        Hero caster = null;
-        Shield instance = new Shield();
-        instance.castSpell(caster);
-        fail("The test case is a prototype.");
+    public void testProperties() {
+        Spell spell = new Shield();
+        assertEquals(10, spell.getGoldCost());
+        assertEquals(5, spell.getmpCost());
+        assertEquals(5, spell.getMaxCooldown());
+        assertEquals(2, spell.getMaxDuration());
+        assertEquals("Shield. Temporarily increase defense(1-3) for 2 turns. Cost 5 MP", spell.getMessage());
     }
 
     @Test
-    public void testCastSpell_Hero_Hero() {
-        System.out.println("castSpell");
-        Hero caster = null;
-        Hero victim = null;
-        Shield instance = new Shield();
-        instance.castSpell(caster, victim);
-        fail("The test case is a prototype.");
+    public void buySpell() {
+        Spell spell = new Shield();
+        Hero hero = new Barbarian();
+        int initGold = hero.getGold();
+        assertTrue(hero.buy(spell));
+        int diff = initGold - hero.getGold();
+        assertEquals(spell.getGoldCost(), diff);
+    }
+
+    @Test
+    public void testCastSpell() {
+        Spell spell = new Shield();
+        Hero caster = new Knight();
+        int initDef = 2;
+        caster.setDefense(initDef);
+        spell.castSpell(caster);
+        int diff = caster.getDefense() - initDef;
+        assertTrue(diff >= 1 && diff <= 3);
     }
     
 }
