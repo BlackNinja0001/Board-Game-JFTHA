@@ -40,8 +40,6 @@ public class Shield extends Spell {
                 caster.setCurrentMP(caster.getCurrentMP() - getmpCost());
             }
             caster.addTSC(new Defense_TSC(getMaxDuration(), finalEffect));
-        } else  {
-            setCurrentCD(this.getCurrentCD() - 1);
         }
     }
     
