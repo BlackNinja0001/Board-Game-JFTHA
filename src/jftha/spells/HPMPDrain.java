@@ -14,8 +14,9 @@ public class HPMPDrain extends Spell{
     public HPMPDrain() {
         this.setGoldCost(10);
         this.setMaxDuration(5);
+        this.setMaxCooldown(6);
         this.setmpCost(15);
-        this.setMessage("HP/MP Drain. Absorb HP/MP from enemy player for 5 turns. Cost " + this.getmpCost() + "MP");
+        this.setMessage("HP/MP Drain. Absorb HP/MP from enemy player for 5 turns. Cost " + this.getmpCost() + " MP");
     }
     
     //Saps 1-5 HP/MP per turn (saps when whomever the spell was cast on begins turn)
@@ -27,11 +28,16 @@ public class HPMPDrain extends Spell{
     public void castSpell(Hero caster, Hero enemy) {
         //Damage is the buff amount
         if (getCurrentCD() > 0) {
-            setCurrentCD(this.getMaxCooldown());
             int spellEffect = getHpChange();
             double actualEffect = ((caster.getMagic() * .5) + spellEffect + (caster.getLuck() * .2))
                 - ((enemy.getMagic() * .5) + (enemy.getDefense() * .5) + (enemy.getLuck() * .2));
+            
             int finalEffect = (int) Math.round(actualEffect);
+            
+            if(finalEffect <= 0) {
+                finalEffect = 1;
+            }
+            
             if(caster instanceof Mage) {
                 caster.setCurrentMP(caster.getCurrentMP() - (int)(getmpCost() * Mage.multiplier));
             } else {
@@ -51,8 +57,6 @@ public class HPMPDrain extends Spell{
                 caster.addTSC(new CurHP_SCPT(getMaxDuration(),finalEffect));
                 enemy.addTSC(new CurHP_SCPT(getMaxDuration(),(-1) * finalEffect));
             }
-        } else {
-            setCurrentCD(this.getCurrentCD() - 1);
         }
     }
 }
