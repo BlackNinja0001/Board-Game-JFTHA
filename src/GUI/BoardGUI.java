@@ -588,7 +588,7 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (current.getSpaceType() == SpaceEnum.Gold) {
                 icon = new ImageIcon(getClass().getResource("/images/gold space-resized.jpg"));
             } else if (current.getSpaceType() == SpaceEnum.Health) {
-                icon = new ImageIcon(getClass().getResource("/images/Duel to the death space-resized.png"));
+                icon = new ImageIcon(getClass().getResource("/images/Heal space-resized.png"));
             } else if (current.getSpaceType() == SpaceEnum.Store) {
                 icon = new ImageIcon(getClass().getResource("/images/Shop space-resized.png"));
             } else if (current.getSpaceType() == SpaceEnum.Blank) {
