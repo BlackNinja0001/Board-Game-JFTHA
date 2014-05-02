@@ -837,8 +837,8 @@ public class BoardGUI extends javax.swing.JFrame {
      */
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
         CurPlayerLabel.setText(performer.getCustomName() + "'s turn.");
-        Scanner scan = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
+        Random rand = new Random(System.currentTimeMillis());
         //Item phase 1
         turnPhase = ITEM_1;
         CurPhaseLabel.setText("Item Phase 1");
@@ -852,7 +852,14 @@ public class BoardGUI extends javax.swing.JFrame {
         CurPhaseLabel.setText("Dice Roll Phase");
         OutputTextArea.append(performer.getCustomName() + ", it's your turn.\n");
         Dice die = new Dice();
-        double maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2); //may need tinkering
+        int randomMove = rand.nextInt(2) + 1; //1-3
+        boolean plus = rand.nextBoolean();
+        double maxAmount;
+        if (plus){
+            maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2) + randomMove; //may need tinkering
+        } else {
+            maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2) - randomMove;
+        }
         int intMaxAmount = (int) Math.round(maxAmount);
         die.setMaxAmount(intMaxAmount);
         int movement = die.roll();
