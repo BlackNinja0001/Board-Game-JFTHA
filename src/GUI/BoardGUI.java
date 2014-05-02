@@ -879,14 +879,15 @@ public class BoardGUI extends javax.swing.JFrame {
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
                     OutputTextArea.append(performer.getCustomName() + " has landed on a Duel to the Death space.\n");
+                    updatePlayerInfo();
                     String opponent = JOptionPane.showInputDialog(performer.getCustomName() + ", select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
                         if (opponent != null) {
-                            if (opponent.equalsIgnoreCase(performer.getCustomName())) {
+                            if (opponent.trim().equalsIgnoreCase(performer.getCustomName())) {
                                 continue;
                             }
-                            if (!opponent.equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
+                            if (!opponent.trim().equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
                                 JOptionPane.showMessageDialog(rootPane, "No such player.");
                                 i = 0;
                                 opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
@@ -1133,6 +1134,9 @@ public class BoardGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Updates players' information displayed on the GUI.
+     */
     private void updatePlayerInfo() {
         if (players != null) {
             StringBuilder sb;
@@ -1181,6 +1185,12 @@ public class BoardGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Clears the labels that do not have a player on it.
+     * 
+     * @param charLabels
+     * @param playas 
+     */
     private void clearNonPlayerLabels(JLabel[] charLabels, Player[] playas) {
 
         int takenSpaces[] = new int[playas.length];
@@ -1204,6 +1214,11 @@ public class BoardGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Displays the new location of "playa" on the board.
+     * 
+     * @param playa the player whose location is to be updated
+     */
     private void updatePlayerLoc(Player playa) {
         String imageName = new String();
         if (playa.getCharacter() instanceof Barbarian) {
