@@ -836,7 +836,8 @@ public class BoardGUI extends javax.swing.JFrame {
      * @throws IllegalActivationTypeException
      */
     public void executeTurn(Player performer) throws IllegalActivationTypeException {
-        CurPlayerLabel.setText(performer.getCustomName() + "'s turn.");
+        String custName = performer.getCustomName();
+        CurPlayerLabel.setText(custName + "'s turn.");
         Hero playerChar = performer.getCharacter();
         Random rand = new Random(System.currentTimeMillis());
         //Item phase 1
@@ -850,7 +851,7 @@ public class BoardGUI extends javax.swing.JFrame {
         //Dice Roll (factoring in Agility and Luck)
         turnPhase = DICE_ROLL;
         CurPhaseLabel.setText("Dice Roll Phase");
-        OutputTextArea.append(performer.getCustomName() + ", it's your turn.\n");
+        OutputTextArea.append(custName + ", it's your turn.\n");
         Dice die = new Dice();
         int randomMove = rand.nextInt(2) + 1; //1-3
         boolean plus = rand.nextBoolean();
@@ -865,7 +866,7 @@ public class BoardGUI extends javax.swing.JFrame {
         int movement = die.roll();
         //move the player
         // choose direction;
-        OutputTextArea.append(performer.getCustomName() + " will move " + movement + " spaces.\n");
+        OutputTextArea.append(custName + " will move " + movement + " spaces.\n");
         /*System.out.println("Move forward(f) or backward(b): ");
          String s = scan.next();*/
 
@@ -874,7 +875,7 @@ public class BoardGUI extends javax.swing.JFrame {
             Space current = performer.move("f"); //always move forward for now
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 if (current.getSpaceType() == SpaceEnum.Store) {
-                    OutputTextArea.append(performer.getCustomName() + " is shopping at the store.\n");
+                    OutputTextArea.append(custName + " is shopping at the store.\n");
                     StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     sb = current2.triggerEffect(rootPane);
@@ -885,19 +886,19 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
                     // Prompt for opponent and pass to triggerEffect
-                    OutputTextArea.append(performer.getCustomName() + " has landed on a Duel to the Death space.\n");
+                    OutputTextArea.append(custName + " has landed on a Duel to the Death space.\n");
                     updatePlayerInfo();
-                    String opponent = JOptionPane.showInputDialog(performer.getCustomName() + ", select your victim: "); //Needs to loop if player typed in is not available
+                    String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
                     for (int i = 0; i < orderedPlayers.length; i++) {
                         Player potVictim = orderedPlayers[i];
                         if (opponent != null) {
-                            if (opponent.trim().equalsIgnoreCase(performer.getCustomName())) {
+                            if (opponent.trim().equalsIgnoreCase(custName)) {
                                 continue;
                             }
                             if (!opponent.trim().equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
                                 JOptionPane.showMessageDialog(rootPane, "No such player.");
                                 i = 0;
-                                opponent = JOptionPane.showInputDialog("Select your victim: "); //Needs to loop if player typed in is not available
+                                opponent = JOptionPane.showInputDialog(custName + "Select your victim: "); //Needs to loop if player typed in is not available
                             } else {
                                 StringBuilder sb = new StringBuilder();
                                 D2D current2 = (D2D) current;
