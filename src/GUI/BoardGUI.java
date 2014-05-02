@@ -33,7 +33,6 @@ public class BoardGUI extends javax.swing.JFrame {
     Board board = new Board();
     int spaceTotal = 22;
     int currentDieRoll = 0;
-
     //Turn phases
     public static final int ITEM_1 = 0,
             DICE_ROLL = 1,
@@ -856,7 +855,7 @@ public class BoardGUI extends javax.swing.JFrame {
         int randomMove = rand.nextInt(2) + 1; //1-3
         boolean plus = rand.nextBoolean();
         double maxAmount;
-        if (plus){
+        if (plus) {
             maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2) + randomMove; //may need tinkering
         } else {
             maxAmount = (playerChar.getAgility() * 0.8) + (playerChar.getLuck() * 0.2) - randomMove;
@@ -885,39 +884,47 @@ public class BoardGUI extends javax.swing.JFrame {
                 }
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
+                    boolean choosingOpponent = true;
                     // Prompt for opponent and pass to triggerEffect
                     OutputTextArea.append(custName + " has landed on a Duel to the Death space.\n");
                     updatePlayerInfo();
                     String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
-                    for (int i = 0; i < orderedPlayers.length; i++) {
+                    while (choosingOpponent) {
+                        int i = 0;
                         Player potVictim = orderedPlayers[i];
-                        if (opponent != null) {
-                            if (opponent.trim().equalsIgnoreCase(custName)) {
-                                continue;
-                            }
-                            if (!opponent.trim().equalsIgnoreCase(potVictim.getCustomName()) && (i == orderedPlayers.length - 1)) {
-                                JOptionPane.showMessageDialog(rootPane, "No such player.");
-                                i = 0;
-                                opponent = JOptionPane.showInputDialog(custName + "Select your victim: "); //Needs to loop if player typed in is not available
-                            } else {
+                        if (opponent != null && !opponent.equals("")) {
+                            if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
+                                choosingOpponent = false;
                                 StringBuilder sb = new StringBuilder();
                                 D2D current2 = (D2D) current;
                                 current2.triggerEffect(potVictim, sb);
                                 OutputTextArea.append(sb.toString());
+                                break;
+                            } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
+                                JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
+                            } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
+                                JOptionPane.showMessageDialog(rootPane, "No such player.");
+                                opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
+                                i = 0;
                             }
+                            i++;
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "Type something in!");
                         }
                     }
-                } else {
                     current.triggerEffect();
                 }
-            } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
+            } else if ((movement
+                    > 0) && (current.getActivationType()
+                    == 'L')) { //land-on passed by
                 continue;
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Error");
                 throw new IllegalActivationTypeException();
             }
             //Attack
-            if (turnNumber > 2) {
+            if (turnNumber
+                    > 2) {
                 if (current.getActivator() != null) {
                     turnPhase = ATTACK;
                     CurPhaseLabel.setText("Attack Phase");
@@ -927,9 +934,10 @@ public class BoardGUI extends javax.swing.JFrame {
 
                 }
             }
+
             updatePlayerInfo();
         }
-        //Item 2
+//Item 2
         if (turnNumber > 2) {
             turnPhase = ITEM_2;
             CurPhaseLabel.setText("Item Phase 2");
@@ -1091,21 +1099,27 @@ public class BoardGUI extends javax.swing.JFrame {
                             return;
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
-                            if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
-                                if (Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
+
+
+                            if (Equippable.class
+                                    .isAssignableFrom(toBeUsed.getClass())) {
+                                if (Weapon.class
+                                        .isAssignableFrom(toBeUsed.getClass())) {
                                     if (playerChar.getWeaponEquipped()) {
                                         playerChar.getWeapon().dropWeap(playerChar);
                                     }
 
                                     ((Weapon) toBeUsed).equipWeap(playerChar);
-                                } else if (Armor.class.isAssignableFrom(toBeUsed.getClass())) {
+                                } else if (Armor.class
+                                        .isAssignableFrom(toBeUsed.getClass())) {
                                     if (playerChar.getArmorEquipped()) {
                                         playerChar.getArmor().dropArmor(playerChar);
                                     }
 
                                     ((Armor) toBeUsed).equipArmor(playerChar);
                                 }
-                            } else if (Item.class.isAssignableFrom(toBeUsed.getClass())) {
+                            } else if (Item.class
+                                    .isAssignableFrom(toBeUsed.getClass())) {
                             }
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
@@ -1195,9 +1209,9 @@ public class BoardGUI extends javax.swing.JFrame {
 
     /**
      * Clears the labels that do not have a player on it.
-     * 
+     *
      * @param charLabels
-     * @param playas 
+     * @param playas
      */
     private void clearNonPlayerLabels(JLabel[] charLabels, Player[] playas) {
 
@@ -1224,7 +1238,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
     /**
      * Displays the new location of "playa" on the board.
-     * 
+     *
      * @param playa the player whose location is to be updated
      */
     private void updatePlayerLoc(Player playa) {
@@ -1290,6 +1304,8 @@ public class BoardGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
+
 
                 }
             }
