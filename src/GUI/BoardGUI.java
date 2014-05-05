@@ -979,8 +979,8 @@ public class BoardGUI extends javax.swing.JFrame {
         String choice;
         //int choice = s.nextInt();
         boolean valid = false;
-        while (valid) {
-            choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
+        while (!valid) {
+            choice = JOptionPane.showInputDialog(rootPane, performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
             if (choice != null) {
                 if (choice.trim().equalsIgnoreCase("spell")) {
                     this.askForSpell(performer);
