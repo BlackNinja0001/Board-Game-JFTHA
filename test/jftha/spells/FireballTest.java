@@ -49,7 +49,7 @@ public class FireballTest {
     
     @Test
     public void testCastSpell() {
-        Spell spell = new Fireball();
+        AttackSpell spell = new Fireball();
         Hero caster = new Ninja();
         Hero enemy = new Knight();
         int initMP = caster.getCurrentMP();
