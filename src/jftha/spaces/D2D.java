@@ -27,10 +27,12 @@ public class D2D extends Space{
         duel2death(attacker, beingAttacked.getCharacter());
     }
     
-    public void triggerEffect(Player beingAttacked, StringBuilder sb) {
+    public StringBuilder triggerEffectGUI(Player beingAttacked) {
+        StringBuilder sb = new StringBuilder();
         Player p = getActivator();
         Hero attacker = p.getCharacter();
         sb = duel2death(attacker, beingAttacked.getCharacter());
+        return sb;
     }
     
     private StringBuilder duel2death(Hero attacker, Hero beingAttacked){
