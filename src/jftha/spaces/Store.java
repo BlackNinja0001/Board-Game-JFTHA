@@ -86,7 +86,7 @@ public class Store extends Space {
      *
      * @param rootPane Used as parameter for JOptionPane
      */
-    public StringBuilder triggerEffect(Component rootPane) {
+    public StringBuilder triggerEffectGUI(Component rootPane) {
         StringBuilder sb = new StringBuilder();
         Player p = getActivator();
         Hero hero = p.getCharacter();

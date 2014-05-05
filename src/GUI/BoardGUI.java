@@ -877,8 +877,8 @@ public class BoardGUI extends javax.swing.JFrame {
                 if (current.getSpaceType() == SpaceEnum.Store) {
                     OutputTextArea.append(custName + " is shopping at the store.\n");
                     Store current2 = (Store) current;
-                    sb = current2.triggerEffect(rootPane);
-                    OutputTextArea.append(sb.toString());
+                    sb = current2.triggerEffectGUI(rootPane);
+                    OutputTextArea.append(sb.toString()); //NOTE: Do NOT refactor out. Each triggerEffectGUI declares a NEW StringBuilder instead of passing an existing one.
                 } else if (current.getSpaceType() == SpaceEnum.Gold){
                     Gold current2 = (Gold) current;
                     sb = current2.triggerEffectGUI();
@@ -886,6 +886,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (current.getSpaceType() == SpaceEnum.Health) {
                     Health current2 = (Health) current;
                     sb = current2.triggerEffectGUI();
+                    OutputTextArea.append(sb.toString());
                 }
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
