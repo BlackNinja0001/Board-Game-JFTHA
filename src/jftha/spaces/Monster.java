@@ -20,12 +20,18 @@ public class Monster extends Space{
     /**
      * Takes in two Hero Class as parameters.
      * Current player enters Duel to Death with a monster.
-     * Earn 10Gold when monster is defeated.
+     * Earn 10 Gold when monster is defeated.
      * @param attacker
      * @param beingAttacked 
      */
-    private void combat(Hero attacker, Hero beingAttacked){
+    private StringBuilder combat(Hero attacker, Hero beingAttacked){
+        StringBuilder sb = new StringBuilder();
+        int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
+        int num = 1;
         while(attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0){
+            sb.append("Turn #").append(num).append(" Hero HP: ")
+                        .append(attackerHP).append(", Enemy HP: ")
+                        .append(beingAttackedHP).append("\n");
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
             if(beingAttacked.getCurrentHP() <= 0){
@@ -36,6 +42,7 @@ public class Monster extends Space{
         
         //Monster's HP gets set back to max
         beingAttacked.setCurrentHP(beingAttacked.getMaxHP());
+        return sb;
     }
     
     /**
@@ -46,6 +53,16 @@ public class Monster extends Space{
         Player p = getActivator();
         Hero attacker = p.getCharacter();
         combat(attacker, this.monster);
+    }
+    
+    /**
+     * Current player enters Duel to Death with a monster.
+     */
+    public StringBuilder triggerEffectGUI() {
+        Player p = getActivator();
+        Hero attacker = p.getCharacter();
+        StringBuilder sb = combat(attacker, this.monster);
+        return sb;
     }
 
     /**
