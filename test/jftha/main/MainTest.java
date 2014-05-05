@@ -247,9 +247,6 @@ public class MainTest {
         board.placePlayers(players, numSpaces);
         for(Player p : players) {
             assertEquals(0, p.getCurrentSpace().getSpaceID() % 5);
-            System.out.println(p.getCustomName() + " is on space #" 
-                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
-                    + p.getCurrentSpace().getSpaceType());
         }
     }
     
@@ -265,9 +262,6 @@ public class MainTest {
         board.placePlayers(players, numSpaces);
         for(Player p : players) {
             assertEquals(0, p.getCurrentSpace().getSpaceID() % 7);
-            System.out.println(p.getCustomName() + " is on space #" 
-                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
-                    + p.getCurrentSpace().getSpaceType());
         }
     }
     
@@ -282,9 +276,6 @@ public class MainTest {
         board.placePlayers(players, numSpaces);
         for(Player p : players) {
             assertEquals(0, p.getCurrentSpace().getSpaceID() % 11);
-            System.out.println(p.getCustomName() + " is on space #" 
-                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
-                    + p.getCurrentSpace().getSpaceType());
         }
     }
 }
