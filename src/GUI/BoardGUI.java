@@ -4,16 +4,11 @@
  */
 package GUI;
 
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import jftha.heroes.*;
 import jftha.items.*;
 import jftha.main.*;
@@ -664,17 +659,15 @@ public class BoardGUI extends javax.swing.JFrame {
             }
             winner = anyoneWon(orderedPlayers);
         } while (winner == -1);
-
-        //Win message for winner
-        for (int i = 0; i < orderedPlayers.length; i++) {
-            if (orderedPlayers[i].isWinner()) {
-                JOptionPane.showMessageDialog(this, "Wiener!",
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You're a winner!", JOptionPane.PLAIN_MESSAGE,
+        for (Player orderedPlayer : orderedPlayers) {
+            if (orderedPlayer.isWinner()) {
+                JOptionPane.showMessageDialog(this, "Wiener!", "Congratulations, " 
+                        + orderedPlayer.getCustomName() + "! You're a winner!", JOptionPane.PLAIN_MESSAGE,
                         new ImageIcon(getClass().getResource("/images/win or lose.jpg")));
-                OutputTextArea.append(orderedPlayers[i].getCustomName() + " is the winner!");
+                OutputTextArea.append(orderedPlayer.getCustomName() + " is the winner!");
             } else {
-                JOptionPane.showMessageDialog(this, "Loser!",
-                        "Congratulations, " + orderedPlayers[i].getCustomName() + "! You suck!", JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.showMessageDialog(this, "Loser!", "Congratulations, " 
+                        + orderedPlayer.getCustomName() + "! You suck!", JOptionPane.PLAIN_MESSAGE,
                         new ImageIcon(getClass().getResource("/images/your-a-loser2.jpg")));
             }
         }
@@ -1086,29 +1079,7 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (yesOrNo == JOptionPane.NO_OPTION) {
                 itemPhase(performer);
                 break;
-            } else { //cannot occur anymore
-                if (mistakes <= 2) {
-                    System.out.println("Invalid Answer.");
-                } else if (mistakes == 3) {
-                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
-                } else if (mistakes == 4) {
-                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
-                } else if (mistakes == 5) {
-                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
-                } else if (mistakes == 6) {
-                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
-                } else if (mistakes == 7) {
-                    System.out.println("Is that even a letter? Seriously you need to try.");
-                } else {
-                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
-                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
-                    performer.getCharacter().setEliminated(true);
-                    System.out.println("Game Over");
-                    //End game
-                    break;
-                }
-                mistakes++;
-            }
+            } 
         }
     }
 
