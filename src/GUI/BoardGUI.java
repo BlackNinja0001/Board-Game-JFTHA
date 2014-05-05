@@ -933,10 +933,11 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb = current2.triggerEffectGUI();
                     OutputTextArea.append(sb.toString());
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
-                    int choice = JOptionPane.showConfirmDialog(rootPane, "Would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
+                    int choice = JOptionPane.showConfirmDialog(rootPane, performer.getCustomName() + ", would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION){
                         jftha.spaces.Monster current2 = (jftha.spaces.Monster) current;
                         sb = current2.triggerEffectGUI();
+                        JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
                     } //else do not fight the monster
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
@@ -1226,18 +1227,6 @@ public class BoardGUI extends javax.swing.JFrame {
 
         //Locations
         updatePlayerLocs(orderedPlayers);
-    }
-
-    /**
-     * Clears the labels that do not have a player on it.
-     *
-     * @param charLabels labels that determine where a player is located on the
-     * board
-     * @param playas the players currently playing the game
-     */
-    private void repaintPlayerLabels(JLabel[] charLabels, Player[] playas) {
-
-        
     }
 
     /**
