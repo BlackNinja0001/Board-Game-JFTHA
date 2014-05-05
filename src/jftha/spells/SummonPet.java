@@ -4,7 +4,7 @@ import java.util.Random;
 import jftha.heroes.Hero;
 import jftha.heroes.Mage;
 
-public class SummonPet extends Spell {
+public class SummonPet extends SelfSpell {
 
     private int petDamage;
     
@@ -76,7 +76,4 @@ public class SummonPet extends Spell {
                 setCurrentCD(this.getCurrentCD() - 1);
             }
     }
-
-    @Override
-    public void castSpell(Hero caster, Hero victim) {}
 }
