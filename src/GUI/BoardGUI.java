@@ -926,7 +926,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb = current2.triggerEffectGUI();
                     OutputTextArea.append(sb.toString());
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
-                    int choice = JOptionPane.showConfirmDialog(rootPane, "Would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
+                    int choice = JOptionPane.showConfirmDialog(rootPane, custName + ": would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION){
                         jftha.spaces.Monster current2 = (jftha.spaces.Monster) current;
                         sb = current2.triggerEffectGUI();
