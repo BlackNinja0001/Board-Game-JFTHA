@@ -28,10 +28,9 @@ public class D2D extends Space{
     }
     
     public StringBuilder triggerEffectGUI(Player beingAttacked) {
-        StringBuilder sb = new StringBuilder();
         Player p = getActivator();
         Hero attacker = p.getCharacter();
-        sb = duel2death(attacker, beingAttacked.getCharacter());
+        StringBuilder sb = duel2death(attacker, beingAttacked.getCharacter());
         return sb;
     }
     
@@ -53,9 +52,13 @@ public class D2D extends Space{
             }
         } else {
             while(attackerHP > 0 && beingAttackedHP > 0){
+                sb.append("Turn #").append(num).append(" Attacker hp: ")
+                        .append(attackerHP).append(", Enemy HP: ")
+                        .append(beingAttackedHP).append("\n");
                 beingAttacked.attackEnemy(attacker);
                 attackerHP = attacker.getCurrentHP();
                 beingAttackedHP = beingAttacked.getCurrentHP();
+                num++;
             }
         }
         return sb;

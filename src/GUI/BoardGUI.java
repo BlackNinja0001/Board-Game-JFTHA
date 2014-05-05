@@ -907,7 +907,7 @@ public class BoardGUI extends javax.swing.JFrame {
                                     choosingOpponent = false;
                                     D2D current2 = (D2D) current;
                                     sb = current2.triggerEffectGUI(potVictim);
-                                    OutputTextArea.append(sb.toString());
+                                    JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
                                     break;
                                 } else if (oppTrim.equalsIgnoreCase(custName)) { //player chooses to fight himself
                                     JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
@@ -929,6 +929,7 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (current.getSpaceType() == SpaceEnum.Card) {
                     //watch for certain cards
                 } else if (current.getSpaceType() == SpaceEnum.Chest) {
+                    
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
