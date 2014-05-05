@@ -899,15 +899,16 @@ public class BoardGUI extends javax.swing.JFrame {
                         for (int i = 0; i < orderedPlayers.length; i++) {
                             Player potVictim = orderedPlayers[i];
                             if (opponent != null && !opponent.equals("")) {
-                                if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
+                                String oppTrim = opponent.trim();
+                                if ((oppTrim.equalsIgnoreCase(potVictim.getCustomName())) && (!oppTrim.equalsIgnoreCase(custName))) { //valid player found that is not "performer"
                                     choosingOpponent = false;
                                     D2D current2 = (D2D) current;
                                     sb = current2.triggerEffectGUI(potVictim);
                                     OutputTextArea.append(sb.toString());
                                     break;
-                                } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
+                                } else if (oppTrim.equalsIgnoreCase(custName)) { //player chooses to fight himself
                                     JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
-                                    i = 0; //makes sure victim is not skipped if opponent's index comes before player's
+                                    break; //makes sure victim is not skipped if opponent's index comes before player's
                                 } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
                                     JOptionPane.showMessageDialog(rootPane, "No such player.");
                                 }
