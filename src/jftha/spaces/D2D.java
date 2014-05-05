@@ -41,7 +41,7 @@ public class D2D extends Space{
         if(beingAttacked instanceof Mage){
             Spell fireball = new Fireball();
             while(attackerHP > 0 && beingAttackedHP > 0){
-                sb.append("Turn #").append(num).append(" Attacker hp: ")
+                sb.append("Turn #").append(num).append(" Attacker HP: ")
                         .append(attackerHP).append(", Enemy HP: ")
                         .append(beingAttackedHP).append("\n");
                 attacker.attackEnemy(beingAttacked);
@@ -52,7 +52,7 @@ public class D2D extends Space{
             }
         } else {
             while(attackerHP > 0 && beingAttackedHP > 0){
-                sb.append("Turn #").append(num).append(" Attacker hp: ")
+                sb.append("Turn #").append(num).append(" Attacker HP: ")
                         .append(attackerHP).append(", Enemy HP: ")
                         .append(beingAttackedHP).append("\n");
                 beingAttacked.attackEnemy(attacker);
