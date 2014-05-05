@@ -1,11 +1,10 @@
 package jftha.spaces;
 
-import java.awt.Component;
 import java.util.Random;
 import jftha.heroes.Hero;
 import jftha.main.Player;
 
-public class Gold extends Space {
+public class Gold extends RegularSpace {
     
     private int amount;
     
@@ -50,12 +49,4 @@ public class Gold extends Space {
         return sb;
     }
 
-    /**
-     * No Effect
-     * @param affected 
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

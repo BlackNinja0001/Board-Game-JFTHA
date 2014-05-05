@@ -4,7 +4,7 @@ import jftha.heroes.*;
 import jftha.main.Player;
 import jftha.spells.*;
 
-public class D2D extends Space{
+public class D2D extends AttackSpace{
     
     /**
      * Constructor
@@ -64,9 +64,4 @@ public class D2D extends Space{
         return sb;
     }
 
-    /**
-     * No Effect
-     */
-    @Override
-    public void triggerEffect() {}
 }

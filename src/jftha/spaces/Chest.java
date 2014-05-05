@@ -5,7 +5,7 @@ import jftha.heroes.*;
 import jftha.items.*;
 import jftha.main.Player;
 
-public class Chest extends Space {
+public class Chest extends RegularSpace {
 
     /**
      * Constructor
@@ -96,13 +96,4 @@ public class Chest extends Space {
         return sb;
     }
 
-    /**
-     * No Effect
-     *
-     * @param affected
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

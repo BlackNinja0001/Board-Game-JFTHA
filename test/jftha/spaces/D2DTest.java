@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class D2DTest {
-    Space current;
+    AttackSpace current;
     Player hero;
     Player enemy;
     public D2DTest() {

@@ -1,6 +1,5 @@
 package jftha.cards;
 
-import jftha.heroes.*;
 import jftha.main.*;
 import jftha.spaces.*;
 
@@ -25,14 +24,14 @@ public class MoveBack extends Card {
         while (movement >= 0) {
             Space current = affected.move("b");
             if (current.getActivationType() == 'p') { //pass-by
-                current.triggerEffect();
+                ((RegularSpace)current).triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'l') { //land-on
-                if (current.getSpaceType() == SpaceEnum.D2D) {
+                if (current instanceof AttackSpace) {
                     // prompt for hero
                     Player p = null;
-                    current.triggerEffect(p);
+                    ((AttackSpace)current).triggerEffect(p);
                 } else {
-                    current.triggerEffect();
+                    ((RegularSpace)current).triggerEffect();
                 }
                 movement--;
             } else {

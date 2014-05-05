@@ -5,7 +5,7 @@ import jftha.heroes.Hero;
 import jftha.cards.*;
 import jftha.main.Player;
 
-public class CardSpace extends Space {
+public class CardSpace extends RegularSpace {
     
     /**
      * Constructor
@@ -56,12 +56,4 @@ public class CardSpace extends Space {
         drawn = cf.buildCard(rarity);
     }
 
-    /**
-     * No Effect
-     * @param affected 
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

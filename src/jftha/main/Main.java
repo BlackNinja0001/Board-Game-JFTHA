@@ -299,9 +299,9 @@ public class Main { //definitely need more error handling
             movement--;
             Space current = performer.move("f");
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
-                current.triggerEffect();
+                ((RegularSpace)current).triggerEffect();
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
-                if (current.getSpaceType() == SpaceEnum.D2D) {
+                if (current instanceof AttackSpace) {
                     // Prompt for opponent and pass to triggerEffect
                     System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
                     String opponent = scan.next();
@@ -316,11 +316,11 @@ public class Main { //definitely need more error handling
                             System.out.println("Select your victim: "); //Needs to loop if player typed in is not available
                             opponent = scan.next();
                         } else {
-                            current.triggerEffect(potVictim);
+                            ((AttackSpace)current).triggerEffect(potVictim);
                         }
                     }
                 } else {
-                    current.triggerEffect();
+                    ((RegularSpace)current).triggerEffect();
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
