@@ -2,7 +2,7 @@ package jftha.spells;
 
 import jftha.heroes.*;
 
-public class Fireball extends Spell {
+public class Fireball extends AttackSpell {
     
     /**
      * Constructor
@@ -14,9 +14,6 @@ public class Fireball extends Spell {
         this.setMaxHPChange(5);
         this.setMessage("Fireball. Random magic damage between 1-5 to enemy player. Cost " + this.getmpCost() + " MP");
     }
-    
-    @Override
-    public void castSpell(Hero caster) {}
     
     /**
      * Allows a character to cast a damage inflicting spell at another player.
