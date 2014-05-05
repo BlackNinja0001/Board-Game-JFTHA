@@ -872,15 +872,17 @@ public class BoardGUI extends javax.swing.JFrame {
         while (movement > 0) {
             movement--;
             Space current = performer.move("f"); //always move forward for now
+            StringBuilder sb = new StringBuilder();
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 if (current.getSpaceType() == SpaceEnum.Store) {
                     OutputTextArea.append(custName + " is shopping at the store.\n");
-                    StringBuilder sb = new StringBuilder();
                     Store current2 = (Store) current;
                     sb = current2.triggerEffect(rootPane);
                     OutputTextArea.append(sb.toString());
-                } else {
-                    current.triggerEffect();
+                } else if (current.getSpaceType() == SpaceEnum.Gold){
+                    Gold current2 = (Gold) current;
+                    sb = current2.triggerEffectGUI();
+                    OutputTextArea.append(sb.toString());
                 }
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
@@ -896,9 +898,8 @@ public class BoardGUI extends javax.swing.JFrame {
                                 boolean choseYourself = false;
                                 if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
                                     choosingOpponent = false;
-                                    StringBuilder sb = new StringBuilder();
                                     D2D current2 = (D2D) current;
-                                    current2.triggerEffect(potVictim, sb);
+                                    sb = current2.triggerEffectGUI(potVictim);
                                     OutputTextArea.append(sb.toString());
                                     break;
                                 } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
