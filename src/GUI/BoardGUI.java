@@ -899,7 +899,6 @@ public class BoardGUI extends javax.swing.JFrame {
                         for (int i = 0; i < orderedPlayers.length; i++) {
                             Player potVictim = orderedPlayers[i];
                             if (opponent != null && !opponent.equals("")) {
-                                boolean choseYourself = false;
                                 if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
                                     choosingOpponent = false;
                                     D2D current2 = (D2D) current;
@@ -918,7 +917,17 @@ public class BoardGUI extends javax.swing.JFrame {
                             }
                         }
                     }
-                    current.triggerEffect();
+                } else if (current.getSpaceType() == SpaceEnum.Bank) {
+                    int tax = rand.nextInt(20) + 5; //5-20
+                    Bank current2 = (Bank) current;
+                    current2.collect(playerChar, tax);
+                    OutputTextArea.append("The Bank has taxed " + performer.getCustomName() + " " + tax + " gold.\n");
+                } else if (current.getSpaceType() == SpaceEnum.Card){
+                    //watch for certain cards
+                } else if (current.getSpaceType() == SpaceEnum.Chest){
+                    
+                } else if (current.getSpaceType() == SpaceEnum.Monster){
+                    
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
