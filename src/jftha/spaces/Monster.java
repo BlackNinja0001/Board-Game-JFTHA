@@ -28,9 +28,9 @@ public class Monster extends RegularSpace{
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
         int num = 1;
         while (attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0) {
-            sb.append("Turn #").append(num).append(" Hero HP: ")
-                    .append(attackerHP).append(", Monster HP: ")
-                    .append(beingAttackedHP).append("\n");
+            //sb.append("Turn #").append(num).append(" Hero HP: ")
+            //        .append(attackerHP).append(", Monster HP: ")
+            //        .append(beingAttackedHP).append("\n");
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
             attackerHP = attacker.getCurrentHP();
