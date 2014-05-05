@@ -56,7 +56,7 @@ public class Board {
     }
 
     /**
-     * Takes in an Integer as a parameter.
+     * Takes in an integer as a parameter.
      * Deletes the space node at index "index"
      * @param index 
      */
@@ -113,7 +113,7 @@ public class Board {
     }
 
     /**
-     * Takes in an Integer as a parameter.
+     * Takes in an integer as a parameter.
      * Uses addSpace method to create a Circle Linked List.
      * numSpaces = number of spaces this method will generate.
      * @param numSpaces 
@@ -142,18 +142,25 @@ public class Board {
             }
         }
     }
-/*
+
+    /** Places the players an equal distance apart from each other at the start
+     * of the game.
+     * 
+     * @param players An array of the players in the game
+     * @param numSpaces The number of spaces on the board
+     */
     public void placePlayers(Player players[], int numSpaces) {
-        Space current = start;
-        int distance = numSpaces % players.length;
-        int count = 0;
-        while (current.next != start) {
-            if (count == distance) {
+        Space current = start.next;
+        int distance = numSpaces / players.length;
+        int count = 2, i = 0;
+        while (current != start) {
+            if (count % distance == 0) {
                 //spawn player
-                count = distance;
+                players[i].setCurrentSpace(current);
+                i++;
             }
             count++;
+            current = current.next;
         }
     }
-    * */
 }
