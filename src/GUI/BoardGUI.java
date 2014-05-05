@@ -1222,25 +1222,18 @@ public class BoardGUI extends javax.swing.JFrame {
     /**
      * Clears the labels that do not have a player on it.
      *
-     * @param charLabels
-     * @param playas
+     * @param charLabels labels that determine where a player is located on the board
+     * @param playas the players currently playing the game
      */
     private void clearNonPlayerLabels(JLabel[] charLabels, Player[] playas) {
 
         int takenSpaces[] = new int[playas.length];
-        int k = 0;
-        for (int i = 0; i < charLabels.length; i++) {
-            for (int j = 0; j < playas.length; j++) {
-                if (playas[j].getCurrentSpace().getSpaceID() == i) { //if player is on space i
-                    takenSpaces[k] = i; //store for later
-                    k++;
-                    i++;
-                }
-            }
+        for (int i = 0; i < playas.length; i++) {
+            takenSpaces[i] = playas[i].getCurrentSpace().getSpaceID();
         }
 
         for (int i = 0; i < charLabels.length; i++) {
-            for (int j = 0; j < k; j++) {
+            for (int j = 0; j < playas.length; j++) {
                 if (takenSpaces[j] != i) { //space is not taken
                     charLabels[i].setIcon(null);
                 }
