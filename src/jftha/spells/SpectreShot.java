@@ -3,7 +3,7 @@ package jftha.spells;
 import jftha.heroes.Hero;
 import jftha.heroes.Mage;
 
-public class SpectreShot extends Spell {
+public class SpectreShot extends AttackSpell {
     public SpectreShot() {
         this.setGoldCost(10);
         this.setmpCost(7);
@@ -12,9 +12,6 @@ public class SpectreShot extends Spell {
         this.setMessage("Spectre Shot. Random magic damage between 5-10 to enemy player. Cost "
                 + this.getmpCost() + " MP");
     }
-    
-    @Override
-    public void castSpell(Hero caster) {}
     
     /**
      * Allows a character to cast a damage inflicting spell at another player.
