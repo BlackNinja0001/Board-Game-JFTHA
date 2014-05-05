@@ -4,7 +4,7 @@ import java.util.Random;
 import jftha.heroes.Hero;
 import jftha.main.Player;
 
-public class Health extends Space{
+public class Health extends RegularSpace{
 
     private int statChange;
     private int statChange2; //Sometimes health and magic will be regenerated at the same time
@@ -73,12 +73,4 @@ public class Health extends Space{
         return sb;
     }
 
-    /**
-     * No Effect
-     * @param affected 
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
