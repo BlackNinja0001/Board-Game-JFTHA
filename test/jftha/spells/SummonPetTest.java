@@ -50,7 +50,7 @@ public class SummonPetTest {
 
     @Test
     public void testCastSpell() {
-        Spell spell = new SummonPet();
+        SelfSpell spell = new SummonPet();
         Hero caster = new Knight();
         spell.castSpell(caster);
         assertTrue(caster.getHasPet());
