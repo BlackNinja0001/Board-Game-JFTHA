@@ -39,7 +39,7 @@ public class D2D extends Space{
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
         int num = 1;
         if(beingAttacked instanceof Mage){
-            Spell fireball = new Fireball();
+            AttackSpell fireball = new Fireball();
             while(attackerHP > 0 && beingAttackedHP > 0){
                 sb.append("Turn #").append(num).append(" Attacker hp: ")
                         .append(attackerHP).append(", Enemy HP: ")
