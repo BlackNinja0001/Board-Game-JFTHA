@@ -49,7 +49,7 @@ public class SpectreShotTest {
     
     @Test
     public void testCastSpell() {
-        Spell spell = new SpectreShot();
+        AttackSpell spell = new SpectreShot();
         Hero caster = new Ninja();
         Hero enemy = new Knight();
         int initMP = caster.getCurrentMP();

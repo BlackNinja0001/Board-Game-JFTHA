@@ -2,7 +2,7 @@
 
 import jftha.heroes.*;
 
-public class Heal extends Spell{
+public class Heal extends SelfSpell{
     
     /**
      * Constructor
@@ -38,9 +38,6 @@ public class Heal extends Spell{
 
         caster.setCurrentHP(caster.getCurrentHP() + finalEffect);
     }
-
-    @Override
-    public void castSpell(Hero caster, Hero victim) {}
     
     
 }

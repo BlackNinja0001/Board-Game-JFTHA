@@ -49,7 +49,7 @@ public class HealTest {
 
     @Test
     public void testCastSpell() {
-        Spell spell = new Heal();
+        SelfSpell spell = new Heal();
         Hero caster = new Knight();
         int initHP = 12;
         caster.setCurrentHP(initHP);

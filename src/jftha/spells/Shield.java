@@ -3,7 +3,7 @@ package jftha.spells;
 import jftha.heroes.*;
 import jftha.statchanges.Defense_TSC;
 
-public class Shield extends Spell {
+public class Shield extends SelfSpell {
     
     /**
      * Constructor
@@ -42,7 +42,4 @@ public class Shield extends Spell {
             caster.addTSC(new Defense_TSC(getMaxDuration(), finalEffect));
         }
     }
-    
-    @Override
-    public void castSpell(Hero caster, Hero victim) {}
 }

@@ -50,7 +50,7 @@ public class HPMPDrainTest {
 
     @Test
     public void testCastSpell() {
-        Spell spell = new HPMPDrain();
+        AttackSpell spell = new HPMPDrain();
         Hero caster = new Knight();
         Hero enemy = new Mage();
         int initHP = 2, initMP = 2;

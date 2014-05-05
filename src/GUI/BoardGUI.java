@@ -1054,6 +1054,34 @@ public class BoardGUI extends javax.swing.JFrame {
                             return;
                         } else if ((choice >= 0) && (choice < mySpells.size())) {
                             Spell toBeUsed = mySpells.get(choice + 1);
+                            if(toBeUsed instanceof SelfSpell) {
+                                ((SelfSpell)toBeUsed).castSpell(playerChar);
+                            } else {
+                                boolean choosingOpponent = false;
+                                String custName = performer.getCustomName();
+                                while (choosingOpponent) {
+                                    String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
+                                    for (int i = 0; i < orderedPlayers.length; i++) {
+                                        Player potVictim = orderedPlayers[i];
+                                        if (opponent != null && !opponent.equals("")) {
+                                            String oppTrim = opponent.trim();
+                                            if ((oppTrim.equalsIgnoreCase(potVictim.getCustomName())) && (!oppTrim.equalsIgnoreCase(custName))) { //valid player found that is not "performer"
+                                                choosingOpponent = false;
+                                                JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
+                                                break;
+                                            } else if (oppTrim.equalsIgnoreCase(custName)) { //player chooses to fight himself
+                                                JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
+                                                break; //makes sure victim is not skipped if opponent's index comes before player's
+                                            } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
+                                                JOptionPane.showMessageDialog(rootPane, "No such player.");
+                                            }
+                                        } else {
+                                            JOptionPane.showMessageDialog(rootPane, "Type something in!");
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
                         }

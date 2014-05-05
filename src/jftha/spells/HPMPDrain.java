@@ -6,7 +6,7 @@ import jftha.heroes.Mage;
 import jftha.statchanges.CurHP_SCPT;
 import jftha.statchanges.CurMP_SCPT;
 
-public class HPMPDrain extends Spell{
+public class HPMPDrain extends AttackSpell{
 
     /**
      * Constructor
@@ -20,9 +20,6 @@ public class HPMPDrain extends Spell{
     }
     
     //Saps 1-5 HP/MP per turn (saps when whomever the spell was cast on begins turn)
-
-    @Override
-    public void castSpell(Hero caster) {}
 
     @Override
     public void castSpell(Hero caster, Hero enemy) {
