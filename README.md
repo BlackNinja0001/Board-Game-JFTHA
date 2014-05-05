@@ -14,8 +14,10 @@ How To Run:
 
 *4. Fill in the number of players.*
 
-*5. Fill in tne names and classes of players.*
+*5. Fill in the names and classes of players.*
 
 *6. Play the game. Keep in mind that currently this part of the program still needs a lot of work. It auto-rolls the die so the first thing you should see is the Store menu.*
+
+*7. The first player to have all other players eliminated (killed twice) wins! Warning: To kill a ghost, you will need a spiritual item, and they are still somewhat buggy.* 
 
 More info is in the wiki.
