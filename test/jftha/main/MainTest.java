@@ -109,7 +109,7 @@ public class MainTest {
             System.setOut(new PrintStream(out));
             Dice die = new Dice(howmany);
             Player[] players = new Player[howmany];
-            main.playerSelection(howmany, scan, players);
+            Main.playerSelection(howmany, scan, players);
             main.setTurnOrder(howmany, players, die);
             for(int j = 0; j < howmany; j++) {
                 stb.append(players[j].getTurnOrder());
@@ -154,7 +154,7 @@ public class MainTest {
             System.setOut(new PrintStream(out));
             Dice die = new Dice(howmany);
             Player[] players = new Player[howmany];
-            main.playerSelection(howmany, scan, players);
+            Main.playerSelection(howmany, scan, players);
             main.setTurnOrder(howmany, players, die);
             for(int j = 0; j < howmany; j++) {
                 stb.append(players[j].getTurnOrder());
@@ -205,18 +205,7 @@ public class MainTest {
         assertEquals(res, players[3]);
     }
     
-    @Test
-    public void testUpWinCountValidated() {
-        Player[] players = {new Player("player1", new Knight()), 
-                            new Player("player2", new Barbarian()),
-                            new Player("player3", new Ninja()),
-                            new Player("player4", new Mage())};
-        players[1].getCharacter().makeGhost();
-        players[2].getCharacter().makeGhost();
-        players[3].getCharacter().makeGhost();
-        //assertTrue(main.upWinCountValidated(players, 0)); // 
-        //assertEquals(1, );
-    }
+
     @Test
     public void testUpWinCount() {
         Player[] players = {new Player("player1", new Paladin()), 
@@ -243,5 +232,59 @@ public class MainTest {
         players[3].getCharacter().unGhost();
         assertFalse(main.upWinCountValidated(players, 1));
         assertEquals(0, players[1].getWinCount());
+    }
+    
+    @Test
+    public void testPlace4Players() {
+        System.out.println("place4Players");
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja()),
+                            new Player("player4", new Mage())};
+        int numSpaces = 22;
+        Board board = new Board();
+        board.generateBoard(numSpaces);
+        board.placePlayers(players, numSpaces);
+        for(Player p : players) {
+            assertEquals(0, p.getCurrentSpace().getSpaceID() % 5);
+            System.out.println(p.getCustomName() + " is on space #" 
+                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
+                    + p.getCurrentSpace().getSpaceType());
+        }
+    }
+    
+    @Test
+    public void testPlace3Players() {
+        System.out.println("place3Players");
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian()),
+                            new Player("player3", new Ninja())};
+        int numSpaces = 22;
+        Board board = new Board();
+        board.generateBoard(numSpaces);
+        board.placePlayers(players, numSpaces);
+        for(Player p : players) {
+            assertEquals(0, p.getCurrentSpace().getSpaceID() % 7);
+            System.out.println(p.getCustomName() + " is on space #" 
+                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
+                    + p.getCurrentSpace().getSpaceType());
+        }
+    }
+    
+    @Test
+    public void testPlace2Players() {
+        System.out.println("place2Players");
+        Player[] players = {new Player("player1", new Knight()), 
+                            new Player("player2", new Barbarian())};
+        int numSpaces = 22;
+        Board board = new Board();
+        board.generateBoard(numSpaces);
+        board.placePlayers(players, numSpaces);
+        for(Player p : players) {
+            assertEquals(0, p.getCurrentSpace().getSpaceID() % 11);
+            System.out.println(p.getCustomName() + " is on space #" 
+                    + p.getCurrentSpace().getSpaceID() + " which is a(n) "
+                    + p.getCurrentSpace().getSpaceType());
+        }
     }
 }
