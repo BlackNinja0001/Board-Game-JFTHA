@@ -21,6 +21,9 @@ public class Bank extends Space{
      */
     public void collect(Hero hero, int tax){
         hero.setGold(hero.getGold() - tax);
+        if (hero.getGold() < 0){
+            hero.setGold(0);
+        }
         bankTax += tax;
     }
 
