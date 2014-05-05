@@ -883,6 +883,9 @@ public class BoardGUI extends javax.swing.JFrame {
                     Gold current2 = (Gold) current;
                     sb = current2.triggerEffectGUI();
                     OutputTextArea.append(sb.toString());
+                } else if (current.getSpaceType() == SpaceEnum.Health) {
+                    Health current2 = (Health) current;
+                    sb = current2.triggerEffectGUI();
                 }
             } else if (movement == 0 && current.getActivationType() == 'L') { //land-on landed on
                 if (current.getSpaceType() == SpaceEnum.D2D) {
