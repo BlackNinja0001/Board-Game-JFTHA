@@ -3,7 +3,7 @@ package jftha.spaces;
 import jftha.heroes.Hero;
 import jftha.main.Player;
 
-public class Monster extends Space{
+public class Monster extends RegularSpace{
     
     Hero monster;
     
@@ -64,14 +64,4 @@ public class Monster extends Space{
         StringBuilder sb = combat(attacker, this.monster);
         return sb;
     }
-
-    /**
-     * No Effect
-     * @param affected 
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
