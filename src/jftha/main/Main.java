@@ -458,7 +458,7 @@ public class Main { //definitely need more error handling
         Scanner s = new Scanner(System.in);
         int itemCount = 0;
         List<Item> myItems;
-        char yesOrNo;  //arbitrary character not 'y' or 'n'
+        char yesOrNo;
         int mistakes = 0;
         while (true) {
             System.out.println("Use item ('y' for yes, 'n' for no)?");
@@ -471,14 +471,14 @@ public class Main { //definitely need more error handling
                         System.out.println(itemCount + ". " + item.getMessage());
                     }
                     int choice = -1;
-                    while ((choice < 0) || (choice >= myItems.size())) {
+                    while ((choice < 0) || (choice > myItems.size())) {
                         System.out.println("Which item would you like to use/equip (0 for cancel)");
                         choice = s.nextInt();
 
                         if (choice == 0) {
                             return;
-                        } else if ((choice >= 0) && (choice < myItems.size())) {
-                            Item toBeUsed = myItems.get(choice + 1);
+                        } else if ((choice > 0) && (choice <= myItems.size())) {
+                            Item toBeUsed = myItems.get(choice - 1);
                             if (Equippable.class.isAssignableFrom(toBeUsed.getClass())) {
                                 if (Weapon.class.isAssignableFrom(toBeUsed.getClass())) {
                                     if (playerChar.getWeaponEquipped()) {
