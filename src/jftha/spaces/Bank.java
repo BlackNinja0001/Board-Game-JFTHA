@@ -19,7 +19,8 @@ public class Bank extends Space{
      * Creates a sum to be used.
      * @param tax 
      */
-    public void collect(int tax){
+    public void collect(Hero hero, int tax){
+        hero.setGold(hero.getGold() - tax);
         bankTax += tax;
     }
 
