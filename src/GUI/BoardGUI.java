@@ -929,7 +929,9 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (current.getSpaceType() == SpaceEnum.Card) {
                     //watch for certain cards
                 } else if (current.getSpaceType() == SpaceEnum.Chest) {
-                    
+                    Chest current2 = (Chest) current;
+                    sb = current2.triggerEffectGUI();
+                    OutputTextArea.append(sb.toString());
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by

@@ -6,7 +6,7 @@ import jftha.items.*;
 import jftha.main.Player;
 
 public class Chest extends Space {
-    
+
     /**
      * Constructor
      */
@@ -14,42 +14,33 @@ public class Chest extends Space {
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Chest);
     }
-    
-    // giveItem returns int for testing purposes.  Need to figure out how to get
-    // rid of that
+
     @Override
     public void triggerEffect() {
-        giveItem();
-    }
-
-    /**
-     * Receive an item. The higher the Luck stat, the more likely a rare item will be in the chest.
-     * @return 
-     */
-    protected int giveItem() {
         Random rand = new Random(System.currentTimeMillis());
-        
+
         Player p = getActivator();
         Hero h = p.getCharacter();
         int luck = -1;
         // If was resurrected give back lostItems
-        if(h.getWasGhost()) {
+        if (h.getWasGhost()) {
             List<Item> lost = h.getLostItems();
             Iterator<Item> iter = lost.iterator();
-                while(iter.hasNext()) {
-                    Item item = iter.next();
-                    if(!item.getSpiritual())
-                        h.addItem(item);
+            while (iter.hasNext()) {
+                Item item = iter.next();
+                if (!item.getSpiritual()) {
+                    h.addItem(item);
+                    System.out.println(p.getCustomName() + " has pulled a " + item.toString() + " out of the Chest.\n");
                 }
-                    h.setWasGhost(false);
-                    return luck;
+            }
+            h.setWasGhost(false);
         } else {
             luck = rand.nextInt(100) + 1 + h.getLuck();
             ItemFactory i = new ItemFactory();
             Item item = null;
-            if(luck > 90) {
+            if (luck > 90) {
                 item = i.buildItem(RarityEnum.rare);
-            } else if(luck > 75) {
+            } else if (luck > 75) {
                 item = i.buildItem(RarityEnum.uncommon);
             } else if (luck > 0) {
                 item = i.buildItem(RarityEnum.common);
@@ -57,13 +48,58 @@ public class Chest extends Space {
                 throw new IllegalActivationTypeException();
             }
             h.addItem(item);
+            System.out.println(p.getCustomName() + " has pulled a " + item.toString() + " out of the Chest.\n");
         }
-        return luck;
+    }
+    
+    /**
+     * Receive an item. The higher the Luck stat, the more likely a rare item
+     * will be in the chest.
+     *
+     * @return sb the message(s) to be printed out of the GUI
+     */
+    public StringBuilder triggerEffectGUI() {
+        Random rand = new Random(System.currentTimeMillis());
+        StringBuilder sb = new StringBuilder();
+
+        Player p = getActivator();
+        Hero h = p.getCharacter();
+        int luck = -1;
+        // If was resurrected give back lostItems
+        if (h.getWasGhost()) {
+            List<Item> lost = h.getLostItems();
+            Iterator<Item> iter = lost.iterator();
+            while (iter.hasNext()) {
+                Item item = iter.next();
+                if (!item.getSpiritual()) {
+                    h.addItem(item);
+                    sb.append(p.getCustomName() + " has pulled a " + item.toString() + " out of the Chest.\n");
+                }
+            }
+            h.setWasGhost(false);
+        } else {
+            luck = rand.nextInt(100) + 1 + h.getLuck();
+            ItemFactory i = new ItemFactory();
+            Item item = null;
+            if (luck > 90) {
+                item = i.buildItem(RarityEnum.rare);
+            } else if (luck > 75) {
+                item = i.buildItem(RarityEnum.uncommon);
+            } else if (luck > 0) {
+                item = i.buildItem(RarityEnum.common);
+            } else {
+                throw new IllegalActivationTypeException();
+            }
+            h.addItem(item);
+            sb.append(p.getCustomName() + " has pulled a " + item.toString() + " out of the Chest.\n");
+        }
+        return sb;
     }
 
     /**
      * No Effect
-     * @param affected 
+     *
+     * @param affected
      */
     @Override
     public void triggerEffect(Player affected) {
