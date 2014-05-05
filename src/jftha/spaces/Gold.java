@@ -46,6 +46,7 @@ public class Gold extends Space {
         Player p = getActivator();
         Hero recipient = p.getCharacter();
         recipient.setGold(recipient.getGold() + amount);
+        sb.append(p.getCustomName() + " has received " + amount + " from a Gold space.\n");
         return sb;
     }
 
