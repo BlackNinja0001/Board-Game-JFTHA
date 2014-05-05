@@ -5,6 +5,7 @@
 package GUI;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -50,7 +51,9 @@ public class BoardGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form BoardGUI
-     * @param playas The players playing the game. Gotten from previous GUI frame
+     *
+     * @param playas The players playing the game. Gotten from previous GUI
+     * frame
      */
     public BoardGUI(Player playas[]) {
         howmany = playas.length;
@@ -630,8 +633,8 @@ public class BoardGUI extends javax.swing.JFrame {
         for (int i = 0; i < howmany; i++) {
             orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
         }
-            // Equally distribute spawn points
-            board.placePlayers(players, spaceTotal);
+        // Equally distribute spawn points
+        board.placePlayers(players, spaceTotal);
 
         for (int i = 1; (i - 1) < howmany; i++) {
             StringBuilder sb = new StringBuilder();
@@ -923,12 +926,10 @@ public class BoardGUI extends javax.swing.JFrame {
                     Bank current2 = (Bank) current;
                     current2.collect(playerChar, tax);
                     OutputTextArea.append("The Bank has taxed " + performer.getCustomName() + " " + tax + " gold.\n");
-                } else if (current.getSpaceType() == SpaceEnum.Card){
+                } else if (current.getSpaceType() == SpaceEnum.Card) {
                     //watch for certain cards
-                } else if (current.getSpaceType() == SpaceEnum.Chest){
-                    
-                } else if (current.getSpaceType() == SpaceEnum.Monster){
-                    
+                } else if (current.getSpaceType() == SpaceEnum.Chest) {
+                } else if (current.getSpaceType() == SpaceEnum.Monster) {
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
@@ -1188,31 +1189,19 @@ public class BoardGUI extends javax.swing.JFrame {
         }
 
         //Locations
-        for (int i = 0; i < orderedPlayers.length; i++) {
-            updatePlayerLoc(orderedPlayers[i]);
-        }
+        updatePlayerLocs(orderedPlayers);
     }
 
     /**
      * Clears the labels that do not have a player on it.
      *
-     * @param charLabels labels that determine where a player is located on the board
+     * @param charLabels labels that determine where a player is located on the
+     * board
      * @param playas the players currently playing the game
      */
-    private void clearNonPlayerLabels(JLabel[] charLabels, Player[] playas) {
+    private void repaintPlayerLabels(JLabel[] charLabels, Player[] playas) {
 
-        int takenSpaces[] = new int[playas.length];
-        for (int i = 0; i < playas.length; i++) {
-            takenSpaces[i] = playas[i].getCurrentSpace().getSpaceID();
-        }
-
-        for (int i = 0; i < charLabels.length; i++) {
-            for (int j = 0; j < playas.length; j++) {
-                if (takenSpaces[j] != i) { //space is not taken
-                    charLabels[i].setIcon(null);
-                }
-            }
-        }
+        
     }
 
     /**
@@ -1220,22 +1209,7 @@ public class BoardGUI extends javax.swing.JFrame {
      *
      * @param playa the player whose location is to be updated
      */
-    private void updatePlayerLoc(Player playa) {
-        String imageName;
-        if (playa.getCharacter() instanceof Barbarian) {
-            imageName = "Barbarian-resized.png";
-        } else if (playa.getCharacter() instanceof Ninja) {
-            imageName = "Ninja-resized.png";
-        } else if (playa.getCharacter() instanceof Mage) {
-            imageName = "Mage-resized.png";
-        } else if (playa.getCharacter() instanceof Knight) {
-            imageName = "Knight-resized.png";
-        } else {
-            OutputTextArea.append(playa.getCustomName() + " is not using a valid class.");
-            return;
-        }
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
-
+    private void updatePlayerLocs(Player[] playas) {
         JLabel[] charLabels = new JLabel[spaceTotal];
         //assign charLabels manually
         charLabels[0] = characterLabel1;
@@ -1260,13 +1234,32 @@ public class BoardGUI extends javax.swing.JFrame {
         charLabels[19] = characterLabel20;
         charLabels[20] = characterLabel21;
         charLabels[21] = characterLabel22;
-
-        for (int i = 0; i < charLabels.length; i++) {
-            if (playa.getCurrentSpace().getSpaceID() == i) {
-                charLabels[i].setIcon(icon);
-            }
+        
+        //Clear all labels first
+        for (int i = 0; i < charLabels.length; i++){
+            charLabels[i].setIcon(null);
         }
-        clearNonPlayerLabels(charLabels, orderedPlayers);
+        
+        String imageName;
+        int takenSpaces[] = new int[playas.length];
+        //Find image of each character
+        for (int i = 0; i < playas.length; i++) { //Error: will overlap for more than one player on same space
+            Hero pChar = playas[i].getCharacter();
+            if (pChar instanceof Barbarian) {
+                imageName = "Barbarian-resized.png";
+            } else if (pChar instanceof Ninja) {
+                imageName = "Ninja-resized.png";
+            } else if (pChar instanceof Mage) {
+                imageName = "Mage-resized.png";
+            } else if (pChar instanceof Knight) {
+                imageName = "Knight-resized.png";
+            } else {
+                OutputTextArea.append(playas[i].getCustomName() + " is not using a valid class.");
+                return;
+            }
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/" + imageName));
+            charLabels[playas[i].getCurrentSpace().getSpaceID() - 1].setIcon(icon);
+        }
     }
 
     /**
