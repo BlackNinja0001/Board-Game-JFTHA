@@ -121,7 +121,9 @@ public class Board {
     public void generateBoard(int numSpaces) {
 
         for (int i = 0; i < numSpaces; i++) {
-            if (i == 2) {
+            if (i == 0){
+                addSpace(SpaceEnum.Bank);
+            } else if (i == 2) {
                 addSpace(SpaceEnum.Store);
             } else if (i == 4) {
                 addSpace(SpaceEnum.Chest);
@@ -137,6 +139,10 @@ public class Board {
                 addSpace(SpaceEnum.Monster);
             } else if (i == 16) {
                 addSpace(SpaceEnum.Gold);
+            } else if (i == 18) {
+                addSpace(SpaceEnum.Health);
+            } else if (i == 20) {
+                addSpace(SpaceEnum.Monster);
             } else {
                 addSpace(SpaceEnum.Blank);
             }
