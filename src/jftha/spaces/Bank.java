@@ -3,7 +3,7 @@ package jftha.spaces;
 import jftha.heroes.*;
 import jftha.main.Player;
 
-public class Bank extends Space{
+public class Bank extends RegularSpace{
     int bankTax = 0;
     
     /**
@@ -38,14 +38,4 @@ public class Bank extends Space{
         recipient.setGold(recipient.getGold() + bankTax);
         bankTax = 0;
     }
-
-    /**
-     * No Effect
-     * @param affected 
-     */
-    @Override
-    public void triggerEffect(Player affected) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
