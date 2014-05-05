@@ -6,14 +6,6 @@ import jftha.main.*;
 
 public class FreeRareItem extends Card{
 
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * Takes Player Class as a parameter.
      * Utilizes the ItemFactory Class to give current player a free rare item.
@@ -38,12 +30,4 @@ public class FreeRareItem extends Card{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

@@ -7,14 +7,6 @@ import jftha.main.Player;
 
 public class MPDrain extends Card{
     
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /** This Effect Drains the current player's MP.
      * 
      * @param affected The character that is getting MP drained.
@@ -54,13 +46,5 @@ public class MPDrain extends Card{
         }
         
         drainer.setCurrentMP(drainer.getCurrentMP() + mpdrain);        
-    }
-
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

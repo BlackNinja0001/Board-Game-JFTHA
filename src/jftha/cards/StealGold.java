@@ -5,14 +5,6 @@ import jftha.heroes.*;
 import jftha.main.Player;
 
 public class StealGold extends Card{
-    
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**NO EFFECT.
      * 
@@ -46,13 +38,5 @@ public class StealGold extends Card{
         }else{
             thiefHero.setGold(thiefHero.getGold() + stolengold);
         }
-    }
-
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

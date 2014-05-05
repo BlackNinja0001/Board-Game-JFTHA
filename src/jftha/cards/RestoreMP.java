@@ -4,15 +4,7 @@ import jftha.heroes.*;
 import jftha.main.*;
 
 public class RestoreMP extends Card{
-
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     /**
      * Takes in Player class as a parameter.
      * Fully restore current player's MP.
@@ -32,13 +24,4 @@ public class RestoreMP extends Card{
     public void triggerEffect(Player affected1, Player affected2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

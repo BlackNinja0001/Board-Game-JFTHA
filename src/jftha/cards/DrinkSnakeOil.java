@@ -6,14 +6,6 @@ import jftha.statchanges.Strength_TSC;
 
 public class DrinkSnakeOil extends Card{
 
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * Takes in Player Class as a parameter
      * Temporarily increase current player's Strength for 3 turns. Then reset to original stat.
@@ -34,13 +26,4 @@ public class DrinkSnakeOil extends Card{
     public void triggerEffect(Player affected1, Player affected2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    /**NO EFFECT.
-     * 
-     */
-    @Override
-    public void triggerEffect(Player affected1, Player affected2, Player affected3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
