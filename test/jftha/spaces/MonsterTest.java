@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MonsterTest {
-    Space current;
+    RegularSpace current;
     Player hero;
     
     public MonsterTest() {
