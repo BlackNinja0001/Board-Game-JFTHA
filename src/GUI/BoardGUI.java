@@ -930,6 +930,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     if (choice == JOptionPane.YES_OPTION){
                         jftha.spaces.Monster current2 = (jftha.spaces.Monster) current;
                         sb = current2.triggerEffectGUI();
+                        OutputTextArea.append(sb.toString());
                     } //else do not fight the monster
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
@@ -1109,13 +1110,13 @@ public class BoardGUI extends javax.swing.JFrame {
                         sb.append(itemCount).append(". ").append(item.getMessage()).append("\n");
                     }
                     int choice = -1;
-                    while ((choice < 0) || (choice >= myItems.size())) {
+                    while ((choice < 0) || (choice > myItems.size())) {
                         choice = Integer.parseInt(JOptionPane.showInputDialog(rootPane, sb.toString() + "Which item would you like to use (0 to cancel)?"));
 
                         if (choice == 0) {
                             return;
-                        } else if ((choice >= 0) && (choice < myItems.size())) {
-                            Item toBeUsed = myItems.get(choice + 1);
+                        } else if ((choice > 0) && (choice <= myItems.size())) {
+                            Item toBeUsed = myItems.get(choice - 1);
 
                             if (Equippable.class
                                     .isAssignableFrom(toBeUsed.getClass())) {
