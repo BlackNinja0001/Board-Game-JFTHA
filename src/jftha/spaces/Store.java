@@ -7,7 +7,7 @@ import jftha.heroes.*;
 import jftha.items.*;
 import jftha.main.Player;
 
-public class Store extends Space {
+public class Store extends RegularSpace {
 
     /**
      * Constructor
@@ -168,14 +168,5 @@ public class Store extends Space {
             JOptionPane.showMessageDialog(rootPane, "Invalid selection: " + e.getMessage());
         }
         return select;
-    }
-
-    /**
-     * No Effect
-     *
-     * @param affected
-     */
-    @Override
-    public void triggerEffect(Player affected) {
     }
 }
