@@ -888,43 +888,41 @@ public class BoardGUI extends javax.swing.JFrame {
                     // Prompt for opponent and pass to triggerEffect
                     OutputTextArea.append(custName + " has landed on a Duel to the Death space.\n");
                     updatePlayerInfo();
-                    String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
                     while (choosingOpponent) {
-                        int i = 0;
-                        Player potVictim = orderedPlayers[i];
-                        if (opponent != null && !opponent.equals("")) {
-                            if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
-                                choosingOpponent = false;
-                                StringBuilder sb = new StringBuilder();
-                                D2D current2 = (D2D) current;
-                                current2.triggerEffect(potVictim, sb);
-                                OutputTextArea.append(sb.toString());
+                        String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
+                        for (int i = 0; i < orderedPlayers.length; i++) {
+                            Player potVictim = orderedPlayers[i];
+                            if (opponent != null && !opponent.equals("")) {
+                                boolean choseYourself = false;
+                                if (opponent.trim().equalsIgnoreCase(potVictim.getCustomName())) { //valid player found
+                                    choosingOpponent = false;
+                                    StringBuilder sb = new StringBuilder();
+                                    D2D current2 = (D2D) current;
+                                    current2.triggerEffect(potVictim, sb);
+                                    OutputTextArea.append(sb.toString());
+                                    break;
+                                } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
+                                    JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
+                                    choseYourself = true;
+                                } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
+                                    JOptionPane.showMessageDialog(rootPane, "No such player.");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Type something in!");
                                 break;
-                            } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
-                                JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
-                            } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
-                                JOptionPane.showMessageDialog(rootPane, "No such player.");
-                                opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
-                                i = 0;
                             }
-                            i++;
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "Type something in!");
                         }
                     }
                     current.triggerEffect();
                 }
-            } else if ((movement
-                    > 0) && (current.getActivationType()
-                    == 'L')) { //land-on passed by
+            } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
                 continue;
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Error");
                 throw new IllegalActivationTypeException();
             }
             //Attack
-            if (turnNumber
-                    > 2) {
+            if (turnNumber > 2) {
                 if (current.getActivator() != null) {
                     turnPhase = ATTACK;
                     CurPhaseLabel.setText("Attack Phase");
@@ -937,7 +935,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
             updatePlayerInfo();
         }
-//Item 2
+        //Item 2
         if (turnNumber > 2) {
             turnPhase = ITEM_2;
             CurPhaseLabel.setText("Item Phase 2");
@@ -1099,7 +1097,6 @@ public class BoardGUI extends javax.swing.JFrame {
                             return;
                         } else if ((choice >= 0) && (choice < myItems.size())) {
                             Item toBeUsed = myItems.get(choice + 1);
-
 
                             if (Equippable.class
                                     .isAssignableFrom(toBeUsed.getClass())) {
@@ -1304,8 +1301,6 @@ public class BoardGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
-
 
                 }
             }
