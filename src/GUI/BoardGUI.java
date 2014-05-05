@@ -50,6 +50,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form BoardGUI
+     * @param playas The players playing the game. Gotten from previous GUI frame
      */
     public BoardGUI(Player playas[]) {
         howmany = playas.length;
@@ -624,12 +625,13 @@ public class BoardGUI extends javax.swing.JFrame {
         OutputTextArea.append("Determining turn order...\n");
         BoardGUI.setTurnOrder(howmany, players, die);
 
-        //Order the players based on when they go and assign their spawn points (currently all at space 1)
+        //Order the players based on when they go and assign their spawn points
         orderedPlayers = new Player[howmany];
         for (int i = 0; i < howmany; i++) {
             orderedPlayers[players[i].getTurnOrder() - 1] = players[i];
-            players[i].setCurrentSpace(board.getStart());
         }
+            // Equally distribute spawn points
+            board.placePlayers(players, spaceTotal);
 
         for (int i = 1; (i - 1) < howmany; i++) {
             StringBuilder sb = new StringBuilder();
@@ -657,8 +659,6 @@ public class BoardGUI extends javax.swing.JFrame {
             for (i = 0; i < howmany; i++) {
                 executeTurn(orderedPlayers[i]);
             }
-            i = 0;
-            //orderedPlayers[0].setIsWinner(true); //test winner
             winner = anyoneWon(orderedPlayers);
         } while (winner == -1);
 
@@ -872,7 +872,7 @@ public class BoardGUI extends javax.swing.JFrame {
         while (movement > 0) {
             movement--;
             Space current = performer.move("f"); //always move forward for now
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb;
             if (current.getActivationType() == 'p' && movement >= 0) { //pass-by not landed on
                 if (current.getSpaceType() == SpaceEnum.Store) {
                     OutputTextArea.append(custName + " is shopping at the store.\n");
@@ -972,9 +972,8 @@ public class BoardGUI extends javax.swing.JFrame {
      * @param performer
      */
     public void itemPhase(Player performer) {
-        Scanner s = new Scanner(System.in);
         Hero playerChar = performer.getCharacter();
-        String choice = new String();
+        String choice;
         //int choice = s.nextInt();
         boolean valid = false;
         while (valid) {
@@ -1023,7 +1022,6 @@ public class BoardGUI extends javax.swing.JFrame {
      */
     public void askForSpell(Player performer) {
         Hero playerChar = performer.getCharacter();
-        Scanner s = new Scanner(System.in);
         int spellCount = 0;
         List<Spell> mySpells;
         int yesOrNo;
@@ -1036,7 +1034,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     for (Spell spell : mySpells) {
                         spellCount++;
-                        sb.append(spellCount + ". " + spell.getMessage() + "\n");
+                        sb.append(spellCount).append(". ").append(spell.getMessage()).append("\n");
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= mySpells.size())) {
@@ -1088,11 +1086,9 @@ public class BoardGUI extends javax.swing.JFrame {
      */
     public void askForItem(Player performer) {
         Hero playerChar = performer.getCharacter();
-        Scanner s = new Scanner(System.in);
         int itemCount = 0;
         List<Item> myItems;
         int yesOrNo;  //arbitrary character not 'y' or 'n'
-        int mistakes = 0;
         while (true) {
             yesOrNo = JOptionPane.showConfirmDialog(rootPane, "Confirm using item ('y' for yes, 'n' for no)?", null, JOptionPane.YES_NO_OPTION);
             if (yesOrNo == JOptionPane.YES_OPTION) {
@@ -1101,7 +1097,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder();
                     for (Item item : myItems) {
                         itemCount++;
-                        sb.append(itemCount + ". " + item.getMessage() + "\n");
+                        sb.append(itemCount).append(". ").append(item.getMessage()).append("\n");
                     }
                     int choice = -1;
                     while ((choice < 0) || (choice >= myItems.size())) {
@@ -1141,28 +1137,6 @@ public class BoardGUI extends javax.swing.JFrame {
             } else if (yesOrNo == JOptionPane.NO_OPTION) {
                 itemPhase(performer);
                 break;
-            } else { //cannot occur anymore
-                if (mistakes <= 2) {
-                    System.out.println("Invalid Answer.");
-                } else if (mistakes == 3) {
-                    System.out.println("Invalid Answer. Might I recommend learning how to type correctly?");
-                } else if (mistakes == 4) {
-                    System.out.println("My bad. Maybe you can type. It's probably your ability to distinguish between y's and n's.");
-                } else if (mistakes == 5) {
-                    System.out.println("The n looks like a headless camel. The y looks like a person buried headfirst in the sand. It's so tempting to make a y out of you right now.");
-                } else if (mistakes == 6) {
-                    System.out.println("You're doing this on purpose aren't you? Alright, tell you what. i'll turn my back. Maybe I'm making you nervous.");
-                } else if (mistakes == 7) {
-                    System.out.println("Is that even a letter? Seriously you need to try.");
-                } else {
-                    System.out.println("Alright, that's it. I give up. I've given you the benefit of the doubt for far too long.");
-                    System.out.println("*The almighty narrator sticks the player's head in the nearest sand pit. It's no use because the player's brainless head needs no oxygen to function.*");
-                    performer.getCharacter().setEliminated(true);
-                    System.out.println("Game Over");
-                    //End game
-                    break;
-                }
-                mistakes++;
             }
         }
     }
@@ -1253,7 +1227,7 @@ public class BoardGUI extends javax.swing.JFrame {
      * @param playa the player whose location is to be updated
      */
     private void updatePlayerLoc(Player playa) {
-        String imageName = new String();
+        String imageName;
         if (playa.getCharacter() instanceof Barbarian) {
             imageName = "Barbarian-resized.png";
         } else if (playa.getCharacter() instanceof Ninja) {
@@ -1335,6 +1309,7 @@ public class BoardGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BoardGUI().setVisible(true);
             }
