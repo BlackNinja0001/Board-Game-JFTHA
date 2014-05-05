@@ -929,7 +929,9 @@ public class BoardGUI extends javax.swing.JFrame {
                 } else if (current.getSpaceType() == SpaceEnum.Card) {
                     //watch for certain cards
                 } else if (current.getSpaceType() == SpaceEnum.Chest) {
-                    
+                    Chest current2 = (Chest) current;
+                    sb = current2.triggerEffectGUI();
+                    OutputTextArea.append(sb.toString());
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
@@ -979,8 +981,8 @@ public class BoardGUI extends javax.swing.JFrame {
         String choice;
         //int choice = s.nextInt();
         boolean valid = false;
-        while (valid) {
-            choice = JOptionPane.showInputDialog(performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
+        while (!valid) {
+            choice = JOptionPane.showInputDialog(rootPane, performer.getCustomName() + ":\nSpell, special, item, or cancel?"); //cancel button not working
             if (choice != null) {
                 if (choice.trim().equalsIgnoreCase("spell")) {
                     this.askForSpell(performer);
