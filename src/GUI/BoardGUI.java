@@ -879,7 +879,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     Store current2 = (Store) current;
                     sb = current2.triggerEffectGUI(rootPane);
                     OutputTextArea.append(sb.toString()); //NOTE: Do NOT refactor out. Each triggerEffectGUI declares a NEW StringBuilder instead of passing an existing one.
-                } else if (current.getSpaceType() == SpaceEnum.Gold){
+                } else if (current.getSpaceType() == SpaceEnum.Gold) {
                     Gold current2 = (Gold) current;
                     sb = current2.triggerEffectGUI();
                     OutputTextArea.append(sb.toString());
@@ -908,7 +908,7 @@ public class BoardGUI extends javax.swing.JFrame {
                                     break;
                                 } else if (opponent.trim().equalsIgnoreCase(custName)) { //player chooses to fight himself
                                     JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
-                                    choseYourself = true;
+                                    i = 0; //makes sure victim is not skipped if opponent's index comes before player's
                                 } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
                                     JOptionPane.showMessageDialog(rootPane, "No such player.");
                                 }
