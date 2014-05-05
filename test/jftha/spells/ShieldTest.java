@@ -51,7 +51,7 @@ public class ShieldTest {
 
     @Test
     public void testCastSpell() {
-        Spell spell = new Shield();
+        SelfSpell spell = new Shield();
         Hero caster = new Knight();
         int initDef = 2;
         caster.setDefense(initDef);
