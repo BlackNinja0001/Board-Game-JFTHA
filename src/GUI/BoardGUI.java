@@ -949,8 +949,14 @@ public class BoardGUI extends javax.swing.JFrame {
                     // prompt for response
                     JOptionPane.showConfirmDialog(rootPane, custName + ", will you attack " + potEnemy.getCustomName() + "?", "An enemy comes this way.", JOptionPane.YES_NO_OPTION);
                     JOptionPane.showMessageDialog(rootPane, custName + " is now attacking " + potEnemy.getCustomName());
+                    int prevPlayerHP = playerChar.getCurrentHP(), 
+                            prevEnemyHP = potEnemy.getCharacter().getCurrentHP();
                     playerChar.attackEnemy(potEnemy.getCharacter());
                     potEnemy.getCharacter().attackEnemy(playerChar);
+                    int curPlayerHP = playerChar.getCurrentHP(), 
+                            curEnemyHP = potEnemy.getCharacter().getCurrentHP();
+                    JOptionPane.showConfirmDialog(rootPane, custName + " inflicted " + (prevEnemyHP - curEnemyHP) + " damage "
+                            + "while " + potEnemy.getCustomName() + " inflicted " + (prevPlayerHP - curPlayerHP) + " damage.\n", "The outcome", JOptionPane.OK_OPTION);
                 }
             }
 
