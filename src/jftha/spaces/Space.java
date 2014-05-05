@@ -43,10 +43,4 @@ public abstract class Space {
     public void setSpaceID(int spaceID) {
         this.spaceID = spaceID;
     }
-    
-    //to be implemented in sublcasses
-    public abstract void triggerEffect();
-    
-    // to be implemented in subclasses
-    public abstract void triggerEffect(Player affected);
 }
