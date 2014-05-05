@@ -1,5 +1,6 @@
 package jftha.spaces;
 
+import java.awt.Component;
 import java.util.Random;
 import jftha.heroes.Hero;
 import jftha.main.Player;
@@ -34,6 +35,18 @@ public class Gold extends Space {
         Hero recipient = p.getCharacter();
         recipient.setGold(recipient.getGold() + amount);
         
+    }
+    
+    /**
+     * Gives the hero an amount of gold between 1 and 5.
+     */
+    public StringBuilder triggerEffectGUI() {
+        StringBuilder sb = new StringBuilder();
+        randomize();
+        Player p = getActivator();
+        Hero recipient = p.getCharacter();
+        recipient.setGold(recipient.getGold() + amount);
+        return sb;
     }
 
     /**
