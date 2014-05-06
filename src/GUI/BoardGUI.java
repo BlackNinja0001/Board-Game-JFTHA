@@ -930,7 +930,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     if (choice == JOptionPane.YES_OPTION){
                         jftha.spaces.Monster current2 = (jftha.spaces.Monster) current;
                         sb = current2.triggerEffectGUI();
-                        JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
+                        OutputTextArea.append("Outcome of the battle:\n" + sb.toString());
                     } //else do not fight the monster
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
