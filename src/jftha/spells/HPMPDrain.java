@@ -15,6 +15,8 @@ public class HPMPDrain extends AttackSpell{
         this.setGoldCost(10);
         this.setMaxDuration(5);
         this.setMaxCooldown(6);
+        this.setMinHPChange(1);
+        this.setMaxHPChange(5);
         this.setmpCost(15);
         this.setMessage("HP/MP Drain. Absorb HP/MP from enemy player for 5 turns. Cost " + this.getmpCost() + " MP");
     }
@@ -31,8 +33,11 @@ public class HPMPDrain extends AttackSpell{
             
             int finalEffect = (int) Math.round(actualEffect);
             
-            if(finalEffect <= 0) {
-                finalEffect = 1;
+            if(finalEffect < getMinHPChange()) {
+                finalEffect = getMinHPChange();
+            }
+            if(finalEffect > getMaxHPChange()) {
+                finalEffect = getMaxHPChange();
             }
             
             if(caster instanceof Mage) {
