@@ -918,7 +918,7 @@ public class BoardGUI extends javax.swing.JFrame {
                     int tax = rand.nextInt(20) + 5; //5-20
                     Bank current2 = (Bank) current;
                     current2.collect(playerChar, tax);
-                    OutputTextArea.append("The Bank has taxed " + performer.getCustomName() + " " + tax + " gold.\n");
+                    OutputTextArea.append("The Bank has taxed " + custName + " " + tax + " gold.\n");
                 } else if (current.getSpaceType() == SpaceEnum.Card) {
                     //watch for certain cards
                 } else if (current.getSpaceType() == SpaceEnum.Chest) {
@@ -926,11 +926,11 @@ public class BoardGUI extends javax.swing.JFrame {
                     sb = current2.triggerEffectGUI();
                     OutputTextArea.append(sb.toString());
                 } else if (current.getSpaceType() == SpaceEnum.Monster) {
-                    int choice = JOptionPane.showConfirmDialog(rootPane, custName + ": would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
+                    int choice = JOptionPane.showConfirmDialog(rootPane, custName + ", would you like to fight a monster for a reward?", "A Monster is in the distance...", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION){
                         jftha.spaces.Monster current2 = (jftha.spaces.Monster) current;
                         sb = current2.triggerEffectGUI();
-                        OutputTextArea.append(sb.toString());
+                        JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
                     } //else do not fight the monster
                 }
             } else if ((movement > 0) && (current.getActivationType() == 'L')) { //land-on passed by
@@ -940,14 +940,23 @@ public class BoardGUI extends javax.swing.JFrame {
                 throw new IllegalActivationTypeException();
             }
             //Attack
-            if (turnNumber > 2) {
-                if (current.getActivator() != null) {
+            if (turnNumber > 2 && movement > 1) { //has enemy to attack
+                Player potEnemy = current.next.getActivator();
+                if (potEnemy != null) {
                     turnPhase = ATTACK;
                     CurPhaseLabel.setText("Attack Phase");
                     //Then allow to attack
                     // prompt for response
-                    playerChar.attackEnemy(current.getActivator().getCharacter());
-
+                    JOptionPane.showConfirmDialog(rootPane, custName + ", will you attack " + potEnemy.getCustomName() + "?", "An enemy comes this way.", JOptionPane.YES_NO_OPTION);
+                    JOptionPane.showMessageDialog(rootPane, custName + " is now attacking " + potEnemy.getCustomName());
+                    int prevPlayerHP = playerChar.getCurrentHP(), 
+                            prevEnemyHP = potEnemy.getCharacter().getCurrentHP();
+                    playerChar.attackEnemy(potEnemy.getCharacter());
+                    potEnemy.getCharacter().attackEnemy(playerChar);
+                    int curPlayerHP = playerChar.getCurrentHP(), 
+                            curEnemyHP = potEnemy.getCharacter().getCurrentHP();
+                    JOptionPane.showConfirmDialog(rootPane, custName + " inflicted " + (prevEnemyHP - curEnemyHP) + " damage "
+                            + "while " + potEnemy.getCustomName() + " inflicted " + (prevPlayerHP - curPlayerHP) + " damage.\n", "The outcome", JOptionPane.OK_OPTION);
                 }
             }
 
@@ -1202,18 +1211,6 @@ public class BoardGUI extends javax.swing.JFrame {
 
         //Locations
         updatePlayerLocs(orderedPlayers);
-    }
-
-    /**
-     * Clears the labels that do not have a player on it.
-     *
-     * @param charLabels labels that determine where a player is located on the
-     * board
-     * @param playas the players currently playing the game
-     */
-    private void repaintPlayerLabels(JLabel[] charLabels, Player[] playas) {
-
-        
     }
 
     /**

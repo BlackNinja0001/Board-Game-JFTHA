@@ -4,47 +4,50 @@ import jftha.heroes.Hero;
 import jftha.main.Player;
 
 public class Monster extends RegularSpace{
-    
     Hero monster;
-    
+
     /**
      * Constructor
      */
-    public Monster(){
+    public Monster() {
         this.setActivationType('L');
         this.setSpaceType(SpaceEnum.Monster);
         monster = new jftha.heroes.Monster();
-        
+
     }
 
     /**
-     * Takes in two Hero Class as parameters.
-     * Current player enters Duel to Death with a monster.
-     * Earn 10 Gold when monster is defeated.
+     * Takes in two Hero Class as parameters. Current player enters Duel to
+     * Death with a monster. Earn 10 Gold when monster is defeated.
+     *
      * @param attacker
-     * @param beingAttacked 
+     * @param beingAttacked
      */
-    private StringBuilder combat(Hero attacker, Hero beingAttacked){
+    private StringBuilder combat(Hero attacker, Hero beingAttacked) {
         StringBuilder sb = new StringBuilder();
         int attackerHP = attacker.getCurrentHP(), beingAttackedHP = beingAttacked.getCurrentHP();
         int num = 1;
-        while(attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0){
-            sb.append("Turn #").append(num).append(" Hero HP: ")
-                        .append(attackerHP).append(", Enemy HP: ")
-                        .append(beingAttackedHP).append("\n");
+        while (attacker.getCurrentHP() > 0 && beingAttacked.getCurrentHP() > 0) {
+            //sb.append("Turn #").append(num).append(" Hero HP: ")
+            //        .append(attackerHP).append(", Monster HP: ")
+            //        .append(beingAttackedHP).append("\n");
             attacker.attackEnemy(beingAttacked);
             beingAttacked.attackEnemy(attacker);
-            if(beingAttacked.getCurrentHP() <= 0){
-                //Attacker earns 10 gold for defeating monster
-                attacker.setGold(attacker.getGold() + 10);
-            }
+            attackerHP = attacker.getCurrentHP();
+            beingAttackedHP = beingAttacked.getCurrentHP();
+            num++;
         }
-        
+        if (beingAttacked.getCurrentHP() <= 0) {
+            //Attacker earns 10 gold for defeating monster
+            sb.append("The hero is victorious and receives 10 gold.\n");
+            attacker.setGold(attacker.getGold() + 10);
+        }
+
         //Monster's HP gets set back to max
         beingAttacked.setCurrentHP(beingAttacked.getMaxHP());
         return sb;
     }
-    
+
     /**
      * Current player enters Duel to Death with a monster.
      */
@@ -54,7 +57,7 @@ public class Monster extends RegularSpace{
         Hero attacker = p.getCharacter();
         combat(attacker, this.monster);
     }
-    
+
     /**
      * Current player enters Duel to Death with a monster.
      */
@@ -63,5 +66,14 @@ public class Monster extends RegularSpace{
         Hero attacker = p.getCharacter();
         StringBuilder sb = combat(attacker, this.monster);
         return sb;
+    }
+
+    /**
+     * No Effect
+     *
+     * @param affected
+     */
+    public void triggerEffect(Player affected) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
