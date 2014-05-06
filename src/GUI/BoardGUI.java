@@ -1029,7 +1029,6 @@ public class BoardGUI extends javax.swing.JFrame {
         int spellCount = 0;
         List<Spell> mySpells;
         int yesOrNo;
-        int mistakes = 0;
         while (true) {
             yesOrNo = JOptionPane.showConfirmDialog(rootPane, "Confirm using spell('y' for yes, 'n' for no)?", null, JOptionPane.YES_NO_OPTION);
             if (yesOrNo == JOptionPane.YES_OPTION) {
@@ -1041,27 +1040,28 @@ public class BoardGUI extends javax.swing.JFrame {
                         sb.append(spellCount).append(". ").append(spell.getMessage()).append("\n");
                     }
                     int choice = -1;
-                    while ((choice < 0) || (choice >= mySpells.size())) {
+                    while ((choice < 0) || (choice > mySpells.size())) {
                         choice = Integer.parseInt(JOptionPane.showInputDialog(rootPane, sb.toString() + "Which spell would you like to use (0 to cancel)?"));
 
                         if (choice == 0) {
                             return;
-                        } else if ((choice >= 0) && (choice < mySpells.size())) {
-                            Spell toBeUsed = mySpells.get(choice + 1);
+                        } else if ((choice > 0) && (choice <= mySpells.size())) {
+                            Spell toBeUsed = mySpells.get(choice - 1);
                             if(toBeUsed instanceof SelfSpell) {
                                 ((SelfSpell)toBeUsed).castSpell(playerChar);
                             } else {
-                                boolean choosingOpponent = false;
+                                boolean choosingOpponent = true;
                                 String custName = performer.getCustomName();
                                 while (choosingOpponent) {
-                                    String opponent = JOptionPane.showInputDialog(custName + ", select your victim: "); //Needs to loop if player typed in is not available
+                                    String opponent = JOptionPane.showInputDialog(rootPane, custName + ", select your victim: "); //Needs to loop if player typed in is not available
                                     for (int i = 0; i < orderedPlayers.length; i++) {
                                         Player potVictim = orderedPlayers[i];
                                         if (opponent != null && !opponent.equals("")) {
                                             String oppTrim = opponent.trim();
                                             if ((oppTrim.equalsIgnoreCase(potVictim.getCustomName())) && (!oppTrim.equalsIgnoreCase(custName))) { //valid player found that is not "performer"
                                                 choosingOpponent = false;
-                                                JOptionPane.showMessageDialog(rootPane, "Outcome of the battle:\n" + sb.toString());
+                                                ((AttackSpell)toBeUsed).castSpell(playerChar, potVictim.getCharacter());
+                                                OutputTextArea.append(performer.getCustomName() + " cast " + toBeUsed.getClass().getSimpleName()+ " on " + potVictim.getCustomName() + "\n.");
                                                 break;
                                             } else if (oppTrim.equalsIgnoreCase(custName)) { //player chooses to fight himself
                                                 JOptionPane.showMessageDialog(rootPane, "You can't fight yourself unless you're in Fight Club.");
@@ -1074,12 +1074,14 @@ public class BoardGUI extends javax.swing.JFrame {
                                             break;
                                         }
                                     }
-                                }
+                                } 
                             }
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
                         }
                     }
+                } else { // mySpells is empty
+                    JOptionPane.showMessageDialog(rootPane, "You have no spells to use!");
                 }
                 break;
             } else if (yesOrNo == JOptionPane.NO_OPTION) {
@@ -1142,6 +1144,8 @@ public class BoardGUI extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, "Invalid Choice.");
                         }
                     }
+                } else { // myItems is empty
+                    JOptionPane.showMessageDialog(rootPane, "You have no items to use!");
                 }
                 break;
             } else if (yesOrNo == JOptionPane.NO_OPTION) {
