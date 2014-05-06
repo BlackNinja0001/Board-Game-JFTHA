@@ -5,6 +5,8 @@ import jftha.heroes.*;
 import jftha.items.*;
 import java.util.Scanner;
 import jftha.spaces.*;
+import jftha.spells.AttackSpell;
+import jftha.spells.SelfSpell;
 import jftha.spells.Spell;
 
 public class Main { //definitely need more error handling
@@ -413,9 +415,40 @@ public class Main { //definitely need more error handling
                         
                         if(choice == 0){
                             return;
-                        }else if((choice >= 0) && (choice < mySpells.size())){
-                            Spell toBeUsed = mySpells.get(choice + 1);
-                        }else{
+                        }else if ((choice > 0) && (choice <= mySpells.size())) {
+                            Spell toBeUsed = mySpells.get(choice - 1);
+                            if(toBeUsed instanceof SelfSpell) {
+                                ((SelfSpell)toBeUsed).castSpell(playerChar);
+                            } else {
+                                boolean choosingOpponent = true;
+                                String custName = performer.getCustomName();
+                                while (choosingOpponent) {
+                                    System.out.println(custName + ", select your victim: "); //Needs to loop if player typed in is not available
+                                    String opponent = s.next();
+                                    for (int i = 0; i < orderedPlayers.length; i++) {
+                                        Player potVictim = orderedPlayers[i];
+                                        if (opponent != null && !opponent.equals("")) {
+                                            String oppTrim = opponent.trim();
+                                            if ((oppTrim.equalsIgnoreCase(potVictim.getCustomName())) && (!oppTrim.equalsIgnoreCase(custName))) { //valid player found that is not "performer"
+                                                choosingOpponent = false;
+                                                ((AttackSpell)toBeUsed).castSpell(playerChar, potVictim.getCharacter());
+                                                
+                                                System.out.println(performer.getCustomName() + " cast " + toBeUsed.getClass().getSimpleName()+ " on " + potVictim.getCustomName());
+                                                break;
+                                            } else if (oppTrim.equalsIgnoreCase(custName)) { //player chooses to fight himself
+                                                System.out.println( "You can't fight yourself unless you're in Fight Club.");
+                                                break; //makes sure victim is not skipped if opponent's index comes before player's
+                                            } else if (i == orderedPlayers.length - 1) { //input does not match any player's name
+                                                System.out.println("No such player.");
+                                            }
+                                        } else {
+                                            System.out.println( "Type something in!");
+                                            break;
+                                        }
+                                    }
+                                } 
+                            }
+                        } else {
                             System.out.println("Invalid Choice");
                         }
                     }
