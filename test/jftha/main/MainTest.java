@@ -236,7 +236,6 @@ public class MainTest {
     
     @Test
     public void testPlace4Players() {
-        System.out.println("place4Players");
         Player[] players = {new Player("player1", new Knight()), 
                             new Player("player2", new Barbarian()),
                             new Player("player3", new Ninja()),
@@ -252,7 +251,6 @@ public class MainTest {
     
     @Test
     public void testPlace3Players() {
-        System.out.println("place3Players");
         Player[] players = {new Player("player1", new Knight()), 
                             new Player("player2", new Barbarian()),
                             new Player("player3", new Ninja())};
@@ -267,7 +265,6 @@ public class MainTest {
     
     @Test
     public void testPlace2Players() {
-        System.out.println("place2Players");
         Player[] players = {new Player("player1", new Knight()), 
                             new Player("player2", new Barbarian())};
         int numSpaces = 22;
